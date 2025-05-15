@@ -179,6 +179,11 @@ const nodes = [
     desc: "Chat with Google based LLM",
     inputs: [
       {
+        desc: "The flow of the workflow",
+        name: "Flow",
+        type: "Flow",
+      },
+      {
         desc: "Chat text to send",
         name: "Query",
         type: "Text",
@@ -255,6 +260,11 @@ const nodes = [
     desc: "Chat with Anthropic based LLM",
     inputs: [
       {
+        desc: "The flow of the workflow",
+        name: "Flow",
+        type: "Flow",
+      },
+      {
         desc: "Chat text to send",
         name: "Query",
         type: "Text",
@@ -330,6 +340,11 @@ const nodes = [
     },
     desc: "chat with LLMs",
     inputs: [
+      {
+        desc: "The flow of the workflow",
+        name: "Flow",
+        type: "Flow",
+      },
       {
         desc: "The endpoint of the OpenAI compatible LLM API",
         name: "endpoint",
@@ -420,6 +435,11 @@ const nodes = [
     },
     desc: "chat with LLMs",
     inputs: [
+      {
+        desc: "The flow of the workflow",
+        name: "Flow",
+        type: "Flow",
+      },
       {
         desc: "Chat text to send",
         name: "query",

@@ -61,7 +61,7 @@ body {
   stroke-width: 1px;
   stroke-dasharray: 36000;
   fill: transparent;
-  animation: effectLogo 3s ease-in-out infinite alternate-reverse;
+  animation: effectLogo 7s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes effectLogo {

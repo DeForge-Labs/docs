@@ -4,17 +4,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { nodeData, categories } from "@/lib/node-data";
 import { coreConcepts } from "@/lib/content-data";
 import { Menu } from "lucide-react";
+import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 export default function DocsLayout({ children }) {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   // Group nodes by category
   const nodesByCategory = nodeData.reduce((acc, node) => {
@@ -42,18 +49,19 @@ export default function DocsLayout({ children }) {
   return (
     <div className="flex flex-col md:flex-row md:overflow-hidden">
       {/* Mobile Menu Button */}
-      <div className="sticky top-16 z-30 flex items-center border-b bg-background md:hidden">
+      <div className="sticky top-16 z-30 flex items-center border-b border-black/40 backdrop-blur-sm bg-background/50 md:hidden">
         <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
           <SheetTrigger asChild>
             <Button
-              variant="ghost"
-              className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+              variant="outline"
+              className="mr-2 px-8 text-base border-none "
             >
               <Menu className="h-6 w-6" />
               <span className="ml-2">Menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[80%] sm:w-[350px] pr-0">
+            <SheetTitle></SheetTitle>
             <MobileSidebar pathname={pathname} />
           </SheetContent>
         </Sheet>
@@ -68,34 +76,39 @@ export default function DocsLayout({ children }) {
                 Documentation
               </h2>
               <div className="space-y-1">
-                <Link href="/docs">
-                  <Button
-                    variant={pathname === "/docs" ? "secondary" : "ghost"}
-                    className="w-full justify-start"
-                  >
-                    Overview
-                  </Button>
-                </Link>
-                <Link href="/docs/introduction">
-                  <Button
-                    variant={
-                      pathname === "/docs/introduction" ? "secondary" : "ghost"
-                    }
-                    className="w-full justify-start"
-                  >
-                    Introduction
-                  </Button>
-                </Link>
-                <Link href="/docs/first-agent">
-                  <Button
-                    variant={
-                      pathname === "/docs/first-agent" ? "secondary" : "ghost"
-                    }
-                    className="w-full justify-start"
-                  >
-                    Your First Agent
-                  </Button>
-                </Link>
+                <Button
+                  className={`w-full justify-start outline-none ${
+                    pathname === "/docs" ? "bg-black/5 text-black" : ""
+                  }`}
+                  variant="outline"
+                  onPress={() => router.push("/docs")}
+                >
+                  Overview
+                </Button>
+
+                <Button
+                  className={`w-full justify-start ${
+                    pathname === "/docs/introduction"
+                      ? "bg-black/5 text-black"
+                      : ""
+                  }`}
+                  variant="outline"
+                  onPress={() => router.push("/docs/introduction")}
+                >
+                  Introduction
+                </Button>
+
+                <Button
+                  className={`w-full justify-start ${
+                    pathname === "/docs/first-agent"
+                      ? "bg-black/5 text-black"
+                      : ""
+                  }`}
+                  variant="outline"
+                  onPress={() => router.push("/docs/first-agent")}
+                >
+                  Your First Agent
+                </Button>
               </div>
             </div>
 
@@ -104,29 +117,22 @@ export default function DocsLayout({ children }) {
                 Core Concepts
               </h2>
               <div className="space-y-1">
-                {coreConcepts.map((concept) => (
-                  <Link
-                    key={concept.id}
-                    href={
-                      concept.id === "nodes"
+                {coreConcepts.map((concept, index) => (
+                  <Button
+                    key={index}
+                    className={`w-full justify-start ${
+                      pathname ===
+                      (concept.id === "nodes"
                         ? "/docs/nodes-concept"
-                        : concept.link
-                    }
+                        : concept.link)
+                        ? "bg-black/5 text-black"
+                        : ""
+                    }`}
+                    variant="outline"
+                    onPress={() => router.push(concept.link)}
                   >
-                    <Button
-                      variant={
-                        pathname ===
-                        (concept.id === "nodes"
-                          ? "/docs/nodes-concept"
-                          : concept.link)
-                          ? "secondary"
-                          : "ghost"
-                      }
-                      className="w-full justify-start"
-                    >
-                      {concept.title}
-                    </Button>
-                  </Link>
+                    {concept.title}
+                  </Button>
                 ))}
               </div>
             </div>
@@ -136,14 +142,15 @@ export default function DocsLayout({ children }) {
                 Nodes
               </h2>
               <div className="space-y-1">
-                <Link href="/docs/nodes">
-                  <Button
-                    variant={pathname === "/docs/nodes" ? "secondary" : "ghost"}
-                    className="w-full justify-start"
-                  >
-                    All Nodes
-                  </Button>
-                </Link>
+                <Button
+                  className={`w-full justify-start ${
+                    pathname === "/docs/nodes" ? "bg-black/5 text-black" : ""
+                  }`}
+                  variant="outline"
+                  onPress={() => router.push("/docs/nodes")}
+                >
+                  All Nodes
+                </Button>
               </div>
             </div>
 
@@ -154,54 +161,45 @@ export default function DocsLayout({ children }) {
                   {category.name}
                 </h3>
                 <div className="space-y-1">
-                  {nodesByCategory[category.id]?.map((node) => (
-                    <Link key={node.type} href={`/docs/nodes/${node.type}`}>
-                      <Button
-                        variant={
-                          pathname === `/docs/nodes/${node.type}`
-                            ? "secondary"
-                            : "ghost"
-                        }
-                        className="w-full justify-start"
-                        size="sm"
-                      >
-                        <span className="truncate">
-                          {node.title || node.name}
-                        </span>
-                        <Badge
-                          variant={
+                  {nodesByCategory[category.id]?.map((node, index) => (
+                    <Button
+                      key={index}
+                      className={`w-full justify-between ${
+                        pathname === `/docs/nodes/${node.type}`
+                          ? "bg-black/5 text-black"
+                          : ""
+                      }`}
+                      variant="outline"
+                      size="sm"
+                      onPress={() => router.push(`/docs/nodes/${node.type}`)}
+                    >
+                      <span className="truncate">
+                        {node.title || node.name}
+                      </span>
+                      <Badge
+                        className="text-xs capitalize"
+                        style={{
+                          backgroundColor:
                             node.diff === "easy"
-                              ? "default"
+                              ? "#C8E6C9"
                               : node.diff === "medium"
-                              ? "secondary"
-                              : "destructive"
-                          }
-                          className="ml-auto h-5 text-xs"
-                        >
-                          {node.diff}
-                        </Badge>
-                      </Button>
-                    </Link>
+                              ? "#FDD8AE"
+                              : "#FBC2C4",
+                          color:
+                            node.diff === "easy"
+                              ? "#1B5E20"
+                              : node.diff === "medium"
+                              ? "#855C00"
+                              : "#855C00",
+                        }}
+                      >
+                        {node.diff}
+                      </Badge>
+                    </Button>
                   ))}
                 </div>
               </div>
             ))}
-
-            <div className="mb-4">
-              <h2 className="mb-1 px-2 text-lg font-semibold tracking-tight">
-                Examples
-              </h2>
-              <div className="space-y-1">
-                <Link href="/examples">
-                  <Button
-                    variant={pathname === "/examples" ? "secondary" : "ghost"}
-                    className="w-full justify-start"
-                  >
-                    Example Projects
-                  </Button>
-                </Link>
-              </div>
-            </div>
           </div>
         </ScrollArea>
       </div>
@@ -215,6 +213,7 @@ export default function DocsLayout({ children }) {
 }
 
 function MobileSidebar({ pathname }) {
+  const router = useRouter();
   // Group nodes by category
   const nodesByCategory = nodeData.reduce((acc, node) => {
     if (!acc[node.category]) {
@@ -232,34 +231,35 @@ function MobileSidebar({ pathname }) {
             Documentation
           </h2>
           <div className="space-y-1">
-            <Link href="/docs">
-              <Button
-                variant={pathname === "/docs" ? "secondary" : "ghost"}
-                className="w-full justify-start"
-              >
-                Overview
-              </Button>
-            </Link>
-            <Link href="/docs/introduction">
-              <Button
-                variant={
-                  pathname === "/docs/introduction" ? "secondary" : "ghost"
-                }
-                className="w-full justify-start"
-              >
-                Introduction
-              </Button>
-            </Link>
-            <Link href="/docs/first-agent">
-              <Button
-                variant={
-                  pathname === "/docs/first-agent" ? "secondary" : "ghost"
-                }
-                className="w-full justify-start"
-              >
-                Your First Agent
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              className={`w-full justify-start outline-none ${
+                pathname === "/docs" ? "bg-black/5 text-black" : ""
+              }`}
+              onPress={() => router.push("/docs")}
+            >
+              Overview
+            </Button>
+
+            <Button
+              variant="outline"
+              className={`w-full justify-start ${
+                pathname === "/docs/introduction" ? "bg-black/5 text-black" : ""
+              }`}
+              onPress={() => router.push("/docs/introduction")}
+            >
+              Introduction
+            </Button>
+
+            <Button
+              variant="outline"
+              className={`w-full justify-start ${
+                pathname === "/docs/first-agent" ? "bg-black/5 text-black" : ""
+              }`}
+              onPress={() => router.push("/docs/first-agent")}
+            >
+              Your First Agent
+            </Button>
           </div>
         </div>
 
@@ -276,15 +276,16 @@ function MobileSidebar({ pathname }) {
                 }
               >
                 <Button
-                  variant={
+                  variant="outline"
+                  className={`w-full justify-start ${
                     pathname ===
                     (concept.id === "nodes"
                       ? "/docs/nodes-concept"
                       : concept.link)
-                      ? "secondary"
-                      : "ghost"
-                  }
-                  className="w-full justify-start"
+                      ? "bg-black/5 text-black"
+                      : ""
+                  }`}
+                  onPress={() => router.push(concept.link)}
                 >
                   {concept.title}
                 </Button>
@@ -298,14 +299,15 @@ function MobileSidebar({ pathname }) {
             Nodes
           </h2>
           <div className="space-y-1">
-            <Link href="/docs/nodes">
-              <Button
-                variant={pathname === "/docs/nodes" ? "secondary" : "ghost"}
-                className="w-full justify-start"
-              >
-                All Nodes
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              className={`w-full justify-start ${
+                pathname === "/docs/nodes" ? "bg-black/5 text-black" : ""
+              }`}
+              onPress={() => router.push("/docs/nodes")}
+            >
+              All Nodes
+            </Button>
           </div>
         </div>
 
@@ -317,51 +319,41 @@ function MobileSidebar({ pathname }) {
             </h3>
             <div className="space-y-1">
               {nodesByCategory[category.id]?.map((node) => (
-                <Link key={node.type} href={`/docs/nodes/${node.type}`}>
-                  <Button
-                    variant={
-                      pathname === `/docs/nodes/${node.type}`
-                        ? "secondary"
-                        : "ghost"
-                    }
-                    className="w-full justify-start"
-                    size="sm"
-                  >
-                    <span className="truncate">{node.title || node.name}</span>
-                    <Badge
-                      variant={
+                <Button
+                  key={node.type}
+                  variant="outline"
+                  className={`w-full justify-between ${
+                    pathname === `/docs/nodes/${node.type}`
+                      ? "bg-black/5 text-black"
+                      : ""
+                  }`}
+                  onPress={() => router.push(`/docs/nodes/${node.type}`)}
+                >
+                  <span className="truncate">{node.title || node.name}</span>
+                  <Badge
+                    className="text-xs capitalize"
+                    style={{
+                      backgroundColor:
                         node.diff === "easy"
-                          ? "default"
+                          ? "#C8E6C9"
                           : node.diff === "medium"
-                          ? "secondary"
-                          : "destructive"
-                      }
-                      className="ml-auto h-5 text-xs"
-                    >
-                      {node.diff}
-                    </Badge>
-                  </Button>
-                </Link>
+                          ? "#FDD8AE"
+                          : "#FBC2C4",
+                      color:
+                        node.diff === "easy"
+                          ? "#1B5E20"
+                          : node.diff === "medium"
+                          ? "#855C00"
+                          : "#855C00",
+                    }}
+                  >
+                    {node.diff}
+                  </Badge>
+                </Button>
               ))}
             </div>
           </div>
         ))}
-
-        <div className="mb-4">
-          <h2 className="mb-1 px-2 text-lg font-semibold tracking-tight">
-            Examples
-          </h2>
-          <div className="space-y-1">
-            <Link href="/examples">
-              <Button
-                variant={pathname === "/examples" ? "secondary" : "ghost"}
-                className="w-full justify-start"
-              >
-                Example Projects
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
     </ScrollArea>
   );

@@ -12,6 +12,7 @@ import { ArrowRight } from "lucide-react";
 import { coreConcepts } from "@/lib/content-data";
 import { Boxes, LinkIcon, Rocket } from "lucide-react";
 import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 // Map concept icons to Lucide components
 const iconMap = {
@@ -21,6 +22,7 @@ const iconMap = {
 };
 
 export default function DocsPage() {
+  const router = useRouter();
   return (
     <div className="container py-8 max-w-4xl">
       <div className="space-y-6">
@@ -67,14 +69,13 @@ export default function DocsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/docs/first-agent">
-                  <Button
-                    variant="outline"
-                    className="w-full bg-black/80 hover:bg-black/60 text-background"
-                  >
-                    Start Tutorial
-                  </Button>
-                </Link>
+                <Button
+                  variant="outline"
+                  className="w-full bg-black/80 hover:bg-black/60 text-background"
+                  onPress={() => router.push("/docs/first-agent")}
+                >
+                  Start Tutorial
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -95,14 +96,13 @@ export default function DocsPage() {
                     <CardDescription>{concept.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Link href={concept.link}>
-                      <Button
-                        variant="outline"
-                        className="w-full bg-black/80 hover:bg-black/60 text-background"
-                      >
-                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
+                    <Button
+                      variant="outline"
+                      className="w-full bg-black/80 hover:bg-black/60 text-background"
+                      onPress={() => router.push(concept.link)}
+                    >
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
                   </CardContent>
                 </Card>
               );
@@ -117,11 +117,12 @@ export default function DocsPage() {
             agents. Explore our node reference to learn more.
           </p>
           <div className="flex justify-center">
-            <Link href="/docs/nodes">
-              <Button className="bg-black/80 hover:bg-black/60 text-background">
-                View All Nodes <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            <Button
+              className="bg-black/80 hover:bg-black/60 text-background"
+              onPress={() => router.push("/docs/nodes")}
+            >
+              View All Nodes <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>

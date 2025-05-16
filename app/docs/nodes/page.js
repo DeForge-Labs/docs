@@ -37,7 +37,7 @@ export default function NodesPage() {
         </div>
 
         <Tabs defaultValue={categoryIds[0]} className="w-full">
-          <TabsList className="w-full justify-start overflow-auto border border-black/80 h-14 lg:h-fit min-[1124px]:w-fit">
+          <TabsList className="w-full justify-start overflow-auto border gap-1 border-black/80 h-14 lg:h-fit min-[1124px]:w-fit">
             {categoryIds.map((categoryId) => {
               const category = categories.find((c) => c.id === categoryId) || {
                 name: categoryId,
@@ -104,7 +104,7 @@ export default function NodesPage() {
                             {node.tags.map((tag) => (
                               <Badge
                                 key={tag}
-                                className="text-xs  bg-black/60 text-background p-1 px-2 hover:bg-black/5"
+                                className="text-xs bg-black/60 text-background p-1 px-2"
                               >
                                 {tag}
                               </Badge>

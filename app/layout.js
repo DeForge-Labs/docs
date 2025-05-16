@@ -1,7 +1,7 @@
 import { Lexend_Deca } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
-import Footer from "@/components/layout/footer";
+import LayoutProvider from "@/components/layout/layout-provider";
 
 const lexendDeca = Lexend_Deca({
   subsets: ["latin"],
@@ -17,9 +17,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${lexendDeca.className} antialiased`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <LayoutProvider>
+          <Navbar />
+          {children}
+        </LayoutProvider>
       </body>
     </html>
   );

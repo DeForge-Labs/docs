@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@heroui/react";
 import LogoAnimation from "@/components/ui/LogoAnimation";
+import Footer from "@/components/layout/footer";
 
 export default function Home() {
   return (
@@ -135,6 +136,8 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 }

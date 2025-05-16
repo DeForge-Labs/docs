@@ -69,8 +69,8 @@ export default function DocsLayout({ children }) {
 
       {/* Desktop Sidebar */}
       <div className="hidden md:flex md:w-[300px] md:flex-shrink-0 md:flex-col md:border-r">
-        <ScrollArea className="h-[calc(100vh-64px)] py-6 pr-6">
-          <div className="pl-6">
+        <ScrollArea className="h-[calc(100vh-64px)] ">
+          <div className="pl-6 py-6 pr-6">
             <div className="mb-4">
               <h2 className="mb-1 px-2 text-lg font-semibold tracking-tight">
                 Documentation
@@ -224,8 +224,8 @@ function MobileSidebar({ pathname }) {
   }, {});
 
   return (
-    <ScrollArea className="h-full py-6">
-      <div className="pl-1 pr-7">
+    <ScrollArea className="h-full">
+      <div className="pl-1 pr-7 py-6">
         <div className="mb-4">
           <h2 className="mb-1 px-2 text-lg font-semibold tracking-tight">
             Documentation

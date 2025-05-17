@@ -164,13 +164,13 @@ export default function DocsLayout({ children }) {
                   {nodesByCategory[category.id]?.map((node, index) => (
                     <Button
                       key={index}
-                      className={`w-full justify-between ${
+                      className={`w-full justify-between text-xs rounded-md p-2 ${
                         pathname === `/docs/nodes/${node.type}`
                           ? "bg-black/5 text-black"
                           : ""
                       }`}
                       variant="outline"
-                      size="sm"
+                      size="icon"
                       onPress={() => router.push(`/docs/nodes/${node.type}`)}
                     >
                       <span className="truncate">

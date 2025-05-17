@@ -84,8 +84,7 @@ export default function NodePage() {
         </div>
 
         <div className="bg-muted rounded-lg">
-          <h2 className="text-xl font-bold mb-4">Node Visualization</h2>
-          <div className="h-[300px] w-full">
+          <div className="h-[400px] w-full">
             <NodeVisualizer node={node} />
           </div>
         </div>

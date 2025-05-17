@@ -5,8 +5,10 @@ import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@heroui/react";
 import LogoAnimation from "@/components/ui/LogoAnimation";
 import Footer from "@/components/layout/footer";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
@@ -29,12 +31,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Link href="/docs">
-                  <Button className="bg-black/80 hover:bg-black/60 text-background">
-                    Explore Documentation{" "}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <Button
+                  className="bg-black/80 hover:bg-black/60 text-background"
+                  onPress={() => router.push("/docs")}
+                >
+                  Explore Documentation <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </div>
             </div>
           </div>
@@ -127,11 +129,13 @@ export default function Home() {
                   nodes and capabilities of Deforge.
                 </p>
               </div>
-              <Link href="/docs">
-                <Button className="bg-black/80 hover:bg-black/60 text-background">
-                  Get Started with Docs
-                </Button>
-              </Link>
+
+              <Button
+                className="bg-black/80 hover:bg-black/60 text-background"
+                onPress={() => router.push("/docs")}
+              >
+                Get Started with Docs
+              </Button>
             </div>
           </div>
         </section>

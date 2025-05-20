@@ -15,6 +15,7 @@ import ArrayField from "./generic/ArrayField";
 import StandaloneField from "./generic/StandaloneField";
 import DateTimeField from "./generic/DateTimeField";
 import CheckBoxField from "./generic/CheckBoxField";
+import SliderField from "./generic/SliderField";
 
 export function GenericNode({ id, type, data }) {
   const nodeRegistry = nodeData;
@@ -149,6 +150,17 @@ export function GenericNode({ id, type, data }) {
             key={index}
             field={field}
             nodeType={nodeType}
+            matchingInput={matchingInput}
+          />
+        );
+
+      case "Slider":
+        return (
+          <SliderField
+            key={index}
+            field={field}
+            nodeType={nodeType}
+            currentValue={currentValue}
             matchingInput={matchingInput}
           />
         );

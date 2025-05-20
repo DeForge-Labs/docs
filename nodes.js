@@ -194,6 +194,11 @@ const nodes = [
         type: "Text",
       },
       {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Number",
+      },
+      {
         desc: "RAG Knowledge base",
         name: "Rag",
         type: "Rag",
@@ -240,6 +245,15 @@ const nodes = [
         value: "You are a helpful assistant",
       },
       {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Slider",
+        value: 0.5,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
         desc: "Save chat as context for LLM",
         name: "Save Context",
         type: "CheckBox",
@@ -278,6 +292,11 @@ const nodes = [
         desc: "RAG Knowledge base",
         name: "Rag",
         type: "Rag",
+      },
+      {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Number",
       },
       {
         desc: "Save chat as context for LLM",
@@ -319,6 +338,15 @@ const nodes = [
         name: "System Prompt",
         type: "Text",
         value: "You are a helpful assistant",
+      },
+      {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Slider",
+        value: 0.5,
+        min: 0,
+        max: 1,
+        step: 0.01,
       },
       {
         desc: "Save chat as context for LLM",
@@ -366,6 +394,11 @@ const nodes = [
         type: "Text",
       },
       {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Number",
+      },
+      {
         desc: "RAG Knowledge base",
         name: "Rag",
         type: "Rag",
@@ -410,6 +443,15 @@ const nodes = [
         value: "You are a helpful assistant",
       },
       {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Slider",
+        value: 0.5,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
         desc: "Save chat as context for LLM",
         name: "Save Context",
         type: "CheckBox",
@@ -447,13 +489,24 @@ const nodes = [
       },
       {
         desc: "System prompt for the LLM",
-        name: "sysPrompt",
+        name: "System Prompt",
         type: "Text",
       },
       {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Number",
+      },
+      {
         desc: "RAG Knowledge base",
-        name: "rag",
+        name: "Rag",
         type: "Text",
+      },
+      {
+        desc: "Save chat as context for LLM",
+        name: "Save Context",
+        type: "Boolean",
+        value: true,
       },
     ],
     outputs: [
@@ -491,14 +544,23 @@ const nodes = [
       },
       {
         desc: "System prompt for the LLM",
-        name: "sysPrompt",
+        name: "System Prompt",
         type: "Text",
         value: "You are a helpful assistant",
       },
       {
+        desc: "Creativity of the LLM",
+        name: "Temperature",
+        type: "Slider",
+        value: 0.5,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
         desc: "Save chat as context for LLM",
-        name: "saveContext",
-        type: "Boolean",
+        name: "Save Context",
+        type: "CheckBox",
         value: true,
       },
     ],

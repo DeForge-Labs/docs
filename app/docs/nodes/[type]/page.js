@@ -16,6 +16,7 @@ import { nodeData } from "@/lib/node-data";
 import { Button } from "@heroui/react";
 import NodeVisualizer from "@/components/layout/node-visualizer";
 import { useParams } from "next/navigation";
+import getColorByType from "@/lib/color-profile";
 
 export default function NodePage() {
   const params = useParams();
@@ -170,9 +171,17 @@ export default function NodePage() {
                           </div>
                           <Badge
                             variant="outline"
-                            className="mt-2 border bg-black/80 text-background p-1 px-2"
+                            className="border text-black/80 border-black/80 p-1 px-2"
                           >
-                            Type: {input.type}
+                            <div
+                              className="h-3 w-3 rounded-full bg-black/80 mr-1.5"
+                              style={{
+                                backgroundColor: getColorByType(
+                                  input.type.toLowerCase()
+                                ),
+                              }}
+                            ></div>{" "}
+                            {input.type}
                           </Badge>
                         </div>
                       </div>
@@ -212,9 +221,17 @@ export default function NodePage() {
                         </div>
                         <Badge
                           variant="outline"
-                          className="mt-2 border bg-black/80 text-background p-1 px-2"
+                          className="border text-black/80 border-black/80 p-1 px-2 capitalize"
                         >
-                          Type: {output.type}
+                          <div
+                            className="h-3 w-3 rounded-full bg-black/80 mr-1.5"
+                            style={{
+                              backgroundColor: getColorByType(
+                                output.type.toLowerCase()
+                              ),
+                            }}
+                          ></div>{" "}
+                          {output.type}
                         </Badge>
                       </div>
                     </div>
@@ -248,9 +265,10 @@ export default function NodePage() {
                         <h3 className="font-semibold">{field.name}</h3>
                         <Badge
                           variant="outline"
-                          className="border bg-black/80 text-background p-1 px-2"
+                          className="border text-black/80 border-black/80 p-1 px-2 capitalize"
                         >
-                          Type: {field.type}
+                          <div className="h-3 w-3 rounded-full bg-black/80 mr-1.5"></div>{" "}
+                          {field.type}
                         </Badge>
                       </div>
                       <p className="text-sm text-muted-foreground mt-1">

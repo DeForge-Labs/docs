@@ -20,22 +20,30 @@ export default function DateTimeField({
       <div className="text-xs font-medium mb-1 capitalize">{field.name}</div>
       <div className="flex items-center">
         {nodeType.inputs.some((input) => input.name === field.name) && (
-          <Handle
-            type="target"
-            position={Position.Left}
-            id={`input-${field.name}-${matchingInput?.type || "any"}`}
-            style={{
-              left: -17,
-              top: "50%",
-              transform: "translateY(-50%)",
-              backgroundColor: getColorByType(
-                matchingInput?.type.toLowerCase()
-              ),
-              width: "8px",
-              height: "8px",
-              border: "1px solid black",
-            }}
-          />
+          <div className="relative">
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`input-${field.name}-${matchingInput?.type || "any"}`}
+              style={{
+                zIndex: 10,
+                border: "none",
+                left: "-15.3px",
+                backgroundColor: "transparent",
+              }}
+            />
+
+            <div
+              className="w-2 h-2 -left-[16.5px] -top-[4.2px] rounded-full rotate-45 absolute border-opacity-50"
+              style={{
+                backgroundColor: getColorByType(
+                  matchingInput?.type.toLowerCase()
+                ),
+                borderColor: "black",
+                borderWidth: "1px",
+              }}
+            ></div>
+          </div>
         )}
         <div className="w-full">
           <DateTimePicker

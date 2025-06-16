@@ -25,7 +25,10 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-black/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between relative">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link
+            href="https://deforge.io"
+            className="flex items-center space-x-2"
+          >
             <Image
               src="/logo/logo-black.svg"
               alt="Logo"
@@ -53,7 +56,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-2">
           <Link
-            href="https://github.com/deforge/deforge"
+            href="https://github.com/DeForge-Labs"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -112,7 +115,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="https://github.com/deforge/deforge"
+              href="https://github.com/DeForge-Labs"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-sm font-medium justify-between text-black hover:text-black"

@@ -13,7 +13,7 @@ export default function Footer() {
             height={22}
             className="mb-2"
           />
-          <Link href="/" className="text-xl font-bold">
+          <Link href="https://deforge.io" className="text-xl font-bold">
             Deforge
           </Link>
           <p className="text-sm text-muted-foreground mt-1 text-center md:text-left">
@@ -47,7 +47,7 @@ export default function Footer() {
             <ul className="flex flex-col items-center md:items-start gap-2">
               <li>
                 <Link
-                  href="https://github.com/deforge/deforge"
+                  href="https://github.com/DeForge-Labs"
                   className="text-sm text-black/60 hover:text-black"
                 >
                   GitHub
@@ -55,7 +55,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://twitter.com/deforge"
+                  href="https://x.com/Deforge_io"
                   className="text-sm text-black/60 hover:text-black"
                 >
                   Twitter

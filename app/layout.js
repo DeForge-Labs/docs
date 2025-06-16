@@ -9,8 +9,53 @@ const lexendDeca = Lexend_Deca({
 });
 
 export const metadata = {
-  title: "Deforge.io",
+  title: "docs.deforge.io",
   description: "Build AI Agents Visually, No Code Required",
+
+  metadataBase: new URL("https://docs.deforge.io"),
+
+  openGraph: {
+    title: "Deforge.io: Build AI Agents Visually, No Code Required",
+    description:
+      "Dive into the documentation of Deforge, the AI agent platform that empowers users to build AI agents visually without any code.",
+    url: "https://docs.deforge.io",
+    siteName: "docs.deforge.io",
+    type: "website",
+    images: [
+      {
+        url: "/logo/Cover.png",
+        width: 1200,
+        height: 675,
+        alt: "Deforge.io Social Banner",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Deforge.io: Build AI Agents Visually, No Code Required",
+    description:
+      "Dive into the documentation of Deforge, the AI agent platform that empowers users to build AI agents visually without any code.",
+    images: ["/logo/Cover.png"],
+    creator: "@Deforge_io",
+  },
+
+  other: {
+    "application/ld+json": `<script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Deforge",
+        "url": "https://docs.deforge.io",
+        "description": "Build AI Agents Visually, No Code Required",
+        "logo": "https://docs.deforge.io/logo/logo-black.svg",
+        "sameAs": [
+          "https://x.com/Deforge_io",
+          "https://twitter.com/Deforge_io",
+        ]
+      }
+    </script>`,
+  },
 };
 
 export default function RootLayout({ children }) {

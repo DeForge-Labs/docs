@@ -6,12 +6,21 @@ import { useRouter } from "next/navigation";
 
 export default function FirstAgentPage() {
   const router = useRouter();
+
   // Find the first agent page content
   const pageContent = docPages.find((page) => page.id === "first-agent");
 
   if (!pageContent) {
     return <div>Content not found</div>;
   }
+
+  // Function to convert markdown links to HTML
+  const convertMarkdownLinks = (content) => {
+    return content.replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g,
+      '<a href="$2" class="text-primary hover:underline">$1</a>'
+    );
+  };
 
   return (
     <div className="container py-8 max-w-4xl">
@@ -33,13 +42,9 @@ export default function FirstAgentPage() {
             <div className="prose prose-gray dark:prose-invert max-w-none">
               <p
                 dangerouslySetInnerHTML={{
-                  __html: section.content.replace(
-                    /\[([^\]]+)\]$$([^)]+)$$/g,
-                    '<a href="$2" class="text-primary hover:underline">$1</a>'
-                  ),
+                  __html: convertMarkdownLinks(section.content),
                 }}
               />
-
               {section.subsections && section.subsections.length > 0 && (
                 <div className="mt-6 space-y-6">
                   {section.subsections.map((subsection) => (
@@ -49,10 +54,7 @@ export default function FirstAgentPage() {
                       </h3>
                       <p
                         dangerouslySetInnerHTML={{
-                          __html: subsection.content.replace(
-                            /\[([^\]]+)\]$$([^)]+)$$/g,
-                            '<a href="$2" class="text-primary hover:underline">$1</a>'
-                          ),
+                          __html: convertMarkdownLinks(subsection.content),
                         }}
                       />
                     </div>
@@ -71,7 +73,6 @@ export default function FirstAgentPage() {
           >
             <ArrowLeft className="mr-2 h-4 w-4" /> Introduction
           </Button>
-
           <Button
             onPress={() => router.push("/docs/nodes")}
             className="bg-black/80 hover:bg-black/60 text-background"

@@ -67,12 +67,15 @@ jobs:
             console.log('Parsing issue body:', body);
             
             // Extract the JavaScript config object from the code block
-            const configMatch = body.match(/```javascript\s*\/\/[^\n]*\n\/\/[^\n]*\n([\s\S]*?)\n```/);
+            const configMatch = body.match(/```javascript\s*([\s\S]*?)\n```/);
             if (!configMatch) {
               throw new Error('No JavaScript config object found in issue body');
             }
             
             let configString = configMatch[1].trim();
+            
+            // Remove any comment lines at the beginning
+            configString = configString.replace(/^\/\/.*\n/gm, '');
             
             // Clean up the config string - remove comments and ensure it's valid JSON
             configString = configString

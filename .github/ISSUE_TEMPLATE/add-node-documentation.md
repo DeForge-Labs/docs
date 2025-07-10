@@ -40,7 +40,7 @@ INSTRUCTIONS:
 ## Additional Information
 
 **Long Description:**
-<!-- Detailed explanation of the node's functionality (max 500 words) -->
+<!-- Detailed explanation of the node's functionality (max 500 characters) -->
 
 **Use Cases:**
 <!-- List practical applications for this node, one per line starting with "- " -->

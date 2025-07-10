@@ -66,105 +66,63 @@ jobs:
           function parseIssueBody(body) {
             console.log('Parsing issue body:', body);
             
-            const node = {
-              title: '',
-              category: '',
-              type: '',
-              icon: { type: '', content: '' },
-              desc: '',
-              longDescription: '',
-              inputs: [],
-              outputs: [],
-              fields: [],
-              diff: '',
-              tags: [],
-              useCases: []
-            };
-            
-            // Extract using regex patterns that match your format
-            const titleMatch = body.match(/\*\*Title:\*\*\s*\n([^\n]*)/);
-            if (titleMatch) node.title = titleMatch[1].trim();
-            
-            const categoryMatch = body.match(/\*\*Category:\*\*\s*\n([^\n]*)/);
-            if (categoryMatch) node.category = categoryMatch[1].trim();
-            
-            const typeMatch = body.match(/\*\*Type:\*\*\s*\n([^\n]*)/);
-            if (typeMatch) node.type = typeMatch[1].trim();
-            
-            const descMatch = body.match(/\*\*Short Description:\*\*\s*\n([^\n]*)/);
-            if (descMatch) node.desc = descMatch[1].trim();
-            
-            const diffMatch = body.match(/\*\*Difficulty:\*\*\s*\n([^\n]*)/);
-            if (diffMatch) node.diff = diffMatch[1].trim();
-            
-            const tagsMatch = body.match(/\*\*Tags:\*\*\s*\n([^\n]*)/);
-            if (tagsMatch) {
-              let tagsStr = tagsMatch[1].trim();
-              tagsStr = tagsStr.replace(/^["']|["']$/g, '');
-              node.tags = tagsStr.split(',').map(tag => tag.trim().replace(/^["']|["']$/g, '')).filter(tag => tag);
+            // Extract the JavaScript config object from the code block
+            const configMatch = body.match(/```javascript\s*\/\/[^\n]*\n\/\/[^\n]*\n([\s\S]*?)\n```/);
+            if (!configMatch) {
+              throw new Error('No JavaScript config object found in issue body');
             }
             
+            let configString = configMatch[1].trim();
+            
+            // Clean up the config string - remove comments and ensure it's valid JSON
+            configString = configString
+              .replace(/\/\/.*$/gm, '') // Remove line comments
+              .replace(/\/\*[\s\S]*?\*\//g, '') // Remove block comments
+              .replace(/,(\s*[}\]])/g, '$1'); // Remove trailing commas
+            
+            // Try to parse as JavaScript object by wrapping in parentheses
+            let nodeConfig;
+            try {
+              nodeConfig = eval('(' + configString + ')');
+            } catch (error) {
+              console.error('Failed to parse config:', error);
+              throw new Error('Invalid JavaScript config object format');
+            }
+            
+            // Parse long description
             const longDescMatch = body.match(/\*\*Long Description:\*\*\s*\n([^\n]*)/);
-            if (longDescMatch) node.longDescription = longDescMatch[1].trim();
+            if (longDescMatch) {
+              nodeConfig.longDescription = longDescMatch[1].trim();
+            }
             
             // Parse use cases
             const useCasesSection = body.match(/\*\*Use Cases:\*\*\s*\n((?:- [^\n]*\n?)*)/);
             if (useCasesSection) {
-              node.useCases = useCasesSection[1]
+              nodeConfig.useCases = useCasesSection[1]
                 .split('\n')
                 .filter(line => line.trim().startsWith('- '))
                 .map(line => line.replace(/^- /, '').trim())
                 .filter(useCase => useCase);
+            } else {
+              nodeConfig.useCases = [];
             }
             
-            // Parse inputs
-            const inputsSection = body.match(/#### Inputs\s*\n((?:\*\*[^:]+:\*\* [^\n]*\n?)*)/);
-            if (inputsSection) {
-              const inputMatches = inputsSection[1].matchAll(/\*\*([^:]+):\*\* \[([^\]]+)\] - ([^\n]*)/g);
-              for (const match of inputMatches) {
-                node.inputs.push({
-                  name: match[1].trim(),
-                  type: match[2].trim(),
-                  desc: match[3].trim()
-                });
-              }
+            // Transform difficulty to diff
+            if (nodeConfig.difficulty) {
+              nodeConfig.diff = nodeConfig.difficulty;
+              delete nodeConfig.difficulty;
             }
             
-            // Parse outputs
-            const outputsSection = body.match(/#### Outputs\s*\n((?:\*\*[^:]+:\*\* [^\n]*\n?)*)/);
-            if (outputsSection) {
-              const outputMatches = outputsSection[1].matchAll(/\*\*([^:]+):\*\* \[([^\]]+)\] - ([^\n]*)/g);
-              for (const match of outputMatches) {
-                node.outputs.push({
-                  name: match[1].trim(),
-                  type: match[2].trim(),
-                  desc: match[3].trim()
-                });
-              }
+            // Ensure icon object has required fields
+            if (!nodeConfig.icon) {
+              nodeConfig.icon = { type: '', content: '' };
+            } else {
+              if (!nodeConfig.icon.type) nodeConfig.icon.type = '';
+              if (!nodeConfig.icon.content) nodeConfig.icon.content = '';
             }
             
-            // Parse fields
-            const fieldsSection = body.match(/#### Fields[\s\S]*?\n((?:\*\*[^:]+:\*\*[^\n]*\n?)*)/);
-            if (fieldsSection) {
-              const fieldMatches = fieldsSection[1].matchAll(/\*\*([^:]+):\*\* \[([^\]]+)\] - ([^(]*?)(?:\(Default: ([^,)]*?)(?:, Options: ([^)]*?))?\))?/g);
-              for (const match of fieldMatches) {
-                const field = {
-                  name: match[1].trim(),
-                  type: match[2].trim(),
-                  desc: match[3].trim()
-                };
-                
-                if (match[4]) field.value = match[4].trim();
-                if (match[5]) {
-                  field.options = match[5].split(',').map(opt => opt.trim().replace(/^["']|["']$/g, ''));
-                }
-                
-                node.fields.push(field);
-              }
-            }
-            
-            console.log('Parsed node:', JSON.stringify(node, null, 2));
-            return node;
+            console.log('Parsed node:', JSON.stringify(nodeConfig, null, 2));
+            return nodeConfig;
           }
           
           const issueBody = `${{ github.event.issue.body }}`;
@@ -173,12 +131,12 @@ jobs:
           // Debug: Log parsed data
           console.log('Final parsed data:', JSON.stringify(nodeData, null, 2));
           
-          // Validate required fields
+          // Validate required fields from config object
           const requiredFields = ['title', 'category', 'type', 'desc', 'diff'];
           const missingFields = requiredFields.filter(field => !nodeData[field]);
           
           if (missingFields.length > 0) {
-            core.setFailed(`Missing required fields: ${missingFields.join(', ')}. Parsed values - Title: "${nodeData.title}", Category: "${nodeData.category}", Type: "${nodeData.type}", Desc: "${nodeData.desc}", Diff: "${nodeData.diff}"`);
+            core.setFailed(`Missing required fields in config object: ${missingFields.join(', ')}`);
             return;
           }
           
@@ -194,6 +152,14 @@ jobs:
           if (!validDifficulties.includes(nodeData.diff)) {
             core.setFailed(`Invalid difficulty: ${nodeData.diff}. Must be one of: ${validDifficulties.join(', ')}`);
             return;
+          }
+          
+          // Warn if longDescription or useCases are missing but don't fail
+          if (!nodeData.longDescription) {
+            console.log('Warning: longDescription is missing');
+          }
+          if (!nodeData.useCases || nodeData.useCases.length === 0) {
+            console.log('Warning: useCases are missing');
           }
           
           // Read current node-data.js file

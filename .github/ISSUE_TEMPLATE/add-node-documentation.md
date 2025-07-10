@@ -9,75 +9,51 @@ assignees: ''
 
 <!-- 
 INSTRUCTIONS: 
-- Please fill out all sections below with the appropriate information for your node
-- Fill in the values directly after the colons (on the same line)
-- Remove all instructional text (text in comments like this and placeholder descriptions)
-- Ensure your icon (if provided) is base64 encoded and under 128KB
-- Keep descriptions concise and informative
+- Paste your node config object in the "Node Config" section below
+- Fill in the Long Description and Use Cases sections
+- Remove all instructional text (comments like this)
+- The config object should be the same as in your node's source code
 -->
 
-## Node Information
+## Node Config
 
-### Basic Details
-**Title:** Enter node title here
-**Category:** Example: input, processing, output, LLM, flow, trigger
-**Type:** Enter unique identifier (e.g., str_var, api_node)
-**Short Description:** One line description of what the node does
-**Difficulty:** Choose one: easy, medium, hard
-**Tags:** List up to 5 tags separated by commas
+```javascript
+// Paste your complete node config object here
+// Example:
+{
+  title: "Your Node Title",
+  category: "processing",
+  type: "your_node_type", 
+  icon: {
+    type: "svg",
+    content: "base64encodedcontent..."
+  },
+  desc: "Short description",
+  inputs: [...],
+  outputs: [...],
+  fields: [...],
+  difficulty: "easy",
+  tags: ["tag1", "tag2"]
+}
+```
 
-### Icon (Optional)
-**Icon Type:** png, jpg, or svg (leave empty if no icon)
-**Icon Content:** Base64 encoded image data (leave empty if no icon)
+## Additional Information
 
-### Detailed Description
-**Long Description:** Detailed explanation of the node's functionality (max 500 words)
+**Long Description:**
+<!-- Detailed explanation of the node's functionality (max 500 words) -->
 
-### Use Cases
-**Use Cases:** 
-- Use case 1
-- Use case 2
-- Use case 3
-
-### Technical Specifications
-
-#### Inputs
-<!-- List all input connections this node accepts. Format each as:
-**Input Name:** [Type] - Description
-Example: **Flow:** [Flow] - The flow of the workflow
--->
-
-#### Outputs  
-<!-- List all output connections this node provides. Format each as:
-**Output Name:** [Type] - Description
-Example: **Text:** [Text] - The text entered by the user
--->
-
-#### Fields
-<!-- List all configurable fields in the node. Format each as:
-**Field Name:** [Type] - Description (Default: value)
-For select fields, also list options: (Default: value, Options: option1, option2, option3)
-For sliders, include min/max/step: (Default: 0.5, Min: 0, Max: 1, Step: 0.01)
-Example: **Temperature:** [Slider] - Creativity of the LLM (Default: 0.5, Min: 0, Max: 1, Step: 0.01)
--->
-
-### Examples (Optional)
-**Example Title:** Example name
-**Example Description:** What this example demonstrates
-**Example Steps:** 
-1. Step 1
-2. Step 2
-3. Step 3
+**Use Cases:**
+<!-- List practical applications for this node, one per line starting with "- " -->
+- 
+- 
+- 
 
 ---
 
 <!-- 
 VALIDATION CHECKLIST (remove before submitting):
-- [ ] All required fields are filled out
-- [ ] Category is one of: input, processing, output, LLM, flow, trigger
-- [ ] Difficulty is one of: easy, medium, hard  
-- [ ] Tags list has 5 or fewer items
+- [ ] Node config object is pasted and complete
 - [ ] Long description is under 500 words
-- [ ] Icon (if provided) is base64 encoded and under 128KB
+- [ ] Use cases are listed
 - [ ] All instructional text has been removed
 -->

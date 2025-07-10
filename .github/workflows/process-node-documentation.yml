@@ -1,0 +1,306 @@
+name: Process Node Documentation Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-node-issue:
+    if: contains(github.event.issue.labels.*.name, 'documentation')
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check issue size
+      id: size_check
+      run: |
+        issue_size=$(echo '${{ github.event.issue.body }}' | wc -c)
+        echo "Issue size: $issue_size bytes"
+        
+        if [ $issue_size -gt 102400 ]; then
+          echo "size_exceeded=true" >> $GITHUB_OUTPUT
+          echo "Issue size ($issue_size bytes) exceeds 100KB limit"
+        else
+          echo "size_exceeded=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Close issue if too large
+      if: steps.size_check.outputs.size_exceeded == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '❌ **Issue Rejected**: This issue exceeds the 100KB size limit. Please reduce the content size and resubmit.'
+          });
+          
+          github.rest.issues.update({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'closed'
+          });
+
+    - name: Checkout repository
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Parse issue and update node data
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      id: parse_issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          function parseIssueBody(body) {
+            const lines = body.split('\n');
+            const node = {
+              title: '',
+              category: '',
+              type: '',
+              icon: { type: '', content: '' },
+              desc: '',
+              longDescription: '',
+              inputs: [],
+              outputs: [],
+              fields: [],
+              diff: '',
+              tags: [],
+              useCases: []
+            };
+            
+            let currentSection = '';
+            let currentField = '';
+            
+            for (let i = 0; i < lines.length; i++) {
+              const line = lines[i].trim();
+              
+              // Skip comments and empty lines
+              if (line.startsWith('<!--') || line.endsWith('-->') || line === '' || line.startsWith('---')) {
+                continue;
+              }
+              
+              // Basic Details
+              if (line.startsWith('**Title:**')) {
+                node.title = line.replace('**Title:**', '').trim();
+              } else if (line.startsWith('**Category:**')) {
+                node.category = line.replace('**Category:**', '').trim();
+              } else if (line.startsWith('**Type:**')) {
+                node.type = line.replace('**Type:**', '').trim();
+              } else if (line.startsWith('**Short Description:**')) {
+                node.desc = line.replace('**Short Description:**', '').trim();
+              } else if (line.startsWith('**Difficulty:**')) {
+                node.diff = line.replace('**Difficulty:**', '').trim();
+              } else if (line.startsWith('**Tags:**')) {
+                const tagsStr = line.replace('**Tags:**', '').trim();
+                node.tags = tagsStr.split(',').map(tag => tag.trim()).filter(tag => tag);
+              }
+              
+              // Icon
+              else if (line.startsWith('**Icon Type:**')) {
+                node.icon.type = line.replace('**Icon Type:**', '').trim();
+              } else if (line.startsWith('**Icon Content:**')) {
+                node.icon.content = line.replace('**Icon Content:**', '').trim();
+              }
+              
+              // Long Description
+              else if (line.startsWith('**Long Description:**')) {
+                currentSection = 'longDescription';
+                node.longDescription = line.replace('**Long Description:**', '').trim();
+              } else if (currentSection === 'longDescription' && !line.startsWith('**')) {
+                node.longDescription += (node.longDescription ? ' ' : '') + line;
+              }
+              
+              // Use Cases
+              else if (line.startsWith('**Use Cases:**')) {
+                currentSection = 'useCases';
+              } else if (currentSection === 'useCases' && line.startsWith('- ')) {
+                node.useCases.push(line.substring(2).trim());
+              }
+              
+              // Inputs
+              else if (line === '#### Inputs') {
+                currentSection = 'inputs';
+              } else if (currentSection === 'inputs' && line.startsWith('**') && line.includes(':**')) {
+                const match = line.match(/\*\*(.*?):\*\* \[(.*?)\] - (.*)/);
+                if (match) {
+                  node.inputs.push({
+                    name: match[1],
+                    type: match[2],
+                    desc: match[3]
+                  });
+                }
+              }
+              
+              // Outputs
+              else if (line === '#### Outputs') {
+                currentSection = 'outputs';
+              } else if (currentSection === 'outputs' && line.startsWith('**') && line.includes(':**')) {
+                const match = line.match(/\*\*(.*?):\*\* \[(.*?)\] - (.*)/);
+                if (match) {
+                  node.outputs.push({
+                    name: match[1],
+                    type: match[2],
+                    desc: match[3]
+                  });
+                }
+              }
+              
+              // Fields
+              else if (line === '#### Fields') {
+                currentSection = 'fields';
+              } else if (currentSection === 'fields' && line.startsWith('**') && line.includes(':**')) {
+                const match = line.match(/\*\*(.*?):\*\* \[(.*?)\] - (.*?)(?:\(Default: (.*?)(?:, Options: (.*?))?(?:, Min: (.*?), Max: (.*?), Step: (.*?))?\))?/);
+                if (match) {
+                  const field = {
+                    name: match[1],
+                    type: match[2],
+                    desc: match[3]
+                  };
+                  
+                  if (match[4]) field.value = match[4];
+                  if (match[5]) field.options = match[5].split(',').map(opt => opt.trim());
+                  if (match[6]) field.min = parseFloat(match[6]);
+                  if (match[7]) field.max = parseFloat(match[7]);
+                  if (match[8]) field.step = parseFloat(match[8]);
+                  
+                  node.fields.push(field);
+                }
+              }
+              
+              // Reset section on new header
+              if (line.startsWith('##') || line.startsWith('###')) {
+                currentSection = '';
+              }
+            }
+            
+            return node;
+          }
+          
+          const issueBody = `${{ github.event.issue.body }}`;
+          const nodeData = parseIssueBody(issueBody);
+          
+          // Validate required fields
+          const requiredFields = ['title', 'category', 'type', 'desc', 'diff'];
+          const missingFields = requiredFields.filter(field => !nodeData[field]);
+          
+          if (missingFields.length > 0) {
+            core.setFailed(`Missing required fields: ${missingFields.join(', ')}`);
+            return;
+          }
+          
+          // Validate category
+          const validCategories = ['input', 'processing', 'output', 'LLM', 'flow', 'trigger'];
+          if (!validCategories.includes(nodeData.category)) {
+            core.setFailed(`Invalid category: ${nodeData.category}. Must be one of: ${validCategories.join(', ')}`);
+            return;
+          }
+          
+          // Validate difficulty
+          const validDifficulties = ['easy', 'medium', 'hard'];
+          if (!validDifficulties.includes(nodeData.diff)) {
+            core.setFailed(`Invalid difficulty: ${nodeData.diff}. Must be one of: ${validDifficulties.join(', ')}`);
+            return;
+          }
+          
+          console.log('Parsed node data:', JSON.stringify(nodeData, null, 2));
+          
+          // Read current node-data.js file
+          const nodeDataPath = 'lib/node-data.js';
+          let fileContent = fs.readFileSync(nodeDataPath, 'utf8');
+          
+          // Find the nodeData array and add the new node
+          const nodeDataString = JSON.stringify(nodeData, null, 2);
+          const insertPosition = fileContent.lastIndexOf('];');
+          
+          if (insertPosition === -1) {
+            core.setFailed('Could not find nodeData array in node-data.js');
+            return;
+          }
+          
+          // Insert the new node before the closing bracket
+          const beforeArray = fileContent.substring(0, insertPosition - 1);
+          const afterArray = fileContent.substring(insertPosition);
+          
+          const newContent = beforeArray + ',\n  ' + nodeDataString.split('\n').join('\n  ') + '\n' + afterArray;
+          
+          fs.writeFileSync(nodeDataPath, newContent);
+          
+          core.setOutput('node_title', nodeData.title);
+          core.setOutput('node_type', nodeData.type);
+
+    - name: Create branch and commit changes
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Create new branch
+        branch_name="add-node-${{ steps.parse_issue.outputs.node_type }}-$(date +%s)"
+        git checkout -b "$branch_name"
+        
+        # Commit changes
+        git add lib/node-data.js
+        git commit -m "Add ${{ steps.parse_issue.outputs.node_title }} node documentation"
+        
+        # Push branch
+        git push origin "$branch_name"
+        
+        echo "BRANCH_NAME=$branch_name" >> $GITHUB_ENV
+
+    - name: Create Pull Request
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: pullRequest } = await github.rest.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `Add ${{ steps.parse_issue.outputs.node_title }} node documentation`,
+            head: process.env.BRANCH_NAME,
+            base: 'main',
+            body: `
+            ## 📚 Node Documentation Added
+            
+            This PR adds documentation for the **${{ steps.parse_issue.outputs.node_title }}** node.
+            
+            ### Changes
+            - Added new node to \`lib/node-data.js\`
+            - Node type: \`${{ steps.parse_issue.outputs.node_type }}\`
+            
+            ### Related Issue
+            Closes #${{ github.event.issue.number }}
+            
+            ### Review Checklist
+            - [ ] Node information is complete and accurate
+            - [ ] All required fields are present
+            - [ ] Documentation follows the established format
+            - [ ] No syntax errors in the updated file
+            
+            ---
+            *This PR was automatically created from issue #${{ github.event.issue.number }}*
+            `
+          });
+          
+          // Comment on the original issue
+          await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `✅ **Documentation processed successfully!**
+            
+            A pull request has been created: #${pullRequest.number}
+            
+            The node documentation will be reviewed and merged if everything looks correct.`
+          });

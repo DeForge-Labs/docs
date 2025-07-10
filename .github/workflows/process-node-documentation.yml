@@ -95,7 +95,7 @@ jobs:
             }
             
             // Parse long description
-            const longDescMatch = body.match(/\*\*Long Description:\*\*\s*\n([^\n]*)/);
+            const longDescMatch = body.match(/\*\*Long Description:\*\*\s*\n([\s\S]*?)(?=\n\*\*[^*]|\n##|\n---|\n```|$)/);
             if (longDescMatch) {
               nodeConfig.longDescription = longDescMatch[1].trim();
             }
@@ -142,13 +142,6 @@ jobs:
           
           if (missingFields.length > 0) {
             core.setFailed(`Missing required fields in config object: ${missingFields.join(', ')}`);
-            return;
-          }
-          
-          // Validate category
-          const validCategories = ['input', 'processing', 'output', 'LLM', 'flow', 'trigger'];
-          if (!validCategories.includes(nodeData.category)) {
-            core.setFailed(`Invalid category: ${nodeData.category}. Must be one of: ${validCategories.join(', ')}`);
             return;
           }
           

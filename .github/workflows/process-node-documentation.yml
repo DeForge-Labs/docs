@@ -1,0 +1,257 @@
+name: Process Node Documentation Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-node-issue:
+    if: contains(github.event.issue.labels.*.name, 'documentation')
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check issue size
+      id: size_check
+      run: |
+        issue_size=$(echo '${{ github.event.issue.body }}' | wc -c)
+        echo "Issue size: $issue_size bytes"
+        
+        if [ $issue_size -gt 102400 ]; then
+          echo "size_exceeded=true" >> $GITHUB_OUTPUT
+          echo "Issue size ($issue_size bytes) exceeds 100KB limit"
+        else
+          echo "size_exceeded=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Close issue if too large
+      if: steps.size_check.outputs.size_exceeded == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '❌ **Issue Rejected**: This issue exceeds the 100KB size limit. Please reduce the content size and resubmit.'
+          });
+          
+          github.rest.issues.update({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'closed'
+          });
+
+    - name: Checkout repository
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Parse issue and update node data
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      id: parse_issue
+      env:
+        ISSUE_BODY: ${{ github.event.issue.body }}
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          function parseIssueBody(body) {
+            console.log('Parsing issue body:', body);
+            
+            // Extract the JavaScript config object from the code block
+            const configMatch = body.match(/```javascript\s*([\s\S]*?)\n```/);
+            if (!configMatch) {
+              throw new Error('No JavaScript config object found in issue body');
+            }
+            
+            let configString = configMatch[1].trim();
+            
+            // Remove any comment lines at the beginning
+            configString = configString.replace(/^\/\/.*\n/gm, '');
+            
+            // Clean up the config string - remove comments and ensure it's valid JSON
+            configString = configString
+              .replace(/\/\/.*$/gm, '') // Remove line comments
+              .replace(/\/\*[\s\S]*?\*\//g, '') // Remove block comments
+              .replace(/,(\s*[}\]])/g, '$1'); // Remove trailing commas
+            
+            // Try to parse as JavaScript object by wrapping in parentheses
+            let nodeConfig;
+            try {
+              nodeConfig = eval('(' + configString + ')');
+            } catch (error) {
+              console.error('Failed to parse config:', error);
+              throw new Error('Invalid JavaScript config object format');
+            }
+            
+            // Parse long description
+            const longDescMatch = body.match(/\*\*Long Description:\*\*\s*\n([^\n]*)/);
+            if (longDescMatch) {
+              nodeConfig.longDescription = longDescMatch[1].trim();
+            }
+            
+            // Parse use cases
+            const useCasesSection = body.match(/\*\*Use Cases:\*\*\s*\n((?:- [^\n]*\n?)*)/);
+            if (useCasesSection) {
+              nodeConfig.useCases = useCasesSection[1]
+                .split('\n')
+                .filter(line => line.trim().startsWith('- '))
+                .map(line => line.replace(/^- /, '').trim())
+                .filter(useCase => useCase);
+            } else {
+              nodeConfig.useCases = [];
+            }
+            
+            // Transform difficulty to diff
+            if (nodeConfig.difficulty) {
+              nodeConfig.diff = nodeConfig.difficulty;
+              delete nodeConfig.difficulty;
+            }
+            
+            // Ensure icon object has required fields
+            if (!nodeConfig.icon) {
+              nodeConfig.icon = { type: '', content: '' };
+            } else {
+              if (!nodeConfig.icon.type) nodeConfig.icon.type = '';
+              if (!nodeConfig.icon.content) nodeConfig.icon.content = '';
+            }
+            
+            console.log('Parsed node:', JSON.stringify(nodeConfig, null, 2));
+            return nodeConfig;
+          }
+          
+          const issueBody = process.env.ISSUE_BODY;
+          const nodeData = parseIssueBody(issueBody);
+          
+          // Debug: Log parsed data
+          console.log('Final parsed data:', JSON.stringify(nodeData, null, 2));
+          
+          // Validate required fields from config object
+          const requiredFields = ['title', 'category', 'type', 'desc', 'diff'];
+          const missingFields = requiredFields.filter(field => !nodeData[field]);
+          
+          if (missingFields.length > 0) {
+            core.setFailed(`Missing required fields in config object: ${missingFields.join(', ')}`);
+            return;
+          }
+          
+          // Validate category
+          const validCategories = ['input', 'processing', 'output', 'LLM', 'flow', 'trigger'];
+          if (!validCategories.includes(nodeData.category)) {
+            core.setFailed(`Invalid category: ${nodeData.category}. Must be one of: ${validCategories.join(', ')}`);
+            return;
+          }
+          
+          // Validate difficulty
+          const validDifficulties = ['easy', 'medium', 'hard'];
+          if (!validDifficulties.includes(nodeData.diff)) {
+            core.setFailed(`Invalid difficulty: ${nodeData.diff}. Must be one of: ${validDifficulties.join(', ')}`);
+            return;
+          }
+          
+          // Warn if longDescription or useCases are missing but don't fail
+          if (!nodeData.longDescription) {
+            console.log('Warning: longDescription is missing');
+          }
+          if (!nodeData.useCases || nodeData.useCases.length === 0) {
+            console.log('Warning: useCases are missing');
+          }
+          
+          // Read current node-data.js file
+          const nodeDataPath = 'lib/node-data.js';
+          let fileContent = fs.readFileSync(nodeDataPath, 'utf8');
+          
+          // Find the nodeData array and add the new node
+          const nodeDataString = JSON.stringify(nodeData, null, 2);
+          const insertPosition = fileContent.lastIndexOf('];');
+          
+          if (insertPosition === -1) {
+            core.setFailed('Could not find nodeData array in node-data.js');
+            return;
+          }
+          
+          // Insert the new node before the closing bracket
+          const beforeArray = fileContent.substring(0, insertPosition - 1);
+          const afterArray = fileContent.substring(insertPosition);
+          
+          const newContent = beforeArray + ',\n  ' + nodeDataString.split('\n').join('\n  ') + '\n' + afterArray;
+          
+          fs.writeFileSync(nodeDataPath, newContent);
+          
+          core.setOutput('node_title', nodeData.title);
+          core.setOutput('node_type', nodeData.type);
+
+    - name: Create branch and commit changes
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Create new branch
+        branch_name="add-node-${{ steps.parse_issue.outputs.node_type }}-$(date +%s)"
+        git checkout -b "$branch_name"
+        
+        # Commit changes
+        git add lib/node-data.js
+        git commit -m "Add ${{ steps.parse_issue.outputs.node_title }} node documentation"
+        
+        # Push branch
+        git push origin "$branch_name"
+        
+        echo "BRANCH_NAME=$branch_name" >> $GITHUB_ENV
+
+    - name: Create Pull Request
+      if: steps.size_check.outputs.size_exceeded == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: pullRequest } = await github.rest.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `Add ${{ steps.parse_issue.outputs.node_title }} node documentation`,
+            head: process.env.BRANCH_NAME,
+            base: 'main',
+            body: `
+            ## 📚 Node Documentation Added
+            
+            This PR adds documentation for the **${{ steps.parse_issue.outputs.node_title }}** node.
+            
+            ### Changes
+            - Added new node to \`lib/node-data.js\`
+            - Node type: \`${{ steps.parse_issue.outputs.node_type }}\`
+            
+            ### Related Issue
+            Closes #${{ github.event.issue.number }}
+            
+            ### Review Checklist
+            - [ ] Node information is complete and accurate
+            - [ ] All required fields are present
+            - [ ] Documentation follows the established format
+            - [ ] No syntax errors in the updated file
+            
+            ---
+            *This PR was automatically created from issue #${{ github.event.issue.number }}*
+            `
+          });
+          
+          // Comment on the original issue
+          await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `✅ **Documentation processed successfully!**
+            
+            A pull request has been created: #${pullRequest.number}
+            
+            The node documentation will be reviewed and merged if everything looks correct.`
+          });

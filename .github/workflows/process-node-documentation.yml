@@ -64,7 +64,8 @@ jobs:
           const path = require('path');
           
           function parseIssueBody(body) {
-            const lines = body.split('\n');
+            console.log('Parsing issue body:', body);
+            
             const node = {
               title: '',
               category: '',
@@ -80,123 +81,104 @@ jobs:
               useCases: []
             };
             
-            let currentSection = '';
-            let currentField = '';
+            // Extract using regex patterns that match your format
+            const titleMatch = body.match(/\*\*Title:\*\*\s*\n([^\n]*)/);
+            if (titleMatch) node.title = titleMatch[1].trim();
             
-            for (let i = 0; i < lines.length; i++) {
-              const line = lines[i].trim();
-              
-              // Skip comments and empty lines
-              if (line.startsWith('<!--') || line.endsWith('-->') || line === '' || line.startsWith('---')) {
-                continue;
-              }
-              
-              // Basic Details
-              if (line.startsWith('**Title:**')) {
-                node.title = line.replace('**Title:**', '').trim();
-              } else if (line.startsWith('**Category:**')) {
-                node.category = line.replace('**Category:**', '').trim();
-              } else if (line.startsWith('**Type:**')) {
-                node.type = line.replace('**Type:**', '').trim();
-              } else if (line.startsWith('**Short Description:**')) {
-                node.desc = line.replace('**Short Description:**', '').trim();
-              } else if (line.startsWith('**Difficulty:**')) {
-                node.diff = line.replace('**Difficulty:**', '').trim();
-              } else if (line.startsWith('**Tags:**')) {
-                const tagsStr = line.replace('**Tags:**', '').trim();
-                node.tags = tagsStr.split(',').map(tag => tag.trim()).filter(tag => tag);
-              }
-              
-              // Icon
-              else if (line.startsWith('**Icon Type:**')) {
-                node.icon.type = line.replace('**Icon Type:**', '').trim();
-              } else if (line.startsWith('**Icon Content:**')) {
-                node.icon.content = line.replace('**Icon Content:**', '').trim();
-              }
-              
-              // Long Description
-              else if (line.startsWith('**Long Description:**')) {
-                currentSection = 'longDescription';
-                node.longDescription = line.replace('**Long Description:**', '').trim();
-              } else if (currentSection === 'longDescription' && !line.startsWith('**')) {
-                node.longDescription += (node.longDescription ? ' ' : '') + line;
-              }
-              
-              // Use Cases
-              else if (line.startsWith('**Use Cases:**')) {
-                currentSection = 'useCases';
-              } else if (currentSection === 'useCases' && line.startsWith('- ')) {
-                node.useCases.push(line.substring(2).trim());
-              }
-              
-              // Inputs
-              else if (line === '#### Inputs') {
-                currentSection = 'inputs';
-              } else if (currentSection === 'inputs' && line.startsWith('**') && line.includes(':**')) {
-                const match = line.match(/\*\*(.*?):\*\* \[(.*?)\] - (.*)/);
-                if (match) {
-                  node.inputs.push({
-                    name: match[1],
-                    type: match[2],
-                    desc: match[3]
-                  });
-                }
-              }
-              
-              // Outputs
-              else if (line === '#### Outputs') {
-                currentSection = 'outputs';
-              } else if (currentSection === 'outputs' && line.startsWith('**') && line.includes(':**')) {
-                const match = line.match(/\*\*(.*?):\*\* \[(.*?)\] - (.*)/);
-                if (match) {
-                  node.outputs.push({
-                    name: match[1],
-                    type: match[2],
-                    desc: match[3]
-                  });
-                }
-              }
-              
-              // Fields
-              else if (line === '#### Fields') {
-                currentSection = 'fields';
-              } else if (currentSection === 'fields' && line.startsWith('**') && line.includes(':**')) {
-                const match = line.match(/\*\*(.*?):\*\* \[(.*?)\] - (.*?)(?:\(Default: (.*?)(?:, Options: (.*?))?(?:, Min: (.*?), Max: (.*?), Step: (.*?))?\))?/);
-                if (match) {
-                  const field = {
-                    name: match[1],
-                    type: match[2],
-                    desc: match[3]
-                  };
-                  
-                  if (match[4]) field.value = match[4];
-                  if (match[5]) field.options = match[5].split(',').map(opt => opt.trim());
-                  if (match[6]) field.min = parseFloat(match[6]);
-                  if (match[7]) field.max = parseFloat(match[7]);
-                  if (match[8]) field.step = parseFloat(match[8]);
-                  
-                  node.fields.push(field);
-                }
-              }
-              
-              // Reset section on new header
-              if (line.startsWith('##') || line.startsWith('###')) {
-                currentSection = '';
+            const categoryMatch = body.match(/\*\*Category:\*\*\s*\n([^\n]*)/);
+            if (categoryMatch) node.category = categoryMatch[1].trim();
+            
+            const typeMatch = body.match(/\*\*Type:\*\*\s*\n([^\n]*)/);
+            if (typeMatch) node.type = typeMatch[1].trim();
+            
+            const descMatch = body.match(/\*\*Short Description:\*\*\s*\n([^\n]*)/);
+            if (descMatch) node.desc = descMatch[1].trim();
+            
+            const diffMatch = body.match(/\*\*Difficulty:\*\*\s*\n([^\n]*)/);
+            if (diffMatch) node.diff = diffMatch[1].trim();
+            
+            const tagsMatch = body.match(/\*\*Tags:\*\*\s*\n([^\n]*)/);
+            if (tagsMatch) {
+              let tagsStr = tagsMatch[1].trim();
+              tagsStr = tagsStr.replace(/^["']|["']$/g, '');
+              node.tags = tagsStr.split(',').map(tag => tag.trim().replace(/^["']|["']$/g, '')).filter(tag => tag);
+            }
+            
+            const longDescMatch = body.match(/\*\*Long Description:\*\*\s*\n([^\n]*)/);
+            if (longDescMatch) node.longDescription = longDescMatch[1].trim();
+            
+            // Parse use cases
+            const useCasesSection = body.match(/\*\*Use Cases:\*\*\s*\n((?:- [^\n]*\n?)*)/);
+            if (useCasesSection) {
+              node.useCases = useCasesSection[1]
+                .split('\n')
+                .filter(line => line.trim().startsWith('- '))
+                .map(line => line.replace(/^- /, '').trim())
+                .filter(useCase => useCase);
+            }
+            
+            // Parse inputs
+            const inputsSection = body.match(/#### Inputs\s*\n((?:\*\*[^:]+:\*\* [^\n]*\n?)*)/);
+            if (inputsSection) {
+              const inputMatches = inputsSection[1].matchAll(/\*\*([^:]+):\*\* \[([^\]]+)\] - ([^\n]*)/g);
+              for (const match of inputMatches) {
+                node.inputs.push({
+                  name: match[1].trim(),
+                  type: match[2].trim(),
+                  desc: match[3].trim()
+                });
               }
             }
             
+            // Parse outputs
+            const outputsSection = body.match(/#### Outputs\s*\n((?:\*\*[^:]+:\*\* [^\n]*\n?)*)/);
+            if (outputsSection) {
+              const outputMatches = outputsSection[1].matchAll(/\*\*([^:]+):\*\* \[([^\]]+)\] - ([^\n]*)/g);
+              for (const match of outputMatches) {
+                node.outputs.push({
+                  name: match[1].trim(),
+                  type: match[2].trim(),
+                  desc: match[3].trim()
+                });
+              }
+            }
+            
+            // Parse fields
+            const fieldsSection = body.match(/#### Fields[\s\S]*?\n((?:\*\*[^:]+:\*\*[^\n]*\n?)*)/);
+            if (fieldsSection) {
+              const fieldMatches = fieldsSection[1].matchAll(/\*\*([^:]+):\*\* \[([^\]]+)\] - ([^(]*?)(?:\(Default: ([^,)]*?)(?:, Options: ([^)]*?))?\))?/g);
+              for (const match of fieldMatches) {
+                const field = {
+                  name: match[1].trim(),
+                  type: match[2].trim(),
+                  desc: match[3].trim()
+                };
+                
+                if (match[4]) field.value = match[4].trim();
+                if (match[5]) {
+                  field.options = match[5].split(',').map(opt => opt.trim().replace(/^["']|["']$/g, ''));
+                }
+                
+                node.fields.push(field);
+              }
+            }
+            
+            console.log('Parsed node:', JSON.stringify(node, null, 2));
             return node;
           }
           
           const issueBody = `${{ github.event.issue.body }}`;
           const nodeData = parseIssueBody(issueBody);
           
+          // Debug: Log parsed data
+          console.log('Final parsed data:', JSON.stringify(nodeData, null, 2));
+          
           // Validate required fields
           const requiredFields = ['title', 'category', 'type', 'desc', 'diff'];
           const missingFields = requiredFields.filter(field => !nodeData[field]);
           
           if (missingFields.length > 0) {
-            core.setFailed(`Missing required fields: ${missingFields.join(', ')}`);
+            core.setFailed(`Missing required fields: ${missingFields.join(', ')}. Parsed values - Title: "${nodeData.title}", Category: "${nodeData.category}", Type: "${nodeData.type}", Desc: "${nodeData.desc}", Diff: "${nodeData.diff}"`);
             return;
           }
           
@@ -213,8 +195,6 @@ jobs:
             core.setFailed(`Invalid difficulty: ${nodeData.diff}. Must be one of: ${validDifficulties.join(', ')}`);
             return;
           }
-          
-          console.log('Parsed node data:', JSON.stringify(nodeData, null, 2));
           
           // Read current node-data.js file
           const nodeDataPath = 'lib/node-data.js';

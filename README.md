@@ -10,7 +10,7 @@
 This is the documentation repository for Deforge. All guides and details are also stored here.
 
 ## How to add to the documentation ?
-For now, you can only add details about nodes in Deforge. To do that, you will need to create an [issue](https://github.com/DeForge-Labs/docs/issues/new/choose). Specifically the `Add Node Documentation` template. Then follow the template guide accordingly to complete your issue.
+For now, you can only add details about nodes in Deforge. To do that, you will need to create an [issue](https://github.com/DeForge-Labs/docs/issues/new?template=add-node-documentation.md). Specifically the `Add Node Documentation` template. Then follow the template guide accordingly to complete your issue.
 
 Once you are done with that, a pull request should open automatically if your issue format was correct. We will take a look at the pull request and approve it if it is correct.
 

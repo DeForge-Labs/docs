@@ -10,52 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Check issue size
-      id: size_check
-      run: |
-        issue_size=$(echo '${{ github.event.issue.body }}' | wc -c)
-        echo "Issue size: $issue_size bytes"
-        
-        if [ $issue_size -gt 102400 ]; then
-          echo "size_exceeded=true" >> $GITHUB_OUTPUT
-          echo "Issue size ($issue_size bytes) exceeds 100KB limit"
-        else
-          echo "size_exceeded=false" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Close issue if too large
-      if: steps.size_check.outputs.size_exceeded == 'true'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: '❌ **Issue Rejected**: This issue exceeds the 100KB size limit. Please reduce the content size and resubmit.'
-          });
-          
-          github.rest.issues.update({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            state: 'closed'
-          });
-
     - name: Checkout repository
-      if: steps.size_check.outputs.size_exceeded == 'false'
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Node.js
-      if: steps.size_check.outputs.size_exceeded == 'false'
       uses: actions/setup-node@v4
       with:
         node-version: '18'
 
     - name: Parse issue and update node data
-      if: steps.size_check.outputs.size_exceeded == 'false'
       id: parse_issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
@@ -185,7 +150,6 @@ jobs:
           core.setOutput('node_type', nodeData.type);
 
     - name: Create branch and commit changes
-      if: steps.size_check.outputs.size_exceeded == 'false'
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
@@ -204,7 +168,6 @@ jobs:
         echo "BRANCH_NAME=$branch_name" >> $GITHUB_ENV
 
     - name: Create Pull Request
-      if: steps.size_check.outputs.size_exceeded == 'false'
       uses: actions/github-script@v7
       with:
         script: |

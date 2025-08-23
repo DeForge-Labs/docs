@@ -2,6 +2,7 @@ import { Lexend_Deca } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import LayoutProvider from "@/components/layout/layout-provider";
+import Script from "next/script";
 
 const lexendDeca = Lexend_Deca({
   subsets: ["latin"],
@@ -61,12 +62,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <script
+        async
+        src="https://scripts.simpleanalyticscdn.com/latest.js"
+      ></script>
       <body className={`${lexendDeca.className} antialiased`}>
         <LayoutProvider>
           <Navbar />
           {children}
         </LayoutProvider>
       </body>
+      <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
     </html>
   );
 }

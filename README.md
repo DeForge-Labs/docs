@@ -1,17 +1,45 @@
-<div align="center">
-  <img src="https://socialify.git.ci/DeForge-Labs/docs/image?description=1&font=Raleway&logo=https%3A%2F%2Ffiles.catbox.moe%2Fgfj4f9.svg&name=1&owner=1&pattern=Transparent&theme=Dark" alt="docs" width="640" height="320" />
-</div>
+# deforge-docs-dev
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/DeForge-Labs/docs/deploy.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=%23fcba03&label=DEPLOY) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/DeForge-Labs/docs/process-node-documentation.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=%23fcba03&label=Add%20to%20Doc)
+This is a Next.js application generated with
+[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
 
+Run development server:
 
----
+```bash
+npm run dev
+# or
+pnpm dev
+# or
+yarn dev
+```
 
-This is the documentation repository for Deforge. All guides and details are also stored here.
+Open http://localhost:3000 with your browser to see the result.
 
-## How to add to the documentation ?
-For now, you can only add details about nodes in Deforge. To do that, you will need to create an [issue](https://github.com/DeForge-Labs/docs/issues/new?template=add-node-documentation.md). Specifically the `Add Node Documentation` template. Then follow the template guide accordingly to complete your issue.
+## Explore
 
-Once you are done with that, a pull request should open automatically if your issue format was correct. We will take a look at the pull request and approve it if it is correct.
+In the project, you can see:
 
-For a sample issue, you can check [#7](https://github.com/DeForge-Labs/docs/issues/7). Its corresponding pull request is [#8](https://github.com/DeForge-Labs/docs/pull/8).
+- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
+- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+
+| Route                     | Description                                            |
+| ------------------------- | ------------------------------------------------------ |
+| `app/(home)`              | The route group for your landing page and other pages. |
+| `app/docs`                | The documentation layout and pages.                    |
+| `app/api/search/route.ts` | The Route Handler for search.                          |
+
+### Fumadocs MDX
+
+A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
+
+Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
+
+## Learn More
+
+To learn more about Next.js and Fumadocs, take a look at the following
+resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
+  features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs

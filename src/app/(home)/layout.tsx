@@ -9,18 +9,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <HomeLayout
       {...baseOptions()}
-      links={[
-        {
-          icon: <BookMinus />,
-          text: 'Guides',
-          url: '/docs',
-        },
-        {
-          icon: <Boxes />,
-          text: 'Nodes',
-          url: '/docs/nodes',
-        }
-      ]}
+      links={[]}
     >
       {children}
     </HomeLayout>

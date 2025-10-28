@@ -5,6 +5,9 @@
     "root": true,
     "pages": [
         "---Introduction---",
-        "index"
+        "index",
+        "intro",
+        "---Nodes---",
+        "nodes"
     ]
 }

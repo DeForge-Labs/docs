@@ -18,7 +18,15 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const MDX = page.data.body;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage toc={page.data.toc} full={page.data.full} tableOfContent={{ style: 'clerk' }}>
+      <a
+        href={`https://github.com/DeForge-Labs/docs/blob/dev/content/docs/${page.path}`}
+        rel="noreferrer noopener"
+        target="_blank"
+        className="w-fit border rounded-xl p-2 font-medium text-sm text-fd-secondary-foreground bg-fd-secondary transition-colors hover:text-fd-accent-foreground hover:bg-fd-accent shadow-md shadow-[#8754ff]"
+      >
+        Edit on GitHub
+      </a>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>

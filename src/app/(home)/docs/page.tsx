@@ -10,8 +10,7 @@ export default function DocsPage() {
       <p className="text-fd-muted-foreground">
         Portal to different sections of docs.
       </p>
-      <div className="mt-8 grid grid-cols-1 gap-4 text-start">
-        {/* md:grid-cols-2 */}
+      <div className="mt-8 grid grid-cols-1 gap-4 text-start md:grid-cols-2 ">
         {[
           {
             name: 'Node Library',
@@ -19,6 +18,13 @@ export default function DocsPage() {
               'Documentation for the Deforge Node Library.',
             icon: <LibraryBig className="size-full" />,
             href: '/docs/library',
+          },
+          {
+            name: 'Editor',
+            description:
+              'Documentation for the Deforge Editor.',
+            icon: <LibraryBig className="size-full" />,
+            href: '/docs/editor',
           },
         ].map((item) => (
           <Item key={item.name} href={item.href}>

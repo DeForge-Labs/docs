@@ -1,0 +1,10 @@
+{
+    "title": "Node Library",
+    "description": "Documentation for the Deforge Node Library.",
+    "icon": "LibraryBig",
+    "root": true,
+    "pages": [
+        "---Introduction---",
+        "index"
+    ]
+}

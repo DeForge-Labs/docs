@@ -48,6 +48,7 @@ export function baseOptions(): BaseLayoutProps {
         </>
       ),
     },
+    githubUrl: "https://github.com/DeForge-Labs",
     // see https://fumadocs.dev/docs/ui/navigation/links
     links: [],
   };

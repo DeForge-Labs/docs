@@ -1,7 +1,100 @@
 ---
 title: Nodes
-description: Learn about the various nodes available in Deforge's Node Library.
+description: Learn about the building blocks of Deforge workflows and how to use them effectively.
 icon: Boxes
 ---
 
-All the nodes.
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+## What Are Nodes?
+
+Nodes are the fundamental building blocks of any Deforge workflow. Each node represents a specific function or operation that can be connected to other nodes to create complex AI agents. Think of nodes as individual LEGO pieces that you can combine to build sophisticated structures.
+
+## Anatomy of a Node
+Every node in Deforge consists of several key components:
+
+### Input Ports
+These are connection points on the left side of a node that receive data from other nodes. Different nodes have different input requirements, and some nodes (like input nodes) may not have any input ports at all.
+
+### Output Ports
+These are connection points on the right side of a node that send data to other nodes. The data type of an output port determines which input ports it can connect to.
+
+### Configuration Panel
+Each node has a configuration panel that allows you to customize its behavior. The available settings depend on the type of node, but might include things like default values, API endpoints, or processing options.
+
+## Node Categories
+Deforge organizes nodes into several categories based on their function:
+
+<Accordions type="single">
+    <Accordion title="Input Nodes">
+        These nodes provide data to your workflow, either from user input, predefined values, or external sources. Examples include the User Input node, Number Input node, and Object Input node.
+    </Accordion>
+    <Accordion title="Processing Nodes">
+        These nodes transform, analyze, or manipulate data. Examples include the API Call node, Objects To Map node, Extract JSON node, and Math Operation node.
+    </Accordion>
+    <Accordion title="LLM Nodes">
+        These nodes connect to large language models to generate text, answer questions, or process natural language. Examples include OpenAI Chat, Google Chat, Anthropic Chat, and Custom Chat nodes.
+    </Accordion>
+    <Accordion title="Output Nodes">
+        These nodes display results to users or send data to external systems. Examples include the Output Text node, Output JSON node, and Output Number node.
+    </Accordion>
+    <Accordion title="Flow Control Nodes">
+        These nodes control the execution path of your workflow based on conditions. Examples include the If Condition node, which allows for branching logic based on comparisons.
+    </Accordion>
+    <Accordion title="Trigger Nodes">
+        These nodes initiate workflows based on events or schedules. Examples include the Cron Trigger node, which starts a workflow at specified time intervals.
+    </Accordion>
+    <Accordion title="Audio Nodes">
+        These nodes provide GenAI audio features from elevenlabs. Examples include Text to Speech and Speech to Text nodes.
+    </Accordion>
+    <Accordion title="Database Nodes">
+        These nodes help you manage and interact with databases within your workflows. Examples include PostgreSQL and MongoDB nodes.
+    </Accordion>
+    <Accordion title="Management Nodes">
+        These nodes help you use CRM tools within your workflows. Examples include HubSpot nodes.
+    </Accordion>
+    <Accordion title="Office Nodes">
+        These nodes help you work with office tools within your workflows. Examples include Google Sheets nodes.
+    </Accordion>
+    <Accordion title="Search Nodes">
+        These nodes help you implement various search functionality within your workflows. Examples include AI Web Search and Get URL Data.
+    </Accordion>
+    <Accordion title="Social Nodes">
+        These nodes help you connect social media platforms within your workflows. Examples include Twitter and YouTube nodes.
+    </Accordion>
+</Accordions>
+
+## Node Properties
+Each node has specific properties that determine its behavior and capabilities. These properties include:
+
+### Data Types
+Nodes work with specific data types, such as Text, Number, Boolean, JSON, Flow, Date, or specialized types like Rag (for knowledge bases). Understanding data types is crucial for creating valid connections between nodes.
+
+### Required vs. Optional Inputs
+Some node inputs are required for the node to function, while others are optional. Required inputs are typically marked with an asterisk (*) in the node's configuration panel.
+
+### Default Values
+Many nodes have default values for their inputs or configuration fields. These values are used when no specific value is provided, making it easier to get started with a node.
+
+## Using Nodes Effectively
+To make the most of Deforge's node system, keep these best practices in mind:
+
+### Start Simple
+Begin with a small number of nodes and test your workflow frequently. Add complexity gradually as you confirm each part is working as expected.
+
+### Use Clear Naming
+Give your nodes descriptive names that indicate their purpose in the workflow. This makes it easier to understand and maintain complex agents.
+
+### Organize Your Canvas
+Arrange your nodes in a logical flow from left to right. Group related nodes together and use comments to document complex sections of your workflow.
+
+### Reuse Common Patterns
+Save frequently used node combinations as templates or subflows that you can reuse across different projects.
+
+## Next Steps
+Now that you understand the basics of nodes, you can
+
+<Cards>
+  <Card title="All Nodes" href="/docs/library/nodes/all-nodes">Explore all the nodes available in Deforge's Node Library</Card>
+  <Card title="Connections" href="/docs/editor/connection" >Learn how to connect nodes effectively</Card>
+</Cards>

@@ -5,4 +5,49 @@ icon: HatGlasses
 ---
 
 ## Prerequisites
-Before you begin, make sure you have a Deforge account and a Telegram bot token. If you don't have a Deforge account yet, you can [sign up for free](https://app.deforge.io/). To create a Telegram bot, message `@BotFather` on Telegram and follow the instructions to get your bot token.
+Before you begin, make sure you have a Deforge account and a Telegram bot token. If you don't have a Deforge account yet, you can [sign up for free](https://app.deforge.io/). To create a Telegram bot, message [@BotFather](https://t.me/BotFather) on Telegram and follow the instructions to get your bot token.
+
+## Step 1: Create a New Project
+Start by creating a new Workflow in Deforge. Click on the 'New Workflow' button on your dashboard and give your project a name, such as 'My First Telegram Bot'.
+
+## Step 2: Add a Telegram Trigger Node
+Every Telegram bot needs a trigger to respond to messages. From the node library, drag a 'Telegram Trigger' node onto the canvas. This node will automatically detect incoming messages from your Telegram bot.
+
+### Configure the Telegram Trigger
+Click on the Telegram Trigger node to open its configuration panel. In the 'On Start' field, add a welcome message like 'Hi, I am a helpful assistant who answers questions based on a company's documentation'. This message will be sent when users first interact with your bot. You'll also need to add your Telegram bot token in the environment variables section.
+
+## Step 3: Add a Knowledge Base Node
+To make your bot intelligent and informative, add a 'Knowledge Base' node. This will allow your bot to reference specific documentation or information when answering questions.
+
+### Configure the Knowledge Base
+Set the 'Data Type' to 'Link to a webpage' and enter the URL of the documentation you want your bot to reference (e.g., 'https://docs.deforge.io'). You can leave 'Deep Search' disabled for now. This node will process the content and create a searchable knowledge base.
+
+## Step 4: Add an OpenAI Chat Node
+Now, add an 'OpenAI Chat' node to process user messages and generate intelligent responses using the knowledge base.
+
+### Configure the OpenAI Chat Node
+Select 'gpt-4.1' as the model for high-quality responses. In the 'System Prompt' field, enter: 'You are a helpful assistant who answers questions based on our company's documentation. Remove any markdown based symbols, like "*", "#", etc'. Set the temperature to 0.3 for more focused responses, and ensure 'Save Context' is disabled to keep conversations independent.
+
+## Step 5: Add a Send Telegram Message Node
+Finally, add a 'Send Telegram Message' node to send the AI's response back to the user on Telegram.
+
+### Configure the Send Message Node
+This node will automatically receive the chat ID from the Telegram Trigger and the response message from the OpenAI Chat node. You'll need to configure your Telegram bot token in the environment variables.
+
+## Step 6: Connect the Nodes
+Now it's time to connect all the nodes to create a complete workflow:
+
+### Flow Connections
+Connect the 'Flow' output from the Telegram Trigger to the 'Flow' input of the OpenAI Chat node. Then connect the 'Flow' output from the OpenAI Chat node to the 'Flow' input of the Send Telegram Message node. This ensures proper execution order.
+
+### Data Connections
+Connect the 'Message' output from the Telegram Trigger to the 'Query' input of the OpenAI Chat node. Connect the 'Rag Database' output from the Knowledge Base node to the 'RAG' input of the OpenAI Chat node. Connect the 'Output' from the OpenAI Chat node to the 'Message' input of the Send Telegram Message node. Finally, connect the 'Chat ID' from the Telegram Trigger to the 'ChatID' input of the Send Telegram Message node.
+
+## Step 7: Test Your Agent
+Before deploying, test your agent in the Deforge test environment. Use the test interface to simulate Telegram messages and verify that your bot responds correctly with information from the knowledge base.
+
+## Step 8: Deploy Your Agent
+Once you're satisfied with your agent's performance, click the 'Deploy to Production' button. Your Telegram bot will now be live and ready to respond to users with intelligent, knowledge-based answers.
+
+## Next Steps
+Congratulations on building your first AI agent! You've created a sophisticated Telegram bot that can answer questions using a knowledge base. Try enhancing your bot by adding more knowledge sources, implementing different trigger conditions, or integrating with other services.

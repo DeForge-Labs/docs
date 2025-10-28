@@ -1,0 +1,90 @@
+---
+title: Deployment
+description: Learn how to deploy your Deforge AI agents to production environments.
+icon: Container
+---
+
+## Deployment Overview
+Deployment is the process of making your AI agent available for use in real-world scenarios. Deforge simplifies this process with one-click deployment options, allowing you to quickly share your agents with users or integrate them into existing systems.
+
+## Deployment Options
+Deforge offers several ways to deploy your AI agents:
+
+### Web Deployment
+Deploy your agent as a web application with a unique URL. Users can interact with your agent directly through a web interface without needing to install anything.
+
+### API Deployment
+Expose your agent as a RESTful API that can be called from other applications or services. This option is ideal for integrating your agent into existing software systems.
+
+### Embedded Deployment
+Generate an embeddable widget that you can add to your website or application. This allows users to interact with your agent without leaving your platform.
+
+### Scheduled Deployment
+Deploy agents that run on a schedule using Cron Trigger nodes. These agents can perform automated tasks at specified intervals without user interaction.
+
+## Deployment Process
+Deploying an AI agent in Deforge involves these steps:
+
+### Pre-Deployment Testing
+Before deploying, thoroughly test your agent using Deforge's built-in testing tools. Verify that all nodes are functioning correctly and the agent produces the expected outputs for various inputs.
+
+### Deployment Configuration
+Configure deployment settings such as environment variables, access controls, and scaling options. These settings determine how your agent will behave in production.
+
+### One-Click Deployment
+Once your agent is ready and configured, click the 'Deploy' button in the Deforge interface. The platform will handle the deployment process automatically, including provisioning necessary resources.
+
+### Deployment Verification
+After deployment, verify that your agent is working correctly in the production environment. Test it with real-world inputs and monitor its performance.
+
+### Transitioning Between Environments
+When your agent is ready to move from testing to production, use the 'Deploy to Production' option in the Deforge interface. This creates a locked, production-ready version of your agent that can be safely used by end users. If you need to make changes later, you'll work in the test environment and then redeploy to update the production version.
+
+## Deployment Environments
+Deforge supports multiple deployment environments to suit different stages of development:
+
+### Test Environment
+A development environment where nodes can be run freely and tested through the editor. This environment requires authentication and allows you to modify, test, and debug your agent before deploying to production. Changes made in the test environment don't affect your production deployment.
+
+### Production Environment
+The live environment where your agent is available to end users. In production, all nodes are locked and production-ready, preventing accidental modifications. This ensures stability and reliability for your deployed agents. To make changes to a production agent, you must first modify it in the test environment and then redeploy.
+
+## Managing Deployments
+After deploying your agent, you can manage it through the Deforge dashboard:
+
+### Monitoring and Analytics
+Track your agent's usage, performance, and error rates through the Deforge dashboard. Set up alerts to be notified of any issues that require attention.
+
+### Updating Deployed Agents
+When you make changes to your agent, you can deploy updates with a single click. Deforge handles the update process with zero downtime, ensuring a seamless experience for your users.
+
+### Version Management
+Deforge maintains a history of your agent's deployments, allowing you to roll back to previous versions if needed. You can also create named versions for major releases.
+
+### Scaling and Performance
+As your agent's usage grows, Deforge automatically scales resources to maintain performance. You can also manually adjust scaling settings for specific needs.
+
+## Deployment Best Practices
+Follow these best practices to ensure successful deployments:
+
+### Thorough Testing
+Test your agent with a wide range of inputs, including edge cases and potential errors. This helps identify and fix issues before they affect users.
+
+### Proper Environment Workflow
+Always develop and test your agents in the test environment before deploying to production. Use the test environment to experiment with different configurations, debug issues, and validate functionality. Only deploy to production when you're confident that your agent works as expected and is ready for end users.
+
+### Gradual Rollout
+For major updates, consider deploying to a small percentage of users first and gradually increasing the rollout as you confirm everything is working correctly.
+
+### Comprehensive Monitoring
+Set up monitoring for all critical aspects of your agent, including performance, error rates, and user satisfaction metrics.
+
+### User Documentation
+Provide clear documentation for your agent, including its purpose, how to use it, and any limitations or requirements. This improves the user experience and reduces support requests.
+
+## Next Steps
+Now that you know how to deploy your AI agents, explore our Nodes to learn more about the building blocks of Deforge workflows.
+
+<Cards>
+  <Card title="Nodes" href="/docs/library/nodes" >learn about the building blocks of Deforge workflows</Card>
+</Cards>

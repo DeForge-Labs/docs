@@ -1,0 +1,75 @@
+---
+title: Connections
+description: Learn how to connect nodes to create powerful AI Agents in Deforge.
+icon: ChartNetwork
+---
+
+## What Are Connections?
+Connections are the links between nodes that determine how data flows through your Deforge workflow. They represent the paths that data takes as it moves from one operation to another, allowing you to create complex, multi-step processes without writing code.
+
+## Connection Basics
+Understanding how connections work is fundamental to building effective AI agents:
+
+### Data Flow Direction
+Connections always flow from an output port on one node to an input port on another node. Data moves from left to right in the visual interface, representing the progression of your workflow.
+
+### Type Compatibility
+Connections can only be made between compatible port types. For example, a Text output can connect to a Text input, but not to a Number input without a conversion node in between.
+
+### Flow Connections
+Many nodes use a special 'Flow' type for connections, which controls the execution order of nodes rather than passing data. Flow connections are particularly important when working with LLM nodes, conditional logic, and triggers. All LLM nodes (Google Chat, Anthropic Chat, OpenAI Chat, Custom Chat) require a Flow input to properly integrate into the workflow execution chain.
+
+## Creating Connections
+There are several ways to create connections between nodes in Deforge:
+
+### Drag and Drop
+Click and hold on an output port, then drag to an input port and release. If the connection is valid, a line will appear linking the two ports.
+
+### Quick Connect
+When you add a new node to the canvas, Deforge may suggest automatic connections based on the surrounding nodes and compatibility. You can accept these suggestions with a single click.
+
+### Port Selection
+Click on an output port to select it, then click on a compatible input port to create a connection. This method is useful when working with nodes that are far apart on the canvas.
+
+## Managing Connections
+As your workflows grow more complex, you'll need to manage your connections effectively:
+
+### Editing Connections
+Click on a connection line to select it. You can then delete it with the Delete key, or drag either end to reconnect it to a different port.
+
+### Multiple Connections
+An output port can connect to multiple input ports, allowing you to send the same data to different parts of your workflow. However, an input port can only receive one connection at a time.
+
+### Organizing Connections
+For complex workflows, you can organize your connections by rearranging nodes on the canvas. Deforge will automatically adjust the connection lines to follow the new layout.
+
+## Advanced Connection Features
+Deforge offers several advanced features for working with connections:
+
+### Data Transformation
+When connecting incompatible data types, you can use transformation nodes to convert data from one type to another. For example, the Text to JSON node can convert text strings to JSON objects, and the Date to Number node can convert dates to numerical values.
+
+### Conditional Connections
+Using the If Condition node, you can create conditional connections that only pass data when certain conditions are met. This allows for dynamic, responsive workflows that can make decisions based on input data.
+
+### Flow Control
+Flow connections (using the Flow data type) allow you to control the execution order of your workflow. This is particularly important when working with trigger nodes like Cron Trigger, which initiate workflows at specific times.
+
+## Troubleshooting Connections
+When connections aren't working as expected, check for these common issues:
+
+### Type Mismatches
+Ensure that the output and input ports have compatible data types. If they don't, add appropriate transformation nodes between them, such as Text to JSON or Date to Number.
+
+### Missing Required Inputs
+Check that all required inputs have connections or default values. Nodes with missing required inputs won't execute properly.
+
+### Execution Order Issues
+Remember that nodes execute in order from left to right, and flow connections can affect this order. If a node depends on data that isn't available yet, rearrange your workflow to ensure proper sequencing.
+
+## Next Steps
+Now that you understand how to work with connections,.
+
+<Cards>
+  <Card title="Deploying Your AI Agents" href="/docs/editor/deploy" >learn about deploying your AI agents to make them available to users</Card>
+</Cards>

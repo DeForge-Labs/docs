@@ -6,6 +6,9 @@
     "pages": [
         "---Introduction---",
         "index",
+        "---Core Concepts---",
+        "connections",
+        "deploy",
         "---Guides---",
         "first-agent"
     ]

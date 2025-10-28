@@ -17,9 +17,15 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
   if (!page) notFound();
 
   const MDX = page.data.body;
+  const { lastModified } = page.data;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full} tableOfContent={{ style: 'clerk' }}>
+    <DocsPage 
+      toc={page.data.toc}
+      full={page.data.full}
+      lastUpdate={lastModified ? new Date(lastModified): undefined}
+      tableOfContent={{ style: 'clerk' }}
+    >
       <a
         href={`https://github.com/DeForge-Labs/docs/blob/dev/content/docs/${page.path}`}
         rel="noreferrer noopener"

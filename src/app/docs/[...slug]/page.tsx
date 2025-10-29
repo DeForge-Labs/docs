@@ -51,6 +51,7 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
           })}
         />
       </DocsBody>
+      <hr className='mt-2' />
     </DocsPage>
   );
 }

@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'DeForge Docs',
+  description: 'Documentation for DeForge - Build AI Agents Visually',
+};
 
 export default function HomePage() {
   return (

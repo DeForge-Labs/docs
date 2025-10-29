@@ -1,5 +1,11 @@
 import { Building2, Library, Pencil, LibraryBig } from 'lucide-react';
 import Link, { type LinkProps } from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'DeForge Docs Portal',
+  description: 'Documentation for DeForge - Build AI Agents Visually | Portal to different sections of docs',
+};
 
 export default function DocsPage() {
   return (

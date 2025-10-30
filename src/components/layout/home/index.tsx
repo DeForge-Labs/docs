@@ -24,7 +24,7 @@ import {
   LanguageToggle,
   LanguageToggleText,
 } from '../../language-toggle';
-import { ChevronDown, Languages } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Languages } from 'lucide-react';
 import Link from 'fumadocs-core/link';
 import {
   Menu,
@@ -138,6 +138,17 @@ export function Header({
             <NavbarLinkItem key={i} item={item} />
           ))}
         </div>
+        <Link
+          href="https://app.deforge.io"
+          className='max-w-fit'
+        >
+          <button
+            className="rounded-md pl-5 pr-3 py-1 text-fd-card bg-fd-card-foreground hover:bg-fd-card-foreground/80 shadow-lg shadow-[#8754ff] cursor-pointer inline-flex items-center gap-0.5"
+          >
+            App
+            <ArrowUpRight className="size-5" />
+          </button>
+        </Link>
       </div>
       <ul className="flex flex-row items-center ms-auto -me-1.5 lg:hidden">
         {searchToggle.enabled !== false &&

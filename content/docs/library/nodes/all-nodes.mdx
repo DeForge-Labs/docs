@@ -6,12 +6,68 @@ description: Explore the complete list of nodes available in Deforge's Node Libr
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 <Accordions type="single">
+    <Accordion title="Audio Nodes">
+        - [Text to Speech](/docs/library/nodes/audio-nodes/text_to_speech)
+        - [Speech to Text](/docs/library/nodes/audio-nodes/speech_to_text)
+        - [Dub Video Audio](/docs/library/nodes/audio-nodes/dub_media)
+    </Accordion>
+    <Accordion title="Database Nodes">
+        - [PostgreSQL - Query Rows](/docs/library/nodes/database-nodes/postgres_query_node)
+        - [PostgreSQL - Check Table](/docs/library/nodes/database-nodes/postgres_check_table_node)
+        - [PostgreSQL - Create Table](/docs/library/nodes/database-nodes/postgres_create_table_node)
+        - [PostgreSQL - Insert Row(s)](/docs/library/nodes/database-nodes/postgres_insert_node)
+        - [PostgreSQL - Custom Query](/docs/library/nodes/database-nodes/postgres_custom_query_node)
+        - [MongoDB - Create Collection](/docs/library/nodes/database-nodes/mongodb_create_collection_node)
+        - [MongoDB - Check Collection](/docs/library/nodes/database-nodes/mongodb_check_collection_node)
+        - [MongoDB - Insert Document(s)](/docs/library/nodes/database-nodes/mongodb_insert_node)
+        - [MongoDB - Query Documents](/docs/library/nodes/database-nodes/mongodb_query_node)
+    </Accordion>
+    <Accordion title="Flow Nodes">
+        - [If Condition](/docs/library/nodes/flow-nodes/if_condition)
+        - [Boolean Operation](/docs/library/nodes/flow-nodes/bool_operation)
+    </Accordion>
+    <Accordion title="GenAI Nodes">
+        - [Imagen AI Images](/docs/library/nodes/genai-nodes/imagen_node)
+        - [Lyria AI Music](/docs/library/nodes/genai-nodes/lyria_node)
+        - [Veo AI Video](/docs/library/nodes/genai-nodes/veo_node)
+    </Accordion>
     <Accordion title="Input Nodes">
         - [Number Input](/docs/library/nodes/input-nodes/num_var)
         - [Map Input](/docs/library/nodes/input-nodes/map_var)
         - [Text Input](/docs/library/nodes/input-nodes/str_var)
         - [Object Input](/docs/library/nodes/input-nodes/obj_var)
         - [Boolean Input](/docs/library/nodes/input-nodes/bool_var)
+    </Accordion>
+    <Accordion title="LLM Nodes">
+        - [OpenAI Chat](/docs/library/nodes/llm-nodes/openai_chat_node)
+        - [Google Chat](/docs/library/nodes/llm-nodes/google_chat_node)
+        - [Anthropic Chat](/docs/library/nodes/llm-nodes/claude_chat_node)
+        - [Custom Chat](/docs/library/nodes/llm-nodes/custom_chat_node)
+        - [AI Persona Creator](/docs/library/nodes/llm-nodes/persona_generator)
+    </Accordion>
+    <Accordion title="Management Nodes">
+        - [HubSpot - Create Company](/docs/library/nodes/management-nodes/hubspot_create_company_node)
+        - [HubSpot - Search Companies](/docs/library/nodes/management-nodes/hubspot_search_companies_node)
+        - [HubSpot - Associate Objects](/docs/library/nodes/management-nodes/hubspot_associate_objects_node)
+        - [HubSpot - Get Contact](/docs/library/nodes/management-nodes/hubspot_get_contact_node)
+        - [HubSpot - Create Contact](/docs/library/nodes/management-nodes/hubspot_create_contact_node)
+        - [HubSpot - Update Contact](/docs/library/nodes/management-nodes/hubspot_update_contact_node)
+        - [HubSpot - Create Deal](/docs/library/nodes/management-nodes/hubspot_create_deal_node)
+        - [HubSpot - Search Deals](/docs/library/nodes/management-nodes/hubspot_search_deals_node)
+    </Accordion>
+    <Accordion title="Office Nodes">
+        - [Create Google Sheet](/docs/library/nodes/office-nodes/google_sheets)
+    </Accordion>
+    <Accordion title="Output Nodes">
+        - [Output Text](/docs/library/nodes/output-nodes/output_text)
+        - [Output JSON](/docs/library/nodes/output-nodes/output_json)
+        - [Output Number](/docs/library/nodes/output-nodes/output_number)
+        - [Send Slack Message](/docs/library/nodes/output-nodes/slack_msg_send)
+        - [Send Slack Media Message](/docs/library/nodes/output-nodes/slack_media_msg_send)
+        - [Send Telegram Message](/docs/library/nodes/output-nodes/tg_msg_send)
+        - [Send Telegram Media Message](/docs/library/nodes/output-nodes/tg_media_msg_send)
+        - [Send Chatbot Response](/docs/library/nodes/output-nodes/chatbot_msg_send)
+        - [Send Widget Response](/docs/library/nodes/output-nodes/widget_msg_send)
     </Accordion>
     <Accordion title="Processing Nodes">
         - [Objects To Map](/docs/library/nodes/processing-nodes/obj_to_map)
@@ -33,66 +89,6 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Text Replace](/docs/library/nodes/processing-nodes/text_replace)
         - [Text to JSON (Parser)](/docs/library/nodes/processing-nodes/text_to_json)
     </Accordion>
-    <Accordion title="LLM Nodes">
-        - [OpenAI Chat](/docs/library/nodes/llm-nodes/openai_chat_node)
-        - [Google Chat](/docs/library/nodes/llm-nodes/google_chat_node)
-        - [Anthropic Chat](/docs/library/nodes/llm-nodes/claude_chat_node)
-        - [Custom Chat](/docs/library/nodes/llm-nodes/custom_chat_node)
-        - [AI Persona Creator](/docs/library/nodes/llm-nodes/persona_generator)
-    </Accordion>
-    <Accordion title="Output Nodes">
-        - [Output Text](/docs/library/nodes/output-nodes/output_text)
-        - [Output JSON](/docs/library/nodes/output-nodes/output_json)
-        - [Output Number](/docs/library/nodes/output-nodes/output_number)
-        - [Send Slack Message](/docs/library/nodes/output-nodes/slack_msg_send)
-        - [Send Slack Media Message](/docs/library/nodes/output-nodes/slack_media_msg_send)
-        - [Send Telegram Message](/docs/library/nodes/output-nodes/tg_msg_send)
-        - [Send Telegram Media Message](/docs/library/nodes/output-nodes/tg_media_msg_send)
-        - [Send Chatbot Response](/docs/library/nodes/output-nodes/chatbot_msg_send)
-        - [Send Widget Response](/docs/library/nodes/output-nodes/widget_msg_send)
-    </Accordion>
-    <Accordion title="Flow Nodes">
-        - [If Condition](/docs/library/nodes/flow-nodes/if_condition)
-        - [Boolean Operation](/docs/library/nodes/flow-nodes/bool_operation)
-    </Accordion>
-    <Accordion title="Trigger Nodes">
-        - [Gmail Trigger](/docs/library/nodes/trigger-nodes/gmail_trigger)
-        - [API Trigger](/docs/library/nodes/trigger-nodes/api_trigger)
-        - [Slack Trigger](/docs/library/nodes/trigger-nodes/slack_trigger)
-        - [Telegram Trigger](/docs/library/nodes/trigger-nodes/tg_trigger)
-        - [Cron Trigger](/docs/library/nodes/trigger-nodes/cron_trigger)
-        - [Chatbot Trigger](/docs/library/nodes/trigger-nodes/chatbot_trigger)
-        - [Widget Trigger](/docs/library/nodes/trigger-nodes/widget_trigger)
-    </Accordion>
-    <Accordion title="Audio Nodes">
-        - [Text to Speech](/docs/library/nodes/audio-nodes/text_to_speech)
-        - [Speech to Text](/docs/library/nodes/audio-nodes/speech_to_text)
-        - [Dub Video Audio](/docs/library/nodes/audio-nodes/dub_media)
-    </Accordion>
-    <Accordion title="Database Nodes">
-        - [PostgreSQL - Query Rows](/docs/library/nodes/database-nodes/postgres_query_node)
-        - [PostgreSQL - Check Table](/docs/library/nodes/database-nodes/postgres_check_table_node)
-        - [PostgreSQL - Create Table](/docs/library/nodes/database-nodes/postgres_create_table_node)
-        - [PostgreSQL - Insert Row(s)](/docs/library/nodes/database-nodes/postgres_insert_node)
-        - [PostgreSQL - Custom Query](/docs/library/nodes/database-nodes/postgres_custom_query_node)
-        - [MongoDB - Create Collection](/docs/library/nodes/database-nodes/mongodb_create_collection_node)
-        - [MongoDB - Check Collection](/docs/library/nodes/database-nodes/mongodb_check_collection_node)
-        - [MongoDB - Insert Document(s)](/docs/library/nodes/database-nodes/mongodb_insert_node)
-        - [MongoDB - Query Documents](/docs/library/nodes/database-nodes/mongodb_query_node)
-    </Accordion>
-    <Accordion title="Management Nodes">
-        - [HubSpot - Create Company](/docs/library/nodes/management-nodes/hubspot_create_company_node)
-        - [HubSpot - Search Companies](/docs/library/nodes/management-nodes/hubspot_search_companies_node)
-        - [HubSpot - Associate Objects](/docs/library/nodes/management-nodes/hubspot_associate_objects_node)
-        - [HubSpot - Get Contact](/docs/library/nodes/management-nodes/hubspot_get_contact_node)
-        - [HubSpot - Create Contact](/docs/library/nodes/management-nodes/hubspot_create_contact_node)
-        - [HubSpot - Update Contact](/docs/library/nodes/management-nodes/hubspot_update_contact_node)
-        - [HubSpot - Create Deal](/docs/library/nodes/management-nodes/hubspot_create_deal_node)
-        - [HubSpot - Search Deals](/docs/library/nodes/management-nodes/hubspot_search_deals_node)
-    </Accordion>
-    <Accordion title="Office Nodes">
-        - [Create Google Sheet](/docs/library/nodes/office-nodes/google_sheets)
-    </Accordion>
     <Accordion title="Search Nodes">
         - [AI Web Search](/docs/library/nodes/search-nodes/web_search_node)
         - [Get URL Data](/docs/library/nodes/search-nodes/url_data_node)
@@ -104,5 +100,14 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [YouTube Upload](/docs/library/nodes/social-nodes/yt_upload)
         - [Tweet Post](/docs/library/nodes/social-nodes/tweet_post)
         - [LinkedIn Post](/docs/library/nodes/social-nodes/linkedin_post)
+    </Accordion>
+    <Accordion title="Trigger Nodes">
+        - [Gmail Trigger](/docs/library/nodes/trigger-nodes/gmail_trigger)
+        - [API Trigger](/docs/library/nodes/trigger-nodes/api_trigger)
+        - [Slack Trigger](/docs/library/nodes/trigger-nodes/slack_trigger)
+        - [Telegram Trigger](/docs/library/nodes/trigger-nodes/tg_trigger)
+        - [Cron Trigger](/docs/library/nodes/trigger-nodes/cron_trigger)
+        - [Chatbot Trigger](/docs/library/nodes/trigger-nodes/chatbot_trigger)
+        - [Widget Trigger](/docs/library/nodes/trigger-nodes/widget_trigger)
     </Accordion>
 </Accordions>

@@ -9,7 +9,7 @@ const badgeVariants = cva(
         easy: 'border-transparent bg-green-300 text-green-800',
         medium: 'border-transparent bg-amber-400 text-yellow-800',
         hard: 'border-transparent bg-red-300 text-red-800',
-        default: 'border-2 border-black dark:border-white bg-transparent text-fd-foreground hover:bg-fd-accent',
+        default: 'border-2 border-black dark:border-white bg-transparent text-fd-foreground',
       },
     },
     defaultVariants: {

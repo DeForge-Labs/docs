@@ -1,4 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import Link from 'next/link';
 
 /**
  * Shared layout configurations
@@ -52,6 +53,21 @@ export function baseOptions(): BaseLayoutProps {
     },
     githubUrl: "https://github.com/DeForge-Labs",
     // see https://fumadocs.dev/docs/ui/navigation/links
-    links: [],
+    links: [
+      {
+        type: 'custom',
+        children: <Link
+                    href="https://app.deforge.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button
+                      className="w-full rounded-md py-2 text-fd-card bg-fd-card-foreground hover:bg-fd-card-foreground/80 shadow-lg shadow-[#8754ff] cursor-pointer"
+                    >
+                      Open App
+                    </button>
+                  </Link>
+      }
+    ],
   };
 }

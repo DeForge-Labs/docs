@@ -10,6 +10,7 @@ import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
+import { Badge } from '@/components/ui/badge';
 
 export default async function Page(props: PageProps<'/docs/[...slug]'>) {
   const params = await props.params;
@@ -36,11 +37,19 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
       </a>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className='mb-2'>{page.data.description}</DocsDescription>
+      { page.data.tags && page.data.tags?.length > 0 && (
+        <div className='flex flex-row gap-2 mb-4'>
+          {page.data.tags?.map((tag) => (
+            <Badge key={tag}>{tag}</Badge>
+          ))}
+        </div>
+      )}
       <div className='flex flex-row gap-2 items-center border-b pb-6'>
         <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}
           githubUrl={`https://github.com/DeForge-Labs/docs/blob/dev/content/docs/${page.path}`}
+          nodeGitHubUrl={page.data.github}
         />
       </div>
       <DocsBody>

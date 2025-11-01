@@ -4,12 +4,16 @@ import {
   frontmatterSchema,
   metaSchema,
 } from 'fumadocs-mdx/config';
+import { z } from 'zod';
 
 // You can customise Zod schemas for frontmatter and `meta.json` here
 // see https://fumadocs.dev/docs/mdx/collections
 export const docs = defineDocs({
   docs: {
-    schema: frontmatterSchema,
+    schema: frontmatterSchema.extend({
+      tags: z.array(z.string()).optional(),
+      github: z.string().optional(),
+    }),
     postprocess: {
       includeProcessedMarkdown: true,
     },

@@ -13,6 +13,9 @@ const config = {
       },
     ];
   },
+  images: {
+    remotePatterns: [new URL('https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/public_main/**')],
+  },
 };
 
 export default withMDX(config);

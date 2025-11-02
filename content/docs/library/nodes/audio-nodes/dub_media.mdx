@@ -1,0 +1,100 @@
+---
+title: Dub Video Audio
+description: Dub your video or audio to another language using Eleven Labs
+tags: ["Dubbing", "Translate", "Audio", "Elevenlabs"]
+github: https://github.com/DeForge-Labs/library/blob/main/audio/dub_media/node.js
+difficulty: easy
+credits: 500
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="dub_media Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Dub Video Audio node allows you to dub the audio of a video or audio file into another language using the Eleven Labs API.
+
+### Common Use Cases
+- Dub youtube videos to your language for easier consumption
+- Dub ad campaigns to multiple languages
+- Use as a realtime translator agent
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>Link to the Media to dub</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Dubbed Link</DataName>
+    <DataDesc>
+    <DescLine>Link to the dubbed media file</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>Link to the Media to dub</DescLine>
+    <DescLine>**Value:** `Link here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Dub Language</DataName>
+    <DataDesc>
+    <DescLine>Language to dub media into</DescLine>
+    <DescLine>**Value:** `Japanese`</DescLine>
+    <DescLine>**Options:** <Badge>English</Badge> <Badge>Hindi</Badge> <Badge>Portuguese</Badge> <Badge>Chinese</Badge> <Badge>Spanish</Badge> <Badge>French</Badge> <Badge>German</Badge> <Badge>Japanese</Badge> <Badge>Arabic</Badge> <Badge>Russian</Badge> <Badge>Korean</Badge> <Badge>Indonesian</Badge> <Badge>Italian</Badge> <Badge>Dutch</Badge> <Badge>Turkish</Badge> <Badge>Polish</Badge> <Badge>Swedish</Badge> <Badge>Filipino</Badge> <Badge>Malay</Badge> <Badge>Romanian</Badge> <Badge>Ukrainian</Badge> <Badge>Greek</Badge> <Badge>Czech</Badge> <Badge>Danish</Badge> <Badge>Finnish</Badge> <Badge>Bulgarian</Badge> <Badge>Croatian</Badge> <Badge>Slovak</Badge> <Badge>Tamil</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

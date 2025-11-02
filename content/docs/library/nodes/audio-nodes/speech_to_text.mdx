@@ -1,0 +1,100 @@
+---
+title: Speech To Text
+description: Convert speech to text using Eleven Labs
+tags: ["Transcribe", "Audio", "Elevenlabs"]
+github: https://github.com/DeForge-Labs/library/blob/main/audio/speech_to_text/node.js
+difficulty: easy
+credits: 100
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Speech To Text Node Image"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Speech to Text node allows you to transcribe audio input into text using the Eleven Labs API.
+
+### Common Use Cases
+- Transcribing videos to create subtitles
+- Transcribing user speech to perform further task with what they said
+- Create a voice activated agent
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Audio Link</DataName>
+    <DataDesc>
+    <DescLine>Link to the Audio to convert</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Transcription</DataName>
+    <DataDesc>
+    <DescLine>Transcribed text</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Audio Link</DataName>
+    <DataDesc>
+    <DescLine>Link to the Audio to convert</DescLine>
+    <DescLine>**Value:** `Link here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>Model to use for transcription</DescLine>
+    <DescLine>**Value:** `scribe v1`</DescLine>
+    <DescLine>**Options:** <Badge>scribe v1</Badge> <Badge>scribe v1 experimental</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

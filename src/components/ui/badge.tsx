@@ -21,11 +21,16 @@ const badgeVariants = cva(
 export type BadgeProps = React.HTMLAttributes<HTMLSpanElement> &
   VariantProps<typeof badgeVariants> & {
     dotColor?: string;
+    tooltip?: string;
   };
 
-export function Badge({ className, difficulty, dotColor, ...props }: BadgeProps) {
+export function Badge({ className, difficulty, dotColor, tooltip, ...props }: BadgeProps) {
   return (
-    <span className={cn(badgeVariants({ difficulty }), dotColor && 'pb-1', className)} {...props}>
+    <span 
+      className={cn(badgeVariants({ difficulty }), dotColor && 'pb-1', className)} 
+      title={tooltip}
+      {...props}
+    >
       {dotColor && (
         <span
           className="h-3 w-3 rounded-full mr-1.5 inline-block"

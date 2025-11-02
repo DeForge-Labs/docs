@@ -39,5 +39,7 @@ ${page.data.github ? `GitHub: ${page.data.github}` : ''}
 
 ${page.data.difficulty ? `Difficulty: ${page.data.difficulty}` : ''}
 
+${page.data.credits ? `Credits (Minimum amount required to execute the node): ${page.data.credits}` : ''}
+
 ${processed}`;
 }

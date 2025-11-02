@@ -11,6 +11,7 @@ import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
 import { Badge } from '@/components/ui/badge';
+import { CircleDollarSign } from 'lucide-react';
 
 export default async function Page(props: PageProps<'/docs/[...slug]'>) {
   const params = await props.params;
@@ -46,7 +47,13 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
           {page.data.tags?.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
-          {page.data.difficulty ? <Badge difficulty={page.data.difficulty}>{capitalizeFirstLetter(page.data.difficulty)}</Badge> : null}
+          {page.data.difficulty ? <Badge difficulty={page.data.difficulty} tooltip='Difficulty'>{capitalizeFirstLetter(page.data.difficulty)}</Badge> : null}
+          {page.data.credits ? (
+            <Badge className='flex flex-row gap-1 items-center' tooltip='Minimum amount of credit balance required to execute this node'>
+              <CircleDollarSign size={14} />
+              {page.data.credits}
+            </Badge>
+          ) : null}
         </div>
       )}
       <div className='flex flex-row gap-2 items-center border-b pb-6'>

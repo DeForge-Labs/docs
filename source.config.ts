@@ -14,6 +14,7 @@ export const docs = defineDocs({
       tags: z.array(z.string()).optional(),
       github: z.string().optional(),
       difficulty: z.enum(['easy', 'medium', 'hard']).optional(),
+      credits: z.int().optional(),
     }),
     postprocess: {
       includeProcessedMarkdown: true,

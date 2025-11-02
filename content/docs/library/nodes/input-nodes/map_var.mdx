@@ -1,9 +1,9 @@
 ---
-title: Text Input
-description: String input from users
-tags: ['str', 'text', 'user', 'input']
-github: https://github.com/DeForge-Labs/library/blob/main/input/str_var/node.js
-difficulty: easy
+title: Map Input
+description: Map variable
+tags: ["map", "variable"]
+github: https://github.com/DeForge-Labs/library/blob/main/input/map_var/node.js
+difficulty: medium
 credits: 0
 ---
 
@@ -14,25 +14,36 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="Text Input Node Screenshot"
+  alt="Map Input Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The User Input node allows you to collect text input from users interacting with your AI agent. This is essential for creating interactive experiences where the agent responds to user queries or commands.
+This node allows you to input a map (key-value pairs) into your workflow.
 
 ### Common Use Cases
-- Collecting user queries for a chatbot
-- Getting search parameters from users
-- Accepting commands for an AI assistant
-- Gathering user preferences or settings
+- Store configuration settings as key-value pairs
+- Pass structured data between nodes
 
 ## Inputs
 The input connections this node accepts:
 
-_This node does not have any input ports._
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Input</DataName>
+    <DataDesc>
+    <DescLine>Input JSON</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
 
 ## Outputs
 The output connections this node provides:
@@ -44,11 +55,11 @@ The output connections this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Text</DataName>
+    <DataName>Output</DataName>
     <DataDesc>
-    <DescLine>The given text in field</DescLine>
+    <DescLine>Output JSON</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
 </DataTable>
 
@@ -62,11 +73,10 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Text</DataName>
+    <DataName>Input</DataName>
     <DataDesc>
-    <DescLine>The text to output</DescLine>
-    <DescLine>**Value:** `Enter text here...`</DescLine>
+    <DescLine>Input JSON</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
   </DataRow>
 </DataTable>

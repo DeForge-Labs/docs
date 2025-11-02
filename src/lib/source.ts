@@ -31,6 +31,13 @@ export async function getLLMText(page: InferPageType<typeof source>) {
   const processed = await page.data.getText('processed');
 
   return `# ${page.data.title} (${page.url})
+Short Description: ${page.data.description}
+
+${page.data.tags ? `Tags: ${page.data.tags.join(', ')}` : ''}
+
+${page.data.github ? `GitHub: ${page.data.github}` : ''}
+
+${page.data.difficulty ? `Difficulty: ${page.data.difficulty}` : ''}
 
 ${processed}`;
 }

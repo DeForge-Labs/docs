@@ -13,6 +13,7 @@ export const docs = defineDocs({
     schema: frontmatterSchema.extend({
       tags: z.array(z.string()).optional(),
       github: z.string().optional(),
+      difficulty: z.enum(['easy', 'medium', 'hard']).optional(),
     }),
     postprocess: {
       includeProcessedMarkdown: true,

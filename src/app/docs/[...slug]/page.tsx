@@ -20,6 +20,10 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
   const MDX = page.data.body;
   const { lastModified } = page.data;
 
+  const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <DocsPage 
       toc={page.data.toc}
@@ -33,7 +37,7 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
         target="_blank"
         className="w-fit border rounded-xl p-2 font-medium text-sm text-fd-secondary-foreground bg-fd-secondary transition-colors hover:text-fd-accent-foreground hover:bg-fd-accent shadow-md shadow-[#8754ff]"
       >
-        Edit on GitHub
+        Edit Page on GitHub
       </a>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className='mb-2'>{page.data.description}</DocsDescription>
@@ -42,6 +46,7 @@ export default async function Page(props: PageProps<'/docs/[...slug]'>) {
           {page.data.tags?.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
+          {page.data.difficulty ? <Badge difficulty={page.data.difficulty}>{capitalizeFirstLetter(page.data.difficulty)}</Badge> : null}
         </div>
       )}
       <div className='flex flex-row gap-2 items-center border-b pb-6'>

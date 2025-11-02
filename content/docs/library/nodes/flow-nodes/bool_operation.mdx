@@ -1,8 +1,8 @@
 ---
-title: If Condition
-description: Performs a conditional operation based on a condition
-tags: ["condition", "if"]
-github: https://github.com/DeForge-Labs/library/blob/main/flow/if_condition/node.js
+title: Boolean Operation
+description: Performs a logical operation based on a condition
+tags: ["logic", "and", "or", "not"]
+github: https://github.com/DeForge-Labs/library/blob/main/flow/bool_operation/node.js
 difficulty: easy
 credits: 0
 ---
@@ -14,21 +14,18 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="If Condition
- Node Screenshot"
+  alt="Boolean Operation Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The If Condition node evaluates a condition and directs the flow of execution based on whether the condition is true or false. This allows your agent to make decisions and take different actions depending on the input data or other factors.
+Perform boolean logical operations on boolean values
 
 ### Common Use Cases
-- Creating branching logic in workflows
-- Implementing decision-making based on user input
-- Handling different cases based on API responses
-- Validating data and taking appropriate actions
+- Add complex conditional logic to your agent
+- Add multiple conditions
 
 ## Inputs
 The input connections this node accepts:
@@ -44,14 +41,14 @@ The input connections this node accepts:
     <DataDesc>
     <DescLine>First input</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('any')}>Any</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Input 2</DataName>
     <DataDesc>
     <DescLine>Second input</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('any')}>Any</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
 </DataTable>
 
@@ -97,11 +94,11 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Condition</DataName>
+    <DataName>Logic</DataName>
     <DataDesc>
-    <DescLine>Condition</DescLine>
-    <DescLine>**Value:** `==`</DescLine>
-    <DescLine>**Options:** <Badge>==</Badge> <Badge>!=</Badge> <Badge>&gt;</Badge> <Badge>&lt;</Badge> <Badge>&gt;=</Badge> <Badge>&lt;=</Badge></DescLine>
+    <DescLine>Logic (NOT operation only works on input 1)</DescLine>
+    <DescLine>**Value:** `AND`</DescLine>
+    <DescLine>**Options:** <Badge>AND</Badge> <Badge>OR</Badge> <Badge>NOT</Badge></DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
   </DataRow>

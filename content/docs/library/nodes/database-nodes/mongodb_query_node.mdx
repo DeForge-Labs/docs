@@ -1,8 +1,8 @@
 ---
-title: PostgreSQL - Query Rows
-description: Query postgres database
-tags: ["postgres", "database", "query"]
-github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_query_node/node.js
+title: MongoDB - Query Documents
+description: Query MongoDB database
+tags: ["mongodb", "database", "query", "nosql"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/mongodb_query_node/node.js
 difficulty: hard
 credits: 5
 ---
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="PostgreSQL - Query Rows Node Screenshot"
+  alt="MongoDB - Query Documents Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The PostgreSQL - Query Rows node allows you to query rows from a PostgreSQL database based on specified conditions.
+MongoDB Query Documents node allows you to query documents from a MongoDB collection using specified filters and options.
 
 ### Common Use Cases
 - Retrieve user data based on specific criteria
-- Fetch records for reporting or analysis
-- Get configuration settings stored in the database
+- Fetch product information for e-commerce applications
+- Aggregate data for reporting and analytics
 
 ## Inputs
 The input connections this node accepts:
@@ -45,37 +45,44 @@ The input connections this node accepts:
     <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Table</DataName>
+    <DataName>Collection</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
+    <DescLine>Name of the collection to query</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Columns</DataName>
+    <DataName>Filter</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
+    <DescLine>MongoDB filter query object (e.g., \{status: 'active'})</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>WhereClause</DataName>
+    <DataName>Projection</DataName>
     <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
+    <DescLine>Fields to include/exclude (e.g., \{name: 1, email: 1, _id: 0})</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>WhereValues</DataName>
+    <DataName>Sort</DataName>
     <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
+    <DescLine>Sort order (e.g., \{createdAt: -1})</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Limit</DataName>
     <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
+    <DescLine>The maximum number of documents to return</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Skip</DataName>
+    <DataDesc>
+    <DescLine>Number of documents to skip</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
@@ -91,16 +98,16 @@ The output connections this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>rows</DataName>
+    <DataName>documents</DataName>
     <DataDesc>
-    <DescLine>The array of rows returned by the query</DescLine>
+    <DescLine>The array of documents returned by the query</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>rowCount</DataName>
+    <DataName>documentCount</DataName>
     <DataDesc>
-    <DescLine>The number of rows returned</DescLine>
+    <DescLine>The number of documents returned</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
@@ -123,50 +130,58 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Table</DataName>
+    <DataName>Collection</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
+    <DescLine>Name of the collection to query</DescLine>
     <DescLine>**Value:** `users`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Columns</DataName>
+    <DataName>Filter</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
-    <DescLine>**Value:** `*`</DescLine>
+    <DescLine>MongoDB filter query object (e.g., \{status: 'active'})</DescLine>
+    <DescLine>**Value:** `{}`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>WhereClause</DataName>
+    <DataName>Projection</DataName>
     <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
-    <DescLine>**Value:** `id = $1`</DescLine>
+    <DescLine>Fields to include/exclude (e.g., \{name: 1, email: 1, _id: 0})</DescLine>
+    <DescLine>**Value:** `{}`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>WhereValues</DataName>
+    <DataName>Sort</DataName>
     <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
-    <DescLine>**Value:** `Enter values here...`</DescLine>
+    <DescLine>Sort order (e.g., \{createdAt: -1})</DescLine>
+    <DescLine>**Value:** `{}`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Limit</DataName>
     <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
+    <DescLine>The maximum number of documents to return</DescLine>
     <DescLine>**Value:** `10`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>PG_CONNECTION_STRING</DataName>
+    <DataName>Skip</DataName>
     <DataDesc>
-    <DescLine>Postgres connection string</DescLine>
-    <DescLine>**DefaultValue:** `postgres://user:password@localhost:5432/dbname`</DescLine>
+    <DescLine>Number of documents to skip</DescLine>
+    <DescLine>**Value:** `0`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>MONGODB_CONNECTION_STRING</DataName>
+    <DataDesc>
+    <DescLine>MongoDB connection string</DescLine>
+    <DescLine>**DefaultValue:** `mongodb://localhost:27017/dbname`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
   </DataRow>

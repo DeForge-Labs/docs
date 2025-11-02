@@ -25,7 +25,7 @@ export function DataHeader({ children }: { children: React.ReactNode }) {
 
 export function DataName({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex-none w-32 font-medium text-sm">
+    <span className="flex-none w-32 font-medium text-sm wrap-break-word hyphens-auto">
       {children}
     </span>
   );

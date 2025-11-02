@@ -1,8 +1,8 @@
 ---
-title: PostgreSQL - Query Rows
-description: Query postgres database
-tags: ["postgres", "database", "query"]
-github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_query_node/node.js
+title: PostgreSQL - Create Table
+description: Create a new table in PostgreSQL database
+tags: ["postgres", "database", "create", "table", "ddl"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_create_table_node/node.js
 difficulty: hard
 credits: 5
 ---
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="PostgreSQL - Query Rows Node Screenshot"
+  alt="PostgreSQL - Create Table Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The PostgreSQL - Query Rows node allows you to query rows from a PostgreSQL database based on specified conditions.
+PostgreSQL - Create Table node allows you to create a new table in your PostgreSQL database by specifying the table name and column definitions.
 
 ### Common Use Cases
-- Retrieve user data based on specific criteria
-- Fetch records for reporting or analysis
-- Get configuration settings stored in the database
+- Set up database schema for new applications
+- Dynamically create tables based on user input or application needs
+- Automate database management tasks
 
 ## Inputs
 The input connections this node accepts:
@@ -47,37 +47,30 @@ The input connections this node accepts:
   <DataRow>
     <DataName>Table</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
+    <DescLine>Name of the table to create</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Schema</DataName>
+    <DataDesc>
+    <DescLine>Schema name (optional, defaults to 'public')</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Columns</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
+    <DescLine>Array of column definitions [\{name, type, constraints\}]</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>WhereClause</DataName>
+    <DataName>IfNotExists</DataName>
     <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
+    <DescLine>Add IF NOT EXISTS clause to prevent errors if table exists</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereValues</DataName>
-    <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Limit</DataName>
-    <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
 </DataTable>
 
@@ -91,18 +84,25 @@ The output connections this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>rows</DataName>
+    <DataName>success</DataName>
     <DataDesc>
-    <DescLine>The array of rows returned by the query</DescLine>
+    <DescLine>Whether the table was created successfully</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>rowCount</DataName>
+    <DataName>tableName</DataName>
     <DataDesc>
-    <DescLine>The number of rows returned</DescLine>
+    <DescLine>The full name of the created table (schema.table)</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>message</DataName>
+    <DataDesc>
+    <DescLine>Success or error message</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Tool</DataName>
@@ -125,42 +125,33 @@ The configurable fields this node provides:
   <DataRow>
     <DataName>Table</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
+    <DescLine>Name of the table to create</DescLine>
     <DescLine>**Value:** `users`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Schema</DataName>
+    <DataDesc>
+    <DescLine>Schema name (optional, defaults to 'public')</DescLine>
+    <DescLine>**Value:** `public`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Columns</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
-    <DescLine>**Value:** `*`</DescLine>
+    <DescLine>Array of column definitions [\{name, type, constraints\}]</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>WhereClause</DataName>
+    <DataName>IfNotExists</DataName>
     <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
-    <DescLine>**Value:** `id = $1`</DescLine>
+    <DescLine>Add IF NOT EXISTS clause to prevent errors if table exists</DescLine>
+    <DescLine>**Value:** `true`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereValues</DataName>
-    <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
-    <DescLine>**Value:** `Enter values here...`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Limit</DataName>
-    <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
-    <DescLine>**Value:** `10`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>PG_CONNECTION_STRING</DataName>

@@ -1,8 +1,8 @@
 ---
-title: PostgreSQL - Query Rows
-description: Query postgres database
-tags: ["postgres", "database", "query"]
-github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_query_node/node.js
+title: PostgreSQL - Insert Row(s)
+description: Inserts one or more rows into a PostgreSQL table.
+tags: ["postgres", "database", "insert", "write"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_insert_node/node.js
 difficulty: hard
 credits: 5
 ---
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="PostgreSQL - Query Rows Node Screenshot"
+  alt="PostgreSQL - Insert Row(s) Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The PostgreSQL - Query Rows node allows you to query rows from a PostgreSQL database based on specified conditions.
+PostgreSQL - Insert Row(s) node allows you to insert one or more rows into a specified PostgreSQL table using the provided connection details.
 
 ### Common Use Cases
-- Retrieve user data based on specific criteria
-- Fetch records for reporting or analysis
-- Get configuration settings stored in the database
+- Storing user data collected from an AI agent interaction
+- Logging events or actions performed by an AI agent
+- Maintaining a history of AI agent decisions or outputs
 
 ## Inputs
 The input connections this node accepts:
@@ -47,37 +47,23 @@ The input connections this node accepts:
   <DataRow>
     <DataName>Table</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
+    <DescLine>Name of the table to insert into</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Columns</DataName>
+    <DataName>Data</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
+    <DescLine>A JSON object or an array of JSON objects to insert</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Returning</DataName>
+    <DataDesc>
+    <DescLine>Optional. Columns to return after insertion (e.g., 'id' or '*')</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereClause</DataName>
-    <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereValues</DataName>
-    <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Limit</DataName>
-    <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
 </DataTable>
 
@@ -93,14 +79,14 @@ The output connections this node provides:
   <DataRow>
     <DataName>rows</DataName>
     <DataDesc>
-    <DescLine>The array of rows returned by the query</DescLine>
+    <DescLine>The data from the inserted rows, if 'Returning' is used</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>rowCount</DataName>
     <DataDesc>
-    <DescLine>The number of rows returned</DescLine>
+    <DescLine>The number of rows that were successfully inserted</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
@@ -125,42 +111,26 @@ The configurable fields this node provides:
   <DataRow>
     <DataName>Table</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
-    <DescLine>**Value:** `users`</DescLine>
+    <DescLine>Name of the table to insert into</DescLine>
+    <DescLine>**Value:** `logs`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Columns</DataName>
+    <DataName>Data</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
+    <DescLine>A JSON object or an array of JSON objects to insert</DescLine>
+    <DescLine>**Value:** `[{"level": "info", "message": "process started"}]`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Returning</DataName>
+    <DataDesc>
+    <DescLine>Optional. Columns to return after insertion (e.g., 'id' or '*')</DescLine>
     <DescLine>**Value:** `*`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereClause</DataName>
-    <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
-    <DescLine>**Value:** `id = $1`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereValues</DataName>
-    <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
-    <DescLine>**Value:** `Enter values here...`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Limit</DataName>
-    <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
-    <DescLine>**Value:** `10`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>PG_CONNECTION_STRING</DataName>

@@ -1,8 +1,8 @@
 ---
-title: PostgreSQL - Query Rows
-description: Query postgres database
-tags: ["postgres", "database", "query"]
-github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_query_node/node.js
+title: PostgreSQL - Custom Query
+description: Executes a custom SQL query with parameters. For advanced users.
+tags: ["postgres", "database", "custom", "sql", "raw"] 
+github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_custom_query_node/node.js
 difficulty: hard
 credits: 5
 ---
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="PostgreSQL - Query Rows Node Screenshot"
+  alt="PostgreSQL - Custom Query Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The PostgreSQL - Query Rows node allows you to query rows from a PostgreSQL database based on specified conditions.
+The PostgreSQL - Custom Query node allows you to execute any SQL query on your PostgreSQL database. This node is designed for advanced users who need more flexibility than the standard query nodes provide. You can write complex SQL statements, including joins, subqueries, and transactions.
 
 ### Common Use Cases
-- Retrieve user data based on specific criteria
-- Fetch records for reporting or analysis
-- Get configuration settings stored in the database
+- Execute complex queries that involve multiple tables
+- Perform database maintenance tasks
+- Run batch updates or deletes based on specific conditions
 
 ## Inputs
 The input connections this node accepts:
@@ -45,39 +45,18 @@ The input connections this node accepts:
     <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Table</DataName>
+    <DataName>Query</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
+    <DescLine>The raw SQL query to execute, using $1, $2, etc. for placeholders</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Columns</DataName>
+    <DataName>Parameters</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereClause</DataName>
-    <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereValues</DataName>
-    <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
+    <DescLine>The values for the placeholders in the query</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Limit</DataName>
-    <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
 </DataTable>
 
@@ -93,14 +72,14 @@ The output connections this node provides:
   <DataRow>
     <DataName>rows</DataName>
     <DataDesc>
-    <DescLine>The array of rows returned by the query</DescLine>
+    <DescLine>The array of rows returned by the query (if any)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>rowCount</DataName>
     <DataDesc>
-    <DescLine>The number of rows returned</DescLine>
+    <DescLine>The number of rows affected or returned</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
@@ -123,44 +102,20 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Table</DataName>
+    <DataName>Query</DataName>
     <DataDesc>
-    <DescLine>Name of the table to query</DescLine>
-    <DescLine>**Value:** `users`</DescLine>
+    <DescLine>The raw SQL query to execute, using $1, $2, etc. for placeholders</DescLine>
+    <DescLine>**Value:** `SELECT * FROM users WHERE status = $1 LIMIT 10;`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Columns</DataName>
+    <DataName>Parameters</DataName>
     <DataDesc>
-    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
-    <DescLine>**Value:** `*`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereClause</DataName>
-    <DataDesc>
-    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
-    <DescLine>**Value:** `id = $1`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>WhereValues</DataName>
-    <DataDesc>
-    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
+    <DescLine>The values for the placeholders in the query</DescLine>
     <DescLine>**Value:** `Enter values here...`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Limit</DataName>
-    <DataDesc>
-    <DescLine>The maximum number of rows to return</DescLine>
-    <DescLine>**Value:** `10`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>PG_CONNECTION_STRING</DataName>

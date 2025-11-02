@@ -1,0 +1,141 @@
+---
+title: MongoDB - Check Collection
+description: Check if a collection exists and get its metadata
+tags: ["mongodb", "database", "check", "metadata", "collection"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/mongodb_check_collection_node/node.js
+difficulty: medium
+credits: 3
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="MongoDB - Check Collection Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The MongoDB - Check Collection node allows you to verify the existence of a specific collection within a MongoDB database and retrieve its metadata.
+
+### Common Use Cases
+- Validate if a collection exists before performing operations
+- Retrieve collection metadata for auditing or logging purposes
+- Ensure database integrity in workflows
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Collection</DataName>
+    <DataDesc>
+    <DescLine>Name of the collection to check</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>exists</DataName>
+    <DataDesc>
+    <DescLine>Whether the collection exists</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>documentCount</DataName>
+    <DataDesc>
+    <DescLine>Number of documents in the collection</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>collectionSize</DataName>
+    <DataDesc>
+    <DescLine>Size of the collection in bytes</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>indexes</DataName>
+    <DataDesc>
+    <DescLine>Array of indexes on the collection</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>options</DataName>
+    <DataDesc>
+    <DescLine>Collection options (capped, size, etc.)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>sampleDocument</DataName>
+    <DataDesc>
+    <DescLine>A sample document showing the structure</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Collection</DataName>
+    <DataDesc>
+    <DescLine>Name of the collection to check</DescLine>
+    <DescLine>**Value:** `users`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>MONGODB_CONNECTION_STRING</DataName>
+    <DataDesc>
+    <DescLine>MongoDB connection string</DescLine>
+    <DescLine>**DefaultValue:** `mongodb://localhost:27017/dbname`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

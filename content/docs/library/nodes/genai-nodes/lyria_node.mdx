@@ -1,0 +1,136 @@
+---
+title: Lyria AI Music
+description: Generate AI music using Google Lyria
+tags: ["lyria", "google", "ai", "music"]
+github: https://github.com/DeForge-Labs/library/blob/main/GenAI/lyria_node/node.js
+difficulty: easy
+credits: 40
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Lyria AI Music Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Lyria AI Music node allows you to generate music tracks using Google's Lyria API.
+
+### Common Use Cases
+- Create your own BGM for games, videos, etc.
+- Create SFXs for your media
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>Music generation prompt</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Negative Prompt</DataName>
+    <DataDesc>
+    <DescLine>Negative music generation prompt</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Seed</DataName>
+    <DataDesc>
+    <DescLine>Seed value for generation (optional)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Audio Link</DataName>
+    <DataDesc>
+    <DescLine>Temporary link to the audio</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>Music generation prompt</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Negative Prompt</DataName>
+    <DataDesc>
+    <DescLine>Negative music generation prompt</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Seed</DataName>
+    <DataDesc>
+    <DescLine>Seed value for generation (optional)</DescLine>
+    <DescLine>**Value:** `0`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>Model to be used for music generation</DescLine>
+    <DescLine>**Value:** `lyria-002`</DescLine>
+    <DescLine>**Options:** <Badge>lyria-002</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,173 @@
+---
+title: Veo AI Video
+description: Generate AI videos using Google Veo 
+tags: ["veo", "google", "ai", "video"]
+github: https://github.com/DeForge-Labs/library/blob/main/GenAI/veo_node/node.js
+difficulty: medium
+credits: 2667
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Veo AI Video Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Google Veo node allows you to create AI videos using Google Veo2 or Veo3, the choice upto you. The node also has plethora of options to configure your AI video generation. Some options are exclusive to Veo2 and some to Veo3. They are: - Duration: only applicable to Veo2 (can choose from 5 to 8 seconds. Veo3 can only generate 8 seconds videos) - Ratio: only applicable to Veo2 (can also create 9:16 videos while Veo3 can only generate 16:9 videos) - Generate Audio: only applicable to Veo3 (only Veo3 can generate audio along with video).
+
+### Common Use Cases
+- Can be used to create automated video uploads to YouTube.
+- Create videos via telegram messages and easily share among people.
+- Create videos for work purposes, privately.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>Video generation prompt</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Negative Prompt</DataName>
+    <DataDesc>
+    <DescLine>Negative video generation prompt</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Duration</DataName>
+    <DataDesc>
+    <DescLine>Duration of the video (only applicable for Veo2)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Generate Audio</DataName>
+    <DataDesc>
+    <DescLine>Generate audio along with video (applicable only for Veo3)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Video Link</DataName>
+    <DataDesc>
+    <DescLine>Temporary link to the video</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>Video generation prompt</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Negative Prompt</DataName>
+    <DataDesc>
+    <DescLine>Negative video generation prompt</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Duration</DataName>
+    <DataDesc>
+    <DescLine>Duration of the video (only applicable for Veo2)</DescLine>
+    <DescLine>**Value:** `6`</DescLine>
+    <DescLine>**Min:** `5`</DescLine>
+    <DescLine>**Max:** `8`</DescLine>
+    <DescLine>**Step:** `1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>Model to be used for video generation</DescLine>
+    <DescLine>**Value:** `Veo3`</DescLine>
+    <DescLine>**Options:** <Badge>Veo3</Badge> <Badge>Veo2</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Ratio</DataName>
+    <DataDesc>
+    <DescLine>Aspect ratio of the video (applicable only for Veo2)</DescLine>
+    <DescLine>**Value:** `16:9`</DescLine>
+    <DescLine>**Options:** <Badge>16:9</Badge> <Badge>9:16</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Generate Audio</DataName>
+    <DataDesc>
+    <DescLine>Generate audio along with video (applicable only for Veo3)</DescLine>
+    <DescLine>**Value:** `true`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Person</DataName>
+    <DataDesc>
+    <DescLine>Should people be generated in the video</DescLine>
+    <DescLine>**Value:** `Allow adults`</DescLine>
+    <DescLine>**Options:** <Badge>Allow adults</Badge> <Badge>Dont allow</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

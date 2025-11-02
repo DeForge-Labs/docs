@@ -29,3 +29,6 @@ next-env.d.ts
 
 # Node images
 public/nodes
+
+# Eleven Labs Sample voices
+public/11LabsVoices

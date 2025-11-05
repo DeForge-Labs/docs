@@ -91,6 +91,7 @@ export async function generateMetadata(
   return {
     title: page.data.title,
     description: page.data.description,
+    metadataBase: new URL('https://docs.deforge.io'),
     openGraph: {
       images: getPageImage(page).url,
     },

@@ -1,0 +1,92 @@
+---
+title: AI Persona Creator
+description: Generate a persona of any user from any social media and add to a LLM
+tags: ["ai", "search", "social"]
+github: https://github.com/DeForge-Labs/library/blob/main/LLM/persona_generator/node.js
+difficulty: easy
+credits: 200
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="AI Persona Creator Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Generate an AI Persona of a person and mimic their thoughts and style in a chat LLM.
+
+### Common Use Cases
+- Roleplay using LLMs with a celebrity
+- Make an LLM think like your role model
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Username</DataName>
+    <DataDesc>
+    <DescLine>Username or Link to the user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Persona</DataName>
+    <DataDesc>
+    <DescLine>The persona details of the user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Username</DataName>
+    <DataDesc>
+    <DescLine>Username or Link to the user</DescLine>
+    <DescLine>**Value:** `Enter username or link here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Social</DataName>
+    <DataDesc>
+    <DescLine>The social media to search for</DescLine>
+    <DescLine>**Value:** `Twitter`</DescLine>
+    <DescLine>**Options:** <Badge>Twitter</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

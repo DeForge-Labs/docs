@@ -1,10 +1,10 @@
 ---
-title: OpenAI Chat
-description: Chat with OpenAI based LLMs
-tags: ["llm", "chatbot", "chatgpt"]
-github: https://github.com/DeForge-Labs/library/blob/main/LLM/openai_chat_node/node.js
+title: Google Chat
+description: Chat with Google based LLM
+tags: ["llm", "chatbot", "gemini"]
+github: https://github.com/DeForge-Labs/library/blob/main/LLM/google_chat_node/node.js
 difficulty: medium
-credits: 50
+credits: 200
 ---
 
 import { Badge } from '@/components/ui/badge';
@@ -14,20 +14,20 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="OpenAI Chat Node Screenshot"
+  alt="Google Chat Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The OpenAI Chat node connects your agent to OpenAI's powerful language models like GPT-5 and GPT-4.1. These models excel at understanding and generating human-like text for a wide variety of applications.
+The Google Chat node enables interaction with Google's large language models (LLMs) like Gemini. It allows your agent to generate human-like text responses based on user input, system prompts, and optional knowledge bases.
 
 ### Common Use Cases
-- Creating sophisticated conversational agents
-- Generating high-quality content like articles or code
-- Building assistants that can understand complex instructions
-- Developing tools that require advanced reasoning capabilities
+- Creating conversational AI assistants
+- Generating creative content like stories or poems
+- Answering questions based on provided knowledge
+- Summarizing or explaining complex information
 
 ## Inputs
 The input connections this node accepts:
@@ -55,7 +55,7 @@ The input connections this node accepts:
   <DataRow>
     <DataName>Files</DataName>
     <DataDesc>
-    <DescLine>List of files to send to LLM (Direct links to files, Images and PDFs only, max 5 files, 25 MB each)</DescLine>
+    <DescLine>List of files to send to LLM (Direct links to files, Images, PDFs and audio only, max 5 files, 50 MB each)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
   </DataRow>
@@ -127,8 +127,8 @@ The configurable fields this node provides:
     <DataName>Model</DataName>
     <DataDesc>
     <DescLine>The LLM model</DescLine>
-    <DescLine>**Value:** `gpt-4o`</DescLine>
-    <DescLine>**Options:** <Badge>gpt-5</Badge> <Badge>gpt-5-mini</Badge> <Badge>gpt-5-nano</Badge> <Badge>gpt-4.1</Badge> <Badge>gpt-4.1-mini</Badge> <Badge>gpt-4.1-nano</Badge> <Badge>gpt-4o</Badge> <Badge>gpt-4o-mini</Badge> <Badge>o3-mini</Badge> <Badge>o4-mini</Badge></DescLine>
+    <DescLine>**Value:** `gemini-2.0-flash`</DescLine>
+    <DescLine>**Options:** <Badge>gemini-2.5-pro</Badge> <Badge>gemini-2.5-flash</Badge> <Badge>gemini-2.5-flash-lite</Badge> <Badge>gemini-2.0-flash</Badge> <Badge>gemini-2.0-flash-lite</Badge></DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
   </DataRow>
@@ -143,7 +143,7 @@ The configurable fields this node provides:
   <DataRow>
     <DataName>Files</DataName>
     <DataDesc>
-    <DescLine>List of files to send to LLM (Direct links to files, Images only, max 5 files, 25 MB each)</DescLine>
+    <DescLine>List of files to send to LLM (Direct links to files, Images, PDFs and audio only, max 5 files, 50 MB each)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
   </DataRow>

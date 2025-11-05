@@ -1,10 +1,10 @@
 ---
-title: OpenAI Chat
-description: Chat with OpenAI based LLMs
-tags: ["llm", "chatbot", "chatgpt"]
-github: https://github.com/DeForge-Labs/library/blob/main/LLM/openai_chat_node/node.js
+title: Anthropic Chat
+description: Chat with Anthropic based LLM
+tags: ["llm", "chatbot", "claude"]
+github: https://github.com/DeForge-Labs/library/blob/main/LLM/claude_chat_node/node.js
 difficulty: medium
-credits: 50
+credits: 200
 ---
 
 import { Badge } from '@/components/ui/badge';
@@ -14,20 +14,20 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="OpenAI Chat Node Screenshot"
+  alt="Anthropic Chat Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The OpenAI Chat node connects your agent to OpenAI's powerful language models like GPT-5 and GPT-4.1. These models excel at understanding and generating human-like text for a wide variety of applications.
+The Anthropic Chat node connects your agent to Anthropic's Claude language models. Claude models are known for their helpfulness, harmlessness, and honesty, making them suitable for a wide range of conversational and content generation tasks.
 
 ### Common Use Cases
-- Creating sophisticated conversational agents
-- Generating high-quality content like articles or code
-- Building assistants that can understand complex instructions
-- Developing tools that require advanced reasoning capabilities
+- Building conversational agents with nuanced understanding
+- Creating content that requires careful reasoning
+- Developing assistants that can follow complex instructions
+- Generating detailed explanations and analyses
 
 ## Inputs
 The input connections this node accepts:
@@ -127,8 +127,8 @@ The configurable fields this node provides:
     <DataName>Model</DataName>
     <DataDesc>
     <DescLine>The LLM model</DescLine>
-    <DescLine>**Value:** `gpt-4o`</DescLine>
-    <DescLine>**Options:** <Badge>gpt-5</Badge> <Badge>gpt-5-mini</Badge> <Badge>gpt-5-nano</Badge> <Badge>gpt-4.1</Badge> <Badge>gpt-4.1-mini</Badge> <Badge>gpt-4.1-nano</Badge> <Badge>gpt-4o</Badge> <Badge>gpt-4o-mini</Badge> <Badge>o3-mini</Badge> <Badge>o4-mini</Badge></DescLine>
+    <DescLine>**Value:** `claude-3-7-sonnet-latest`</DescLine>
+    <DescLine>**Options:** <Badge>claude-sonnet-4-5</Badge> <Badge>claude-opus-4-1</Badge> <Badge>claude-opus-4-0</Badge> <Badge>claude-sonnet-4-0</Badge> <Badge>claude-3-7-sonnet-latest</Badge> <Badge>claude-3-5-haiku-latest</Badge></DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
   </DataRow>

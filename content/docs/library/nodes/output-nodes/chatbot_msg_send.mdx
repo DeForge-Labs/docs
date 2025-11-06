@@ -1,8 +1,8 @@
 ---
-title: Output Text
-description: Outputs text to the user
-tags: ["output", "text"]
-github: https://github.com/DeForge-Labs/library/blob/main/output/output_text/node.js
+title: Send Chatbot Response
+description: Send a response to your chat bot chat
+tags: [output, chat, bot]
+github: https://github.com/DeForge-Labs/library/blob/main/output/chatbot_msg_send/node.js
 difficulty: easy
 credits: 0
 ---
@@ -14,20 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="Output Text Node Screenshot"
+  alt="Send Chatbot Response Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The Output Text node displays text content to the user. This is typically used as the final step in a workflow to show results, messages, or other text-based information to the user.
+Send a response to your chat UI corresponding to the workflow that has the chat trigger.
 
 ### Common Use Cases
-- Displaying messages or results to users
-- Showing the output of LLM responses
-- Presenting formatted information
-- Providing feedback or instructions to users
+- Send a message to use the chat UI as a normal chat window for your agent
+- Send confirmation messages
+- Send information from your workflow to the UI
 
 ## Inputs
 The input connections this node accepts:
@@ -46,9 +45,9 @@ The input connections this node accepts:
     <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Text</DataName>
+    <DataName>Message</DataName>
     <DataDesc>
-    <DescLine>Text to output</DescLine>
+    <DescLine>Text to send</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
@@ -57,7 +56,20 @@ The input connections this node accepts:
 ## Outputs
 The output connections this node provides:
 
-_This node does not have any output ports._
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Result</DataName>
+    <DataDesc>
+    <DescLine>The final output object of chat bot</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
 
 ## Fields
 The configurable fields this node provides:
@@ -69,11 +81,11 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Text</DataName>
+    <DataName>Message</DataName>
     <DataDesc>
-    <DescLine>Text to output</DescLine>
-    <DescLine>**Value:** `Enter text here...`</DescLine>
+    <DescLine>Text to send</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
   </DataRow>
 </DataTable>

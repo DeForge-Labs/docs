@@ -1,8 +1,8 @@
 ---
-title: AI Web Search
-description: Search the web and get summarised information
-tags: [llm, search, web]
-github: https://github.com/DeForge-Labs/library/blob/main/search/web_search_node/node.js
+title: Get URL Data
+description: Scrape data from a given URL
+tags: [link, search, web, scrape]
+github: https://github.com/DeForge-Labs/library/blob/main/search/url_data_node/node.js
 difficulty: easy
 credits: 10
 ---
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="AI Web Search Node Screenshot"
+  alt="Get URL Data Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The AI Web Search node searches the web, based on your query and preferred language and then returns the output in markdown format. Markdown format makes it easier for LLMs to parse the information from around the web.
+The Get URL Data node scrapes data from a specified URL and returns the content in a structured format. This is useful for extracting information from web pages, APIs, or other online resources.
 
 ### Common Use Cases
-- Gather latest and trending news for automated content generation.
-- Gather information from around the web for summarisation.
-- Gather specific information from the web to create newsletters.
+- Extracting article content from news websites for summarization or analysis.
+- Scraping product details from e-commerce sites for price comparison.
+- Gathering data from public APIs for integration into workflows.
 
 ## Inputs
 The input connections this node accepts:
@@ -45,9 +45,9 @@ The input connections this node accepts:
     <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Query</DataName>
+    <DataName>URL</DataName>
     <DataDesc>
-    <DescLine>Query to search</DescLine>
+    <DescLine>URL to get data from</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
@@ -65,7 +65,7 @@ The output connections this node provides:
   <DataRow>
     <DataName>output</DataName>
     <DataDesc>
-    <DescLine>The content of all the search results in markdown</DescLine>
+    <DescLine>The scraped content in markdown</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
@@ -88,20 +88,11 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Query</DataName>
+    <DataName>URL</DataName>
     <DataDesc>
-    <DescLine>Query to search</DescLine>
+    <DescLine>URL to scrape</DescLine>
     <DescLine>**Value:** `Enter text here...`</DescLine>
     </DataDesc>
-    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Language</DataName>
-    <DataDesc>
-    <DescLine>The preferred search language</DescLine>
-    <DescLine>**Value:** `English`</DescLine>
-    <DescLine>**Options:** <Badge>English</Badge> <Badge>Spanish</Badge> <Badge>French</Badge> <Badge>German</Badge> <Badge>Japanese</Badge> <Badge>Chinese</Badge> <Badge>Hindi</Badge> <Badge>Portugese</Badge> <Badge>Italian</Badge> <Badge>Korean</Badge> <Badge>Dutch</Badge> <Badge>Arabic</Badge> <Badge>Sweedish</Badge> <Badge>Hebrew</Badge> <Badge>Afrikaans</Badge> <Badge>Russian</Badge></DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
 </DataTable>

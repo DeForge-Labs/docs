@@ -1,8 +1,8 @@
 ---
-title: HubSpot - Create Company
-description: Create a new company in HubSpot CRM
-tags: ["hubspot", "crm", "company", "create", "management"]
-github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_create_company_node/node.js
+title: HubSpot - Create Contact
+description: Create a new contact in HubSpot CRM
+tags: ["hubspot", "crm", "contact", "create", "management"]
+github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_create_contact_node/node.js
 difficulty: medium
 credits: 5
 ---
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="HubSpot - Create Company Node Screenshot"
+  alt="HubSpot - Create Contact Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The HubSpot - Create Company node allows you to create a new company record in your HubSpot CRM. This node is useful for automating the process of adding new companies based on data collected from various sources, such as web forms, lead generation tools, or other CRM systems.
+The HubSpot - Create Contact node allows you to create a new contact in your HubSpot CRM system. This node is useful for automating the process of adding new leads or customers to your CRM directly from your workflows.
 
 ### Common Use Cases
-- Automating the creation of company records when new leads are generated.
-- Integrating with lead generation tools to add companies directly to HubSpot.
-- Streamlining the onboarding process by automatically creating company profiles.
+- Automatically adding new leads from web forms to HubSpot
+- Creating contacts from customer support interactions
+- Syncing contacts from other systems into HubSpot
 
 ## Inputs
 The input connections this node accepts:
@@ -45,44 +45,44 @@ The input connections this node accepts:
     <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Name</DataName>
+    <DataName>Email</DataName>
     <DataDesc>
-    <DescLine>Company name (required)</DescLine>
+    <DescLine>Contact email address (required)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Domain</DataName>
+    <DataName>FirstName</DataName>
     <DataDesc>
-    <DescLine>Company domain/website</DescLine>
+    <DescLine>Contact first name</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Industry</DataName>
+    <DataName>LastName</DataName>
     <DataDesc>
-    <DescLine>Company industry</DescLine>
+    <DescLine>Contact last name</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Phone</DataName>
     <DataDesc>
-    <DescLine>Company phone number</DescLine>
+    <DescLine>Contact phone number</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>City</DataName>
+    <DataName>Company</DataName>
     <DataDesc>
-    <DescLine>Company city</DescLine>
+    <DescLine>Company name</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>AdditionalProperties</DataName>
     <DataDesc>
-    <DescLine>Additional company properties as key-value pairs</DescLine>
+    <DescLine>Additional contact properties as key-value pairs</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
@@ -100,21 +100,21 @@ The output connections this node provides:
   <DataRow>
     <DataName>success</DataName>
     <DataDesc>
-    <DescLine>Whether the company was created successfully</DescLine>
+    <DescLine>Whether the contact was created successfully</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>companyId</DataName>
+    <DataName>contactId</DataName>
     <DataDesc>
-    <DescLine>The HubSpot company ID</DescLine>
+    <DescLine>The HubSpot contact ID</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>company</DataName>
+    <DataName>contact</DataName>
     <DataDesc>
-    <DescLine>The created company object</DescLine>
+    <DescLine>The created contact object</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
@@ -137,41 +137,41 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Name</DataName>
+    <DataName>Email</DataName>
     <DataDesc>
-    <DescLine>Company name (required)</DescLine>
-    <DescLine>**Value:** `Acme Corporation`</DescLine>
+    <DescLine>Contact email address (required)</DescLine>
+    <DescLine>**Value:** `contact@example.com`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Domain</DataName>
+    <DataName>FirstName</DataName>
     <DataDesc>
-    <DescLine>Company domain/website</DescLine>
-    <DescLine>**Value:** `acme.com`</DescLine>
+    <DescLine>Contact first name</DescLine>
+    <DescLine>**Value:** `John`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Industry</DataName>
+    <DataName>LastName</DataName>
     <DataDesc>
-    <DescLine>Company industry</DescLine>
-    <DescLine>**Value:** ``</DescLine>
+    <DescLine>Contact last name</DescLine>
+    <DescLine>**Value:** `Doe`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Phone</DataName>
     <DataDesc>
-    <DescLine>Company phone number</DescLine>
+    <DescLine>Contact phone number</DescLine>
     <DescLine>**Value:** ``</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>City</DataName>
+    <DataName>Company</DataName>
     <DataDesc>
-    <DescLine>Company city</DescLine>
+    <DescLine>Company name</DescLine>
     <DescLine>**Value:** ``</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
@@ -179,7 +179,7 @@ The configurable fields this node provides:
   <DataRow>
     <DataName>AdditionalProperties</DataName>
     <DataDesc>
-    <DescLine>Additional company properties as key-value pairs</DescLine>
+    <DescLine>Additional contact properties as key-value pairs</DescLine>
     <DescLine>**Value:** ``</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>

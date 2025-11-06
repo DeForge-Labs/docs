@@ -1,0 +1,164 @@
+---
+title: HubSpot - Search Deals
+description: Search for deals in HubSpot CRM with filters
+tags: ["hubspot", "crm", "deal", "search", "filter", "management"]
+github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_search_deals_node/node.js
+difficulty: medium
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="HubSpot - Search Deals Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The **HubSpot - Search Deals** node allows you to search for deals in your HubSpot CRM using various filters and criteria. This node is useful for retrieving specific deals based on search queries, filtering conditions, and sorting preferences.
+
+### Common Use Cases
+- Retrieve deals that match specific search criteria
+- Filter deals based on properties such as deal stage, amount, or close date
+- Sort deals by different attributes like creation date or amount
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Search query string</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Filters</DataName>
+    <DataDesc>
+    <DescLine>Array of filter objects [\{propertyName, operator, value}]</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>Maximum number of results (default: 10, max: 100)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Sorts</DataName>
+    <DataDesc>
+    <DescLine>Array of sort objects [\{propertyName, direction}]</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>success</DataName>
+    <DataDesc>
+    <DescLine>Whether the search was successful</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>deals</DataName>
+    <DataDesc>
+    <DescLine>Array of matching deals</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>total</DataName>
+    <DataDesc>
+    <DescLine>Total number of matching deals</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Search query string</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Filters</DataName>
+    <DataDesc>
+    <DescLine>Array of filter objects [\{propertyName, operator, value}]</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>Maximum number of results (default: 10, max: 100)</DescLine>
+    <DescLine>**Value:** `10`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Sorts</DataName>
+    <DataDesc>
+    <DescLine>Array of sort objects [\{propertyName, direction}]</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HubSpot</DataName>
+    <DataDesc>
+    <DescLine>Connect to your HubSpot account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,127 @@
+---
+title: HubSpot - Get Contact
+description: Retrieve a contact from HubSpot CRM by email or ID
+tags: ["hubspot", "crm", "contact", "get", "management"]
+github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_get_contact_node/node.js
+difficulty: easy
+credits: 3
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="HubSpot - Get Contact Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The HubSpot - Get Contact node allows you to retrieve detailed information about a contact stored in your HubSpot CRM. You can search for a contact using their email address or unique HubSpot ID. This node is essential for workflows that require access to contact data for personalization, follow-ups, or analytics.
+
+### Common Use Cases
+- Fetching contact details for personalized email campaigns.
+- Retrieving contact information for customer support interactions.
+- Accessing contact data for sales follow-ups and lead nurturing.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Email</DataName>
+    <DataDesc>
+    <DescLine>Contact email address</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ContactId</DataName>
+    <DataDesc>
+    <DescLine>HubSpot contact ID (alternative to email)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>success</DataName>
+    <DataDesc>
+    <DescLine>Whether the contact was found</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>contact</DataName>
+    <DataDesc>
+    <DescLine>The contact object with all properties</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Email</DataName>
+    <DataDesc>
+    <DescLine>Contact email address</DescLine>
+    <DescLine>**Value:** `contact@example.com`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ContactId</DataName>
+    <DataDesc>
+    <DescLine>HubSpot contact ID (alternative to email)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HubSpot</DataName>
+    <DataDesc>
+    <DescLine>Connect to your HubSpot account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

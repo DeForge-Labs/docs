@@ -1,10 +1,10 @@
 ---
-title: HubSpot - Create Company
-description: Create a new company in HubSpot CRM
-tags: ["hubspot", "crm", "company", "create", "management"]
-github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_create_company_node/node.js
+title: HubSpot - Associate Objects
+description: Associate two objects in HubSpot CRM (e.g., contact to company, deal to contact)
+tags: ["hubspot", "crm", "associate", "management"]
+github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_associate_objects_node/node.js
 difficulty: medium
-credits: 5
+credits: 3
 ---
 
 import { Badge } from '@/components/ui/badge';
@@ -14,19 +14,19 @@ import { getColorByType } from '@/lib/color-profile';
 <ImageZoom
   src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
   data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
-  alt="HubSpot - Create Company Node Screenshot"
+  alt="HubSpot - Associate Objects Node Screenshot"
   className="mx-auto"
 />
 
 ---
 
 ## Description
-The HubSpot - Create Company node allows you to create a new company record in your HubSpot CRM. This node is useful for automating the process of adding new companies based on data collected from various sources, such as web forms, lead generation tools, or other CRM systems.
+The HubSpot - Associate Objects node allows you to associate two objects in HubSpot CRM, such as linking a contact to a company or a deal to a contact. This node is useful for maintaining relationships between different entities in your CRM system.
 
 ### Common Use Cases
-- Automating the creation of company records when new leads are generated.
-- Integrating with lead generation tools to add companies directly to HubSpot.
-- Streamlining the onboarding process by automatically creating company profiles.
+- Linking a contact to a company to track interactions and communications.
+- Associating a deal with a contact to monitor sales progress.
+- Creating relationships between various HubSpot objects for better data organization.
 
 ## Inputs
 The input connections this node accepts:
@@ -45,46 +45,39 @@ The input connections this node accepts:
     <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Name</DataName>
+    <DataName>FromObjectType</DataName>
     <DataDesc>
-    <DescLine>Company name (required)</DescLine>
+    <DescLine>Type of the first object (contact, company, deal, etc.)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Domain</DataName>
+    <DataName>FromObjectId</DataName>
     <DataDesc>
-    <DescLine>Company domain/website</DescLine>
+    <DescLine>ID of the first object</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Industry</DataName>
+    <DataName>ToObjectType</DataName>
     <DataDesc>
-    <DescLine>Company industry</DescLine>
+    <DescLine>Type of the second object (contact, company, deal, etc.)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Phone</DataName>
+    <DataName>ToObjectId</DataName>
     <DataDesc>
-    <DescLine>Company phone number</DescLine>
+    <DescLine>ID of the second object</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>City</DataName>
+    <DataName>AssociationType</DataName>
     <DataDesc>
-    <DescLine>Company city</DescLine>
+    <DescLine>Association type ID (optional, uses default if not provided)</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>AdditionalProperties</DataName>
-    <DataDesc>
-    <DescLine>Additional company properties as key-value pairs</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
 </DataTable>
 
@@ -100,23 +93,16 @@ The output connections this node provides:
   <DataRow>
     <DataName>success</DataName>
     <DataDesc>
-    <DescLine>Whether the company was created successfully</DescLine>
+    <DescLine>Whether the association was created successfully</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>companyId</DataName>
+    <DataName>message</DataName>
     <DataDesc>
-    <DescLine>The HubSpot company ID</DescLine>
+    <DescLine>Success or error message</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>company</DataName>
-    <DataDesc>
-    <DescLine>The created company object</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>Tool</DataName>
@@ -137,52 +123,44 @@ The configurable fields this node provides:
     <DataType>Type</DataType>
   </DataHeader>
   <DataRow>
-    <DataName>Name</DataName>
+    <DataName>FromObjectType</DataName>
     <DataDesc>
-    <DescLine>Company name (required)</DescLine>
-    <DescLine>**Value:** `Acme Corporation`</DescLine>
+    <DescLine>Type of the first object (contact, company, deal, etc.)</DescLine>
+    <DescLine>**Value:** `contact`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Domain</DataName>
+    <DataName>FromObjectId</DataName>
     <DataDesc>
-    <DescLine>Company domain/website</DescLine>
-    <DescLine>**Value:** `acme.com`</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>Industry</DataName>
-    <DataDesc>
-    <DescLine>Company industry</DescLine>
+    <DescLine>ID of the first object</DescLine>
     <DescLine>**Value:** ``</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>Phone</DataName>
+    <DataName>ToObjectType</DataName>
     <DataDesc>
-    <DescLine>Company phone number</DescLine>
+    <DescLine>Type of the second object (contact, company, deal, etc.)</DescLine>
+    <DescLine>**Value:** `company`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ToObjectId</DataName>
+    <DataDesc>
+    <DescLine>ID of the second object</DescLine>
     <DescLine>**Value:** ``</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
   <DataRow>
-    <DataName>City</DataName>
+    <DataName>AssociationType</DataName>
     <DataDesc>
-    <DescLine>Company city</DescLine>
+    <DescLine>Association type ID (optional, uses default if not provided)</DescLine>
     <DescLine>**Value:** ``</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
-  </DataRow>
-  <DataRow>
-    <DataName>AdditionalProperties</DataName>
-    <DataDesc>
-    <DescLine>Additional company properties as key-value pairs</DescLine>
-    <DescLine>**Value:** ``</DescLine>
-    </DataDesc>
-    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
   </DataRow>
   <DataRow>
     <DataName>HubSpot</DataName>

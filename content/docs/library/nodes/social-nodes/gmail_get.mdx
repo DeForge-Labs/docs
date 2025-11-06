@@ -1,6 +1,137 @@
 ---
 title: Get Gmail Email
 description: Retrieve email from your connected gmail account using a search query (requires Gmail_Read connection).
+tags: [get, gmail, email, inbox, search]
+github: https://github.com/DeForge-Labs/library/blob/main/social/gmail_get/node.js
+difficulty: easy
+credits: 5
 ---
 
-TBA
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Get Gmail Email Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The **Get Gmail Email** node allows you to retrieve email from your connected Gmail account using a search query. You can specify the search criteria similar to how you would in the Gmail search bar (e.g., `is:unread from:amazon`). The node can return multiple emails based on the specified count.
+
+### Common Use Cases
+- Retrieve unread emails from a specific sender.
+- Fetch emails containing specific keywords.
+- Integrate email retrieval into automated workflows.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Search Query</DataName>
+    <DataDesc>
+    <DescLine>Search query for email (same as gmail search bar, e.g., 'is:unread from:amazon')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Count</DataName>
+    <DataDesc>
+    <DescLine>Number of email to retrieve</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>All Email</DataName>
+    <DataDesc>
+    <DescLine>All email data (JSON array of \{subject, body})</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Subject</DataName>
+    <DataDesc>
+    <DescLine>The email subject (if only one email selected)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>The email body (if only one email selected)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Search Query</DataName>
+    <DataDesc>
+    <DescLine>Search query for email (same as gmail search bar)</DescLine>
+    <DescLine>**Value:** `search query here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Count</DataName>
+    <DataDesc>
+    <DescLine>Number of email to retrieve</DescLine>
+    <DescLine>**Value:** `5`</DescLine>
+    <DescLine>**Min:** `1`</DescLine>
+    <DescLine>**Max:** `50`</DescLine>
+    <DescLine>**Step:** `1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Gmail_Read</DataName>
+    <DataDesc>
+    <DescLine>Connect to your Gmail account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

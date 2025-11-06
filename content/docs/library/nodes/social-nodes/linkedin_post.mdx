@@ -1,0 +1,137 @@
+---
+title: LinkedIN Post
+description: Make a post on LinkedIn with optional text, image, or video (requires LinkedIn connection).
+tags: [linkedin, video, image, post, social media]
+github: https://github.com/DeForge-Labs/library/blob/main/social/linkedin_post/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="LinkedIN Post Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The LinkedIn Post node allows you to create a post on LinkedIn with optional text, image, or video content. You can configure the content of the post and other parameters. This node is useful for sharing information, updates, or any other messages via LinkedIn.
+
+### Common Use Cases
+- Sharing updates or news on LinkedIn
+- Posting promotional content or announcements
+- Engaging with your LinkedIn network through posts
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>
+    <DescLine>Text content to post</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Video Link</DataName>
+    <DataDesc>
+    <DescLine>Link of the video to upload</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Image Link</DataName>
+    <DataDesc>
+    <DescLine>Link of the image to upload</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Post Link</DataName>
+    <DataDesc>
+    <DescLine>The link of the newly created post</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>
+    <DescLine>Text content to post</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Video Link</DataName>
+    <DataDesc>
+    <DescLine>Link of the video to upload</DescLine>
+    <DescLine>**Value:** `Enter video link here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Image Link</DataName>
+    <DataDesc>
+    <DescLine>Link of the image to upload</DescLine>
+    <DescLine>**Value:** `Enter image link here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Visibility</DataName>
+    <DataDesc>
+    <DescLine>The visibility of the post</DescLine>
+    <DescLine>**Value:** `PUBLIC`</DescLine>
+    <DescLine>**Options:** <Badge>PUBLIC</Badge> <Badge>CONNECTIONS</Badge> <Badge>LOGGED_IN</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>LinkedIn</DataName>
+    <DataDesc>
+    <DescLine>Connect to your Linked In account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,100 @@
+---
+title: API Trigger
+description: Triggers the flow when an HTTP request is received at a unique webhook URL.
+tags: [trigger, api, webhook, http]
+github: https://github.com/DeForge-Labs/library/blob/main/trigger/api_trigger/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="API Trigger Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The API Trigger node allows you to start a flow when an HTTP request is received at a unique webhook URL. This is useful for integrating with external services that can send webhooks, or for creating custom API endpoints that trigger specific workflows in your automation system.
+
+### Common Use Cases
+- Receiving webhooks from third-party services (e.g., payment gateways, form submissions).
+- Creating custom API endpoints for triggering workflows.
+- Integrating with other applications that can send HTTP requests.
+
+## Inputs
+The input connections this node accepts:
+
+_This node does not have any input ports._
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger upon receiving a request.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>The JSON payload sent in the request body.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Headers</DataName>
+    <DataDesc>
+    <DescLine>The HTTP headers from the incoming request.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>The URL query parameters from the request.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Metadata</DataName>
+    <DataDesc>
+    <DescLine>Metadata about the request, like IP address and timestamp.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>method</DataName>
+    <DataDesc>
+    <DescLine>The HTTP request method that will trigger this flow.</DescLine>
+    <DescLine>**Value:** `GET`</DescLine>
+    <DescLine>**Options:** <Badge>GET</Badge> <Badge>POST</Badge> <Badge>PUT</Badge> <Badge>DELETE</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

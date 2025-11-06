@@ -1,0 +1,127 @@
+---
+title: Telegram Trigger
+description: Triggers the flow when a message is recieved on the telegram bot
+tags: [trigger, telegram, bot]
+github: https://github.com/DeForge-Labs/library/blob/main/trigger/tg_trigger/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Telegram Trigger Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Activates a workflow upon receiving a message by your configured Telegram bot. Allows for dynamic actions based on user input from Telegram.
+
+### Common Use Cases
+- Creating Telegram-based command interfaces
+- Receiving alerts or notifications via Telegram
+- Building interactive Telegram bots
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>On Start</DataName>
+    <DataDesc>
+    <DescLine>Text to send when recieving the /start command</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>Message recieved by the bot</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Voice</DataName>
+    <DataDesc>
+    <DescLine>Link to the voice message recieved by the bot</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Chat ID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID of the user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Username</DataName>
+    <DataDesc>
+    <DescLine>Username of the user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Is Command</DataName>
+    <DataDesc>
+    <DescLine>Is the message a bot command ?</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>On Start</DataName>
+    <DataDesc>
+    <DescLine>Text to send when recieving the /start command</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>TG_API_KEY</DataName>
+    <DataDesc>
+    <DescLine>Api Key of your Telegram bot</DescLine>
+    <DescLine>**DefaultValue:** `eydnfnuani...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

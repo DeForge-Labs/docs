@@ -1,0 +1,187 @@
+---
+title: Book Cal.com Meeting
+description: Book cal.com meeting
+tags: [cal.com, book, meeting]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/cal_book/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Book Cal.com Meeting Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Books a meeting on Cal.com, requiring user details, a meeting link, timezone, and a selected time slot. Automates meeting bookings via your Cal.com account.
+
+### Common Use Cases
+- Automatically booking meetings based on workflow triggers
+- Scheduling appointments for users via API
+- Integrating meeting bookings into automated processes
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Name</DataName>
+    <DataDesc>
+    <DescLine>Name of the user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Email</DataName>
+    <DataDesc>
+    <DescLine>Email of the user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Meeting Link</DataName>
+    <DataDesc>
+    <DescLine>Cal.com Public Link</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>timezone</DataName>
+    <DataDesc>
+    <DescLine>Timezone of the meeting in IANA format (e.g., Europe/London)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>Slot to book (Date object or string representation of a specific time)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Duration</DataName>
+    <DataDesc>
+    <DescLine>Duration of the meeting (e.g., 30mins, 45mins, 1hr)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Success</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow if booking is successful</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Error</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow if error occurs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Error payload</DataName>
+    <DataDesc>
+    <DescLine>Error details</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Name</DataName>
+    <DataDesc>
+    <DescLine>Name of the user</DescLine>
+    <DescLine>**Value:** `Name...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Email</DataName>
+    <DataDesc>
+    <DescLine>Email of the user</DescLine>
+    <DescLine>**Value:** `Email...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Meeting Link</DataName>
+    <DataDesc>
+    <DescLine>Cal.com Public Link</DescLine>
+    <DescLine>**Value:** `Meeting Link...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>timezone</DataName>
+    <DataDesc>
+    <DescLine>The timezone of the meeting in IANA format</DescLine>
+    <DescLine>**Value:** `Europe/London`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>Slot to book</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Duration</DataName>
+    <DataDesc>
+    <DescLine>Duration of the meeting</DescLine>
+    <DescLine>**Value:** `30mins`</DescLine>
+    <DescLine>**Options:** <Badge>30mins</Badge> <Badge>45mins</Badge> <Badge>1hr</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

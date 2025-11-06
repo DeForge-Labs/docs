@@ -1,0 +1,98 @@
+---
+title: Text to Number
+description: Converts a text string representing a number (integer or float) into a numeric value.
+tags: [text, number, processing, converter]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/text_to_number/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Text to Number Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Text to Number node converts a text string that represents a number (either integer or float) into an actual numeric value. This is useful for workflows that require numerical computations or comparisons based on user input or data retrieved as text.
+
+### Common Use Cases
+- Converting user input from text fields into numbers for calculations.
+- Parsing numerical data received as strings from APIs or databases.
+- Preparing data for statistical analysis or machine learning models.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The text to convert to number (e.g., '123.45')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Number</DataName>
+    <DataDesc>
+    <DescLine>The number converted from text</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The text to convert to number</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

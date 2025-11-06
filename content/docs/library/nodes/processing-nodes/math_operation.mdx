@@ -1,0 +1,123 @@
+---
+title: Math Operation
+description: Performs a mathematical operation on two numbers - addition, subtraction, multiplication, or division.
+tags: [math, operation, calculate]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/math_operation/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Math Operation Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Math Operation node performs basic arithmetic operations (addition, subtraction, multiplication, division) on two numerical inputs. This allows your agent to perform calculations as part of its workflow.
+
+### Common Use Cases
+- Calculating totals or averages
+- Performing conversions between units
+- Computing derived values from input data
+- Implementing business logic that requires numerical calculations
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Number 1</DataName>
+    <DataDesc>
+    <DescLine>First number</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Number 2</DataName>
+    <DataDesc>
+    <DescLine>Second number</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Result</DataName>
+    <DataDesc>
+    <DescLine>The result of the operation</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Number 1</DataName>
+    <DataDesc>
+    <DescLine>First number</DescLine>
+    <DescLine>**Value:** `0`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Operation</DataName>
+    <DataDesc>
+    <DescLine>Operation</DescLine>
+    <DescLine>**Value:** `+`</DescLine>
+    <DescLine>**Options:** <Badge>+</Badge> <Badge>-</Badge> <Badge>*</Badge> <Badge>/</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Number 2</DataName>
+    <DataDesc>
+    <DescLine>Second number</DescLine>
+    <DescLine>**Value:** `0`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>

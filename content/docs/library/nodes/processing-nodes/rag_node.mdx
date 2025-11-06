@@ -1,0 +1,102 @@
+---
+title: Knowledge Base
+description: Process your Knowledge Base to use it in LLMs
+tags: [api, llm, knowledge-base, rag]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/rag_node/node.js
+difficulty: easy
+credits: 15
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Knowledge Base Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Knowledge Base node processes documents or data to create a Retrieval-Augmented Generation (RAG) database that can be used to enhance LLM responses with specific information. This allows your AI agents to access and reference custom knowledge when generating responses.
+
+### Common Use Cases
+- Creating AI assistants with access to company documentation
+- Building chatbots that can answer questions about specific products or services
+- Developing agents that can reference technical manuals or guidelines
+- Enabling LLMs to access up-to-date or proprietary information
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Link</DataName>
+    <DataDesc>
+    <DescLine>The knowledge base link</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Rag Database</DataName>
+    <DataDesc>
+    <DescLine>RAG Database</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('rag')}>Rag</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Data Type</DataName>
+    <DataDesc>
+    <DescLine>The type of data you are providing</DescLine>
+    <DescLine>**Value:** `Link to a file`</DescLine>
+    <DescLine>**Options:** <Badge>Link to a file</Badge> <Badge>Link to a webpage</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Link</DataName>
+    <DataDesc>
+    <DescLine>The knowledge base link</DescLine>
+    <DescLine>**Value:** `https://yourlink.com/`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Deep Search</DataName>
+    <DataDesc>
+    <DescLine>Go deeper into the given link to gain further information (only available for webpage type RAG)</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+</DataTable>

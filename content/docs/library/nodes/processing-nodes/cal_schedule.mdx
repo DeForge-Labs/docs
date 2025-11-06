@@ -1,0 +1,127 @@
+---
+title: Get Cal.com Schedule
+description: Get cal.com schedule
+tags: [cal.com, schedule, meeting]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/cal_schedule/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Get Cal.com Schedule Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Fetches available meeting slots from a Cal.com public booking link, allowing users to find suitable times for scheduling. It requires the Cal.com link and the timezone for accurate slot retrieval.
+
+### Common Use Cases
+- Automating appointment scheduling
+- Checking availability before booking meetings
+- Integrating calendar availability into workflows
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Meeting Link</DataName>
+    <DataDesc>
+    <DescLine>Cal.com Public Link</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>timezone</DataName>
+    <DataDesc>
+    <DescLine>Timezone of the meeting in IANA format</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Slots</DataName>
+    <DataDesc>
+    <DescLine>Slots of the meeting</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Error</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow if error occurs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Error payload</DataName>
+    <DataDesc>
+    <DescLine>Error details</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Meeting Link</DataName>
+    <DataDesc>
+    <DescLine>Cal.com Public Link</DescLine>
+    <DescLine>**Value:** `Meeting Link...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>timezone</DataName>
+    <DataDesc>
+    <DescLine>The timezone of the meeting in IANA format</DescLine>
+    <DescLine>**Value:** `Europe/London`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

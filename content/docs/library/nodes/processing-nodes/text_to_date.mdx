@@ -1,0 +1,98 @@
+---
+title: Text to Date
+description: Converts a text string (preferably ISO Date String) to a structured Date object.
+tags: [text, date, converter, parser]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/text_to_date/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Text to Date Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Parses an ISO 8601 date string into a Date object, enabling date-based operations in your workflow.
+
+### Common Use Cases
+- Converting date strings from APIs
+- Scheduling tasks based on date inputs
+- Parsing dates from user input
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>Text to convert (e.g., ISO 8601 string)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>The structured date object of the text</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>Text to convert</DescLine>
+    <DescLine>**Value:** `Enter ISO Date String here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,6 +1,138 @@
 ---
 title: API Call
-description: Call external APIs
+description: Call external API
+tags: [api, http, external]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/api_node/node.js
+difficulty: medium
+credits: 0
 ---
 
-Details will be here.
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="API Call Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The API Call node enables your AI agent to interact with external services and data sources through HTTP requests. It supports various methods like GET, POST, PUT, and DELETE, allowing for comprehensive integration with third-party APIs.
+
+### Common Use Cases
+- Fetching data from external services
+- Sending data to external platforms
+- Integrating with third-party APIs like weather services or payment gateways
+- Retrieving information from databases or content management systems
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>endpoint</DataName>
+    <DataDesc>
+    <DescLine>The endpoint of the API</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>body</DataName>
+    <DataDesc>
+    <DescLine>The body of the API</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>headers</DataName>
+    <DataDesc>
+    <DescLine>The headers of the API</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>output</DataName>
+    <DataDesc>
+    <DescLine>The response of the API</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>method</DataName>
+    <DataDesc>
+    <DescLine>The method of the API</DescLine>
+    <DescLine>**Value:** `GET`</DescLine>
+    <DescLine>**Options:** <Badge>GET</Badge> <Badge>POST</Badge> <Badge>PUT</Badge> <Badge>DELETE</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>endpoint</DataName>
+    <DataDesc>
+    <DescLine>The endpoint of the API</DescLine>
+    <DescLine>**Value:** `endpoint...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>body</DataName>
+    <DataDesc>
+    <DescLine>The body of the API</DescLine>
+    <DescLine>**Value:** `Enter body here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>headers</DataName>
+    <DataDesc>
+    <DescLine>The headers of the API</DescLine>
+    <DescLine>**Value:** `Enter headers here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+</DataTable>

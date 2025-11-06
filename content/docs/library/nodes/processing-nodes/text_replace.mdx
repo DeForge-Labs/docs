@@ -1,0 +1,136 @@
+---
+title: Text Replace
+description: Replaces text in a string, with an option to replace all occurrences.
+tags: [text, replace, processing, string]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/text_replace/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Light.png"
+  data-dark-src="https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/TTS_Dark.png"
+  alt="Text Replace Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Text Replace node allows you to replace specific text within a larger body of text. You can choose to replace all occurrences of the text or just the first one.
+
+### Common Use Cases
+- Cleaning up text data by replacing unwanted substrings.
+- Formatting text by replacing placeholders with actual values.
+- Preparing text for further processing by standardizing certain terms.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The text on which replacement will be done.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text to replace</DataName>
+    <DataDesc>
+    <DescLine>The text/substring to search for and replace.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text to replace with</DataName>
+    <DataDesc>
+    <DescLine>The text to insert as the replacement.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The result text after replacement.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The text on which replacement will be done.</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text to replace</DataName>
+    <DataDesc>
+    <DescLine>The text to search for.</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text to replace with</DataName>
+    <DataDesc>
+    <DescLine>The text to replace with.</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Replace All</DataName>
+    <DataDesc>
+    <DescLine>Replace all occurrences of the text</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+</DataTable>

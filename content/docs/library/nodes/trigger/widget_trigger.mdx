@@ -28,6 +28,402 @@ Activates your workflow upon receiving a message from its corresponding widget. 
 - Perform agentic tasks intelligently with chat commands
 - Create an intelligent assistant
 
+## How to Use
+The method is as simple as adding a simple script to your site that too via a CDN. Here are some ways you can add it to your site listed by specific frameworks:
+
+<Tabs items={['HTML/Vanilla JS', 'Next.js', 'React', 'Vue.js', 'Angular', 'Svelte']}>
+  <Tab value="HTML/Vanilla JS">
+    ```html title="index.html"
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Your Website</title>
+    </head>
+    <body>
+        <!-- Your content -->
+        
+        <!-- DeForge Widget Script -->
+        <script src="https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js"></script>
+        <script>
+            const widget = new ChatbotWidget({
+                workflowId: "4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9", // Your workflow ID
+                theme: "deforge-light", // or "deforge-dark"
+                position: "bottom-right" // bottom-left, top-right, top-left
+            });
+        </script>
+    </body>
+    </html>
+    ```
+  </Tab>
+  <Tab value="Next.js">
+    <Tabs items={['App Router (Recommended)', 'Pages Router (Legacy)']}>
+      <Tab>
+        ```tsx title="components/chatbot-widget.tsx" tab="Widget"
+        'use client'
+
+        import { useEffect } from 'react'
+
+        interface ChatbotWidgetProps {
+          workflowId: string
+          theme?: 'deforge-light' | 'deforge-dark'
+          position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
+        }
+
+        export default function ChatbotWidget({ 
+          workflowId, 
+          theme = 'deforge-light', 
+          position = 'bottom-right' 
+        }: ChatbotWidgetProps) {
+          useEffect(() => {
+            // Load the script dynamically
+            const script = document.createElement('script')
+            script.src = 'https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js'
+            script.async = true
+            
+            script.onload = () => {
+              // Initialize widget after script loads
+              if (typeof window !== 'undefined' && (window as any).ChatbotWidget) {
+                new (window as any).ChatbotWidget({
+                  workflowId,
+                  theme,
+                  position
+                })
+              }
+            }
+            
+            document.head.appendChild(script)
+            
+            // Cleanup
+            return () => {
+              document.head.removeChild(script)
+            }
+          }, [workflowId, theme, position])
+
+          return null // Widget renders itself
+        }
+        ```
+
+        ```tsx title="app/layout.tsx" tab="Layout"
+        import ChatbotWidget from '@/components/chatbot-widget'
+
+        export default function RootLayout({
+          children,
+        }: {
+          children: React.ReactNode
+        }) {
+          return (
+            <html lang="en">
+              <body>
+                {children}
+                <ChatbotWidget 
+                  workflowId="4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9"
+                  theme="deforge-light"
+                  position="bottom-right"
+                />
+              </body>
+            </html>
+          )
+        }
+        ```
+      </Tab>
+      <Tab>
+        ```tsx title="pages/_app.tsx"
+        import { useEffect } from 'react'
+        import type { AppProps } from 'next/app'
+
+        export default function App({ Component, pageProps }: AppProps) {
+          useEffect(() => {
+            const script = document.createElement('script')
+            script.src = 'https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js'
+            script.async = true
+            
+            script.onload = () => {
+              if (typeof window !== 'undefined' && (window as any).ChatbotWidget) {
+                new (window as any).ChatbotWidget({
+                  workflowId: "4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9",
+                  theme: "deforge-light",
+                  position: "bottom-right"
+                })
+              }
+            }
+            
+            document.head.appendChild(script)
+          }, [])
+
+          return <Component {...pageProps} />
+        }
+        ```
+      </Tab>
+    </Tabs>
+  </Tab>
+  <Tab value="React">
+    ```ts title="hooks/useChatbotWidget.ts" tab="Hook"
+    import { useEffect } from 'react'
+
+    interface UseChatbotWidgetProps {
+      workflowId: string
+      theme?: 'deforge-light' | 'deforge-dark'
+      position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
+    }
+
+    export function useChatbotWidget({ 
+      workflowId, 
+      theme = 'deforge-light', 
+      position = 'bottom-right' 
+    }: UseChatbotWidgetProps) {
+      useEffect(() => {
+        const script = document.createElement('script')
+        script.src = 'https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js'
+        script.async = true
+        
+        script.onload = () => {
+          if ((window as any).ChatbotWidget) {
+            new (window as any).ChatbotWidget({
+              workflowId,
+              theme,
+              position
+            })
+          }
+        }
+        
+        document.head.appendChild(script)
+        
+        return () => {
+          if (document.head.contains(script)) {
+            document.head.removeChild(script)
+          }
+        }
+      }, [workflowId, theme, position])
+    }
+    ```
+
+    ```ts title="App.tsx" tab="App"
+    import { useChatbotWidget } from './hooks/useChatbotWidget'
+
+    function App() {
+      useChatbotWidget({
+        workflowId: "4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9",
+        theme: "deforge-light",
+        position: "bottom-right"
+      })
+
+      return (
+        <div className="App">
+          <h1>Your React App</h1>
+          {/* Your app content */}
+        </div>
+      )
+    }
+
+    export default App
+    ```
+  </Tab>
+  <Tab value="Vue.js">
+    ```vue title="components/ChatbotWidget.vue" tab="Component"
+    <template>
+      <!-- Widget renders itself, no template needed -->
+    </template>
+
+    <script setup lang="ts">
+    import { onMounted, onUnmounted } from 'vue'
+
+    interface Props {
+      workflowId: string
+      theme?: 'deforge-light' | 'deforge-dark'
+      position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
+    }
+
+    const props = withDefaults(defineProps<Props>(), {
+      theme: 'deforge-light',
+      position: 'bottom-right'
+    })
+
+    let scriptElement: HTMLScriptElement | null = null
+
+    onMounted(() => {
+      scriptElement = document.createElement('script')
+      scriptElement.src = 'https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js'
+      scriptElement.async = true
+      
+      scriptElement.onload = () => {
+        if ((window as any).ChatbotWidget) {
+          new (window as any).ChatbotWidget({
+            workflowId:props.workflowId,
+            theme: props.theme,
+            position: props.position
+          })
+        }
+      }
+      
+      document.head.appendChild(scriptElement)
+    })
+
+    onUnmounted(() => {
+      if (scriptElement && document.head.contains(scriptElement)) {
+        document.head.removeChild(scriptElement)
+      }
+    })
+    </script>
+    ```
+
+    ```vue title="App.vue" tab="App"
+    <template>
+      <div id="app">
+        <h1>Your Vue App</h1>
+        <!-- Your app content -->
+        
+        <ChatbotWidget 
+          workflow-id="4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9"
+          theme="deforge-light"
+          position="bottom-right"
+        />
+      </div>
+    </template>
+
+    <script setup lang="ts">
+    import ChatbotWidget from './components/ChatbotWidget.vue'
+    </script>
+    ```
+  </Tab>
+  <Tab value="Angular">
+    ```ts title="services/chatbot-widget-service.ts" tab='Service'
+    import { Injectable } from '@angular/core'
+
+    export interface ChatbotWidgetConfig {
+      workflowId: string
+      theme?: 'deforge-light' | 'deforge-dark'
+      position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
+    }
+
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class ChatbotWidgetService {
+      private scriptLoaded = false
+
+      async loadWidget(config: ChatbotWidgetConfig): Promise<void> {
+        if (this.scriptLoaded) {
+          this.initializeWidget(config)
+          return
+        }
+
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = 'https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js'
+          script.async = true
+          
+          script.onload = () => {
+            this.scriptLoaded = true
+            this.initializeWidget(config)
+            resolve()
+          }
+          
+          script.onerror = () => {
+            reject(new Error('Failed to load chatbot widget script'))
+          }
+          
+          document.head.appendChild(script)
+        })
+      }
+
+      private initializeWidget(config: ChatbotWidgetConfig): void {
+        if ((window as any).ChatbotWidget) {
+          new (window as any).ChatbotWidget({
+            workflowId: config.workflowId,
+            theme: config.theme || 'deforge-light',
+            position: config.position || 'bottom-right'
+          })
+        }
+      }
+    }
+    ```
+
+    ```ts title="app.component.ts" tab="Component"
+    import { Component, OnInit } from '@angular/core'
+    import { ChatbotWidgetService } from './services/chatbot-widget.service'
+
+    @Component({
+      selector: 'app-root',
+      template: `
+        <div class="app">
+          <h1>Your Angular App</h1>
+          <!-- Your app content -->
+        </div>
+      `
+    })
+    export class AppComponent implements OnInit {
+      constructor(private chatbotService: ChatbotWidgetService) {}
+
+      ngOnInit(): void {
+        this.chatbotService.loadWidget({
+          workflowId: "4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9",
+          theme: 'deforge-light',
+          position: 'bottom-right'
+        }).catch(error => {
+          console.error('Failed to load chatbot widget:', error)
+        })
+      }
+    }
+    ```
+  </Tab>
+  <Tab value="Svelte">
+    ```svelte title="ChatbotWidget.svelte" tab="Component"
+    <script lang="ts">
+      import { onMount, onDestroy } from 'svelte'
+      
+      export let workflowId: string
+      export let theme: 'deforge-light' | 'deforge-dark' = 'deforge-light'
+      export let position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' = 'bottom-right'
+      
+      let scriptElement: HTMLScriptElement | null = null
+      
+      onMount(() => {
+        scriptElement = document.createElement('script')
+        scriptElement.src = 'https://cdn.jsdelivr.net/npm/deforge-widget/chatbot.min.js'
+        scriptElement.async = true
+        
+        scriptElement.onload = () => {
+          if ((window as any).ChatbotWidget) {
+            new (window as any).ChatbotWidget({
+              workflowId,
+              theme,
+              position
+            })
+          }
+        }
+        
+        document.head.appendChild(scriptElement)
+      })
+      
+      onDestroy(() => {
+        if (scriptElement && document.head.contains(scriptElement)) {
+          document.head.removeChild(scriptElement)
+        }
+      })
+    </script>
+
+    <!-- Widget renders itself, no markup needed -->
+    ```
+
+    ```svelte title="App.svelte" tab="App"
+    <script lang="ts">
+      import ChatbotWidget from './ChatbotWidget.svelte'
+    </script>
+
+    <main>
+      <h1>Your Svelte App</h1>
+      <!-- Your app content -->
+      
+      <ChatbotWidget 
+        workflowId="4d4e2caa-fe46-4f5c-9e51-5de0cf8111a9"
+        theme="deforge-light"
+        position="bottom-right"
+      />
+    </main>
+    ```
+  </Tab>
+</Tabs>
+
 ## Inputs
 The input connections this node accepts:
 

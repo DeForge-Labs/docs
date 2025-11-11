@@ -4,5 +4,730 @@ description: Learn how to create custom nodes for Deforge
 icon: Code
 ---
 
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { TypeTable } from 'fumadocs-ui/components/type-table';
 
-Hello
+This guide will help you create your own node for the Deforge system. Please follow all instructions carefully to ensure compatibility and maintainability.
+
+## Concept
+A node is a modular unit of functionality that can be connected to other nodes to create complex workflows. Each node performs a specific task, such as processing data, interacting with APIs, or manipulating information. Nodes can have inputs and outputs, allowing them to receive data from other nodes and pass results along the workflow.
+
+A node consist of the following main components:
+- The `config` object that defines the node's metadata, inputs, outputs, and fields. This same object is used to determine the appearance of the node in the editor.
+- The `run()` method that contains the logic to be executed when the node is run.
+
+Each node is independent of any other node and must be able to function on its own. Hence, each node should have its own `package.json` file if it requires external dependencies.
+
+## File structure
+The nodes are organized in a specific file structure within the Deforge library. Each node should be placed in its own folder under the appropriate category. The file name of the script will always be `node.js`. The folder name of the node should match the `type` field in the [node configuration](#node-configuration-format) and it should be unique across the library.
+
+The file structure looks like this (You can click on folders to expand/collapse them and see the files inside):
+
+<Files>
+    <Folder name="library" defaultOpen>
+        <Folder name="category 1" defaultOpen>
+            <Folder name="node_type_1" defaultOpen>
+                <File name="node.js" />
+                <File name="package.json" />
+            </Folder>
+            <Folder name="node_type_2">
+                <File name="node.js" />
+            </Folder>
+        </Folder>
+        <Folder name="LLM">
+            <Folder name="claude_chat_node">
+                <File name="node.js" />
+                <File name="package.json" />
+            </Folder>
+            <Folder name="openai_chat_node">
+                <File name="node.js" />
+                <File name="package.json" />
+            </Folder>
+        </Folder>
+        <Folder name="Other categories ..." disabled />
+    </Folder>
+</Files>
+
+## Boilerplate
+Use the snippet `node` if you are on VSCode, and it will generate a boilerplate code for you to start with. It has all the necessary imports and structure to get you started quickly.
+
+It generates the following code:
+
+<details>
+<summary>See boilerplate code</summary>
+```js title="node.js"
+import BaseNode from "../../core/BaseNode/node.js";
+
+const config = {
+  title: "",
+  category: "",
+  type: "<DirectoryName>",
+  icon: {},
+  desc: "",
+  credit: 0,
+  inputs: [],
+  outputs: [],
+  fields: [],
+  difficulty: "",
+  tags: []
+};
+
+class DirectoryName extends BaseNode {
+  constructor() {
+    super(config);
+  }
+
+  /**
+   * @override
+   * @inheritDoc
+   * @param {import('../../core/BaseNode/node.js').Inputs[]} inputs
+   * @param {import('../../core/BaseNode/node.js').Contents[]} contents
+   * @param {import('../../core/BaseNode/node.js').IServerData} serverData
+   */
+  estimateUsage(inputs, contents, serverData) {
+     return this.getCredit();
+  }
+
+  /**
+   * @override
+   * @inheritDoc
+   * @param {import('../../core/BaseNode/node.js').Inputs[]} inputs
+   * @param {import('../../core/BaseNode/node.js').Contents[]} contents
+   * @param {import('../../core/BaseNode/node.js').IWebConsole} webconsole
+   * @param {import('../../core/BaseNode/node.js').IServerData} serverData
+   */
+  async run(inputs, contents, webconsole, serverData) {
+    
+  }
+}
+
+export default DirectoryName
+```
+</details>
+
+You can edit the boilerplate code to fit your node's requirements. Read the further sections for a detailed explanation on how to create a node.
+
+## Extend from BaseNode
+Every node must extend the `BaseNode` class (imported from `../../core/BaseNode/node.js`) and implement the `run()` method. This is essential for the node to function correctly within the Deforge system.
+
+<Callout>
+    Check [`BaseNode/node.ts`](https://github.com/DeForge-Labs/library/blob/main/core/BaseNode/node.ts) for all available methods.
+</Callout>
+
+```js title="node.js"
+import BaseNode from "../../core/BaseNode/node.js"; // Important [!code highlight]
+
+class my_node extends BaseNode { // [!code word:BaseNode]
+    constructor() {
+        super(config);
+    }
+    // ...
+
+    async run(inputs, contents, webconsole, serverData) {
+
+    }
+}
+```
+
+## Node Configuration Format
+Each node file *must* define a `config` object at the top, following the format below (see [`BaseNode/node.ts`](https://github.com/DeForge-Labs/library/blob/main/core/BaseNode/node.ts) for reference):
+
+```js title="node.js"
+const config = {
+    title: "Node Title",
+    category: "category_folder_name",
+    type: "node_class_name", // should match the folder name
+    icon: {
+        type: "svg/jpeg/png",
+        content: "base64 of the image"
+    },
+    desc: "Optional node description",
+    credits: 0, // Amount of deforge credits to be used by the node
+    inputs: [
+        { name: "Name", type: "NodeType", desc: "" },
+    ],
+    outputs: [
+        { name: "Name", type: "NodeType", desc: "" },
+    ],
+    fields: [
+        { name: "fieldOnNode", type: "HTML input type", desc: "", value: "placeholder value" },
+    ],
+    difficulty: "easy/medium/hard",
+    tags: ["tag1", "tag2"],
+}
+```
+
+This config object is pretty much the identity of the node and will be used for creating documentations, rendering the node in the editor, and validating inputs/outputs.
+
+## Accessing Inputs and Contents
+Each node's `run()` method receives `inputs` and `contents` arrays as parameters. These represent the data passed to the node via a connection (inputs) or via the fields on the node itself (contents). To get a value, you should always *prioritize* `inputs` over `contents`. Here's how to access them:
+
+```js title="node.js"
+// Utility method to get input or content value
+getValue(inputs, contents, name, defaultValue = null) {
+    const input = inputs.find((i) => i.name === name);
+    if (input?.value !== undefined) return input.value;
+    const content = contents.find((c) => c.name === name);
+    if (content?.value !== undefined) return content.value;
+    return defaultValue;
+}
+
+// Example usage in run()
+async run(inputs, contents, webconsole, serverData) {
+    const myInputValue = this.getValue(inputs, contents, "MyInputField", "default");
+}
+```
+
+Example from the [google sheets node](/docs/library/nodes/office-nodes/google_sheets) :
+
+```js title="node.js"
+async run(inputs, contents, webconsole, serverData) {
+    const Title = this.getValue(inputs, contents, "Title", "New Sheet");
+    const CsvRaw = this.getValue(inputs, contents, "CSV Raw", "");
+    const CsvLink = this.getValue(inputs, contents, "CSV Link", "");
+}
+```
+
+## Accessing other information
+You can access some information passed on from the server via the `serverData` object. The object contains information and utility objects from the server.
+
+The following objects are always available in the `serverData` parameter:
+- `workflowId`: The ID of the current workflow being executed.
+- `chatId`: An id that represents a chat, its value depends on how the workflow is being executed (via chatbot, api, widget, etc).
+- `envList`: A key-value pair list of env variables for the given workflow.
+- `socialList`: A key-value pair list of the social accounts and access tokens for the connected accounts in the given workflow.
+- `chatId`: A chat or user ID of the user executing the workflow. (Must be passed as a chatId query via the deployment url)
+- `redisUtil`: An utility class that contains three methods: setKey, deleteKey and getKey that can be used to store data in redis. (Key format: `deforge:subcontext:task`. Example: `deforge:twitter:cookies`)
+- `refreshUtil`: An utility to update refreshed oauth tokens in the database.
+- `s3Util`: An utility class to manage files in the S3 storage used by Deforge.
+
+The following objects are available based on certain conditions in the workflows:
+- `tgPayload`: If the workflow is triggered via Telegram Trigger, this object contains the Telegram payload data.
+- `slackPayload`: If the workflow is triggered via Slack Trigger, this object contains the Slack payload data.
+- `widgetPayload`: If the workflow is triggered via Widget Trigger, this object contains the Widget payload data.
+- `chatbotPayload`: If the workflow is triggered via Chatbot Trigger, this object contains the Chatbot payload data.
+- `apiPayload`: If the workflow is triggered via API Trigger, this object contains the API request data.
+- `email`: If the workflow is triggered via Gmail Trigger, this object contains the Email address.
+
+### Details about serverData objects
+Below you will find more details about a few selected `serverData` objects.
+
+<Accordions type="single">
+    <Accordion title="redisUtil">
+        An utility class that contains three methods: setKey, deleteKey and getKey that can be used to store data in redis. (Key format: `deforge:subcontext:task`. Example: `deforge:twitter:cookies`).
+        
+        It has the following methods:
+        - `setKey(key: string, value: any): Promise<RedisResponse>`:
+
+            Method to set a key-value pair in Redis. The key must be in 'deforge:scope:name' format.
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    key: {
+                        description: 'The key to set in redis',
+                        type: 'string',
+                        required: true,
+                    },
+                    value: {
+                        description: 'The value to store against the key',
+                        type: 'any',
+                        required: true,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            A promise that resolves to a RedisResponse object indicating success or failure.
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+
+        - `getKey(key: string): Promise<RedisGetResponse>`:
+
+            Method to retrieve a value given a key from redis
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    key: {
+                        description: 'The key to retrieve',
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            A promise that resolves to a RedisGetResponse object containing the value or an error message.
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                    value: {
+                        type: 'any',
+                        required: false,
+                    },
+                }}
+            />
+        
+        - `deleteKey(key: string): Promise<RedisResponse>`:
+
+            Method to delete a particular key from redis.
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    key: {
+                        description: 'The key to delete from redis',
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            A promise that resolves to a RedisResponse object indicating success or failure.
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+    </Accordion>
+    <Accordion title="refreshUtil">
+        An utility to update refreshed oauth tokens in the database.
+
+        It has the following methods:
+        - `handleTwitterToken(token: any): void`:
+
+            Method to update the new set of twitter tokens in the database
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    token: {
+                        description: 'New set of token obtained using the refresh token',
+                        type: 'any',
+                        required: true,
+                    },
+                }}
+            />
+    </Accordion>
+    <Accordion title="s3Util">
+        An utility class to manage files in the S3 storage used by Deforge.
+
+        It has the following methods:
+        - `addFile(fileName: string, body: ReadableStream, contentType: string, doExpire?: boolean, bucket?: string, userId?: string | null): Promise<S3UploadResponse>`:
+
+            Method to upload a file to S3
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    fileName: {
+                        description: 'The name of the file',
+                        type: 'string',
+                        required: true,
+                    },
+                    body: {
+                        description: "The file content (Buffer or ReadableStream)",
+                        type: "ReadableStream",
+                        required: true,
+                    },
+                    contentType: {
+                        description: "The MIME type of the file",
+                        type: "string",
+                        required: true,
+                    },
+                    doExpire: {
+                        description: "Whether the file entry should have an expiration date (defaults to true, expires in 7 days)",
+                        type: "boolean",
+                        required: false,
+                    },
+                    bucket: {
+                        description: "The name of the S3 bucket (defaults to \"public_main\")",
+                        type: "string",
+                        required: false,
+                    },
+                    userId: {
+                        description: "Optional user ID to associate the file with a specific user",
+                        type: "string | null",
+                        required: false,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            Promise with upload result including success status, file URL, and message
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    fileURL: {
+                        type: 'string',
+                        required: false,
+                    },
+                    message: {
+                        type: 'string',
+                        required: false,
+                    },
+                }}
+            />
+
+        - `getFile(key: string, bucket?: string): Promise<ReadableStream | undefined>`:
+
+            Method to retrieve a file from S3
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    key: {
+                        description: "The key of the file to retrieve",
+                        type: "string",
+                        required: true,
+                    },
+                    bucket: {
+                        description: "The name of the S3 bucket (defaults to \"public_main\")",
+                        type: "string",
+                        required: false,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            The file content as a ReadableStream, or undefined if the file does not exist
+
+        - `getFileURL(key: string, bucket?: string, userId?: string | null): Promise<S3FileURLResponse>`:
+
+            Method to retrieve the URL of a file from S3
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    key: {
+                        description: "The key of the file to retrieve",
+                        type: "string",
+                        required: true,
+                    },
+                    bucket: {
+                        description: "The name of the S3 bucket (defaults to \"public_main\")",
+                        type: "string",
+                        required: false,
+                    },
+                    userId: {
+                        description: "Optional user ID for private bucket access validation",
+                        type: "string",
+                        required: false,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            Promise with file URL response including success status, URL, and message
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    fileURL: {
+                        type: 'string | null',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+        
+        - `deleteFile(key: string, bucket?: string, userId?: string | null): Promise<S3OperationResponse>`:
+
+            Method to delete a file from S3 and its record from the database
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    key: {
+                        description: "The key of the file to delete",
+                        type: "string",
+                        required: true,
+                    },
+                    bucket: {
+                        description: "The name of the S3 bucket (defaults to \"public_main\")",
+                        type: "string",
+                        required: false,
+                    },
+                    userId: {
+                        description: "Optional user ID for ownership validation",
+                        type: "string | null",
+                        required: false,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            Promise with operation result including success status and message
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+
+        - `getFileListByUser(userId: string): Promise<S3FileListResponse>`:
+
+            Method to retrieve a list of files uploaded by a specific user
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    userId: {
+                        description: "The ID of the user",
+                        type: "string",
+                        required: true,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            Promise with list of files including fileName, fileKey, and bucket
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    files: {
+                        type: 'Array',
+                        typeDescription: 'Array<{ fileName: string; fileKey: string; bucket: string; }>',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+
+        - `renameFile(oldKey: string, newFileName: string, bucket?: string, userId?: string | null): Promise<S3OperationResponse>`:
+
+            Method to rename a file in S3 (updates the database record, not the S3 key)
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    oldKey: {
+                        description: "The current key of the file",
+                        type: "string",
+                        required: true,
+                    },
+                    newFileName: {
+                        description: "The new name for the file",
+                        type: "string",
+                        required: true,
+                    },
+                    bucket: {
+                        description: "The name of the S3 bucket (defaults to \"public_main\")",
+                        type: "string",
+                        required: false,
+                    },
+                    userId: {
+                        description: "Optional user ID for ownership validation",
+                        type: "string | null",
+                        required: false,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            Promise with operation result including success status and message
+            <TypeTable
+                type={{
+                    success: {
+                        type: 'boolean',
+                        required: true,
+                    },
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+    </Accordion>
+    <Accordion title="widgetPayload">
+        If the workflow is triggered via Widget Trigger, this object contains the Widget payload data.
+
+        It has the following properties:
+        <TypeTable
+            type={{
+                queryId: {
+                    description: "The unique ID of the particular chat session",
+                    type: "string",
+                    required: true,
+                },
+                message: {
+                    description: "The message sent by the user",
+                    type: "string",
+                    required: true,
+                },
+            }}
+        />
+    </Accordion>
+    <Accordion title="chatbotPayload">
+        If the workflow is triggered via API Trigger, this object contains the API request data.
+
+        It has the following properties:
+        <TypeTable
+            type={{
+                queryId: {
+                    description: "The unique ID of the particular chat session",
+                    type: "string",
+                    required: true,
+                },
+                message: {
+                    description: "The message sent by the user",
+                    type: "string",
+                    required: true,
+                },
+            }}
+        />
+    </Accordion>
+    <Accordion title="apiPayload">
+        If the workflow is triggered via API Trigger, this object contains the API request data.
+
+        It has the following properties:
+        <TypeTable
+            type={{
+                body: {
+                    description: "Body of the request",
+                    type: "any",
+                    required: true,
+                },
+                headers: {
+                    description: "The headers of the request",
+                    type: "object",
+                    required: true,
+                },
+                query: {
+                    description: "The query parameters of the request",
+                    type: "object",
+                    required: true,
+                },
+                metadata: {
+                    description: "Additional metadata about the request",
+                    type: "object",
+                    required: true,
+                    typeDescriptionLink: "/docs/library/create-node#metadata-object-details-toc"
+                }
+            }}
+        />
+        ### Metadata object details [!toc]
+        The `metadata` object can contain the following optional properties:
+        <TypeTable
+            type={{
+                ip: {
+                    type: 'string',
+                    required: true,
+                },
+                method: {
+                    type: 'string',
+                    required: true,
+                },
+                url: {
+                    type: 'string',
+                    required: true,
+                },
+                protocol: {
+                    type: 'string',
+                    required: true,
+                },
+                originalUrl: {
+                    type: 'string',
+                    required: true,
+                },
+                baseUrl: {
+                    type: 'string',
+                    required: true,
+                },
+                timestamp: {
+                    type: 'number',
+                    required: true,
+                },
+            }}
+        />
+    </Accordion>
+</Accordions>
+
+## Returning Output
+To return output from your node, you need to return an array of output objects from the `run()` method. Each output object should have a `name` (matching the output defined in the config) and a `value`.
+
+```js title="node.js"
+return { "Output Name": outputValue };
+```
+
+Example from the [YouTube Upload node](/docs/library/nodes/social/yt_upload) :
+```js title="node.js"
+return { "Video Link": uploadedUrl };
+```
+
+If your node can fail, return `null`.
+
+## Logging
+Use the `webconsole` object passed to the `run()` method for logging. Logs created with `webconsole` will show up on the execution logs section of Deforge Editor. The `webconsole` object has three methods:
+- `webconsole.success(...args)` - Shows the logs in green.
+- `webconsole.info(...args)` - Shows the logs in blue.
+- `webconsole.error(...args)` - Shows the logs in red.
+
+You can pass as many parameters as you want to these methods. Example:
+```js
+webconsole.info("Starting download", url);
+webconsole.success("Upload complete", resultUrl);
+webconsole.error("Failed to process", error.message);
+```
+
+## Example Node Structure
+
+```js title="node.js"
+import BaseNode from "../../core/BaseNode/node.js";
+const config = { /* ...see above... */ };
+
+class my_node extends BaseNode {
+    constructor() {
+        super(config);
+    }
+
+    async run(inputs, contents, webconsole, serverData) {
+        const Field = this.getValue(inputs, contents, "Field", "default");
+        webconsole.info("Processing field", Field);
+        // ... your logic ...
+        return { "Output": result };
+    }
+}
+
+export default my_node;
+```
+<Callout title="Congrats" type="success">
+    Now you are ready to create your very own nodes for Deforge
+</Callout>
+
+## Conclusion
+Creating custom nodes for Deforge allows you to extend the platform's capabilities and tailor it to your specific needs. By following this guide, you should be able to create nodes that integrate seamlessly with the Deforge ecosystem.
+
+For more examples, see other nodes in the [repository](https://github.com/DeForge-Labs/library). Always follow this structure for compatibility with the Deforge system.
+
+<Callout>
+    An application to test your own nodes visually will be available soon...
+</Callout>

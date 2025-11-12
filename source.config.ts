@@ -34,5 +34,10 @@ export default defineConfig({
         dark: 'github-dark',
       }
     },
+    remarkNpmOptions: {
+      persist: {
+        id: 'package-manager',
+      },
+    },
   },
 });

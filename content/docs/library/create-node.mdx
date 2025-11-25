@@ -329,6 +329,42 @@ Below you will find more details about a few selected `serverData` objects.
                 }}
             />
     </Accordion>
+    <Accordion title="openrouterUtil">
+        An utility object that allows you to get pricing information for models from OpenRouter.
+
+        It has the following methods:
+        - `getModelPricing(model: string): Promise<modelPricingResponse>`:
+
+            Method to get pricing information for a specific model
+            ### Parameters [!toc]
+            <TypeTable
+                type={{
+                    model: {
+                        description: 'model name in openrouter family/slug format',
+                        type: 'string',
+                        required: true,
+                    },
+                }}
+            />
+            ### Returns [!toc]
+            Promise with model pricing information including price details, and message
+            <TypeTable
+                type={{
+                    message: {
+                        type: 'string',
+                        required: true,
+                    },
+                    inputTokenCostPerToken: {
+                        type: 'number',
+                        required: true,
+                    },
+                    outputTokenCostPerToken: {
+                        type: 'number',
+                        required: true,
+                    },
+                }}
+            />
+    </Accordion>
     <Accordion title="s3Util">
         An utility class to manage files in the S3 storage used by Deforge.
 

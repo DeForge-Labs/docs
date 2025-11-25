@@ -6,9 +6,9 @@ const badgeVariants = cva(
   {
     variants: {
       difficulty: {
-        easy: 'border-transparent bg-green-300 text-green-800',
-        medium: 'border-transparent bg-amber-400 text-yellow-800',
-        hard: 'border-transparent bg-red-300 text-red-800',
+        easy: 'border-transparent bg-green-300 text-green-800 dark:bg-green-700 dark:text-white',
+        medium: 'border-transparent bg-amber-400 text-yellow-800 dark:bg-amber-600 dark:text-white',
+        hard: 'border-transparent bg-red-200 text-red-800 dark:bg-red-600 dark:text-white',
         default: 'border-2 border-black dark:border-white bg-transparent text-fd-foreground',
       },
     },

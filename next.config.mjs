@@ -14,7 +14,7 @@ const config = {
     ];
   },
   images: {
-    remotePatterns: [new URL('https://vcpnsfarucvradpvntni.supabase.co/storage/v1/object/public/docs/**')],
+    remotePatterns: [new URL('https://docs-assets.deforge.io/**')],
   },
 };
 

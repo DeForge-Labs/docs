@@ -1,0 +1,100 @@
+---
+title: Object Input
+description: Object variable
+tags: ["object", "variable"]
+github: https://github.com/DeForge-Labs/library/blob/main/input/obj_var/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/obj_var_light.png"
+  data-dark-src="https://docs-assets.deforge.io/obj_var_dark.png"
+  alt="Object Input Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Object Input node allows you to create and manipulate key-value pairs, which can be combined into complex data structures. This is essential for organizing related data and passing structured information between nodes.
+
+### Common Use Cases
+- Creating structured data for API requests
+- Organizing related information in a single container
+- Building configuration objects for other nodes
+- Storing multiple properties related to a single entity
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>key</DataName>
+    <DataDesc>
+    <DescLine>The key of the object</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>value</DataName>
+    <DataDesc>
+    <DescLine>The value of the object</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('any')}>Any</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Object</DataName>
+    <DataDesc>
+    <DescLine>The object of the variable</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>key</DataName>
+    <DataDesc>
+    <DescLine>The key of the object</DescLine>
+    <DescLine>**Value:** `key...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>value</DataName>
+    <DataDesc>
+    <DescLine>The value of the object</DescLine>
+    <DescLine>**Value:** `value...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,79 @@
+---
+title: Output Number
+description: Outputs number to the user
+tags: [output, number]
+github: https://github.com/DeForge-Labs/library/blob/main/output/output_number/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Output Number Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Output Number node displays numerical values to the user. This is useful for showing calculation results, counts, measurements, or any other numerical information that needs to be presented to the user.
+
+### Common Use Cases
+- Displaying calculation results
+- Showing counts or totals
+- Presenting metrics or measurements
+- Outputting numerical values from data processing
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Number</DataName>
+    <DataDesc>
+    <DescLine>Number to output</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+_This node does not have any output ports._
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Number</DataName>
+    <DataDesc>
+    <DescLine>Number to output</DescLine>
+    <DescLine>**Value:** `0`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,173 @@
+---
+title: PostgreSQL - Query Rows
+description: Query postgres database
+tags: ["postgres", "database", "query"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_query_node/node.js
+difficulty: hard
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/postgres_query_node_light.png"
+  data-dark-src="https://docs-assets.deforge.io/postgres_query_node_dark.png"
+  alt="PostgreSQL - Query Rows Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The PostgreSQL - Query Rows node allows you to query rows from a PostgreSQL database based on specified conditions.
+
+### Common Use Cases
+- Retrieve user data based on specific criteria
+- Fetch records for reporting or analysis
+- Get configuration settings stored in the database
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table</DataName>
+    <DataDesc>
+    <DescLine>Name of the table to query</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Columns</DataName>
+    <DataDesc>
+    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>WhereClause</DataName>
+    <DataDesc>
+    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>WhereValues</DataName>
+    <DataDesc>
+    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>The maximum number of rows to return</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>rows</DataName>
+    <DataDesc>
+    <DescLine>The array of rows returned by the query</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>rowCount</DataName>
+    <DataDesc>
+    <DescLine>The number of rows returned</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Table</DataName>
+    <DataDesc>
+    <DescLine>Name of the table to query</DescLine>
+    <DescLine>**Value:** `users`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Columns</DataName>
+    <DataDesc>
+    <DescLine>Comma-separated columns to select (or * for all)</DescLine>
+    <DescLine>**Value:** `*`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>WhereClause</DataName>
+    <DataDesc>
+    <DescLine>The WHERE clause with placeholders ($1, $2, etc.)</DescLine>
+    <DescLine>**Value:** `id = $1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>WhereValues</DataName>
+    <DataDesc>
+    <DescLine>Array of values for the WHERE clause (e.g., [123, 'active'])</DescLine>
+    <DescLine>**Value:** `Enter values here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>The maximum number of rows to return</DescLine>
+    <DescLine>**Value:** `10`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>PG_CONNECTION_STRING</DataName>
+    <DataDesc>
+    <DescLine>Postgres connection string</DescLine>
+    <DescLine>**DefaultValue:** `postgres://user:password@localhost:5432/dbname`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

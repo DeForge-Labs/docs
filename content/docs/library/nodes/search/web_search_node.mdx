@@ -1,0 +1,107 @@
+---
+title: AI Web Search
+description: Search the web and get summarised information
+tags: [llm, search, web]
+github: https://github.com/DeForge-Labs/library/blob/main/search/web_search_node/node.js
+difficulty: easy
+credits: 10
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="AI Web Search Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The AI Web Search node searches the web, based on your query and preferred language and then returns the output in markdown format. Markdown format makes it easier for LLMs to parse the information from around the web.
+
+### Common Use Cases
+- Gather latest and trending news for automated content generation.
+- Gather information from around the web for summarisation.
+- Gather specific information from the web to create newsletters.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Query to search</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>output</DataName>
+    <DataDesc>
+    <DescLine>The content of all the search results in markdown</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Query to search</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Language</DataName>
+    <DataDesc>
+    <DescLine>The preferred search language</DescLine>
+    <DescLine>**Value:** `English`</DescLine>
+    <DescLine>**Options:** <Badge>English</Badge> <Badge>Spanish</Badge> <Badge>French</Badge> <Badge>German</Badge> <Badge>Japanese</Badge> <Badge>Chinese</Badge> <Badge>Hindi</Badge> <Badge>Portugese</Badge> <Badge>Italian</Badge> <Badge>Korean</Badge> <Badge>Dutch</Badge> <Badge>Arabic</Badge> <Badge>Sweedish</Badge> <Badge>Hebrew</Badge> <Badge>Afrikaans</Badge> <Badge>Russian</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

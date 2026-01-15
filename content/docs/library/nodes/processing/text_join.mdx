@@ -1,0 +1,107 @@
+---
+title: Text Join
+description: Joins multiple text strings into a single string using a specified separator.
+tags: [text, join, concatenate]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/text_join/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Text Join Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Text Join node combines multiple text strings into a single string, with an optional separator between each part. This is useful for formatting output, building complex messages, or preparing text for display or further processing.
+
+### Common Use Cases
+- Formatting messages with dynamic content
+- Building complex strings from multiple data sources
+- Creating comma-separated lists or other formatted text
+- Combining user input with template text
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>Array of text strings to join</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The joined text</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>Text to join</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Separator</DataName>
+    <DataDesc>
+    <DescLine>Separator</DescLine>
+    <DescLine>**Value:** `,`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

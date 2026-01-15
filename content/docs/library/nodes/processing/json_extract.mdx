@@ -1,0 +1,121 @@
+---
+title: Extract JSON Value
+description: Gets the Value from JSON using a key (supports dot notation for nested objects).
+tags: [json, extract, parser]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/json_extract/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Extract JSON Value Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Extract JSON node allows you to retrieve a specific value from a JSON object using a key. This is useful for accessing nested data within complex JSON structures or for extracting specific pieces of information from API responses.
+
+### Common Use Cases
+- Extracting specific fields from API responses
+- Accessing nested data in complex JSON structures
+- Filtering and processing only relevant information from larger datasets
+- Preparing data for display or further processing
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Object</DataName>
+    <DataDesc>
+    <DescLine>JSON object to parse</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Key</DataName>
+    <DataDesc>
+    <DescLine>Key path to extract (e.g., 'user.address.city' or 'id')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Value</DataName>
+    <DataDesc>
+    <DescLine>The value of the key, converted to Text (JSON strings if nested object)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Raw Value</DataName>
+    <DataDesc>
+    <DescLine>Raw value of the key (retains original type: string, number, boolean, object, array)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('any')}>Any</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Object</DataName>
+    <DataDesc>
+    <DescLine>JSON object to parse</DescLine>
+    <DescLine>**Value:** `Enter JSON here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Key</DataName>
+    <DataDesc>
+    <DescLine>Key path to extract (supports dot notation)</DescLine>
+    <DescLine>**Value:** `key`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,105 @@
+---
+title: Boolean Operation
+description: Performs a logical operation based on a condition
+tags: ["logic", "and", "or", "not"]
+github: https://github.com/DeForge-Labs/library/blob/main/flow/bool_operation/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/bool_operation_light.png"
+  data-dark-src="https://docs-assets.deforge.io/bool_operation_dark.png"
+  alt="Boolean Operation Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Perform boolean logical operations on boolean values
+
+### Common Use Cases
+- Add complex conditional logic to your agent
+- Add multiple conditions
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Input 1</DataName>
+    <DataDesc>
+    <DescLine>First input</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Input 2</DataName>
+    <DataDesc>
+    <DescLine>Second input</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>True</DataName>
+    <DataDesc>
+    <DescLine>The Flow of the Condition if true</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>False</DataName>
+    <DataDesc>
+    <DescLine>The Flow of the Condition if false</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Result</DataName>
+    <DataDesc>
+    <DescLine>Result</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Logic</DataName>
+    <DataDesc>
+    <DescLine>Logic (NOT operation only works on input 1)</DescLine>
+    <DescLine>**Value:** `AND`</DescLine>
+    <DescLine>**Options:** <Badge>AND</Badge> <Badge>OR</Badge> <Badge>NOT</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

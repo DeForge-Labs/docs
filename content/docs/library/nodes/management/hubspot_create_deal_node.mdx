@@ -1,0 +1,194 @@
+---
+title: HubSpot - Create Deal
+description: Create a new deal in HubSpot CRM
+tags: ["hubspot", "crm", "deal", "create", "management"]
+github: https://github.com/DeForge-Labs/library/blob/main/management/hubspot_create_deal_node/node.js
+difficulty: medium
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="HubSpot - Create Deal Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The **HubSpot - Create Deal** node allows you to create a new deal in your HubSpot CRM account. This node is useful for automating sales processes, tracking potential revenue, and managing customer relationships effectively.
+
+### Common Use Cases
+- Automating the creation of sales deals based on lead generation activities.
+- Integrating with other sales and marketing tools to streamline workflows.
+- Tracking deal progress and updating sales pipelines automatically.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>DealName</DataName>
+    <DataDesc>
+    <DescLine>Deal name (required)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Amount</DataName>
+    <DataDesc>
+    <DescLine>Deal amount</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Pipeline</DataName>
+    <DataDesc>
+    <DescLine>Pipeline ID</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Stage</DataName>
+    <DataDesc>
+    <DescLine>Deal stage ID</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CloseDate</DataName>
+    <DataDesc>
+    <DescLine>Expected close date (YYYY-MM-DD)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>AdditionalProperties</DataName>
+    <DataDesc>
+    <DescLine>Additional deal properties as key-value pairs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>success</DataName>
+    <DataDesc>
+    <DescLine>Whether the deal was created successfully</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>dealId</DataName>
+    <DataDesc>
+    <DescLine>The HubSpot deal ID</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>deal</DataName>
+    <DataDesc>
+    <DescLine>The created deal object</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>DealName</DataName>
+    <DataDesc>
+    <DescLine>Deal name (required)</DescLine>
+    <DescLine>**Value:** `New Deal`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Amount</DataName>
+    <DataDesc>
+    <DescLine>Deal amount</DescLine>
+    <DescLine>**Value:** `10000`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Pipeline</DataName>
+    <DataDesc>
+    <DescLine>Pipeline ID</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Stage</DataName>
+    <DataDesc>
+    <DescLine>Deal stage ID</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CloseDate</DataName>
+    <DataDesc>
+    <DescLine>Expected close date (YYYY-MM-DD)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>AdditionalProperties</DataName>
+    <DataDesc>
+    <DescLine>Additional deal properties as key-value pairs</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HubSpot</DataName>
+    <DataDesc>
+    <DescLine>Connect to your HubSpot account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

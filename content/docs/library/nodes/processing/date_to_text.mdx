@@ -1,0 +1,113 @@
+---
+title: Date to Text (Formatted)
+description: Converts a date object or string into a localized text string.
+tags: [date, text, format, locale]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/date_to_text/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Date to Text (Formatted) Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The **Date to Text (Formatted)** node converts a date object or string into a human-readable text string based on the specified locale. This is useful for displaying dates in a format that is familiar to users from different regions.
+
+### Common Use Cases
+- Formatting dates for display in user interfaces
+- Localizing date representations for international audiences
+- Preparing date strings for reports or notifications
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>Date to convert (e.g., Date object, ISO string)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Locale</DataName>
+    <DataDesc>
+    <DescLine>The locale for the date (like en-US, de-DE, fr-FR)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The text representation of the date</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>Date to convert</DescLine>
+    <DescLine>**Value:** `Enter date here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Locale</DataName>
+    <DataDesc>
+    <DescLine>The locale for the date (like en-US, de-DE, fr-FR)</DescLine>
+    <DescLine>**Value:** `en-US`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,227 @@
+---
+title: Send Email
+description: Send an email using SMTP
+tags: [email, smtp, communication, send, notification]
+github: https://github.com/DeForge-Labs/library/blob/main/social/send_email_node/node.js
+difficulty: medium
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Send Email Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Send Email node allows you to send emails using SMTP (Simple Mail Transfer Protocol). You can configure the recipient, subject, body, and other email parameters. This node is useful for sending notifications, alerts, or any other email communications from your workflow.
+
+### Common Use Cases
+- Sending notification emails to users
+- Alerting administrators of important events
+- Sending reports or summaries via email
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>To</DataName>
+    <DataDesc>
+    <DescLine>Recipient email address (comma-separated for multiple)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Subject</DataName>
+    <DataDesc>
+    <DescLine>Email subject line</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Email body content</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CC</DataName>
+    <DataDesc>
+    <DescLine>CC email addresses (comma-separated, optional)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>BCC</DataName>
+    <DataDesc>
+    <DescLine>BCC email addresses (comma-separated, optional)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HTML</DataName>
+    <DataDesc>
+    <DescLine>Whether the body is HTML (default: false for plain text)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>success</DataName>
+    <DataDesc>
+    <DescLine>Whether the email was sent successfully</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>messageId</DataName>
+    <DataDesc>
+    <DescLine>The message ID from the email server</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>response</DataName>
+    <DataDesc>
+    <DescLine>Response message from the email server</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>To</DataName>
+    <DataDesc>
+    <DescLine>Recipient email address (comma-separated for multiple)</DescLine>
+    <DescLine>**Value:** `recipient@example.com`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Subject</DataName>
+    <DataDesc>
+    <DescLine>Email subject line</DescLine>
+    <DescLine>**Value:** `Hello from AI Agent Builder`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Email body content</DescLine>
+    <DescLine>**Value:** `This is a test email sent from the AI Agent Builder.`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CC</DataName>
+    <DataDesc>
+    <DescLine>CC email addresses (comma-separated, optional)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>BCC</DataName>
+    <DataDesc>
+    <DescLine>BCC email addresses (comma-separated, optional)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HTML</DataName>
+    <DataDesc>
+    <DescLine>Whether the body is HTML (default: false for plain text)</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>SMTP_HOST</DataName>
+    <DataDesc>
+    <DescLine>SMTP host (e.g., smtp.gmail.com)</DescLine>
+    <DescLine>**DefaultValue:** `smtp.gmail.com`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>SMTP_PORT</DataName>
+    <DataDesc>
+    <DescLine>SMTP port (e.g., 587 for TLS, 465 for SSL)</DescLine>
+    <DescLine>**DefaultValue:** `587`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>SMTP_USER</DataName>
+    <DataDesc>
+    <DescLine>SMTP username/email</DescLine>
+    <DescLine>**DefaultValue:** `your-email@gmail.com`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>SMTP_PASSWORD</DataName>
+    <DataDesc>
+    <DescLine>SMTP password or app password</DescLine>
+    <DescLine>**DefaultValue:** `your-app-password`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>SMTP_SECURE</DataName>
+    <DataDesc>
+    <DescLine>Use TLS (true/false)</DescLine>
+    <DescLine>**DefaultValue:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

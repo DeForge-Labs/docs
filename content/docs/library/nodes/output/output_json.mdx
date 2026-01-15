@@ -1,0 +1,79 @@
+---
+title: Output JSON
+description: Outputs JSON to the user
+tags: [output, json]
+github: https://github.com/DeForge-Labs/library/blob/main/output/output_json/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Output Text Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Output JSON node displays structured JSON data to the user. This is useful for showing complex data structures, API responses, or formatted results in a way that preserves their hierarchical organization.
+
+### Common Use Cases
+- Displaying structured data to users
+- Showing API responses in their original format
+- Presenting complex data hierarchies
+- Debugging or inspecting JSON objects during workflow development
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>JSON</DataName>
+    <DataDesc>
+    <DescLine>JSON to output</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+_This node does not have any output ports._
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>JSON</DataName>
+    <DataDesc>
+    <DescLine>JSON to output</DescLine>
+    <DescLine>**Value:** `Enter JSON here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+</DataTable>

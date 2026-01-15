@@ -1,0 +1,134 @@
+---
+title: Create Node Documentation
+description: Learn how to create documentation for nodes in Deforge
+icon: FileText
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+This guide will help you create documentation for nodes in Deforge. Proper documentation is essential for users to understand the functionality and usage of each node.
+
+## Overview
+Node documentation is written in MDX files and they are stored in their respective folders under `content/docs/library/nodes/`. Each node should have its own MDX file that includes a title, description, and any relevant examples or usage instructions.
+
+<details>
+<summary id="example">Example Node Documentation Structure</summary>
+```mdx title="node-type.mdx"
+---
+title: create-node-doc
+description: Sample description
+tags: [] # Tags here
+github: https://github.com/DeForge-Labs/library/ # Finish with the path to the node's code
+difficulty: easy # easy, medium, hard
+credits: 100 # Number of credits required to use this node
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="create-node-doc Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Description goes here
+
+### Common Use Cases
+{/* List common use cases here */}
+
+## Inputs
+The input connections this node accepts:
+
+{/* Table goes here */}
+
+## Outputs
+The output connections this node provides:
+
+{/* Table goes here */}
+
+## Fields
+The configurable fields this node provides:
+
+{/* Table goes here */}
+```
+</details>
+
+The node documentation file name should match the node's identifier(`type` field in node's `config`). It should be located in a folder named after the node's category.
+
+There are multiple tools and ways to create node documentation. They are explained in the following sections.
+
+## Using the Node Documentation Generator
+Deforge provides a Node Documentation Generator that can automatically create a basic MDX file for a node based on its configuration. To use the generator, follow these steps:
+<Steps>
+<Step>
+Go to the following URL: [Node Documentation Generator](https://json-to-full-mdx.netlify.app/)
+</Step>
+<Step>
+On the page, you will see a text area where you can paste the JSON configuration of your node (Left column).
+</Step>
+<Step>
+Copy the JSON configuration of your node and paste it into the text area. The text area should show a sample JSON by default.
+</Step>
+<Step>
+After pasting the JSON, click on the "Generate MDX" button. If the JSON is valid, the right column will display the generated MDX content.
+</Step>
+<Step>
+Copy the generated MDX content using the "Copy to Clipboard" button and create a new MDX file in the appropriate category folder under `content/docs/library/nodes/`. The file name should match the node's identifier.
+</Step>
+<Step>
+Paste the copied MDX content into the new MDX file and save it.
+</Step>
+<Step>
+You can now further edit the MDX file to add more details. You need to add the following details :
+- Image links in the `<ImageZoom>` component. Images for both light and dark modes should be provided.
+- Longer description in the "Description" section.
+- Common use cases in the "Common Use Cases" section.
+- Optionally, you can add any other information as needed for the node to function.
+</Step>
+</Steps>
+
+## Using the VSCode Snippet
+If you prefer to write the documentation manually, you can use the VSCode snippet `node` to create a template for the node documentation. It will create the basic structure of the MDX file as shown in the [example](#example) above.
+
+When writing the documentation manually, you will need to format the inputs, outputs and fields sections into tables using our custom table tags.
+
+You can use the following tool to quickly format your `inputs`, `outputs` and `fields` arrays into the required table format: [Node Table Formatter](https://json-to-mdx.netlify.app/)
+
+## Finalizing the Documentation
+After creating the documentation file, you may want to visualise it. So the following steps will demonstrate how to run the documentation locally and preview your pages.
+
+<Steps>
+<Step>
+Clone the Deforge Docs repository from GitHub if you haven't already:
+```bash
+git clone https://github.com/DeForge-Labs/docs.git
+```
+</Step>
+<Step>
+Navigate to the cloned repository:
+```bash
+cd docs
+```
+</Step>
+<Step>
+Install the dependencies:
+```npm
+npm install
+```
+</Step>
+<Step>
+Start the development server:
+```npm
+npm run dev
+```
+</Step>
+<Step>
+Open your web browser and go to `http://localhost:3000/docs/library/nodes/` to view the documentation. Navigate to your newly created node documentation to verify that everything looks correct.
+</Step>
+</Steps>

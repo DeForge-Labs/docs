@@ -1,0 +1,21 @@
+{
+    "title": "Node Library",
+    "description": "Documentation for the Deforge Node Library.",
+    "icon": "LibraryBig",
+    "root": true,
+    "pages": [
+        "---Introduction---",
+        "index",
+        "intro",
+        "---Guides---",
+        "create-node",
+        "create-node-doc",
+        "---Nodes---",
+        "nodes",
+        "---Other---",
+        "[Homepage](https://deforge.io)",
+        "[Status Page](https://status.deforge.io)",
+        "[Blogs](https://blogs.deforge.io)",
+        "[Forum](https://forum.deforge.io)"
+    ]
+}

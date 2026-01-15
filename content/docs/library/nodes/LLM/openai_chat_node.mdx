@@ -1,0 +1,184 @@
+---
+title: OpenAI Chat
+description: Chat with OpenAI based LLMs
+tags: ["llm", "chatbot", "chatgpt"]
+github: https://github.com/DeForge-Labs/library/blob/main/LLM/openai_chat_node/node.js
+difficulty: medium
+credits: 50
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="OpenAI Chat Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The OpenAI Chat node connects your agent to OpenAI's powerful language models like GPT-5 and GPT-4.1. These models excel at understanding and generating human-like text for a wide variety of applications.
+
+### Common Use Cases
+- Creating sophisticated conversational agents
+- Generating high-quality content like articles or code
+- Building assistants that can understand complex instructions
+- Developing tools that require advanced reasoning capabilities
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Chat text to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Files</DataName>
+    <DataDesc>
+    <DescLine>List of files to send to LLM (Direct links to files, Images and PDFs only, max 5 files, 25 MB each)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tools</DataName>
+    <DataDesc>
+    <DescLine>List of tools that the LLM can use</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool[]')}>Tool[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>System Prompt</DataName>
+    <DataDesc>
+    <DescLine>System prompt for the LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Temperature</DataName>
+    <DataDesc>
+    <DescLine>Creativity of the LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>RAG</DataName>
+    <DataDesc>
+    <DescLine>RAG Knowledge base</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('rag')}>Rag</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Save Context</DataName>
+    <DataDesc>
+    <DescLine>Save chat as context for LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>output</DataName>
+    <DataDesc>
+    <DescLine>The response of the LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>The LLM model</DescLine>
+    <DescLine>**Value:** `gpt-4o`</DescLine>
+    <DescLine>**Options:** <Badge>gpt-5</Badge> <Badge>gpt-5-mini</Badge> <Badge>gpt-5-nano</Badge> <Badge>gpt-4.1</Badge> <Badge>gpt-4.1-mini</Badge> <Badge>gpt-4.1-nano</Badge> <Badge>gpt-4o</Badge> <Badge>gpt-4o-mini</Badge> <Badge>o3-mini</Badge> <Badge>o4-mini</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Chat text to send</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Files</DataName>
+    <DataDesc>
+    <DescLine>List of files to send to LLM (Direct links to files, Images only, max 5 files, 25 MB each)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tools</DataName>
+    <DataDesc>
+    <DescLine>List of tools that the LLM can use</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool[]')}>Tool[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>System Prompt</DataName>
+    <DataDesc>
+    <DescLine>System prompt for the LLM</DescLine>
+    <DescLine>**Value:** `You are a helpful assistant`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Temperature</DataName>
+    <DataDesc>
+    <DescLine>Creativity of the LLM</DescLine>
+    <DescLine>**Value:** `0.5`</DescLine>
+    <DescLine>**Min:** `0`</DescLine>
+    <DescLine>**Max:** `1`</DescLine>
+    <DescLine>**Step:** `0.01`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Save Context</DataName>
+    <DataDesc>
+    <DescLine>Save chat as context for LLM</DescLine>
+    <DescLine>**Value:** `true`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+</DataTable>

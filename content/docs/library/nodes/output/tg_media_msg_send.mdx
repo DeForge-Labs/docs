@@ -1,0 +1,125 @@
+---
+title: Send Telegram Media Message
+description: Send a media message via your telegram bot
+tags: [output, media, telegram, bot]
+github: https://github.com/DeForge-Labs/library/blob/main/output/tg_media_msg_send/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Send Telegram Media Message Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The **Send Telegram Media Message** node allows you to send a media message (such as an image, video, or audio file) to a specified Telegram chat using your Telegram bot. This node is useful for sharing rich media content within your Telegram chats.
+
+### Common Use Cases
+- Send media files to telegram
+- Send text to speech voice messages via agent
+- Send dubbed videos via eleven labs agent
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>Direct link to the Media file you want to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Caption</DataName>
+    <DataDesc>
+    <DescLine>Caption text to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChatID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID to send the text to</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+_This node does not have any output ports._
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>Direct link to the Media file you want to send</DescLine>
+    <DescLine>**Value:** `link here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Caption</DataName>
+    <DataDesc>
+    <DescLine>Caption text to send</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChatID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID to send the text to</DescLine>
+    <DescLine>**Value:** `123456`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Media Type</DataName>
+    <DataDesc>
+    <DescLine>Media type that you want to send</DescLine>
+    <DescLine>**Value:** `voice`</DescLine>
+    <DescLine>**Options:** <Badge>voice</Badge> <Badge>audio</Badge> <Badge>video</Badge> <Badge>gif</Badge> <Badge>photo</Badge> <Badge>document</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>TG_API_KEY</DataName>
+    <DataDesc>
+    <DescLine>Api Key of your Telegram bot</DescLine>
+    <DescLine>**DefaultValue:** `eydnfnuani...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

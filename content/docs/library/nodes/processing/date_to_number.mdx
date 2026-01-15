@@ -1,0 +1,99 @@
+---
+title: Date to Number (Timestamp)
+description: Converts a date object or string into a numeric Unix timestamp (milliseconds since epoch).
+tags: [date, number, timestamp]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/date_to_number/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Date to Number (Timestamp) Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Date to Number node converts a date value into a numerical representation (typically a Unix timestamp). This allows dates to be used in mathematical operations, comparisons, or other processes that require numerical values.
+
+### Common Use Cases
+- Calculating time differences between dates
+- Sorting or comparing dates in numerical form
+- Converting dates for use in mathematical operations
+- Preparing date values for storage or transmission formats that require numbers
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>Date to convert (e.g., Date object, ISO string)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Number</DataName>
+    <DataDesc>
+    <DescLine>The number of milliseconds since the Unix epoch (timestamp)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Date</DataName>
+    <DataDesc>
+    <DescLine>Date to convert</DescLine>
+    <DescLine>**Value:** `Enter date here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,164 @@
+---
+title: PostgreSQL - Create Table
+description: Create a new table in PostgreSQL database
+tags: ["postgres", "database", "create", "table", "ddl"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_create_table_node/node.js
+difficulty: hard
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/postgres_create_table_node_light.png"
+  data-dark-src="https://docs-assets.deforge.io/postgres_create_table_node_dark.png"
+  alt="PostgreSQL - Create Table Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+PostgreSQL - Create Table node allows you to create a new table in your PostgreSQL database by specifying the table name and column definitions.
+
+### Common Use Cases
+- Set up database schema for new applications
+- Dynamically create tables based on user input or application needs
+- Automate database management tasks
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table</DataName>
+    <DataDesc>
+    <DescLine>Name of the table to create</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Schema</DataName>
+    <DataDesc>
+    <DescLine>Schema name (optional, defaults to 'public')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Columns</DataName>
+    <DataDesc>
+    <DescLine>Array of column definitions [\{name, type, constraints\}]</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>IfNotExists</DataName>
+    <DataDesc>
+    <DescLine>Add IF NOT EXISTS clause to prevent errors if table exists</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>success</DataName>
+    <DataDesc>
+    <DescLine>Whether the table was created successfully</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>tableName</DataName>
+    <DataDesc>
+    <DescLine>The full name of the created table (schema.table)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>message</DataName>
+    <DataDesc>
+    <DescLine>Success or error message</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Table</DataName>
+    <DataDesc>
+    <DescLine>Name of the table to create</DescLine>
+    <DescLine>**Value:** `users`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Schema</DataName>
+    <DataDesc>
+    <DescLine>Schema name (optional, defaults to 'public')</DescLine>
+    <DescLine>**Value:** `public`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Columns</DataName>
+    <DataDesc>
+    <DescLine>Array of column definitions [\{name, type, constraints\}]</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>IfNotExists</DataName>
+    <DataDesc>
+    <DescLine>Add IF NOT EXISTS clause to prevent errors if table exists</DescLine>
+    <DescLine>**Value:** `true`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>PG_CONNECTION_STRING</DataName>
+    <DataDesc>
+    <DescLine>Postgres connection string</DescLine>
+    <DescLine>**DefaultValue:** `postgres://user:password@localhost:5432/dbname`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

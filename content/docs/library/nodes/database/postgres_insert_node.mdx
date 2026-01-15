@@ -1,0 +1,143 @@
+---
+title: PostgreSQL - Insert Row(s)
+description: Inserts one or more rows into a PostgreSQL table.
+tags: ["postgres", "database", "insert", "write"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/postgres_insert_node/node.js
+difficulty: hard
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/postgres_insert_node_light.png"
+  data-dark-src="https://docs-assets.deforge.io/postgres_insert_node_dark.png"
+  alt="PostgreSQL - Insert Row(s) Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+PostgreSQL - Insert Row(s) node allows you to insert one or more rows into a specified PostgreSQL table using the provided connection details.
+
+### Common Use Cases
+- Storing user data collected from an AI agent interaction
+- Logging events or actions performed by an AI agent
+- Maintaining a history of AI agent decisions or outputs
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table</DataName>
+    <DataDesc>
+    <DescLine>Name of the table to insert into</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Data</DataName>
+    <DataDesc>
+    <DescLine>A JSON object or an array of JSON objects to insert</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Returning</DataName>
+    <DataDesc>
+    <DescLine>Optional. Columns to return after insertion (e.g., 'id' or '*')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>rows</DataName>
+    <DataDesc>
+    <DescLine>The data from the inserted rows, if 'Returning' is used</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>rowCount</DataName>
+    <DataDesc>
+    <DescLine>The number of rows that were successfully inserted</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Table</DataName>
+    <DataDesc>
+    <DescLine>Name of the table to insert into</DescLine>
+    <DescLine>**Value:** `logs`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Data</DataName>
+    <DataDesc>
+    <DescLine>A JSON object or an array of JSON objects to insert</DescLine>
+    <DescLine>**Value:** `[{"level": "info", "message": "process started"}]`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Returning</DataName>
+    <DataDesc>
+    <DescLine>Optional. Columns to return after insertion (e.g., 'id' or '*')</DescLine>
+    <DescLine>**Value:** `*`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>PG_CONNECTION_STRING</DataName>
+    <DataDesc>
+    <DescLine>Postgres connection string</DescLine>
+    <DescLine>**DefaultValue:** `postgres://user:password@localhost:5432/dbname`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

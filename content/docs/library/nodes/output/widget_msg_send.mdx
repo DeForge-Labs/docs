@@ -1,0 +1,92 @@
+---
+title: Send Widget Response
+description: Send a response to your support bot widget
+tags: [output, support, bot, widget]
+github: https://github.com/DeForge-Labs/library/blob/main/output/widget_msg_send/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Send Widget Response Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Send a response to your widget corresponding to the workflow that has the chat trigger.
+
+### Common Use Cases
+- Send a message to use the widget as a normal chat window for your agent
+- Send confirmation messages
+- Send information from your workflow to the UI
+- Send messages to a customer and use the widget for customer support.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>Text to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Result</DataName>
+    <DataDesc>
+    <DescLine>The final output object of chat bot</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>Text to send</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+</DataTable>

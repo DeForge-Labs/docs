@@ -1,0 +1,91 @@
+---
+title: Gmail Trigger
+description: Triggers the flow when a mail is recieved on Gmail
+tags: [trigger, gmail, email]
+github: https://github.com/DeForge-Labs/library/blob/main/trigger/gmail_trigger/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Gmail Trigger Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Gmail Trigger node allows you to trigger a flow when a new email is received in your Gmail account. This node listens for incoming emails and initiates the flow execution whenever a new email arrives, enabling you to automate actions based on email events.
+
+### Common Use Cases
+- Automatically send a reply or acknowledgment when a new email is received.
+- Extract specific information from incoming emails and use it in subsequent nodes.
+- Create tasks or tickets in project management tools based on email content.
+
+## Inputs
+The input connections this node accepts:
+
+_This node does not have any input ports._
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>All Email</DataName>
+    <DataDesc>
+    <DescLine>All email data (if multiple)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Subject</DataName>
+    <DataDesc>
+    <DescLine>The email subject (if only one email found)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>The email body (if only one email found)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Gmail_Trigger</DataName>
+    <DataDesc>
+    <DescLine>Connect to your Gmail account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

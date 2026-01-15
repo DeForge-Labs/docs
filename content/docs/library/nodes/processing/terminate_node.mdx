@@ -1,0 +1,77 @@
+---
+title: Terminate Agent
+description: Terminate the flow of the agent
+tags: [terminate, stop, quit]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/terminate_node/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Terminate Agent Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Terminate Agent node is used to stop the execution of an agent within a workflow. When this node is reached, it will immediately terminate the agent's process, preventing any further actions or nodes from being executed. This is useful for scenarios where you want to halt the workflow based on certain conditions or criteria.
+
+### Common Use Cases
+- Stopping an agent when a specific condition is met (e.g., an error occurs, or a certain threshold is reached).
+- Ending the workflow gracefully when the desired outcome has been achieved.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Reason</DataName>
+    <DataDesc>
+    <DescLine>Reason for terminating the agent (Optional)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+_This node does not have any output ports._
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Reason</DataName>
+    <DataDesc>
+    <DescLine>Reason for terminating the agent (Optional)</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+</DataTable>

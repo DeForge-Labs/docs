@@ -1,0 +1,184 @@
+---
+title: Anthropic Chat
+description: Chat with Anthropic based LLM
+tags: ["llm", "chatbot", "claude"]
+github: https://github.com/DeForge-Labs/library/blob/main/LLM/claude_chat_node/node.js
+difficulty: medium
+credits: 200
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Anthropic Chat Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Anthropic Chat node connects your agent to Anthropic's Claude language models. Claude models are known for their helpfulness, harmlessness, and honesty, making them suitable for a wide range of conversational and content generation tasks.
+
+### Common Use Cases
+- Building conversational agents with nuanced understanding
+- Creating content that requires careful reasoning
+- Developing assistants that can follow complex instructions
+- Generating detailed explanations and analyses
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Chat text to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Files</DataName>
+    <DataDesc>
+    <DescLine>List of files to send to LLM (Direct links to files, Images and PDFs only, max 5 files, 25 MB each)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tools</DataName>
+    <DataDesc>
+    <DescLine>List of tools that the LLM can use</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool[]')}>Tool[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>System Prompt</DataName>
+    <DataDesc>
+    <DescLine>System prompt for the LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Temperature</DataName>
+    <DataDesc>
+    <DescLine>Creativity of the LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>RAG</DataName>
+    <DataDesc>
+    <DescLine>RAG Knowledge base</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('rag')}>Rag</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Save Context</DataName>
+    <DataDesc>
+    <DescLine>Save chat as context for LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>output</DataName>
+    <DataDesc>
+    <DescLine>The response of the LLM</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>The LLM model</DescLine>
+    <DescLine>**Value:** `claude-3-7-sonnet-latest`</DescLine>
+    <DescLine>**Options:** <Badge>claude-sonnet-4-5</Badge> <Badge>claude-opus-4-1</Badge> <Badge>claude-opus-4-0</Badge> <Badge>claude-sonnet-4-0</Badge> <Badge>claude-3-7-sonnet-latest</Badge> <Badge>claude-3-5-haiku-latest</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Chat text to send</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Files</DataName>
+    <DataDesc>
+    <DescLine>List of files to send to LLM (Direct links to files, Images only, max 5 files, 25 MB each)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text[]')}>Text[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tools</DataName>
+    <DataDesc>
+    <DescLine>List of tools that the LLM can use</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool[]')}>Tool[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>System Prompt</DataName>
+    <DataDesc>
+    <DescLine>System prompt for the LLM</DescLine>
+    <DescLine>**Value:** `You are a helpful assistant`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Temperature</DataName>
+    <DataDesc>
+    <DescLine>Creativity of the LLM</DescLine>
+    <DescLine>**Value:** `0.5`</DescLine>
+    <DescLine>**Min:** `0`</DescLine>
+    <DescLine>**Max:** `1`</DescLine>
+    <DescLine>**Step:** `0.01`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Save Context</DataName>
+    <DataDesc>
+    <DescLine>Save chat as context for LLM</DescLine>
+    <DescLine>**Value:** `true`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+</DataTable>

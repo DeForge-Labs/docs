@@ -1,0 +1,15 @@
+{
+    "title": "Editor",
+    "description": "Documentation for the Deforge Editor.",
+    "icon": "Workflow",
+    "root": true,
+    "pages": [
+        "---Introduction---",
+        "index",
+        "---Core Concepts---",
+        "connections",
+        "deploy",
+        "---Guides---",
+        "first-agent"
+    ]
+}

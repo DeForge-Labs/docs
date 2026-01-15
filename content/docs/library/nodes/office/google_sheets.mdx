@@ -1,0 +1,135 @@
+---
+title: Create Google Sheet
+description: Create a sheet in google sheets
+tags: ["create", "sheets", "google", "csv"]
+github: https://github.com/DeForge-Labs/library/blob/main/office/google_sheets/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Create Google Sheet Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The Create Google Sheet node allows you to create a new Google Sheets spreadsheet and populate it with data from a CSV file or raw CSV string. This node is useful for automating the creation of spreadsheets for data analysis, reporting, or sharing information.
+
+### Common Use Cases
+- Automatically generate spreadsheets from data collected in other parts of your workflow.
+- Create reports in Google Sheets format for easy sharing and collaboration.
+- Convert raw CSV data into a structured Google Sheets document.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>The title for the new spreadsheet</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CSV Raw</DataName>
+    <DataDesc>
+    <DescLine>Raw CSV data as string</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CSV Link</DataName>
+    <DataDesc>
+    <DescLine>Link to a CSV file</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Sheet URL</DataName>
+    <DataDesc>
+    <DescLine>The URL of the newly created Google Sheet</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>The title for the new spreadsheet</DescLine>
+    <DescLine>**Value:** `New Sheet`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CSV Raw</DataName>
+    <DataDesc>
+    <DescLine>Raw CSV data as string</DescLine>
+    <DescLine>**Value:** `CSV here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CSV Link</DataName>
+    <DataDesc>
+    <DescLine>Link to a CSV file</DescLine>
+    <DescLine>**Value:** `Link to CSV here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Google_Sheets</DataName>
+    <DataDesc>
+    <DescLine>Connect your google account</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

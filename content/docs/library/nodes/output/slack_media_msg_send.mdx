@@ -1,0 +1,108 @@
+---
+title: Send Slack Media Message
+description: Send a media message via your slack bot
+tags: [output, media, slack, bot]
+github: https://github.com/DeForge-Labs/library/blob/main/output/slack_media_msg_send/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Send Slack Media Message Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The **Send Slack Media Message** node allows you to send a media message (such as an image or video) to a specified Slack channel using your Slack bot. This node is useful for sharing rich media content within your Slack workspace.
+
+### Common Use Cases
+- Sharing images or videos in Slack channels
+- Sending media updates or reports
+- Enhancing communication with visual content
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>Direct link to the Media file you want to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Caption</DataName>
+    <DataDesc>
+    <DescLine>Caption text to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChannelID</DataName>
+    <DataDesc>
+    <DescLine>Channel ID to send the text to</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+_This node does not have any output ports._
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>Direct link to the Media file you want to send</DescLine>
+    <DescLine>**Value:** `link here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Caption</DataName>
+    <DataDesc>
+    <DescLine>Caption text to send</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChannelID</DataName>
+    <DataDesc>
+    <DescLine>Channel ID to send the text to</DescLine>
+    <DescLine>**Value:** `123456`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

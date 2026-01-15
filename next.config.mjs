@@ -1,4 +1,21 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import { createMDX } from 'fumadocs-mdx/next';
 
-export default nextConfig;
+const withMDX = createMDX();
+
+/** @type {import('next').NextConfig} */
+const config = {
+  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/docs/:path*.mdx',
+        destination: '/llms.mdx/:path*',
+      },
+    ];
+  },
+  images: {
+    remotePatterns: [new URL('https://docs-assets.deforge.io/**')],
+  },
+};
+
+export default withMDX(config);

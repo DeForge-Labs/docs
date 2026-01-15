@@ -1,0 +1,101 @@
+---
+title: Send Telegram Message
+description: Send a message via your telegram bot
+tags: [output, telegram, bot]
+github: https://github.com/DeForge-Labs/library/blob/main/output/tg_msg_send/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/TTS_Light.png"
+  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
+  alt="Send Telegram Message Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Sends a text message via your Telegram bot to a specified chat ID. Allows your workflow to send dynamic messages to Telegram users.
+
+### Common Use Cases
+- Sending notifications via Telegram
+- Alerting users about events
+- Providing real-time updates via Telegram bots
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>Text to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChatID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID to send the text to</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+_This node does not have any output ports._
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>Text to send</DescLine>
+    <DescLine>**Value:** `text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChatID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID to send the text to</DescLine>
+    <DescLine>**Value:** `123456`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>TG_API_KEY</DataName>
+    <DataDesc>
+    <DescLine>Api Key of your Telegram bot</DescLine>
+    <DescLine>**DefaultValue:** `eydnfnuani...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

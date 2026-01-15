@@ -1,0 +1,188 @@
+---
+title: MongoDB - Query Documents
+description: Query MongoDB database
+tags: ["mongodb", "database", "query", "nosql"]
+github: https://github.com/DeForge-Labs/library/blob/main/database/mongodb_query_node/node.js
+difficulty: hard
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/mongodb_query_node_light.png"
+  data-dark-src="https://docs-assets.deforge.io/mongodb_query_node_dark.png"
+  alt="MongoDB - Query Documents Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+MongoDB Query Documents node allows you to query documents from a MongoDB collection using specified filters and options.
+
+### Common Use Cases
+- Retrieve user data based on specific criteria
+- Fetch product information for e-commerce applications
+- Aggregate data for reporting and analytics
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Collection</DataName>
+    <DataDesc>
+    <DescLine>Name of the collection to query</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Filter</DataName>
+    <DataDesc>
+    <DescLine>MongoDB filter query object (e.g., \{status: 'active'})</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Projection</DataName>
+    <DataDesc>
+    <DescLine>Fields to include/exclude (e.g., \{name: 1, email: 1, _id: 0})</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Sort</DataName>
+    <DataDesc>
+    <DescLine>Sort order (e.g., \{createdAt: -1})</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>The maximum number of documents to return</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Skip</DataName>
+    <DataDesc>
+    <DescLine>Number of documents to skip</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>documents</DataName>
+    <DataDesc>
+    <DescLine>The array of documents returned by the query</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>documentCount</DataName>
+    <DataDesc>
+    <DescLine>The number of documents returned</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Collection</DataName>
+    <DataDesc>
+    <DescLine>Name of the collection to query</DescLine>
+    <DescLine>**Value:** `users`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Filter</DataName>
+    <DataDesc>
+    <DescLine>MongoDB filter query object (e.g., \{status: 'active'})</DescLine>
+    <DescLine>**Value:** `{}`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Projection</DataName>
+    <DataDesc>
+    <DescLine>Fields to include/exclude (e.g., \{name: 1, email: 1, _id: 0})</DescLine>
+    <DescLine>**Value:** `{}`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Sort</DataName>
+    <DataDesc>
+    <DescLine>Sort order (e.g., \{createdAt: -1})</DescLine>
+    <DescLine>**Value:** `{}`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>The maximum number of documents to return</DescLine>
+    <DescLine>**Value:** `10`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Skip</DataName>
+    <DataDesc>
+    <DescLine>Number of documents to skip</DescLine>
+    <DescLine>**Value:** `0`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>MONGODB_CONNECTION_STRING</DataName>
+    <DataDesc>
+    <DescLine>MongoDB connection string</DescLine>
+    <DescLine>**DefaultValue:** `mongodb://localhost:27017/dbname`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

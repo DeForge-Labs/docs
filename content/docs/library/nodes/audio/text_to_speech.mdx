@@ -1,0 +1,149 @@
+---
+title: Text to Speech
+description: Convert text to speech using Eleven Labs
+tags: ["TTS", "Audio", "Elevenlabs"]
+github: https://github.com/DeForge-Labs/library/blob/main/audio/text_to_speech/node.js
+difficulty: easy
+credits: 150
+---
+
+import { Badge } from '@/components/ui/badge';
+import { VoiceBadge } from '@/components/ui/voice-badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/text_to_speech_light.png"
+  data-dark-src="https://docs-assets.deforge.io/text_to_speech_dark.png"
+  alt="Text to Speech Node Image"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+Text to Speech node allows you to convert text into natural-sounding speech using the Eleven Labs API.
+
+### Common Use Cases
+- Add voiceover to your videos without actually speaking
+- Create an agent which can reply with voice
+- Create an audiobook agent
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>The Flow to trigger</DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>Text to generate speech for</DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>VoiceID</DataName>
+    <DataDesc>Specific voice ID to use (will override the above option)</DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Emotion</DataName>
+    <DataDesc>Emotional setting of the voice (lower is more emotional)</DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Speed</DataName>
+    <DataDesc>Speed of the generated speech</DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Audio Link</DataName>
+    <DataDesc>Generated audio</DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>
+    <DescLine>Text to generate speech for</DescLine>
+    <DescLine>**Value:** `Text here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Voice</DataName>
+    <DataDesc>
+    <DescLine>Voice model to use</DescLine>
+    <DescLine>**Value:** `George (warm resonance)`</DescLine>
+    <DescLine>**Options:**</ DescLine> <DescLine><VoiceBadge audioUrl="https://docs-assets.deforge.io/voice_preview_aria.mp3">Aria (middle aged female calm)</VoiceBadge></ DescLine> <DescLine><VoiceBadge audioUrl="https://docs-assets.deforge.io/voice_preview_sarah.mp3">Sarah (young adult woman confident)</VoiceBadge></ DescLine> <DescLine><VoiceBadge audioUrl="https://docs-assets.deforge.io/voice_preview_laura.mp3">Laura (young adult female sunny)</VoiceBadge></ DescLine> <DescLine><VoiceBadge audioUrl="https://docs-assets.deforge.io/voice_preview_charlie.mp3">Charlie (young aussie male confident)</VoiceBadge></ DescLine> <DescLine><VoiceBadge audioUrl="https://docs-assets.deforge.io/voice_preview_george.mp3">George (warm resonance)</VoiceBadge></ DescLine> <DescLine><VoiceBadge audioUrl="https://docs-assets.deforge.io/voice_preview_callum.mp3">Callum (gravelly edgy)</VoiceBadge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>VoiceID</DataName>
+    <DataDesc>
+    <DescLine>Specific voice ID to use (will override the above option)</DescLine>
+    <DescLine>**Value:** `ID here ...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Emotion</DataName>
+    <DataDesc>
+    <DescLine>Emotional setting of the voice (lower is more emotional)</DescLine>
+    <DescLine>**Value:** `0.5`</DescLine>
+    <DescLine>**Min:** `0`</DescLine>
+    <DescLine>**Max:** `1`</DescLine>
+    <DescLine>**Step:** `0.1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Speed</DataName>
+    <DataDesc>
+    <DescLine>Speed of the generated speech</DescLine>
+    <DescLine>**Value:** `1`</DescLine>
+    <DescLine>**Min:** `0`</DescLine>
+    <DescLine>**Max:** `2`</DescLine>
+    <DescLine>**Step:** `0.1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>Model to use for speech generation</DescLine>
+    <DescLine>**Value:** `eleven_multilingual_v2`</DescLine>
+    <DescLine>**Options:** <Badge>eleven_multilingual_v2</Badge> <Badge>eleven_v3</Badge> <Badge>eleven_flash_v2_5</Badge> <Badge>eleven_turbo_v2_5</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

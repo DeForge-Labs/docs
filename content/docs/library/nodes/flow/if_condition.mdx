@@ -1,0 +1,108 @@
+---
+title: If Condition
+description: Performs a conditional operation based on a condition
+tags: ["condition", "if"]
+github: https://github.com/DeForge-Labs/library/blob/main/flow/if_condition/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<ImageZoom
+  src="https://docs-assets.deforge.io/if_condition_light.png"
+  data-dark-src="https://docs-assets.deforge.io/if_condition_dark.png"
+  alt="If Condition
+ Node Screenshot"
+  className="mx-auto"
+/>
+
+---
+
+## Description
+The If Condition node evaluates a condition and directs the flow of execution based on whether the condition is true or false. This allows your agent to make decisions and take different actions depending on the input data or other factors.
+
+### Common Use Cases
+- Creating branching logic in workflows
+- Implementing decision-making based on user input
+- Handling different cases based on API responses
+- Validating data and taking appropriate actions
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Input 1</DataName>
+    <DataDesc>
+    <DescLine>First input</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('any')}>Any</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Input 2</DataName>
+    <DataDesc>
+    <DescLine>Second input</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('any')}>Any</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>True</DataName>
+    <DataDesc>
+    <DescLine>The Flow of the Condition if true</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>False</DataName>
+    <DataDesc>
+    <DescLine>The Flow of the Condition if false</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Result</DataName>
+    <DataDesc>
+    <DescLine>Result</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Condition</DataName>
+    <DataDesc>
+    <DescLine>Condition</DescLine>
+    <DescLine>**Value:** `==`</DescLine>
+    <DescLine>**Options:** <Badge>==</Badge> <Badge>!=</Badge> <Badge>&gt;</Badge> <Badge>&lt;</Badge> <Badge>&gt;=</Badge> <Badge>&lt;=</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

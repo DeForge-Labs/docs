@@ -13,25 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-            node-version: '22'
-
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p ${{ secrets.VPS_PORT }} -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
       - name: Deploy files to VPS
         run: |
-          ssh -p ${{ secrets.VPS_PORT }} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}" bash -c "'
-              set -eo pipefail
-
-              cd docs
-              git pull
-              npm install
-              npm run build
-              pm2 restart 22
-          '"
+          curl -X POST https://ci.deforge.io/prod/docs \
+          -H "x-api-key: ${{ secrets.CI_API_KEY }}" \
+          -H "Content-Type: application/json"

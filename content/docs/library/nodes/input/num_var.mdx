@@ -11,12 +11,39 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/num_var_light.png"
   data-dark-src="https://docs-assets.deforge.io/num_var_dark.png"
   alt="Number Input Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "Number Input",
+  category: "input",
+  type: "num_var",
+  icon: {},
+  desc: "Number variable",
+  credit: 0,
+  inputs: [],
+  outputs: [
+    {
+      name: "Number",
+      type: "Number",
+      desc: "",
+    },
+  ],
+  fields: [
+    {
+      name: "Number",
+      type: "Number",
+      desc: "",
+      value: 0,
+    },
+  ],
+  difficulty: "easy",
+  tags: ["int", "float", "number"],
+}} />
 
 ---
 

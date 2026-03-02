@@ -21,7 +21,7 @@ export default function FilePicker({
     <Button
       variant="outline"
       disabled
-      className="w-full text-[10px] h-7 rounded-sm gap-1.5 justify-start font-normal"
+      className="w-full text-[10px] h-7 rounded-lg gap-1.5 justify-start font-normal"
     >
       <Database className="h-3 w-3 opacity-60" />
       {value?.fileName ?? "Choose File"}

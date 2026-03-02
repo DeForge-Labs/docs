@@ -6,6 +6,10 @@ import { GenericNode } from "./GenericNode";
 import { cn } from "@/lib/cn";
 import type { NodeConfig } from "@/lib/node-registry";
 
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 2.0;
+const ZOOM_STEP = 0.15;
+
 interface NodePreviewProps {
   /** Full node config object (same shape as node-registry entries). */
   config: NodeConfig;
@@ -37,6 +41,11 @@ interface NodePreviewProps {
  * ```
  */
 export function NodePreview({ config, className }: NodePreviewProps) {
+  const [zoom, setZoom] = useState(1);
+
+  const zoomIn  = () => setZoom((z) => Math.min(MAX_ZOOM, parseFloat((z + ZOOM_STEP).toFixed(2))));
+  const zoomOut = () => setZoom((z) => Math.max(MIN_ZOOM, parseFloat((z - ZOOM_STEP).toFixed(2))));
+
   // Initialise node data from field defaults
   const initialData = useMemo(() => {
     const data: Record<string, unknown> = { label: config.title };
@@ -71,8 +80,36 @@ export function NodePreview({ config, className }: NodePreviewProps) {
 
   return (
     <NodePreviewContext.Provider value={contextValue}>
-      <div className={cn("flex justify-center py-10 px-6 my-4 rounded-xl border border-fd-border bg-fd-card/30", className)}>
-        <GenericNode id="preview-node" type={config.type} data={mergedData} />
+      <div className={cn("relative flex justify-center py-10 px-6 my-4 rounded-xl border border-fd-border bg-fd-card/30 overflow-hidden", className)}>
+        {/* Zoom controls */}
+        <div className="absolute bottom-3 right-3 flex flex-col gap-1 z-10">
+          <button
+            onClick={zoomIn}
+            disabled={zoom >= MAX_ZOOM}
+            className="w-7 h-7 rounded border border-fd-border bg-fd-card text-fd-foreground flex items-center justify-center text-base font-medium hover:bg-fd-accent transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Zoom in"
+          >
+            +
+          </button>
+          <button
+            onClick={zoomOut}
+            disabled={zoom <= MIN_ZOOM}
+            className="w-7 h-7 rounded border border-fd-border bg-fd-card text-fd-foreground flex items-center justify-center text-base font-medium hover:bg-fd-accent transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Zoom out"
+          >
+            &minus;
+          </button>
+        </div>
+
+        {/* Node scaled with transform-origin center so it stays centred */}
+        <div
+          style={{
+            transform: `scale(${zoom})`,
+            transformOrigin: "center top",
+          }}
+        >
+          <GenericNode id="preview-node" type={config.type} data={mergedData} />
+        </div>
       </div>
     </NodePreviewContext.Provider>
   );

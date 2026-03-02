@@ -58,7 +58,7 @@ export default function ArrayField({
         </div>
         <Badge
           variant="outline"
-          className="text-[10px] p-1 px-2 bg-foreground/5 flex flex-col border border-foreground/5 w-full text-foreground/70 capitalize"
+          className="text-[10px] p-1 px-2 bg-foreground/5 flex flex-col border border-foreground/5 w-full text-foreground/70 capitalize rounded-lg"
         >
           <div className="flex justify-between items-center text-wrap">
             <span className="font-medium text-[10px]">Array input — accepts multiple connections</span>

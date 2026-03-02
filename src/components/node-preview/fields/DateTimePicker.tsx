@@ -77,7 +77,7 @@ export default function DateTimePicker({
           onChange={handleTimeChange}
           disabled={isDisabled}
           style={{ fontSize: "10px", textAlign: "center" }}
-          className="h-7 rounded-sm"
+          className="h-7 rounded-lg"
         />
       </div>
     </div>

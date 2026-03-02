@@ -11,12 +11,134 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/TTS_Light.png"
   data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
   alt="Anthropic Chat Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+    title: "Anthropic Chat",
+    category: "LLM",
+    type: "claude_chat_node",
+    icon: {},
+    desc: "Chat with Anthropic based LLM",
+    credit: 200,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Chat text to send",
+            name: "Query",
+            type: "Text",
+        },
+        {
+            desc: "List of files to send to LLM (Direct links to files, Images and PDFs only, max 5 files, 25 MB each)",
+            name: "Files",
+            type: "Text[]",
+        },
+        {
+            desc: "List of tools that the LLM can use",
+            name: "Tools",
+            type: "Tool[]",
+        },
+        {
+            desc: "System prompt for the LLM",
+            name: "System Prompt",
+            type: "Text",
+        },
+        {
+            desc: "Creativity of the LLM",
+            name: "Temperature",
+            type: "Number",
+        },
+        {
+            desc: "RAG Knowledge base",
+            name: "RAG",
+            type: "Rag",
+        },
+        {
+            desc: "Save chat as context for LLM",
+            name: "Save Context",
+            type: "Boolean",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The response of the LLM",
+            name: "output",
+            type: "Text",
+        },
+    ],
+    fields: [
+        {
+            desc: "The LLM model",
+            name: "Model",
+            type: "select",
+            value: "claude-sonnet-4-0",
+            options: [
+                "claude-opus-4-5",
+                "claude-sonnet-4-5",
+                "claude-haiku-4-5",
+                "claude-opus-4-1",
+                "claude-opus-4-0",
+                "claude-sonnet-4-0",
+                "claude-3-7-sonnet-latest",
+                "claude-3-5-haiku-latest",
+            ],
+        },
+        {
+            desc: "Chat text to send",
+            name: "Query",
+            type: "TextArea",
+            value: "Enter text here...",
+        },
+        {
+            desc: "List of files to send to LLM (Direct links to files, Images only, max 5 files, 25 MB each)",
+            name: "Files",
+            type: "Text[]",
+            value: "",
+        },
+        {
+            desc: "List of tools that the LLM can use",
+            name: "Tools",
+            type: "Tool[]",
+            value: "",
+        },
+        {
+            desc: "System prompt for the LLM",
+            name: "System Prompt",
+            type: "TextArea",
+            value: "You are a helpful assistant",
+        },
+        {
+            desc: "Creativity of the LLM",
+            name: "Temperature",
+            type: "Slider",
+            value: 0.5,
+            min: 0,
+            max: 2,
+            step: 0.1,
+        },
+        {
+            desc: "Save chat as context for LLM",
+            name: "Save Context",
+            type: "CheckBox",
+            value: true,
+        },
+    ],
+    difficulty: "medium",
+    tags: ["llm", "chatbot", "claude"],
+}} />
 
 ---
 

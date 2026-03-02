@@ -47,6 +47,7 @@ export default function SliderField({
                   ? "animate-ping"
                   : ""
               }`}
+              suppressHydrationWarning
               style={{
                 backgroundColor: getColorByType(matchingInput?.type.toLowerCase() ?? ""),
                 borderColor: resolvedTheme === "dark" ? "white" : "black",

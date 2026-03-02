@@ -42,6 +42,7 @@ export default function ArrayField({
             style={{ zIndex: 10, border: "none", left: "-15.3px", backgroundColor: "transparent" }}
           />
           <div
+            suppressHydrationWarning
             className={`w-2 h-2 -left-[16.5px] -top-[4.2px] rounded-full rotate-45 absolute border-opacity-50 ${
               selectedHandle?.split("-")[0] === "output" &&
               selectedHandle?.split("-")[2]?.toLowerCase() === (baseType || "any") && !isSameNode

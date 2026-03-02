@@ -54,6 +54,7 @@ export default function TextAreaField({
               style={{ left: "-15.3px", top: "-8px", zIndex: 10, backgroundColor: "transparent", border: "none" }}
             />
             <div
+              suppressHydrationWarning
               className={`w-2 h-2 -left-[16.2px] -top-[12px] rounded-full rotate-45 absolute border-opacity-50 ${
                 selectedHandle?.split("-")[0] === "output" &&
                 selectedHandle?.split("-")[2]?.toLowerCase() === (matchingInput?.type.toLowerCase() || "any") &&

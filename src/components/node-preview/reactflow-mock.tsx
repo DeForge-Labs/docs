@@ -18,7 +18,8 @@ export function Handle(_props: Record<string, unknown>) {
   return null;
 }
 
-// No edges in static preview
+// No edges in static preview – stable reference prevents useEffect infinite loops
+const EMPTY_EDGES: never[] = [];
 export function useEdges() {
-  return [];
+  return EMPTY_EDGES;
 }

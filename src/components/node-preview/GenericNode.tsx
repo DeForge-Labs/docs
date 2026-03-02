@@ -98,7 +98,6 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const commonProps: any = {
-      key: index,
       field,
       nodeType,
       isDisabled,
@@ -112,18 +111,18 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
     switch (field.type) {
       case "Text":
       case "text":
-        return <TextField {...commonProps} />;
+        return <TextField key={index} {...commonProps} />;
 
       case "Number":
       case "number":
-        return <NumberField {...commonProps} />;
+        return <NumberField key={index} {...commonProps} />;
 
       case "TextArea":
       case "textarea":
-        return <TextAreaField {...commonProps} />;
+        return <TextAreaField key={index} {...commonProps} />;
 
       case "select":
-        return <SelectField {...commonProps} />;
+        return <SelectField key={index} {...commonProps} />;
 
       case "JSON[]":
       case "json[]":
@@ -144,19 +143,19 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
 
       case "Map":
       case "map":
-        return <MapField {...commonProps} />;
+        return <MapField key={index} {...commonProps} />;
 
       case "CheckBox":
       case "checkbox":
-        return <CheckBoxField {...commonProps} />;
+        return <CheckBoxField key={index} {...commonProps} />;
 
       case "Date":
       case "date":
-        return <DateTimeField {...commonProps} />;
+        return <DateTimeField key={index} {...commonProps} />;
 
       case "Slider":
       case "slider":
-        return <SliderField {...commonProps} />;
+        return <SliderField key={index} {...commonProps} />;
 
       case "KnowledgeBase":
       case "knowledgebase":
@@ -185,6 +184,7 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
             data-type={output.type}
           />
           <div
+            suppressHydrationWarning
             className={`w-2 h-2 -right-[16.2px] -top-[12px] rounded-none rotate-45 absolute border-opacity-50 ${
               selectedHandle?.split("-")[0] === "input" &&
               selectedHandle?.split("-")[2]?.toLowerCase() === (output?.type.toLowerCase() || "any") &&

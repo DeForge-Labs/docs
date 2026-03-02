@@ -1,10 +1,24 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
+import { useTheme } from "next-themes";
+import {
+  ReactFlow,
+  Background,
+  BackgroundVariant,
+  Controls,
+  ReactFlowProvider,
+  useNodesState,
+  type Node,
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css";
 import { NodePreviewContext } from "./NodePreviewContext";
 import { GenericNode } from "./GenericNode";
 import { cn } from "@/lib/cn";
 import type { NodeConfig } from "@/lib/node-registry";
+
+// Must be defined outside the component so the reference is stable across renders.
+const nodeTypes = { preview_node: GenericNode };
 
 interface NodePreviewProps {
   /** Full node config object (same shape as node-registry entries). */
@@ -14,10 +28,9 @@ interface NodePreviewProps {
 }
 
 /**
- * Renders a single Deforge node card as it appears on the editor canvas.
- *
- * Provide the raw node config JSON and the component will render the node
- * with all its field controls — interactive, just like the real editor.
+ * Renders a single Deforge node card inside an interactive ReactFlow canvas.
+ * Pan by dragging the background. Zoom with the +/− controls or Ctrl+scroll.
+ * Deletion and new-node creation are disabled.
  *
  * @example
  * ```mdx
@@ -36,44 +49,102 @@ interface NodePreviewProps {
  * }} />
  * ```
  */
-export function NodePreview({ config, className }: NodePreviewProps) {
-  // Initialise node data from field defaults
+function NodePreviewInner({ config, className }: NodePreviewProps) {
+  const { resolvedTheme } = useTheme();
+
+  // Build initial node data from field defaults.
+  // nodeType carries the real config.type so GenericNode can look it up
+  // (the ReactFlow node `type` field is "preview_node", not the real type).
   const initialData = useMemo(() => {
-    const data: Record<string, unknown> = { label: config.title };
+    const data: Record<string, unknown> = { label: config.title, nodeType: config.type };
     for (const field of config.fields) {
       data[field.name] = field.value ?? "";
     }
     return data;
   }, [config]);
 
-  const [nodeData, setNodeData] = useState<Record<string, unknown>>(initialData);
-
-  const updateNodeData = useCallback(
-    ({ newData }: { nodeId: string; newData: Record<string, unknown> }) => {
-      setNodeData(newData);
-    },
-    []
+  const initialNodes: Node[] = useMemo(
+    () => [
+      {
+        id: "preview-node",
+        type: "preview_node",
+        position: { x: 0, y: 0 },
+        data: initialData,
+        deletable: false,
+        connectable: false,
+        draggable: false,
+      },
+    ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [] // intentionally stable — we seed once from config
   );
 
-  // Registry only needs this single config
+  const [nodes, setNodes] = useNodesState(initialNodes);
+
+  // updateNodeData is called by GenericNode's handleChange whenever a field value changes.
+  const updateNodeData = useCallback(
+    ({ nodeId, newData }: { nodeId: string; newData: Record<string, unknown> }) => {
+      setNodes((nds) =>
+        nds.map((n) => (n.id === nodeId ? { ...n, data: newData } : n))
+      );
+    },
+    [setNodes]
+  );
+
   const nodeRegistry = useMemo<NodeConfig[]>(() => [config], [config]);
+  const currentData = (nodes[0]?.data ?? initialData) as Record<string, unknown>;
 
   const contextValue = useMemo(
-    () => ({ nodeRegistry, updateNodeData, nodeData }),
-    [nodeRegistry, updateNodeData, nodeData]
-  );
-
-  // Merge context data into the node's data prop
-  const mergedData = useMemo(
-    () => ({ ...nodeData }),
-    [nodeData]
+    () => ({ nodeRegistry, updateNodeData, nodeData: currentData }),
+    [nodeRegistry, updateNodeData, currentData]
   );
 
   return (
     <NodePreviewContext.Provider value={contextValue}>
-      <div className={cn("flex justify-center py-10 px-6 my-4 rounded-xl border border-fd-border bg-fd-card/30", className)}>
-        <GenericNode id="preview-node" type={config.type} data={mergedData} />
+      <div
+        className={cn(
+          "my-4 rounded-xl border border-fd-border overflow-hidden",
+          className
+        )}
+        style={{ height: 420 }}
+      >
+        <ReactFlow
+          nodes={nodes}
+          edges={[]}
+          nodeTypes={nodeTypes}
+          // ─── Interaction ─────────────────────────────────────────────
+          nodesDraggable={false}
+          nodesConnectable={false}
+          // ─── Deletion disabled ────────────────────────────────────────
+          deleteKeyCode={null}
+          multiSelectionKeyCode={null}
+          // ─── Pan & zoom ───────────────────────────────────────────────
+          panOnDrag
+          // Scroll zooms only when Ctrl is held so normal page-scroll works.
+          zoomActivationKeyCode="Control"
+          zoomOnScroll
+          zoomOnPinch
+          preventScrolling={false}
+          // ─── View ─────────────────────────────────────────────────────
+          colorMode={resolvedTheme === "dark" ? "dark" : "light"}
+          fitView
+          fitViewOptions={{ padding: 1.2 }}
+          proOptions={{ hideAttribution: true }}
+        >
+          <Background variant={BackgroundVariant.Dots} gap={16} size={1} className="opacity-40" />
+          {/* showInteractive=false hides the lock toggle */}
+          <Controls showInteractive={false} />
+        </ReactFlow>
       </div>
     </NodePreviewContext.Provider>
+  );
+}
+
+/** Wraps `NodePreviewInner` in `ReactFlowProvider` so inner hooks work. */
+export function NodePreview({ config, className }: NodePreviewProps) {
+  return (
+    <ReactFlowProvider>
+      <NodePreviewInner config={config} className={className} />
+    </ReactFlowProvider>
   );
 }

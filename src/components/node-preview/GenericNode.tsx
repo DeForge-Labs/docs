@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Handle, Position, useEdges } from "./reactflow-mock";
+import { Handle, Position, useEdges } from "@xyflow/react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import {
@@ -44,13 +44,16 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
   const { selectedHandle } = useWorkspaceStore();
   const { resolvedTheme } = useTheme();
 
-  const nodeType: NodeConfig | undefined = getNodeTypeByType(type, nodeRegistry);
+  // `type` is "preview_node" (the ReactFlow node type key), so read the real
+  // config type from data.nodeType which is set by the NodePreview wrapper.
+  const realType = (data.nodeType as string | undefined) || type;
+  const nodeType: NodeConfig | undefined = getNodeTypeByType(realType, nodeRegistry);
   const categoryColor = nodeType ? getCategoryColor(nodeType.category) : "gray-500";
 
   // Track which inputs are connected
   useEffect(() => {
     const connected = new Set<string>();
-    edges.forEach((edge: { target: string; targetHandle?: string }) => {
+    edges.forEach((edge) => {
       if (edge.target === id) {
         const inputName = edge.targetHandle?.split("-")[1];
         if (inputName) connected.add(inputName);
@@ -83,8 +86,7 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
   const renderField = (field: NodeConfig["fields"][number], index: number) => {
     const handleId = `input-${field.name}-${field.type}`;
     const totalValidConnections = edges.filter(
-      (edge: { target: string; targetHandle?: string }) =>
-        edge.target === id && edge.targetHandle === handleId
+      (edge) => edge.target === id && edge.targetHandle === handleId
     ).length;
 
     const isConnected = totalValidConnections > 0;
@@ -218,7 +220,9 @@ export function GenericNode({ id, type, data }: GenericNodeProps) {
       ));
 
   return (
-    <Card className="w-56 relative py-0 rounded-2xl">
+    // nopan: tells ReactFlow not to capture pointer events here (needed for interactive fields)
+    // nodrag: redundant safety since node is non-draggable, but prevents any drag capture
+    <Card className="w-56 relative py-0 rounded-2xl nopan nodrag">
       {/* Workflow live lock icon */}
       {(workflow as { status?: string } | null)?.status === "LIVE" && (
         <div className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-sm flex items-center justify-center bg-card z-10 border border-foreground/20">

@@ -1,0 +1,68 @@
+"use client";
+import { Handle, Position } from "../reactflow-mock";
+import getColorByType from "@/lib/color-profile";
+import DateTimePicker from "./DateTimePicker";
+import useWorkspaceStore from "../stores/useWorkspaceStore";
+import { useTheme } from "next-themes";
+
+export default function DateTimeField({
+  field,
+  nodeType,
+  isDisabled,
+  currentValue,
+  handleChange,
+  matchingInput,
+  isConnected,
+  isSameNode,
+}: {
+  field: { name: string; type: string };
+  nodeType: { inputs: { name: string; type: string }[] };
+  isDisabled: boolean;
+  currentValue: unknown;
+  handleChange: (name: string, value: unknown) => void;
+  matchingInput?: { type: string };
+  isConnected: boolean;
+  isSameNode: boolean;
+}) {
+  const { selectedHandle } = useWorkspaceStore();
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <div key={field.name} className="mb-2 relative nodrag nopan">
+      <div className="text-[10px] text-foreground/80 font-medium capitalize mb-0.5">{field.name}</div>
+      <div className="flex items-center relative">
+        {nodeType.inputs.some((input) => input.name === field.name) && (
+          <div className="relative">
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`input-${field.name}-${matchingInput?.type || "any"}`}
+              style={{ zIndex: 10, border: "none", left: "-15.3px", backgroundColor: "transparent" }}
+            />
+            <div
+              className={`w-2 h-2 -left-[16.2px] -top-[4.2px] rounded-full rotate-45 absolute border-opacity-50 ${
+                selectedHandle?.split("-")[0] === "output" &&
+                selectedHandle?.split("-")[2]?.toLowerCase() === (matchingInput?.type.toLowerCase() || "any") &&
+                !isConnected && !isSameNode
+                  ? "animate-ping"
+                  : ""
+              }`}
+              style={{
+                backgroundColor: getColorByType(matchingInput?.type.toLowerCase() ?? ""),
+                borderColor: resolvedTheme === "dark" ? "white" : "black",
+                borderWidth: "1px",
+              }}
+            />
+          </div>
+        )}
+        <div className="w-full">
+          <DateTimePicker
+            value={currentValue as Parameters<typeof DateTimePicker>[0]["value"]}
+            onChange={(value) => handleChange(field.name, value)}
+            isDisabled={isDisabled}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}

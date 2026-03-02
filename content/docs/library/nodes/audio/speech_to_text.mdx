@@ -18,6 +18,59 @@ import { getColorByType } from '@/lib/color-profile';
   className="mx-auto"
 />
 
+<NodePreview config={{
+    title: "Speech To Text",
+    category: "audio",
+    type: "speech_to_text",
+    icon: {},
+    desc: "Convert speech to text using Eleven Labs",
+    credit: 100,
+    inputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Link to the Audio to convert",
+            name: "Audio Link",
+            type: "Text",
+        }
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Transcribed text",
+            name: "Transcription",
+            type: "Text",
+        },
+    ],
+    fields: [
+        {
+            desc: "Link to the Audio to convert",
+            name: "Audio Link",
+            type: "Text",
+            value: "Link here ...",
+        },
+        {
+            desc: "Model to use for transcription",
+            name: "Model",
+            type: "select",
+            value: "scribe v1",
+            options: [
+                "scribe v1",
+                "scribe v1 experimental",
+            ],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["transcribe", "audio", "elevenlabs"],
+}} />
+
 ---
 
 ## Description

@@ -11,12 +11,115 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/postgres_query_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/postgres_query_node_dark.png"
   alt="PostgreSQL - Query Rows Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "PostgreSQL - Query Rows",
+  category: "database",
+  type: "postgres_query_node",
+  icon: {},
+  desc: "Query postgres database",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Table",
+      type: "Text",
+      desc: "Name of the table to query",
+    },
+    {
+      name: "Columns",
+      type: "Text",
+      desc: "Comma-separated columns to select (or * for all)",
+    },
+    {
+      name: "WhereClause",
+      type: "Text",
+      desc: "The WHERE clause with placeholders ($1, $2, etc.)",
+    },
+    {
+      name: "WhereValues",
+      type: "Text[]",
+      desc: "Array of values for the WHERE clause (e.g., [123, 'active'])",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      desc: "The maximum number of rows to return",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "rows",
+      type: "JSON",
+      desc: "The array of rows returned by the query",
+    },
+    {
+      name: "rowCount",
+      type: "Number",
+      desc: "The number of rows returned",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Table",
+      type: "Text",
+      desc: "Name of the table to query",
+      value: "users",
+    },
+    {
+      name: "Columns",
+      type: "Text",
+      value: "*",
+      desc: "Comma-separated columns to select (or * for all)",
+    },
+    {
+      name: "WhereClause",
+      type: "Text",
+      value: "id = $1",
+      desc: "The WHERE clause with placeholders ($1, $2, etc.)",
+    },
+    {
+      name: "WhereValues",
+      type: "Text[]",
+      value: "Enter values here...",
+      desc: "Array of values for the WHERE clause (e.g., [123, 'active'])",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      value: 10,
+      desc: "The maximum number of rows to return",
+    },
+    {
+      desc: "Postgres connection string",
+      name: "PG_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "postgres://user:password@localhost:5432/dbname",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["postgres", "database", "query"],
+}} />
 
 ---
 

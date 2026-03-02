@@ -4,13 +4,13 @@ import { useEffect } from 'react'
 
 interface ChatbotWidgetProps {
   workflowId: string
-  theme?: 'deforge-light' | 'deforge-dark'
+  theme?: 'light' | 'dark'
   position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
 }
 
 export default function ChatbotWidget({ 
   workflowId, 
-  theme = 'deforge-light', 
+  theme = 'light', 
   position = 'bottom-right' 
 }: ChatbotWidgetProps) {
   useEffect(() => {

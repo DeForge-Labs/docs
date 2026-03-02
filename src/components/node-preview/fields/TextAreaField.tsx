@@ -75,7 +75,7 @@ export default function TextAreaField({
           value={currentValue || ""}
           onChange={handleTextareaChange}
           placeholder={field.value}
-          className="mt-0.5 rounded-lg flex-1 placeholder:text-gray-500"
+          className="mt-0.5 rounded-lg flex-1 placeholder:text-gray-500 bg-[#f2f2f3] dark:bg-[#222225]"
           disabled={isDisabled}
           rows={3}
           style={{ fontSize: "12px", resize: "none" }}

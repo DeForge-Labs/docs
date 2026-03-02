@@ -11,12 +11,92 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/postgres_check_table_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/postgres_check_table_node_dark.png"
   alt="PostgreSQL - Check Table Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "PostgreSQL - Check Table",
+  category: "database",
+  type: "postgres_check_table_node",
+  icon: {},
+  desc: "Check if a table exists and get its metadata",
+  credit: 3,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Table",
+      type: "Text",
+      desc: "Name of the table to check",
+    },
+    {
+      name: "Schema",
+      type: "Text",
+      desc: "Schema name (optional, defaults to 'public')",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "exists",
+      type: "Boolean",
+      desc: "Whether the table exists",
+    },
+    {
+      name: "columns",
+      type: "JSON",
+      desc: "Array of column metadata (name, type, nullable, default)",
+    },
+    {
+      name: "tableSize",
+      type: "Text",
+      desc: "Human-readable size of the table",
+    },
+    {
+      name: "indexes",
+      type: "JSON",
+      desc: "Array of indexes on the table",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Table",
+      type: "Text",
+      desc: "Name of the table to check",
+      value: "users",
+    },
+    {
+      name: "Schema",
+      type: "Text",
+      value: "public",
+      desc: "Schema name (optional, defaults to 'public')",
+    },
+    {
+      desc: "Postgres connection string",
+      name: "PG_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "postgres://user:password@localhost:5432/dbname",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["postgres", "database", "check", "metadata", "table"],
+}} />
 
 ---
 

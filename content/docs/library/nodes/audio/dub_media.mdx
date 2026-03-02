@@ -11,12 +11,96 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/dub_media_light.png"
   data-dark-src="https://docs-assets.deforge.io/dub_media_dark.png"
   alt="dub_media Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<Callout title="Archived" type="warn">
+    This node is now archived and not available for use in Deforge
+</Callout>
+
+<NodePreview config={{
+    title: "Dub Video Audio",
+    category: "audio",
+    type: "dub_media",
+    icon: {},
+    desc: "Dub your video or audio to another language using Eleven Labs",
+    credit: 500,
+    inputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Link to the Media to dub",
+            name: "Media Link",
+            type: "Text",
+        }
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Link to the dubbed media file",
+            name: "Dubbed Link",
+            type: "Text",
+        },
+    ],
+    fields: [
+        {
+            desc: "Link to the Media to dub",
+            name: "Media Link",
+            type: "Text",
+            value: "Link here ...",
+        },
+        {
+            desc: "Language to dub media into",
+            name: "Dub Language",
+            type: "select",
+            value: "Japanese",
+            options: [
+                "English",
+                "Hindi",
+                "Portuguese",
+                "Chinese",
+                "Spanish",
+                "French",
+                "German",
+                "Japanese",
+                "Arabic",
+                "Russian",
+                "Korean",
+                "Indonesian",
+                "Italian",
+                "Dutch",
+                "Turkish",
+                "Polish",
+                "Swedish",
+                "Filipino",
+                "Malay",
+                "Romanian",
+                "Ukrainian",
+                "Greek",
+                "Czech",
+                "Danish",
+                "Finnish",
+                "Bulgarian",
+                "Croatian",
+                "Slovak",
+                "Tamil",
+            ],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["dubbing", "translate", "audio", "elevenlabs"],
+}} />
 
 ---
 

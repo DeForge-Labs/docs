@@ -40,14 +40,14 @@ function MapFieldEditor({
             placeholder="key"
             disabled={disabled}
             onChange={(e) => updateKey(k, e.target.value)}
-            className="flex-1 text-[10px] h-6 px-1 rounded-lg"
+            className="flex-1 text-[10px] h-6 px-1 rounded-lg bg-[#f2f2f3] dark:bg-[#222225]"
           />
           <Input
             value={v}
             placeholder="value"
             disabled={disabled}
             onChange={(e) => updateValue(k, e.target.value)}
-            className="flex-1 text-[10px] h-6 px-1 rounded-lg"
+            className="flex-1 text-[10px] h-6 px-1 rounded-lg bg-[#f2f2f3] dark:bg-[#222225]"
           />
         </div>
       ))}

@@ -11,12 +11,126 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/mongodb_query_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/mongodb_query_node_dark.png"
   alt="MongoDB - Query Documents Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "MongoDB - Query Documents",
+  category: "database",
+  type: "mongodb_query_node",
+  icon: {},
+  desc: "Query MongoDB database",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to query",
+    },
+    {
+      name: "Filter",
+      type: "JSON",
+      desc: "MongoDB filter query object (e.g., {status: 'active'})",
+    },
+    {
+      name: "Projection",
+      type: "JSON",
+      desc: "Fields to include/exclude (e.g., {name: 1, email: 1, _id: 0})",
+    },
+    {
+      name: "Sort",
+      type: "JSON",
+      desc: "Sort order (e.g., {createdAt: -1})",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      desc: "The maximum number of documents to return",
+    },
+    {
+      name: "Skip",
+      type: "Number",
+      desc: "Number of documents to skip",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "documents",
+      type: "JSON",
+      desc: "The array of documents returned by the query",
+    },
+    {
+      name: "documentCount",
+      type: "Number",
+      desc: "The number of documents returned",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to query",
+      value: "users",
+    },
+    {
+      name: "Filter",
+      type: "Map",
+      value: "",
+      desc: "MongoDB filter query object (e.g., {status: 'active'})",
+    },
+    {
+      name: "Projection",
+      type: "Map",
+      value: "",
+      desc: "Fields to include/exclude (e.g., {name: 1, email: 1, _id: 0})",
+    },
+    {
+      name: "Sort",
+      type: "Map",
+      value: "",
+      desc: "Sort order (e.g., {createdAt: -1})",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      value: 10,
+      desc: "The maximum number of documents to return",
+    },
+    {
+      name: "Skip",
+      type: "Number",
+      value: 0,
+      desc: "Number of documents to skip",
+    },
+    {
+      desc: "MongoDB connection string",
+      name: "MONGODB_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "mongodb://localhost:27017/dbname",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["mongodb", "database", "query", "nosql"],
+}} />
 
 ---
 

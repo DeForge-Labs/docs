@@ -11,12 +11,91 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/mongodb_check_collection_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/mongodb_check_collection_node_dark.png"
   alt="MongoDB - Check Collection Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "MongoDB - Check Collection",
+  category: "database",
+  type: "mongodb_check_collection_node",
+  icon: {},
+  desc: "Check if a collection exists and get its metadata",
+  credit: 3,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to check",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "exists",
+      type: "Boolean",
+      desc: "Whether the collection exists",
+    },
+    {
+      name: "documentCount",
+      type: "Number",
+      desc: "Number of documents in the collection",
+    },
+    {
+      name: "collectionSize",
+      type: "Number",
+      desc: "Size of the collection in bytes",
+    },
+    {
+      name: "indexes",
+      type: "JSON",
+      desc: "Array of indexes on the collection",
+    },
+    {
+      name: "options",
+      type: "JSON",
+      desc: "Collection options (capped, size, etc.)",
+    },
+    {
+      name: "sampleDocument",
+      type: "JSON",
+      desc: "A sample document showing the structure",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to check",
+      value: "users",
+    },
+    {
+      desc: "MongoDB connection string",
+      name: "MONGODB_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "mongodb://localhost:27017/dbname",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["mongodb", "database", "check", "metadata", "collection"],
+}} />
 
 ---
 

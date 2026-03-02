@@ -12,12 +12,120 @@ import { VoiceBadge } from '@/components/ui/voice-badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/text_to_speech_light.png"
   data-dark-src="https://docs-assets.deforge.io/text_to_speech_dark.png"
   alt="Text to Speech Node Image"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+    title: "Text to Speech",
+    category: "audio",
+    type: "text_to_speech",
+    icon: {},
+    desc: "Convert text to speech using Eleven Labs",
+    credit: 150,
+    inputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Text to generate speech for",
+            name: "Content",
+            type: "Text",
+        },
+        {
+            desc: "Specific voice ID to use (will override the above option)",
+            name: "VoiceID",
+            type: "Text",
+        },
+        {
+            desc: "Emotional setting of the voice (lower is more emotional)",
+            name: "Emotion",
+            type: "Number",
+        },
+        {
+            desc: "Speed of the generated speech",
+            name: "Speed",
+            type: "Number",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Generated audio",
+            name: "Audio Link",
+            type: "Text",
+        },
+    ],
+    fields: [
+        {
+            desc: "Text to generate speech for",
+            name: "Content",
+            type: "TextArea",
+            value: "Text here ...",
+        },
+        {
+            desc: "Voice model to use",
+            name: "Voice",
+            type: "select",
+            value: "George (warm resonance)",
+            options: [
+                "Aria (middle aged female calm)",
+                "Sarah (young adult woman confident)",
+                "Laura (young adult female sunny)",
+                "Charlie (young aussie male confident)",
+                "George (warm resonance)",
+                "Callum (gravelly edgy)",
+            ],
+        },
+        {
+            desc: "Specific voice ID to use (will override the above option)",
+            name: "VoiceID",
+            type: "Text",
+            value: "ID here ...",
+        },
+        {
+            desc: "Emotional setting of the voice (lower is more emotional)",
+            name: "Emotion",
+            type: "Slider",
+            value: 0.5,
+            min: 0.0,
+            max: 1.0,
+            step: 0.1,
+        },
+        {
+            desc: "Speed of the generated speech",
+            name: "Speed",
+            type: "Slider",
+            value: 1.0,
+            min: 0,
+            max: 2.0,
+            step: 0.1,
+        },
+        {
+            desc: "Model to use for speech generation",
+            name: "Model",
+            type: "select",
+            value: "eleven_multilingual_v2",
+            options: [
+                "eleven_multilingual_v2",
+                "eleven_v3",
+                "eleven_flash_v2_5",
+                "eleven_turbo_v2_5",
+            ],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["TTS", "audio", "elevenlabs"],
+}} />
 
 ---
 

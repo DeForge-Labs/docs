@@ -70,7 +70,7 @@ export default function NumberField({
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(field.name, Number(e.target.value))}
           value={currentValue ?? 0}
         >
-          <NumberFieldGroup className="rounded-lg">
+          <NumberFieldGroup className="rounded-lg bg-[#222225]">
             <NumberFieldDecrement onClick={() => handleChange(field.name, Number(currentValue) - 1)} className="rounded-l-sm" />
             <NumberFieldInput />
             <NumberFieldIncrement onClick={() => handleChange(field.name, Number(currentValue) + 1)} className="rounded-r-sm" />

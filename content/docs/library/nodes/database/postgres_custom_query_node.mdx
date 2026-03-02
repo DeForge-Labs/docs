@@ -11,12 +11,82 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/postgres_custom_query_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/postgres_custom_query_node_dark.png"
   alt="PostgreSQL - Custom Query Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "PostgreSQL - Custom Query",
+  category: "database",
+  type: "postgres_custom_query_node",
+  icon: {},
+  desc: "Executes a custom SQL query with parameters. For advanced users.",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Query",
+      type: "Text",
+      desc: "The raw SQL query to execute, using $1, $2, etc. for placeholders",
+    },
+    {
+      name: "Parameters",
+      type: "Text[]",
+      desc: "The values for the placeholders in the query",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "rows",
+      type: "JSON",
+      desc: "The array of rows returned by the query (if any)",
+    },
+    {
+      name: "rowCount",
+      type: "Number",
+      desc: "The number of rows affected or returned",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Query",
+      type: "TextArea",
+      desc: "The raw SQL query to execute, using $1, $2, etc. for placeholders",
+      value: "SELECT * FROM users WHERE status = $1 LIMIT 10;",
+    },
+    {
+      name: "Parameters",
+      type: "Text[]",
+      value: "Enter values here...",
+      desc: "The values for the placeholders in the query",
+    },
+    {
+      desc: "Postgres connection string",
+      name: "PG_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "postgres://user:password@localhost:5432/dbname",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["postgres", "database", "custom", "sql", "raw"],
+}} />
 
 ---
 

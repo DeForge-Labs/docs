@@ -11,12 +11,98 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/mongodb_create_collection_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/mongodb_create_collection_node_dark.png"
   alt="MongoDB - Create Collection Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "MongoDB - Create Collection",
+  category: "database",
+  type: "mongodb_create_collection_node",
+  icon: {},
+  desc: "Create a new collection in MongoDB database",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to create",
+    },
+    {
+      name: "Options",
+      type: "JSON",
+      desc: "Collection options (capped, size, max, validator, etc.)",
+    },
+    {
+      name: "Indexes",
+      type: "JSON[]",
+      desc: "Array of indexes to create [{keys: {field: 1}, options: {unique: true}}]",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the collection was created successfully",
+    },
+    {
+      name: "collectionName",
+      type: "Text",
+      desc: "The name of the created collection",
+    },
+    {
+      name: "message",
+      type: "Text",
+      desc: "Success or error message",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to create",
+      value: "users",
+    },
+    {
+      name: "Options",
+      type: "Map",
+      value: "",
+      desc: "Collection options (capped, size, max, validator, etc.)",
+    },
+    {
+      name: "Indexes",
+      type: "JSON[]",
+      value: "[]",
+      desc: "Array of indexes to create [{keys: {field: 1}, options: {unique: true}}]",
+    },
+    {
+      desc: "MongoDB connection string",
+      name: "MONGODB_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "mongodb://localhost:27017/dbname",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["mongodb", "database", "create", "collection"],
+}} />
 
 ---
 

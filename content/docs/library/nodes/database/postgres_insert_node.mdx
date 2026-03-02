@@ -11,12 +11,93 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/postgres_insert_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/postgres_insert_node_dark.png"
   alt="PostgreSQL - Insert Row(s) Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "PostgreSQL - Insert Row(s)",
+  category: "database",
+  type: "postgres_insert_node",
+  icon: {},
+  desc: "Inserts one or more rows into a PostgreSQL table.",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Table",
+      type: "Text",
+      desc: "Name of the table to insert into",
+    },
+    {
+      name: "Data",
+      type: "JSON[]",
+      desc: "A JSON object or an array of JSON objects to insert",
+    },
+    {
+      name: "Returning",
+      type: "Text",
+      desc: "Optional. Columns to return after insertion (e.g., 'id' or '*')",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "rows",
+      type: "JSON",
+      desc: "The data from the inserted rows, if 'Returning' is used",
+    },
+    {
+      name: "rowCount",
+      type: "Number",
+      desc: "The number of rows that were successfully inserted",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Table",
+      type: "Text",
+      desc: "Name of the table to insert into",
+      value: "logs",
+    },
+    {
+      name: "Data",
+      type: "JSON[]",
+      value: '[{"level": "info", "message": "process started"}]',
+      desc: "A JSON object or an array of JSON objects to insert",
+    },
+    {
+      name: "Returning",
+      type: "Text",
+      value: "*",
+      desc: "Optional. Columns to return after insertion (e.g., 'id' or '*')",
+    },
+    {
+      desc: "Postgres connection string",
+      name: "PG_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "postgres://user:password@localhost:5432/dbname",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["postgres", "database", "insert", "write"],
+}} />
 
 ---
 

@@ -11,12 +11,93 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/mongodb_insert_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/mongodb_insert_node_dark.png"
   alt="MongoDB - Insert Document(s) Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "MongoDB - Insert Document(s)",
+  category: "database",
+  type: "mongodb_insert_node",
+  icon: {},
+  desc: "Insert one or more documents into a MongoDB collection",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to insert into",
+    },
+    {
+      name: "Documents",
+      type: "JSON[]",
+      desc: "A document object or an array of document objects to insert",
+    },
+    {
+      name: "Options",
+      type: "JSON",
+      desc: "Insert options (ordered, writeConcern, etc.)",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "insertedIds",
+      type: "JSON",
+      desc: "The IDs of the inserted documents",
+    },
+    {
+      name: "insertedCount",
+      type: "Number",
+      desc: "The number of documents that were successfully inserted",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Collection",
+      type: "Text",
+      desc: "Name of the collection to insert into",
+      value: "logs",
+    },
+    {
+      name: "Documents",
+      type: "JSON[]",
+      value: '[{"level": "info", "message": "process started"}]',
+      desc: "A document object or an array of document objects to insert",
+    },
+    {
+      name: "Options",
+      type: "Map",
+      value: "",
+      desc: "Insert options (ordered, writeConcern, etc.)",
+    },
+    {
+      desc: "MongoDB connection string",
+      name: "MONGODB_CONNECTION_STRING",
+      type: "env",
+      defaultValue: "mongodb://localhost:27017/dbname",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["mongodb", "database", "insert", "write"],
+}} />
 
 ---
 

@@ -78,7 +78,7 @@ export default function TextField({
             value={currentValue}
             onChange={handleInputChange}
             placeholder={field.value}
-            className="mt-0.5 rounded-lg placeholder:text-gray-500"
+            className="mt-0.5 rounded-lg placeholder:text-gray-500 bg-[#f2f2f3] dark:bg-[#222225]"
             style={{ fontSize: "12px" }}
             disabled={isDisabled}
           />

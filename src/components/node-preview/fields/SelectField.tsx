@@ -30,10 +30,10 @@ export default function SelectField({
       <div className="text-[10px] text-foreground/80 font-medium capitalize">{field.name}</div>
       <div className="flex items-center mt-0.5">
         <Select items={items} value={selectedItem} onValueChange={(item) => handleChange(field.name, item?.value ?? "")} disabled={isDisabled}>
-          <SelectTrigger className="rounded-lg">
+          <SelectTrigger className="rounded-lg bg-[#222225]">
             <SelectValue className="text-[12px]" />
           </SelectTrigger>
-          <SelectPopup className="rounded-lg">
+          <SelectPopup className="rounded-lg bg-[#222225]">
             {items.map((option, index) => (
               <SelectItem key={index} value={option}>
                 {option.label}

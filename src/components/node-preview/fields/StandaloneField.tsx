@@ -50,10 +50,10 @@ export default function StandaloneField({
         </div>
         <Badge
           variant="outline"
-          className="text-[10px] px-2 py-1 bg-foreground/5 rounded-lg w-full flex justify-between items-center border border-foreground/5 text-foreground/70 capitalize"
+          className="text-[10px] px-2 py-1 bg-[#f2f2f3] dark:bg-[#222225] rounded-lg w-full flex justify-between items-center border border-foreground/5 text-foreground/70 capitalize"
         >
-          <span className="text-gray-400">{isConnected ? "Connected" : "Not connected"}</span>
-          <span className="text-[10px] text-gray-400">{input.type}</span>
+          <span className="text-gray-600 dark:text-gray-400">{isConnected ? "Connected" : "Not connected"}</span>
+          <span className="text-[10px] text-gray-600 dark:text-gray-400">{input.type}</span>
         </Badge>
       </div>
     </div>

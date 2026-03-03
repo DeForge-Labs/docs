@@ -1,0 +1,144 @@
+---
+title: CSV to JSON
+description: Converts CSV text into a JSON array of objects.
+tags: [json, csv, parser, data]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/csv_to_json/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "CSV to JSON",
+  category: "processing",
+  type: "csv_to_json",
+  icon: {},
+  desc: "Converts CSV text into a JSON array of objects.",
+  credit: 0,
+  inputs: [
+    {
+        desc: "The flow of the workflow",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+        desc: "CSV text to convert",
+        name: "CSV",
+        type: "TextArea",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+        desc: "The JSON data parsed from CSV",
+        name: "JSON",
+        type: "JSON",
+    },
+    {
+        desc: "The tool version of this node, to be used by LLMs",
+        name: "Tool",
+        type: "Tool",
+    },
+  ],
+  fields: [
+    {
+        desc: "CSV text to convert",
+        name: "CSV",
+        type: "TextArea",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["json", "csv", "parser", "data"],
+}} />
+
+---
+
+## Description
+The CSV to JSON node takes in CSV-formatted text and converts it into a JSON array of objects. Each row in the CSV becomes an object in the JSON array, with the column headers serving as the keys. This node is useful for transforming tabular data into a structured format that can be easily consumed by other nodes or LLMs in your workflow.
+
+### Common Use Cases
+- Parsing CSV data from user input or external sources into JSON for further processing.
+- Converting CSV data into a format that can be easily ingested by LLMs or other nodes that require structured data.
+- Transforming CSV data into a tool format for use in prompt engineering.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CSV</DataName>
+    <DataDesc>
+    <DescLine>CSV text to convert</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>JSON</DataName>
+    <DataDesc>
+    <DescLine>The JSON data parsed from CSV</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>CSV</DataName>
+    <DataDesc>
+    <DescLine>CSV text to convert</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+</DataTable>

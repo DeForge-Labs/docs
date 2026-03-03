@@ -1,0 +1,164 @@
+---
+title: Remove Discord Role
+description: Remove a specific role from a user in the server
+tags: [social, discord, bot, role, remove]
+github: https://github.com/DeForge-Labs/library/blob/main/social/discord_remove_role/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Remove Discord Role",
+  category: "social",
+  type: "discord_remove_role",
+  icon: {},
+  desc: "Remove a specific role from a user in the server",
+  credit: 5,
+  inputs: [
+    { desc: "The flow of the workflow", name: "Flow", type: "Flow" },
+    {
+      desc: "The ID of the User to remove the role from",
+      name: "User ID",
+      type: "Text",
+    },
+    { desc: "The ID of the Role to remove", name: "Role ID", type: "Text" },
+  ],
+  outputs: [
+    { desc: "The Flow to trigger next", name: "Flow", type: "Flow" },
+    {
+      desc: "Was the role removed successfully?",
+      name: "Success",
+      type: "Boolean",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    { desc: "The ID of the User", name: "User ID", type: "Text", value: "" },
+    { desc: "The ID of the Role", name: "Role ID", type: "Text", value: "" },
+    {
+      desc: "Connect Discord",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["social", "discord", "bot", "role", "remove"],
+}} />
+
+---
+
+## Description
+The Remove Discord Role node allows you to remove a specific role from a user in your connected Discord server. By providing the User ID and Role ID, this node will attempt to remove the specified role from the user. The output will indicate whether the operation was successful, allowing you to handle the flow accordingly in your workflow. This is useful for managing user permissions and roles dynamically based on interactions with your Deforge agent.
+
+### Common Use Cases
+- Managing user roles in Discord based on their interactions with your Deforge agent
+- Automatically removing roles from users who no longer meet certain criteria
+- Keeping your Discord server organized by dynamically updating user roles through your agent's workflows
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>User ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the User to remove the role from</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Role ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the Role to remove</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger next</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Success</DataName>
+    <DataDesc>
+    <DescLine>Was the role removed successfully?</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>User ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the User</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Role ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the Role</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect Discord</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

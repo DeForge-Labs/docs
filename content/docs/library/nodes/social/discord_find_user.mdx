@@ -1,0 +1,160 @@
+---
+title: Find Discord User
+description: Search for a user in the server by their username or nickname
+tags: [action, discord, bot, user, find]
+github: https://github.com/DeForge-Labs/library/blob/main/social/discord_find_user/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Find Discord User",
+  category: "social",
+  type: "discord_find_user",
+  icon: {},
+  desc: "Search for a user in the server by their username or nickname",
+  credit: 5,
+  inputs: [
+    { desc: "The flow of the workflow", name: "Flow", type: "Flow" },
+    {
+      desc: "The username or nickname to search for",
+      name: "Search Query",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    { desc: "The Flow to trigger next", name: "Flow", type: "Flow" },
+    { desc: "The ID of the found user", name: "User ID", type: "Text" },
+    {
+      desc: "Full JSON object of the guild member",
+      name: "User Data",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Username or nickname to search",
+      name: "Search Query",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Connect Discord",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "discord", "bot", "user", "find"],
+}} />
+
+---
+
+## Description
+The Find Discord User node allows you to search for a specific user within a connected Discord server by their username or nickname. This node is useful for workflows that need to interact with specific users, such as sending direct messages, retrieving user information, or managing user roles. By providing a search query, the node will return the user's ID and full data, which can then be used in subsequent nodes within your workflow.
+
+### Common Use Cases
+- **Sending Direct Messages**: Use this node to find the user ID before sending a direct message with the Send Discord Message node.
+- **Retrieving User Information**: Get details about a user, such as their roles, join date, or activity status.
+- **User Management**: Use the user ID to manage user roles or permissions with other Discord nodes.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Search Query</DataName>
+    <DataDesc>
+    <DescLine>The username or nickname to search for</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger next</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>User ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the found user</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>User Data</DataName>
+    <DataDesc>
+    <DescLine>Full JSON object of the guild member</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Search Query</DataName>
+    <DataDesc>
+    <DescLine>Username or nickname to search</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect Discord</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,134 @@
+---
+title: JSON To Array
+description: Aggregates JSON objects into a JSON Array, supports nesting for 2D arrays.
+tags: [json, array, aggregator]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/json_to_array/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "JSON To Array",
+  category: "processing",
+  type: "json_to_array",
+  icon: {},
+  desc: "Aggregates JSON objects into a JSON Array, supports nesting for 2D arrays.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "JSON object or array to wrap",
+      name: "jsons",
+      type: "JSON[]",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The resulting array of JSON objects",
+      name: "array",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "JSON objects",
+      name: "jsons",
+      type: "JSON[]",
+      value: "[]",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["json", "array", "aggregator"],
+}} />
+
+---
+
+## Description
+The JSON To Array node takes individual JSON objects or arrays as input and aggregates them into a single JSON array. This is particularly useful when you have multiple pieces of data that you want to combine into a structured format for further processing or output. The node also supports nesting, allowing you to create 2D arrays if needed.
+
+### Common Use Cases
+- **Data Aggregation**: When you have multiple JSON objects that represent related data (e.g., user information, product details, etc.) and you want to combine them into a single array for easier handling downstream in your workflow.
+- **Preparing Data for Output**: If you need to output a collection of items in a structured format (e.g., sending a list of results to an API or displaying them in a UI), you can use this node to format the data as a JSON array.
+- **Creating Nested Structures**: If your workflow requires a more complex data structure, such as an array of arrays (2D array), you can use this node to achieve that by feeding in arrays as inputs.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>jsons</DataName>
+    <DataDesc>
+    <DescLine>JSON object or array to wrap</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>array</DataName>
+    <DataDesc>
+    <DescLine>The resulting array of JSON objects</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>jsons</DataName>
+    <DataDesc>
+    <DescLine>JSON objects</DescLine>
+    <DescLine>**Value:** `[]`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+</DataTable>

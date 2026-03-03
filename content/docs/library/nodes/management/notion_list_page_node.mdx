@@ -1,0 +1,160 @@
+---
+title: Notion List Pages
+description: Search for specific pages in your Notion workspace to get their IDs.
+tags: [notion, productivity, search, docs]
+github: https://github.com/DeForge-Labs/library/blob/main/management/notion_list_page_node/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Notion: List Pages",
+  category: "management",
+  type: "notion_list_page_node",
+  icon: {},
+  desc: "Search for specific pages in your Notion workspace to get their IDs.",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Optional query to filter pages by title",
+      name: "Query",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The list of pages found (JSON)",
+      name: "Pages",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Query",
+      type: "Text",
+      value: "",
+      desc: "Optional query to filter pages by title",
+    },
+    {
+      desc: "Connect your Notion Workspace",
+      name: "Notion",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["notion", "productivity", "search", "docs"],
+}} />
+
+---
+
+## Description
+The Notion List Pages node allows you to search for specific pages in your Notion workspace and retrieve their IDs and other metadata. This is useful for finding the right pages to work with in your workflows, especially in larger workspaces with many pages. You can provide an optional query to filter the pages by title, making it easier to locate specific pages based on keywords or naming conventions.
+
+### Common Use Cases
+- Search for pages in Notion to retrieve their IDs for use in other nodes.
+- Filter pages by title to find the right one for your workflow.
+- Use the page IDs in other Notion nodes to update content, manage pages, or query data.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Optional query to filter pages by title</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Pages</DataName>
+    <DataDesc>
+    <DescLine>The list of pages found (JSON)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Optional query to filter pages by title</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Notion</DataName>
+    <DataDesc>
+    <DescLine>Connect your Notion Workspace</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

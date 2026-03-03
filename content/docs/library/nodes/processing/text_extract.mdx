@@ -1,0 +1,198 @@
+---
+title: Text Extract
+description: Extracts specific text from a string using a Regular Expression (Regex).
+tags: [text, extract, regex, processing, string]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/text_extract/node.js
+difficulty: medium
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Text Extract",
+  category: "processing",
+  type: "text_extract",
+  icon: {},
+  desc: "Extracts specific text from a string using a Regular Expression (Regex).",
+  credit: 0,
+  inputs: [
+    {
+      name: "Flow",
+      type: "Flow",
+      desc: "The flow of the workflow",
+    },
+    {
+      name: "Text",
+      type: "Text",
+      desc: "The source text to extract from.",
+    },
+    {
+      name: "Regex Pattern",
+      type: "Text",
+      desc: "The regular expression pattern used for extraction.",
+    },
+    {
+      name: "Match All",
+      type: "Boolean",
+      desc: "Extract all occurrences matching the pattern",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Extracted Text",
+      type: "Text",
+      desc: "The extracted text. Returns a JSON stringified array if 'Match All' is true, or a single string if false.",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Text",
+      type: "TextArea",
+      desc: "The source text to extract from.",
+      value: "Enter text here...",
+    },
+    {
+      name: "Regex Pattern",
+      type: "Text",
+      desc: "The regular expression pattern (e.g., \\d+ for numbers).",
+      value: "Enter regex here...",
+    },
+    {
+      desc: "Extract all occurrences matching the pattern",
+      name: "Match All",
+      type: "CheckBox",
+      value: false,
+    },
+  ],
+  difficulty: "medium",
+  tags: ["text", "extract", "regex", "processing", "string"],
+}} />
+
+---
+
+## Description
+The Text Extract node allows you to extract specific text from a larger string using Regular Expressions (Regex). This is useful for parsing structured data from unstructured text, such as pulling out email addresses, phone numbers, or any pattern-based information.
+
+### Common Use Cases
+- Extracting specific information from user input
+- Parsing data from web scraping results
+- Pulling out structured data from logs or documents
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The source text to extract from.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Regex Pattern</DataName>
+    <DataDesc>
+    <DescLine>The regular expression pattern used for extraction.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Match All</DataName>
+    <DataDesc>
+    <DescLine>Extract all occurrences matching the pattern</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Extracted Text</DataName>
+    <DataDesc>
+    <DescLine>The extracted text. Returns a JSON stringified array if 'Match All' is true, or a single string if false.</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Text</DataName>
+    <DataDesc>
+    <DescLine>The source text to extract from.</DescLine>
+    <DescLine>**Value:** `Enter text here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Regex Pattern</DataName>
+    <DataDesc>
+    <DescLine>The regular expression pattern (e.g., \d+ for numbers).</DescLine>
+    <DescLine>**Value:** `Enter regex here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Match All</DataName>
+    <DataDesc>
+    <DescLine>Extract all occurrences matching the pattern</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+</DataTable>

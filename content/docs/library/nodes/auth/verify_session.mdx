@@ -1,0 +1,140 @@
+---
+title: Verify Session
+description: Validates a Bearer token and returns session details.
+tags: [auth, session, validate]
+github: https://github.com/DeForge-Labs/library/blob/main/auth/verify_session/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Verify Session",
+  category: "auth",
+  type: "verify_session",
+  icon: {},
+  desc: "Validates a Bearer token and returns session details.",
+  credit: 0,
+  inputs: [
+    { name: "Flow", type: "Flow", desc: "The flow of the workflow" },
+    { name: "Token", type: "Text", desc: "Bearer Token" },
+  ],
+  outputs: [
+    { name: "Flow", type: "Flow", desc: "The Flow to trigger" },
+    { name: "IsValid", type: "Boolean", desc: "Is session valid?" },
+    { name: "Session", type: "JSON", desc: "Session object" },
+    { name: "User", type: "JSON", desc: "User object" },
+    { name: "Tool", type: "Tool", desc: "LLM Tool" },
+  ],
+  fields: [{ name: "Token", type: "Text", desc: "Bearer Token" }],
+  difficulty: "easy",
+  tags: ["auth", "session", "validate"],
+}} />
+
+---
+
+## Description
+The Verify Session node is designed to validate a Bearer token and retrieve associated session details. This node is essential for workflows that require authentication, allowing you to ensure that a user or agent has a valid session before proceeding with certain actions.
+
+When you provide a Bearer token to this node, it checks the token's validity and returns several outputs:
+- **IsValid**: A boolean indicating whether the session is valid or not.
+- **Session**: A JSON object containing details about the session, such as its creation time, expiration time, and any associated metadata.
+- **User**: A JSON object with information about the user associated with the session, such as their ID, name, email, and roles.
+- **Tool**: If the session is valid, this output can provide an LLM Tool that can be used in subsequent nodes for making authenticated API calls or accessing protected resources.
+
+### Common Use Cases
+- **Authentication Workflows**: Use this node to validate user sessions before allowing access to certain parts of your workflow or before performing sensitive actions.
+- **Conditional Logic**: Combine this node with flow control nodes to create branches in your workflow based on whether a session is valid or not.
+- **Session Management**: Use the session and user details returned by this node to personalize interactions or to make informed decisions in your workflow based on the user's identity and session status.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Token</DataName>
+    <DataDesc>
+    <DescLine>Bearer Token</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>IsValid</DataName>
+    <DataDesc>
+    <DescLine>Is session valid?</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Session</DataName>
+    <DataDesc>
+    <DescLine>Session object</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>User</DataName>
+    <DataDesc>
+    <DescLine>User object</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>LLM Tool</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Token</DataName>
+    <DataDesc>
+    <DescLine>Bearer Token</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

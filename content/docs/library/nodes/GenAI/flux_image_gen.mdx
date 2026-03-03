@@ -1,0 +1,188 @@
+---
+title: Flux Image Gen
+description: Generate images using Flux AI.
+tags: [image, flux, ai, generation]
+github: https://github.com/DeForge-Labs/library/blob/main/GenAI/flux_image_gen/node.js
+difficulty: medium
+credits: 65
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Flux Image Gen",
+  category: "GenAI",
+  type: "flux_image_gen",
+  icon: {},
+  desc: "Generate images using Flux AI.",
+  credit: 65,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The image description",
+      name: "Prompt",
+      type: "Text",
+    },
+    {
+      desc: "Random seed for generation",
+      name: "Seed",
+      type: "Number",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The generated image URL",
+      name: "Image URL",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "The image description",
+      name: "Prompt",
+      type: "Text",
+      value: "A futuristic city...",
+    },
+    {
+      desc: "Image resolution",
+      name: "Resolution",
+      type: "select",
+      value: "1024x768",
+      options: ["1024x768", "1024x1024", "1440x1440"],
+    },
+    {
+      desc: "Random seed (optional)",
+      name: "Seed",
+      type: "Number",
+      value: 42,
+    },
+  ],
+  difficulty: "medium",
+  tags: ["image", "flux", "ai", "generation"],
+}} />
+
+---
+
+## Description
+The Flux Image Gen node allows you to generate images based on text prompts using Flux AI. You can specify the image description, resolution, and an optional random seed to create unique images for your workflows.
+
+### Common Use Cases
+- Generating images for content creation
+- Creating visuals for social media posts
+- Enhancing user interfaces with AI-generated images
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>The image description</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Seed</DataName>
+    <DataDesc>
+    <DescLine>Random seed for generation</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Image URL</DataName>
+    <DataDesc>
+    <DescLine>The generated image URL</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>The image description</DescLine>
+    <DescLine>**Value:** `A futuristic city...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Resolution</DataName>
+    <DataDesc>
+    <DescLine>Image resolution</DescLine>
+    <DescLine>**Value:** `1024x768`</DescLine>
+    <DescLine>**Options:** <Badge>1024x768</Badge> <Badge>1024x1024</Badge> <Badge>1440x1440</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Seed</DataName>
+    <DataDesc>
+    <DescLine>Random seed (optional)</DescLine>
+    <DescLine>**Value:** `42`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+</DataTable>

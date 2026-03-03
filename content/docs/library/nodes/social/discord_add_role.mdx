@@ -1,0 +1,165 @@
+---
+title: Add Discord Role
+description: Assign a specific role to a user in the server
+tags: [action, discord, bot, role, add]
+github: https://github.com/DeForge-Labs/library/blob/main/social/discord_add_role/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Add Discord Role",
+  category: "social",
+  type: "discord_add_role",
+  icon: {},
+  desc: "Assign a specific role to a user in the server",
+  credit: 5,
+  inputs: [
+    { desc: "The flow of the workflow", name: "Flow", type: "Flow" },
+    {
+      desc: "The ID of the User to receive the role",
+      name: "User ID",
+      type: "Text",
+    },
+    { desc: "The ID of the Role to assign", name: "Role ID", type: "Text" },
+  ],
+  outputs: [
+    { desc: "The Flow to trigger next", name: "Flow", type: "Flow" },
+    {
+      desc: "Was the role added successfully?",
+      name: "Success",
+      type: "Boolean",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    { desc: "The ID of the User", name: "User ID", type: "Text", value: "" },
+    { desc: "The ID of the Role", name: "Role ID", type: "Text", value: "" },
+    {
+      desc: "Connect Discord",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "discord", "bot", "role", "add"],
+}} />
+
+---
+
+## Description
+The Add Discord Role node allows you to assign a specific role to a user in your Discord server. This can be useful for managing permissions, granting access to certain channels, or organizing users based on their roles. By providing the User ID and Role ID, you can automate role assignments as part of your workflow.
+
+### Common Use Cases
+- Automatically assign a "New Member" role to users when they join the server.
+- Grant a "VIP" role to users who make a purchase or reach a certain milestone.
+- Remove a "Muted" role after a specified time period.
+- Manage event attendees by assigning roles based on their registration status.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>User ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the User to receive the role</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Role ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the Role to assign</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger next</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Success</DataName>
+    <DataDesc>
+    <DescLine>Was the role added successfully?</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>User ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the User</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Role ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the Role</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect Discord</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,116 @@
+---
+title: Airtable List Bases
+description: Get a list of all Airtable Bases you have access to.
+tags: [airtable, database, search, meta]
+github: https://github.com/DeForge-Labs/library/blob/main/database/airtable_list_bases/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Airtable: List Bases",
+  category: "database",
+  type: "airtable_list_bases",
+  icon: {},
+  desc: "Get a list of all Airtable Bases you have access to.",
+  credit: 5,
+  inputs: [{ name: "Flow", type: "Flow" }],
+  outputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Bases", type: "JSON", desc: "List of Bases with IDs and Names" },
+    { name: "Tool", type: "Tool" },
+  ],
+  fields: [
+    {
+      desc: "Connect your Airtable Account",
+      name: "Airtable",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["airtable", "database", "search", "meta"],
+}} />
+
+---
+
+## Description
+This node connects to your Airtable account and retrieves a list of all the Bases you have access to. Each Base in the output list includes its ID and Name, allowing you to easily identify and work with your Airtable data in subsequent nodes.
+
+### Common Use Cases
+- **Base Selection**: Use this node at the beginning of a workflow to allow users to select which Airtable Base they want to work with.
+- **Dynamic Workflows**: Create dynamic workflows that can adapt based on the available Bases in Airtable, enabling more flexible and powerful agents.
+- **Data Management**: Combine this node with other Airtable nodes to manage and manipulate data across different Bases seamlessly.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Bases</DataName>
+    <DataDesc>
+    <DescLine>List of Bases with IDs and Names</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Airtable</DataName>
+    <DataDesc>
+    <DescLine>Connect your Airtable Account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

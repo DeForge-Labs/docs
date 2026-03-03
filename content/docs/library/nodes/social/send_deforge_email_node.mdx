@@ -1,0 +1,288 @@
+---
+title: Send Deforge Email
+description: Send an email using the system's default Deforge mailer.
+tags: [email, communication, notification, system]
+github: https://github.com/DeForge-Labs/library/blob/main/social/send_deforge_email_node/node.js
+difficulty: easy
+credits: 15
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Send Deforge Email",
+  category: "social",
+  type: "send_deforge_email_node",
+  icon: {},
+  desc: "Send an email using the system's default Deforge mailer.",
+  credit: 15,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "To",
+      type: "Text",
+      desc: "Recipient email address (comma-separated for multiple)",
+    },
+    {
+      name: "Subject",
+      type: "Text",
+      desc: "Email subject line",
+    },
+    {
+      name: "Body",
+      type: "Text",
+      desc: "Email body content",
+    },
+    {
+      name: "CC",
+      type: "Text",
+      desc: "CC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "BCC",
+      type: "Text",
+      desc: "BCC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "HTML",
+      type: "Boolean",
+      desc: "Whether the body is HTML (default: false for plain text)",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the email was sent successfully",
+    },
+    {
+      name: "messageId",
+      type: "Text",
+      desc: "The message ID from the email server",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "To",
+      type: "Text",
+      desc: "Recipient email address (comma-separated for multiple)",
+      value: "",
+    },
+    {
+      name: "Subject",
+      type: "Text",
+      value: "",
+      desc: "Email subject line",
+    },
+    {
+      name: "Body",
+      type: "TextArea",
+      value: "",
+      desc: "Email body content",
+    },
+    {
+      name: "CC",
+      type: "Text",
+      value: "",
+      desc: "CC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "BCC",
+      type: "Text",
+      value: "",
+      desc: "BCC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "HTML",
+      type: "CheckBox",
+      value: false,
+      desc: "Whether the body is HTML (default: false for plain text)",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["email", "communication", "notification", "system"],
+}} />
+
+---
+
+## Description
+The Send Deforge Email node allows you to send an email using the system's default Deforge mailer. You can specify the recipient(s), subject, body content, and additional options such as CC, BCC, and whether the body is in HTML format. This node is useful for sending notifications, updates, or any other email communication directly from your Deforge workflows without needing to integrate with external email services.
+
+### Common Use Cases
+- Sending notifications or alerts to users based on workflow events
+- Communicating updates or results from your Deforge agents to stakeholders
+- Automating email communication as part of larger workflows, such as sending a summary report after a task is completed
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>To</DataName>
+    <DataDesc>
+    <DescLine>Recipient email address (comma-separated for multiple)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Subject</DataName>
+    <DataDesc>
+    <DescLine>Email subject line</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Email body content</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CC</DataName>
+    <DataDesc>
+    <DescLine>CC email addresses (comma-separated, optional)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>BCC</DataName>
+    <DataDesc>
+    <DescLine>BCC email addresses (comma-separated, optional)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HTML</DataName>
+    <DataDesc>
+    <DescLine>Whether the body is HTML (default: false for plain text)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>success</DataName>
+    <DataDesc>
+    <DescLine>Whether the email was sent successfully</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>messageId</DataName>
+    <DataDesc>
+    <DescLine>The message ID from the email server</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>To</DataName>
+    <DataDesc>
+    <DescLine>Recipient email address (comma-separated for multiple)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Subject</DataName>
+    <DataDesc>
+    <DescLine>Email subject line</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Email body content</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>CC</DataName>
+    <DataDesc>
+    <DescLine>CC email addresses (comma-separated, optional)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>BCC</DataName>
+    <DataDesc>
+    <DescLine>BCC email addresses (comma-separated, optional)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>HTML</DataName>
+    <DataDesc>
+    <DescLine>Whether the body is HTML (default: false for plain text)</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+</DataTable>

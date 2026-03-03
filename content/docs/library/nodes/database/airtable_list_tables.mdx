@@ -1,0 +1,139 @@
+---
+title: Airtable List Tables
+description: Get a list of Tables inside a specific Airtable Base.
+tags: [airtable, database, schema, meta]
+github: https://github.com/DeForge-Labs/library/blob/main/database/airtable_list_tables/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Airtable: List Tables",
+  category: "database",
+  type: "airtable_list_tables",
+  icon: {},
+  desc: "Get a list of Tables inside a specific Airtable Base.",
+  credit: 5,
+  inputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Base ID", type: "Text", desc: "The ID of the Base to inspect" },
+  ],
+  outputs: [
+    { name: "Flow", type: "Flow" },
+    {
+      name: "Tables",
+      type: "JSON",
+      desc: "List of Tables with IDs, Names, and Fields",
+    },
+    { name: "Tool", type: "Tool" },
+  ],
+  fields: [
+    { name: "Base ID", type: "Text", value: "", desc: "The Base ID (app...)" },
+    {
+      desc: "Connect your Airtable Account",
+      name: "Airtable",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["airtable", "database", "schema", "meta"],
+}} />
+
+---
+
+## Description
+The Airtable List Tables node allows you to retrieve a list of all the tables within a specified Airtable Base. This can be useful for dynamically exploring the structure of your Airtable data, generating tools based on your schema, or simply understanding what tables are available in a given base.
+
+### Common Use Cases
+- **Dynamic Tool Generation**: Use the list of tables to create dynamic tools that can interact with any table in the base without hardcoding table names.
+- **Schema Exploration**: Understand the structure of your Airtable base by listing all tables and their fields.
+- **Data Validation**: Check if a specific table exists in the base before attempting to read or write data to it.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the Base to inspect</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tables</DataName>
+    <DataDesc>
+    <DescLine>List of Tables with IDs, Names, and Fields</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>The Base ID (app...)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Airtable</DataName>
+    <DataDesc>
+    <DescLine>Connect your Airtable Account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

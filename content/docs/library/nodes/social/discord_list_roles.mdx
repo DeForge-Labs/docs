@@ -1,0 +1,152 @@
+---
+title: List Discord Roles
+description: Retrieve a list of all roles in the server, or search for a specific role by name
+tags: [action, discord, bot, role, list, find]
+github: https://github.com/DeForge-Labs/library/blob/main/social/discord_list_roles/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "List Discord Roles",
+  category: "social",
+  type: "discord_list_roles",
+  icon: {},
+  desc: "Retrieve a list of all roles in the server, or search for a specific role by name",
+  credit: 5,
+  inputs: [
+    { desc: "The flow of the workflow", name: "Flow", type: "Flow" },
+    {
+      desc: "(Optional) The name of a specific role to find",
+      name: "Role Name",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    { desc: "The Flow to trigger next", name: "Flow", type: "Flow" },
+    {
+      desc: "JSON Array of roles (Filtered if a name was provided)",
+      name: "Roles Array",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "(Optional) The name of a specific role to find",
+      name: "Role Name",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Connect Discord",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "discord", "bot", "role", "list", "find"],
+}} />
+
+---
+
+## Description
+This node connects to Discord and retrieves a list of all roles in the server. You can optionally provide a role name to filter the results and return only roles that match the specified name. The output includes a JSON array of roles and a tool version of the node for use by LLMs.
+
+### Common Use Cases
+- **Role Management:** Use this node to manage roles within a Discord server, such as listing roles for administrative purposes or to assign roles to users based on certain conditions.
+- **Integration with LLMs:** The tool output can be used by large language models to understand the available roles in a Discord server and make decisions based on that information, such as assigning roles to users or sending targeted messages.
+- **Automated Moderation:** Combine this node with other Discord nodes to automate moderation tasks, such as checking if a user has a specific role before allowing them to perform certain actions.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Role Name</DataName>
+    <DataDesc>
+    <DescLine>(Optional) The name of a specific role to find</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger next</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Roles Array</DataName>
+    <DataDesc>
+    <DescLine>JSON Array of roles (Filtered if a name was provided)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Role Name</DataName>
+    <DataDesc>
+    <DescLine>(Optional) The name of a specific role to find</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect Discord</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

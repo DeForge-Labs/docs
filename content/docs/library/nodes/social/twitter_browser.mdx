@@ -1,0 +1,183 @@
+---
+title: X (Twitter) Browser
+description: Search tweets, track keywords, or browse user profiles
+tags: [twitter, x, social, search, osint]
+github: https://github.com/DeForge-Labs/library/blob/main/social/twitter_browser/node.js
+difficulty: medium
+credits: 30
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "X (Twitter) Browser",
+  category: "social",
+  type: "twitter_browser",
+  icon: {},
+  desc: "Search tweets, track keywords, or browse user profiles",
+  credit: 30,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The search query (e.g. 'AI from:elonmusk' or '#web3')",
+      name: "Query",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "List of tweets found",
+      name: "Tweets",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version for LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Search query (supports operators like from:, since:, #)",
+      name: "Query",
+      type: "Text",
+      value: "AI news",
+    },
+    {
+      desc: "Type of search",
+      name: "Query Type",
+      type: "select",
+      value: "Latest",
+      options: ["Latest", "Top"],
+    },
+    {
+      desc: "Number of tweets to fetch (max 20 per request)",
+      name: "Limit",
+      type: "Slider",
+      value: 10,
+      min: 1,
+      max: 20,
+      step: 1,
+    },
+  ],
+  difficulty: "medium",
+  tags: ["twitter", "x", "social", "search", "osint"],
+}} />
+
+---
+
+## Description
+The X (Twitter) Browser node allows you to search for tweets, track keywords, or browse user profiles on X (formerly Twitter). By providing a search query with optional operators (like from:username or #hashtag), you can retrieve relevant tweets based on your criteria. The node also lets you specify the type of search (Latest or Top) and the number of tweets to fetch, making it a powerful tool for social media monitoring, sentiment analysis, or gathering real-time information from X.
+
+### Common Use Cases
+- Monitoring brand mentions or specific keywords on X
+- Gathering real-time information or news on specific topics
+- Analyzing sentiment or trends on X for market research
+- Tracking competitor activity or industry conversations on X
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>The search query (e.g. 'AI from:elonmusk' or '#web3')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tweets</DataName>
+    <DataDesc>
+    <DescLine>List of tweets found</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version for LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>Search query (supports operators like from:, since:, #)</DescLine>
+    <DescLine>**Value:** `AI news`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query Type</DataName>
+    <DataDesc>
+    <DescLine>Type of search</DescLine>
+    <DescLine>**Value:** `Latest`</DescLine>
+    <DescLine>**Options:** <Badge>Latest</Badge> <Badge>Top</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Limit</DataName>
+    <DataDesc>
+    <DescLine>Number of tweets to fetch (max 20 per request)</DescLine>
+    <DescLine>**Value:** `10`</DescLine>
+    <DescLine>**Min:** `1`</DescLine>
+    <DescLine>**Max:** `20`</DescLine>
+    <DescLine>**Step:** `1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('slider')}>Slider</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,254 @@
+---
+title: Notion Create Page
+description: Create a new page inside a Database or as a sub-page of another Page.
+tags: [notion, create, write, database]
+github: https://github.com/DeForge-Labs/library/blob/main/management/notion_create_page_node/node.js
+difficulty: medium
+credits: 10
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Notion: Create Page",
+  category: "management",
+  type: "notion_create_page_node",
+  icon: {},
+  desc: "Create a new page inside a Database or as a sub-page of another Page.",
+  credit: 10,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Title of the new page",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "Body content (Markdown supported)",
+      name: "Content",
+      type: "Text",
+    },
+    {
+      desc: "ID of the parent Database or Page",
+      name: "Parent ID",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The ID of the newly created page",
+      name: "Page ID",
+      type: "Text",
+    },
+    {
+      desc: "The URL of the newly created page",
+      name: "Page URL",
+      type: "Text",
+    },
+    {
+      desc: "The tool version for LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Connect your Notion Workspace",
+      name: "Notion",
+      type: "social",
+      defaultValue: "",
+    },
+    {
+      name: "Title",
+      type: "Text",
+      value: "",
+      desc: "Title of the new page",
+    },
+    {
+      name: "Content",
+      type: "TextArea",
+      value: "",
+      desc: "Body content (Markdown supported)",
+    },
+    {
+      name: "Parent Type",
+      type: "select",
+      value: "database_id",
+      options: ["database_id", "page_id"],
+      desc: "Are you creating this inside a Database or a Page?",
+    },
+    {
+      name: "Parent ID",
+      type: "Text",
+      value: "",
+      desc: "The ID of the parent (Database or Page)",
+    },
+    {
+      name: "Title Property Name",
+      type: "Text",
+      value: "Name",
+      desc: "Only for Databases: The name of the primary title column (e.g. 'Name', 'Task', 'Topic')",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["notion", "create", "write", "database"],
+}} />
+
+---
+
+## Description
+The Notion Create Page node allows you to create a new page within your Notion workspace, either as a sub-page of an existing page or as a new entry in a database. This node is useful for automating content creation, task management, note-taking, and more within Notion.
+
+### Common Use Cases
+- Automatically create a new page for each new lead in a CRM database.
+- Generate a new note page for each meeting scheduled.
+- Create a new task in a project management database when a specific event occurs.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Title of the new page</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>
+    <DescLine>Body content (Markdown supported)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Parent ID</DataName>
+    <DataDesc>
+    <DescLine>ID of the parent Database or Page</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Page ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the newly created page</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Page URL</DataName>
+    <DataDesc>
+    <DescLine>The URL of the newly created page</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version for LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Notion</DataName>
+    <DataDesc>
+    <DescLine>Connect your Notion Workspace</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Title of the new page</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>
+    <DescLine>Body content (Markdown supported)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Parent Type</DataName>
+    <DataDesc>
+    <DescLine>Are you creating this inside a Database or a Page?</DescLine>
+    <DescLine>**Value:** `database_id`</DescLine>
+    <DescLine>**Options:** <Badge>database_id</Badge> <Badge>page_id</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Parent ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the parent (Database or Page)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title Property Name</DataName>
+    <DataDesc>
+    <DescLine>Only for Databases: The name of the primary title column (e.g. 'Name', 'Task', 'Topic')</DescLine>
+    <DescLine>**Value:** `Name`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

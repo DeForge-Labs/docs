@@ -1,0 +1,160 @@
+---
+title: Find Discord Channel
+description: Search for a channel by its name and return its ID
+tags: [action, discord, bot, channel, find]
+github: https://github.com/DeForge-Labs/library/blob/main/social/discord_find_channel/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Find Discord Channel",
+  category: "social",
+  type: "discord_find_channel",
+  icon: {},
+  desc: "Search for a channel by its name and return its ID",
+  credit: 5,
+  inputs: [
+    { desc: "The flow of the workflow", name: "Flow", type: "Flow" },
+    {
+      desc: "The name of the channel to find (e.g., 'general')",
+      name: "Channel Name",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    { desc: "The Flow to trigger next", name: "Flow", type: "Flow" },
+    { desc: "The ID of the found channel", name: "Channel ID", type: "Text" },
+    {
+      desc: "Full JSON object of the channel",
+      name: "Channel Data",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "The name of the channel to find",
+      name: "Channel Name",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Connect Discord",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "discord", "bot", "channel", "find"],
+}} />
+
+---
+
+## Description
+The Find Discord Channel node allows you to search for a specific channel within a connected Discord server by its name. This node is useful for workflows that need to interact with specific channels, such as sending messages, retrieving channel information, or managing channel settings. By providing the channel name, the node will return the channel's ID and full data, which can then be used in subsequent nodes within your workflow.
+
+### Common Use Cases
+- **Sending Messages to a Channel**: Use this node to find the channel ID before sending a message with the Send Discord Message node.
+- **Retrieving Channel Information**: Get details about a channel, such as its topic, member count, or permissions.
+- **Channel Management**: Use the channel ID to manage channel settings or roles with other Discord nodes.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Channel Name</DataName>
+    <DataDesc>
+    <DescLine>The name of the channel to find (e.g., 'general')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger next</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Channel ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the found channel</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Channel Data</DataName>
+    <DataDesc>
+    <DescLine>Full JSON object of the channel</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Channel Name</DataName>
+    <DataDesc>
+    <DescLine>The name of the channel to find</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect Discord</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

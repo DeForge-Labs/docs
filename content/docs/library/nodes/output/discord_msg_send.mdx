@@ -1,0 +1,227 @@
+---
+title: Send Discord Message
+description: Send a text, media message, or interactive components via your Discord bot
+tags: [output, discord, bot, message, media, components]
+github: https://github.com/DeForge-Labs/library/blob/main/output/discord_msg_send/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Send Discord Message",
+  category: "output",
+  type: "discord_msg_send",
+  icon: {},
+  desc: "Send a text, media message, or interactive components via your Discord bot",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The main text message you want to send",
+      name: "Message",
+      type: "Text",
+    },
+    {
+      desc: "Channel ID to send the message to",
+      name: "ChannelID",
+      type: "Text",
+    },
+    {
+      desc: "(Optional) Direct link to an image/media file you want to embed",
+      name: "Media Link",
+      type: "Text",
+    },
+    {
+      desc: "(Optional) Array of JSON objects representing Discord Components (Action Rows)",
+      name: "Components",
+      type: "JSON[]",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The response from Discord containing the message ID",
+      name: "Response",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "The main text message you want to send",
+      name: "Message",
+      type: "TextArea",
+      value: "Hello from Deforge!",
+    },
+    {
+      desc: "Channel ID to send the message to",
+      name: "ChannelID",
+      type: "Text",
+      value: "123456789",
+    },
+    {
+      desc: "(Optional) Direct link to an image/media file you want to embed",
+      name: "Media Link",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "(Optional) Array of Discord Components",
+      name: "Components",
+      type: "JSON[]",
+      value: "[]",
+    },
+    {
+      desc: "Connect to your Discord account",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["output", "discord", "bot", "message", "media", "components"],
+}} />
+
+---
+
+## Description
+The Send Discord Message node allows you to send messages directly to a specified Discord channel using your connected Discord bot. You can send plain text messages, embed media by providing a direct link, and even include interactive components like buttons or dropdowns by passing an array of JSON objects representing Discord Components (Action Rows). This node is perfect for automating announcements, updates, or any communication you want to push to your Discord server as part of your workflow.
+
+### Common Use Cases
+- Sending notifications to a Discord channel when certain events occur in your workflow.
+- Posting updates or results from your workflow to keep your team informed.
+- Sharing media content like images or videos directly to Discord channels.
+- Creating interactive messages in Discord with buttons or dropdowns for users to engage with.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>The main text message you want to send</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChannelID</DataName>
+    <DataDesc>
+    <DescLine>Channel ID to send the message to</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>(Optional) Direct link to an image/media file you want to embed</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Components</DataName>
+    <DataDesc>
+    <DescLine>(Optional) Array of JSON objects representing Discord Components (Action Rows)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Response</DataName>
+    <DataDesc>
+    <DescLine>The response from Discord containing the message ID</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Message</DataName>
+    <DataDesc>
+    <DescLine>The main text message you want to send</DescLine>
+    <DescLine>**Value:** `Hello from Deforge!`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChannelID</DataName>
+    <DataDesc>
+    <DescLine>Channel ID to send the message to</DescLine>
+    <DescLine>**Value:** `123456789`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Media Link</DataName>
+    <DataDesc>
+    <DescLine>(Optional) Direct link to an image/media file you want to embed</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Components</DataName>
+    <DataDesc>
+    <DescLine>(Optional) Array of Discord Components</DescLine>
+    <DescLine>**Value:** `[]`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json[]')}>JSON[]</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect to your Discord account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

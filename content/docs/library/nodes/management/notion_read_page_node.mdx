@@ -1,0 +1,172 @@
+---
+title: Notion Read Page
+description: Reads the content of a specific Notion page and converts it to Markdown text.
+tags: [notion, read, content, ocr]
+github: https://github.com/DeForge-Labs/library/blob/main/management/notion_read_page_node/node.js
+difficulty: medium
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Notion: Read Page",
+  category: "management",
+  type: "notion_read_page_node",
+  icon: {},
+  desc: "Reads the content of a specific Notion page and converts it to Markdown text.",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The 32-character ID of the page to read",
+      name: "Page ID",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The full text content of the page",
+      name: "Content",
+      type: "Text",
+    },
+    {
+      desc: "The title of the page",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "The tool version for LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Connect your Notion Workspace",
+      name: "Notion",
+      type: "social",
+      defaultValue: "",
+    },
+    {
+      name: "Page ID",
+      type: "Text",
+      value: "",
+      desc: "The ID from the URL (e.g., 18c369...)",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["notion", "read", "content", "ocr"],
+}} />
+
+---
+
+## Description
+The Notion Read Page node allows you to read the content of a specific Notion page and convert it to Markdown text. This is useful for extracting information from Notion pages and using it in your workflows, such as for summarization, analysis, or integration with other tools.
+
+### Common Use Cases
+- Extracting meeting notes from a Notion page and sending them via email.
+- Reading a project plan from Notion and creating tasks in a project management tool.
+- Summarizing the content of a Notion page using an LLM and sending the summary to a chat application.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Page ID</DataName>
+    <DataDesc>
+    <DescLine>The 32-character ID of the page to read</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Content</DataName>
+    <DataDesc>
+    <DescLine>The full text content of the page</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>The title of the page</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version for LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Notion</DataName>
+    <DataDesc>
+    <DescLine>Connect your Notion Workspace</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Page ID</DataName>
+    <DataDesc>
+    <DescLine>The ID from the URL (e.g., 18c369...)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

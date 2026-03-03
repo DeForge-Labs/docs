@@ -1,7 +1,7 @@
 ---
 title: Cron Trigger
-description: Triggers a flow at a specific time
-tags: [trigger, cron]
+description: Triggers a flow at a specific time with optional start delay and limits
+tags: [trigger, cron, schedule]
 github: https://github.com/DeForge-Labs/library/blob/main/trigger/cron_trigger/node.js
 difficulty: easy
 credits: 0
@@ -112,7 +112,7 @@ The output connections this node provides:
   <DataRow>
     <DataName>timeStamp</DataName>
     <DataDesc>
-    <DescLine>timeStamp</DescLine>
+    <DescLine>Timestamp of execution</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
   </DataRow>
@@ -130,9 +130,34 @@ The configurable fields this node provides:
   <DataRow>
     <DataName>Interval in Hours</DataName>
     <DataDesc>
-    <DescLine>Interval in Hours</DescLine>
+    <DescLine>Interval in Hours (e.g., 0.5 for 30 mins, 24 for daily)</DescLine>
+    <DescLine>**Value:** `1`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Start Time</DataName>
+    <DataDesc>
+    <DescLine>Start Date & Time (Optional). Must be within next 10 days.</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('date')}>Date</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Max Executions</DataName>
+    <DataDesc>
+    <DescLine>Max Executions (0 for infinite)</DescLine>
     <DescLine>**Value:** `0`</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('number')}>Number</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Timezone</DataName>
+    <DataDesc>
+    <DescLine>Timezone for the schedule</DescLine>
+    <DescLine>**Value:** `UTC`</DescLine>
+    <DescLine>**Options:** <Badge>UTC</Badge> <Badge>America/New_York</Badge> <Badge>America/Los_Angeles</Badge> <Badge>America/Chicago</Badge> <Badge>Europe/London</Badge> <Badge>Europe/Paris</Badge> <Badge>Europe/Berlin</Badge> <Badge>Asia/Tokyo</Badge> <Badge>Asia/Shanghai</Badge> <Badge>Asia/Dubai</Badge> <Badge>Asia/Kolkata</Badge> <Badge>Asia/Singapore</Badge> <Badge>Australia/Sydney</Badge> <Badge>Pacific/Auckland</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
   </DataRow>
 </DataTable>

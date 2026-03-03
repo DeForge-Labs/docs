@@ -1,0 +1,174 @@
+---
+title: Airtable Get Record
+description: Fetch a single record by its ID in an Airtable Base.
+tags: [airtable, database, get]
+github: https://github.com/DeForge-Labs/library/blob/main/database/airtable_get_record/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Airtable: Get Record",
+  category: "database",
+  type: "airtable_get_record",
+  icon: {},
+  desc: "Fetch a single record by its ID in an Airtable Base.",
+  credit: 5,
+  inputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Base ID", type: "Text" },
+    { name: "Table Name", type: "Text" },
+    { name: "Record ID", type: "Text" },
+  ],
+  outputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Fields", type: "JSON", desc: "The record fields" },
+    { name: "Tool", type: "Tool" },
+  ],
+  fields: [
+    { name: "Base ID", type: "Text", value: "", desc: "The Base ID (app...)" },
+    { name: "Table Name", type: "Text", value: "", desc: "The Table Name" },
+    {
+      name: "Record ID",
+      type: "Text",
+      value: "",
+      desc: "The Record ID (rec...)",
+    },
+    {
+      desc: "Connect your Airtable Account",
+      name: "Airtable",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["airtable", "database", "get"],
+}} />
+
+---
+
+## Description
+The Airtable Get Record node allows you to retrieve a single record from an Airtable Base using its unique Record ID. This is useful for accessing specific data stored in Airtable and using it within your workflow.
+
+### Common Use Cases
+- Fetching user information stored in Airtable to personalize interactions.
+- Retrieving configuration settings or parameters stored in Airtable for use in your workflow.
+- Accessing specific records in Airtable to perform updates or trigger actions based on their content.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Record ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Fields</DataName>
+    <DataDesc>
+    <DescLine>The record fields</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>The Base ID (app...)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>The Table Name</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Record ID</DataName>
+    <DataDesc>
+    <DescLine>The Record ID (rec...)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Airtable</DataName>
+    <DataDesc>
+    <DescLine>Connect your Airtable Account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

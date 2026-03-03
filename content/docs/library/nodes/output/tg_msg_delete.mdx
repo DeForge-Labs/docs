@@ -1,0 +1,162 @@
+---
+title: Delete Telegram Message
+description: Delete a specific message in a Telegram chat
+tags: [action, telegram, bot, delete]
+github: https://github.com/DeForge-Labs/library/blob/main/output/tg_msg_delete/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Delete Telegram Message",
+  category: "output",
+  type: "tg_msg_delete",
+  icon: {},
+  desc: "Delete a specific message in a Telegram chat",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Chat ID where the message is located",
+      name: "ChatID",
+      type: "Text",
+    },
+    {
+      desc: "ID of the message to delete",
+      name: "MessageID",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+  ],
+  fields: [
+    {
+      desc: "Chat ID where the message is located",
+      name: "ChatID",
+      type: "Text",
+      value: "123456",
+    },
+    {
+      desc: "ID of the message to delete",
+      name: "MessageID",
+      type: "Text",
+      value: "987",
+    },
+    {
+      desc: "Api Key of your Telegram bot",
+      name: "TG_API_KEY",
+      type: "env",
+      defaultValue: "eydnfnuani...",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "telegram", "bot", "delete"],
+}} />
+
+---
+
+## Description
+The Delete Telegram Message node allows you to delete a specific message in a Telegram chat. This can be useful for managing conversations, removing outdated information, or moderating content in group chats. By providing the Chat ID and Message ID, you can target the exact message you want to remove.
+
+### Common Use Cases
+- **Chat Moderation:** Automatically delete messages that contain inappropriate content or violate chat rules.
+- **Information Management:** Remove messages that contain outdated information or have been superseded by newer messages.
+- **Workflow Cleanup:** Delete messages that were sent as part of a workflow but are no longer relevant after certain conditions are met.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>ChatID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID where the message is located</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>MessageID</DataName>
+    <DataDesc>
+    <DescLine>ID of the message to delete</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>ChatID</DataName>
+    <DataDesc>
+    <DescLine>Chat ID where the message is located</DescLine>
+    <DescLine>**Value:** `123456`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>MessageID</DataName>
+    <DataDesc>
+    <DescLine>ID of the message to delete</DescLine>
+    <DescLine>**Value:** `987`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>TG_API_KEY</DataName>
+    <DataDesc>
+    <DescLine>Api Key of your Telegram bot</DescLine>
+    <DescLine>**DefaultValue:** `eydnfnuani...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('env')}>env</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -11,7 +11,18 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Speech to Text](/docs/library/nodes/audio/speech_to_text)
         - [Dub Video Audio](/docs/library/nodes/audio/dub_media)
     </Accordion>
+    <Accordion title="Auth Nodes">
+        - [Generate OTP (Passwordless)](/docs/library/nodes/auth/passwordless_otp_generate)
+        - [Verify OTP (Passwordless)](/docs/library/nodes/auth/passwordless_otp_verify)
+        - [Verify Session](/docs/library/nodes/auth/verify_session)
+    </Accordion>
     <Accordion title="Database Nodes">
+        - [Airtable - Create Records](/docs/library/nodes/database/airtable_create_records)
+        - [Airtable - Get Record](/docs/library/nodes/database/airtable_get_record)
+        - [Airtable - List Bases](/docs/library/nodes/database/airtable_list_bases)
+        - [Airtable - List Records](/docs/library/nodes/database/airtable_list_records)
+        - [Airtable - List Tables](/docs/library/nodes/database/airtable_list_tables)
+        - [Airtable - Update Record](/docs/library/nodes/database/airtable_update_record)
         - [PostgreSQL - Query Rows](/docs/library/nodes/database/postgres_query_node)
         - [PostgreSQL - Check Table](/docs/library/nodes/database/postgres_check_table_node)
         - [PostgreSQL - Create Table](/docs/library/nodes/database/postgres_create_table_node)
@@ -27,8 +38,11 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Boolean Operation](/docs/library/nodes/flow/bool_operation)
     </Accordion>
     <Accordion title="GenAI Nodes">
+        - [Flux Image Gen](/docs/library/nodes/GenAI/flux_image_gen)
         - [Imagen AI Images](/docs/library/nodes/GenAI/imagen_node)
         - [Lyria AI Music](/docs/library/nodes/GenAI/lyria_node)
+        - [Suno Music Gen](/docs/library/nodes/GenAI/suno_music_gen)
+        - [Suno Music Status](/docs/library/nodes/GenAI/suno_music_status)
         - [Veo AI Video](/docs/library/nodes/GenAI/veo_node)
     </Accordion>
     <Accordion title="Input Nodes">
@@ -54,6 +68,12 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [HubSpot - Update Contact](/docs/library/nodes/management/hubspot_update_contact_node)
         - [HubSpot - Create Deal](/docs/library/nodes/management/hubspot_create_deal_node)
         - [HubSpot - Search Deals](/docs/library/nodes/management/hubspot_search_deals_node)
+        - [Notion - Create Page](/docs/library/nodes/management/notion_create_page_node)
+        - [Notion - Delete Page](/docs/library/nodes/management/notion_delete_page_node)
+        - [Notion - List Databases](/docs/library/nodes/management/notion_list_database_node)
+        - [Notion - List Pages](/docs/library/nodes/management/notion_list_page_node)
+        - [Notion - Read Page](/docs/library/nodes/management/notion_read_page_node)
+        - [Notion - Update Page](/docs/library/nodes/management/notion_update_page_node)
     </Accordion>
     <Accordion title="Office Nodes">
         - [Create Google Sheet](/docs/library/nodes/office/google_sheets)
@@ -66,8 +86,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Send Slack Media Message](/docs/library/nodes/output/slack_media_msg_send)
         - [Send Telegram Message](/docs/library/nodes/output/tg_msg_send)
         - [Send Telegram Media Message](/docs/library/nodes/output/tg_media_msg_send)
+        - [Delete Telegram Message](/docs/library/nodes/output/tg_msg_delete)
         - [Send Chatbot Response](/docs/library/nodes/output/chatbot_msg_send)
         - [Send Widget Response](/docs/library/nodes/output/widget_msg_send)
+        - [Send Discord Message](/docs/library/nodes/output/discord_msg_send)
     </Accordion>
     <Accordion title="Processing Nodes">
         - [Objects To Map](/docs/library/nodes/processing/obj_to_map)
@@ -77,17 +99,22 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Text Join](/docs/library/nodes/processing/text_join)
         - [Terminate Agent](/docs/library/nodes/processing/terminate_node)
         - [JSON to Text (Stringify)](/docs/library/nodes/processing/json_to_text)
+        - [JSON To Array](/docs/library/nodes/processing/json_to_array)
         - [JSON to CSV](/docs/library/nodes/processing/json_to_csv)
+        - [CSV to JSON](/docs/library/nodes/processing/csv_to_json)
         - [Extract JSON Value](/docs/library/nodes/processing/json_extract)
         - [Text to Date](/docs/library/nodes/processing/text_to_date)
         - [Number to Text](/docs/library/nodes/processing/num_to_text)
         - [Date to Text (Formatted)](/docs/library/nodes/processing/date_to_text)
         - [Date to Number (Timestamp)](/docs/library/nodes/processing/date_to_number)
         - [Knowledge Base](/docs/library/nodes/processing/rag_node)
+        - [Quick RAG](/docs/library/nodes/processing/quick_rag_node)
         - [Math Operation](/docs/library/nodes/processing/math_operation)
         - [API Call](/docs/library/nodes/processing/api_node)
         - [Text Replace](/docs/library/nodes/processing/text_replace)
+        - [Text Extract](/docs/library/nodes/processing/text_extract)
         - [Text to JSON (Parser)](/docs/library/nodes/processing/text_to_json)
+        - [Delay](/docs/library/nodes/processing/delay_node)
     </Accordion>
     <Accordion title="Search Nodes">
         - [AI Web Search](/docs/library/nodes/search/web_search_node)
@@ -95,10 +122,18 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Job Search](/docs/library/nodes/search/jobs_search)
     </Accordion>
     <Accordion title="Social Nodes">
+        - [Add Discord Role](/docs/library/nodes/social/discord_add_role)
+        - [Find Discord Channel](/docs/library/nodes/social/discord_find_channel)
+        - [Find Discord User](/docs/library/nodes/social/discord_find_user)
+        - [List Discord Roles](/docs/library/nodes/social/discord_list_roles)
+        - [Register Discord Command](/docs/library/nodes/social/discord_register_command)
+        - [Remove Discord Role](/docs/library/nodes/social/discord_remove_role)
         - [Get Gmail Email](/docs/library/nodes/social/gmail_get)
+        - [Send Deforge Email](/docs/library/nodes/social/send_deforge_email_node)
         - [Send Email](/docs/library/nodes/social/send_email_node)
         - [YouTube Upload](/docs/library/nodes/social/yt_upload)
         - [Tweet Post](/docs/library/nodes/social/tweet_post)
+        - [X (Twitter) Browser](/docs/library/nodes/social/twitter_browser)
         - [LinkedIn Post](/docs/library/nodes/social/linkedin_post)
     </Accordion>
     <Accordion title="Trigger Nodes">
@@ -109,5 +144,6 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
         - [Cron Trigger](/docs/library/nodes/trigger/cron_trigger)
         - [Chatbot Trigger](/docs/library/nodes/trigger/chatbot_trigger)
         - [Widget Trigger](/docs/library/nodes/trigger/widget_trigger)
+        - [Discord Trigger](/docs/library/nodes/trigger/discord_trigger)
     </Accordion>
 </Accordions>

@@ -1,0 +1,186 @@
+---
+title: Airtable Update Record
+description: Update a record in Airtable.
+tags: [airtable, database, update]
+github: https://github.com/DeForge-Labs/library/blob/main/database/airtable_update_record/node.js
+difficulty: medium
+credits: 10
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Airtable: Update Record",
+  category: "database",
+  type: "airtable_update_record",
+  icon: {},
+  desc: "Update a record in Airtable.",
+  credit: 10,
+  inputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Base ID", type: "Text" },
+    { name: "Table Name", type: "Text" },
+    { name: "Record ID", type: "Text" },
+    { name: "Fields", type: "JSON", desc: "Fields to update" },
+  ],
+  outputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Success", type: "Boolean" },
+    { name: "Tool", type: "Tool" },
+  ],
+  fields: [
+    { name: "Base ID", type: "Text", value: "" },
+    { name: "Table Name", type: "Text", value: "" },
+    { name: "Record ID", type: "Text", value: "" },
+    { name: "Fields", type: "Map", value: "", desc: "Fields to update" },
+    {
+      desc: "Connect your Airtable Account",
+      name: "Airtable",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["airtable", "database", "update"],
+}} />
+
+---
+
+## Description
+This node allows you to update a record in Airtable. You can specify the base, table, and record you want to update, as well as the fields and their new values. This is useful for keeping your Airtable data up-to-date based on actions or events in your workflow.
+
+### Common Use Cases
+- Updating a contact's information in Airtable after receiving new data from a form submission.
+- Modifying a task's status in Airtable when it's marked as complete in another tool.
+- Changing a product's inventory count in Airtable after a purchase is made.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Record ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Fields</DataName>
+    <DataDesc>
+    <DescLine>Fields to update</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Success</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Record ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Fields</DataName>
+    <DataDesc>
+    <DescLine>Fields to update</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Airtable</DataName>
+    <DataDesc>
+    <DescLine>Connect your Airtable Account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

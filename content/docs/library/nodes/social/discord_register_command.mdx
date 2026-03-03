@@ -1,0 +1,162 @@
+---
+title: Register Discord Command
+description: Checks if a slash command exists in the connected server, and registers it if it doesn't
+tags: [action, discord, bot, setup, command]
+github: https://github.com/DeForge-Labs/library/blob/main/social/discord_register_command/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Register Discord Command",
+  category: "social",
+  type: "discord_register_command",
+  icon: {},
+  desc: "Checks if a slash command exists in the connected server, and registers it if it doesn't",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The name of the slash command (lowercase, no spaces)",
+      name: "Command Name",
+      type: "Text",
+    },
+    {
+      desc: "Description of what the command does",
+      name: "Description",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger next",
+      name: "Flow",
+      type: "Flow",
+    },
+  ],
+  fields: [
+    {
+      desc: "The name of the slash command (e.g., check-inventory)",
+      name: "Command Name",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Description of what the command does",
+      name: "Description",
+      type: "Text",
+      value: "A custom Deforge agent command",
+    },
+    {
+      desc: "Connect to your Discord account",
+      name: "Discord",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "discord", "bot", "setup", "command"],
+}} />
+
+---
+
+## Description
+The Register Discord Command node allows you to create custom slash commands for your Deforge agents in Discord. When executed, the node checks if a command with the specified name already exists in the connected Discord server. If it doesn't exist, the node registers the new command with the provided description. This enables users to interact with your Deforge agent directly through Discord using the defined slash command.
+
+### Common Use Cases
+- Setting up custom commands for your Deforge agent in Discord
+- Allowing users to trigger specific workflows in your agent via Discord commands
+- Managing and organizing your agent's Discord interactions with clear command structures
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Command Name</DataName>
+    <DataDesc>
+    <DescLine>The name of the slash command (lowercase, no spaces)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Description</DataName>
+    <DataDesc>
+    <DescLine>Description of what the command does</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger next</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Command Name</DataName>
+    <DataDesc>
+    <DescLine>The name of the slash command (e.g., check-inventory)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Description</DataName>
+    <DataDesc>
+    <DescLine>Description of what the command does</DescLine>
+    <DescLine>**Value:** `A custom Deforge agent command`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Discord</DataName>
+    <DataDesc>
+    <DescLine>Connect to your Discord account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

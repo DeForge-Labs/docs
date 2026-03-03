@@ -1,0 +1,173 @@
+---
+title: Airtable Create Records
+description: Create new records in an Airtable Base.
+tags: [airtable, database, create]
+github: https://github.com/DeForge-Labs/library/blob/main/database/airtable_create_records/node.js
+difficulty: medium
+credits: 10
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Airtable: Create Records",
+  category: "database",
+  type: "airtable_create_records",
+  icon: {},
+  desc: "Create new records in an Airtable Base.",
+  credit: 10,
+  inputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Base ID", type: "Text" },
+    { name: "Table Name", type: "Text" },
+    {
+      name: "Fields",
+      type: "JSON",
+      desc: "JSON object of fields (e.g. {'Name': 'John'})",
+    },
+  ],
+  outputs: [
+    { name: "Flow", type: "Flow" },
+    { name: "Created IDs", type: "JSON", desc: "List of new Record IDs" },
+    { name: "Tool", type: "Tool" },
+  ],
+  fields: [
+    { name: "Base ID", type: "Text", value: "" },
+    { name: "Table Name", type: "Text", value: "" },
+    { name: "Fields", type: "Map", value: "", desc: "Fields to create" },
+    {
+      desc: "Connect your Airtable Account",
+      name: "Airtable",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["airtable", "database", "create"],
+}} />
+
+---
+
+## Description
+The Airtable Create Records node allows you to create new records in a specified Airtable Base and Table. You can provide the fields for the new record as a JSON object, and the node will return the IDs of the created records along with a tool output for further actions.
+
+### Common Use Cases
+- Adding new entries to an Airtable Base based on user input or data from other nodes.
+- Automating the creation of records in Airtable as part of a larger workflow.
+- Integrating Airtable with other tools and APIs to keep your data in sync.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Fields</DataName>
+    <DataDesc>
+    <DescLine>JSON object of fields (e.g. \{'Name': 'John'\})</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Created IDs</DataName>
+    <DataDesc>
+    <DescLine>List of new Record IDs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>undefined</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Fields</DataName>
+    <DataDesc>
+    <DescLine>Fields to create</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('map')}>Map</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Airtable</DataName>
+    <DataDesc>
+    <DescLine>Connect your Airtable Account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

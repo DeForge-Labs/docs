@@ -1,0 +1,172 @@
+---
+title: Quick RAG
+description: Instantly process text or a URL to answer a specific query. (Max 200k characters)
+tags: [rag, scraping, search, memory, ai]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/quick_rag_node/node.js
+difficulty: medium
+credits: 10
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Quick RAG",
+  category: "processing",
+  type: "quick_rag_node",
+  icon: {},
+  desc: "Instantly process text or a URL to answer a specific query. (Max 200k characters)",
+  credit: 10,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "URL to scrape or Raw Text to analyze",
+      name: "Source",
+      type: "Text",
+    },
+    {
+      desc: "The question you want to ask about this source",
+      name: "Query",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Retrieved Context (The relevant parts of the text)",
+      name: "Context",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Source",
+      type: "TextArea",
+      desc: "URL or Text content",
+      value: "",
+    },
+    {
+      name: "Query",
+      type: "Text",
+      desc: "What do you want to find?",
+      value: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["rag", "scraping", "search", "memory", "ai"],
+}} />
+
+---
+
+## Description
+The Quick RAG node allows you to quickly retrieve relevant information from a given text source or URL based on a specific query. This node is ideal for scenarios where you need to extract insights or answers from large bodies of text without setting up a full RAG pipeline. It can handle up to 200k characters, making it suitable for processing articles, documents, or web pages.
+
+### Common Use Cases
+- Extracting key information from a news article based on a specific question.
+- Summarizing the main points of a long document in response to a query.
+- Retrieving relevant sections from a web page to answer a user's question.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Source</DataName>
+    <DataDesc>
+    <DescLine>URL to scrape or Raw Text to analyze</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>The question you want to ask about this source</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Context</DataName>
+    <DataDesc>
+    <DescLine>Retrieved Context (The relevant parts of the text)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Source</DataName>
+    <DataDesc>
+    <DescLine>URL or Text content</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Query</DataName>
+    <DataDesc>
+    <DescLine>What do you want to find?</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

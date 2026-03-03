@@ -1,0 +1,170 @@
+---
+title: Suno Music Status
+description: Check the status of a Suno generation task. Returns Audio URL if complete.
+tags: [suno, status, check]
+github: https://github.com/DeForge-Labs/library/blob/main/GenAI/suno_music_status/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Suno Music Status",
+  category: "GenAI",
+  type: "suno_music_status",
+  icon: {},
+  desc: "Check the status of a Suno generation task. Returns Audio URL if complete.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The Task ID from the Generation Node",
+      name: "Task ID",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Current Status (PENDING, SUCCESS, etc)",
+      name: "Status",
+      type: "Text",
+    },
+    {
+      desc: "The Audio URL (if ready)",
+      name: "Audio URL",
+      type: "Text",
+    },
+    {
+      desc: "Full JSON Data (Includes both tracks)",
+      name: "Full Data",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "The Task ID",
+      name: "Task ID",
+      type: "Text",
+      value: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["suno", "status", "check"],
+}} />
+
+---
+
+## Description
+This node checks the status of a Suno Music generation task using the Task ID from the Generation Node. It outputs the current status (e.g., PENDING, SUCCESS) and provides the Audio URL if the generation is complete, along with the full JSON data and tool version.
+
+### Common Use Cases
+- Monitor the progress of a Suno Music generation task in real-time.
+- Trigger subsequent actions in a workflow based on the status of the music generation.
+- Retrieve the generated audio URL once the task is complete for further processing or playback.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Task ID</DataName>
+    <DataDesc>
+    <DescLine>The Task ID from the Generation Node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Status</DataName>
+    <DataDesc>
+    <DescLine>Current Status (PENDING, SUCCESS, etc)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Audio URL</DataName>
+    <DataDesc>
+    <DescLine>The Audio URL (if ready)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Full Data</DataName>
+    <DataDesc>
+    <DescLine>Full JSON Data (Includes both tracks)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Task ID</DataName>
+    <DataDesc>
+    <DescLine>The Task ID</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

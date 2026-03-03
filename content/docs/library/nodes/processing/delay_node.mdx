@@ -1,0 +1,124 @@
+---
+title: Delay
+description: Pauses the workflow execution for a specified duration.
+tags: [delay, wait, sleep, pause]
+github: https://github.com/DeForge-Labs/library/blob/main/processing/delay_node/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Delay",
+  category: "processing",
+  type: "delay_node",
+  icon: {},
+  desc: "Pauses the workflow execution for a specified duration.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger after delay",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Duration to wait",
+      name: "Duration",
+      type: "select",
+      value: "5 secs",
+      options: ["5 secs", "10 secs", "30 secs", "1 min"],
+    },
+  ],
+  difficulty: "easy",
+  tags: ["delay", "wait", "sleep", "pause"],
+}} />
+
+---
+
+## Description
+The Delay node allows you to pause the execution of your workflow for a specified duration. This can be useful in various scenarios, such as waiting for an external process to complete, adding a delay between API calls to avoid rate limits, or creating timed intervals in your agent's behavior.
+
+### Common Use Cases
+- **Rate Limiting**: If your workflow involves making API calls to a service with rate limits, you can use the Delay node to space out the calls and avoid hitting those limits.
+- **Waiting for External Events**: If your workflow needs to wait for an external event or process to complete (e.g., waiting for a file to be uploaded, or for a user to respond), you can use the Delay node to pause execution until it's appropriate to continue.
+- **Creating Intervals**: If you want your agent to perform an action at regular intervals (e.g., checking for updates every hour), you can use the Delay node to create those intervals.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger after delay</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Duration</DataName>
+    <DataDesc>
+    <DescLine>Duration to wait</DescLine>
+    <DescLine>**Value:** `5 secs`</DescLine>
+    <DescLine>**Options:** <Badge>5 secs</Badge> <Badge>10 secs</Badge> <Badge>30 secs</Badge> <Badge>1 min</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -1,0 +1,186 @@
+---
+title: Airtable List Records
+description: Fetch records from an Airtable Base using OAuth.
+tags: [airtable, database, list]
+github: https://github.com/DeForge-Labs/library/blob/main/database/airtable_list_records/node.js
+difficulty: medium
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Airtable: List Records",
+  category: "database",
+  type: "airtable_list_records",
+  icon: {},
+  desc: "Fetch records from an Airtable Base using OAuth.",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The Base ID (starts with app...)",
+      name: "Base ID",
+      type: "Text",
+    },
+    {
+      desc: "The Table Name or ID (starts with tbl...)",
+      name: "Table Name",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The records found (JSON)",
+      name: "Records",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Base ID",
+      type: "Text",
+      value: "",
+      desc: "The Base ID (e.g., appAbc123...)",
+    },
+    {
+      name: "Table Name",
+      type: "Text",
+      value: "",
+      desc: "The Table Name (e.g., Tasks)",
+    },
+    {
+      desc: "Connect your Airtable Account",
+      name: "Airtable",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["airtable", "database", "list"],
+}} />
+
+---
+
+## Description
+The Airtable List Records node allows you to fetch records from a specified Airtable Base and Table using OAuth authentication. This node is useful for retrieving data stored in Airtable and using it within your Deforge workflows.
+
+### Common Use Cases
+- Fetching data from Airtable to use in other nodes (e.g., for processing or output).
+- Integrating Airtable data into larger workflows that involve multiple steps and nodes.
+- Automating data retrieval from Airtable on a scheduled basis or in response to specific triggers.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>The Base ID (starts with app...)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>The Table Name or ID (starts with tbl...)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Records</DataName>
+    <DataDesc>
+    <DescLine>The records found (JSON)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Base ID</DataName>
+    <DataDesc>
+    <DescLine>The Base ID (e.g., appAbc123...)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Table Name</DataName>
+    <DataDesc>
+    <DescLine>The Table Name (e.g., Tasks)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Airtable</DataName>
+    <DataDesc>
+    <DescLine>Connect your Airtable Account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

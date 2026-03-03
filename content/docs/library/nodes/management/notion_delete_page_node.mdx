@@ -1,0 +1,160 @@
+---
+title: Notion Delete Page
+description: Move a Notion page to the Trash (Archive).
+tags: [notion, delete, archive, remove]
+github: https://github.com/DeForge-Labs/library/blob/main/management/notion_delete_page_node/node.js
+difficulty: easy
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Notion: Delete Page",
+  category: "management",
+  type: "notion_delete_page_node",
+  icon: {},
+  desc: "Move a Notion page to the Trash (Archive).",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The 32-character ID of the page to delete",
+      name: "Page ID",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Success status (true/false)",
+      name: "Success",
+      type: "Boolean",
+    },
+    {
+      desc: "The tool version for LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Connect your Notion Workspace",
+      name: "Notion",
+      type: "social",
+      defaultValue: "",
+    },
+    {
+      name: "Page ID",
+      type: "Text",
+      value: "",
+      desc: "The ID of the page to delete",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["notion", "delete", "archive", "remove"],
+}} />
+
+---
+
+## Description
+The Notion Delete Page node allows you to move a page in your Notion workspace to the Trash (Archive). This is useful for automating the cleanup of outdated or irrelevant pages, managing content lifecycle, and keeping your Notion workspace organized.
+
+### Common Use Cases
+- Automatically archive a page when a project is completed.
+- Remove a page from a database when a specific condition is met.
+- Clean up test pages created during development or automation testing.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Page ID</DataName>
+    <DataDesc>
+    <DescLine>The 32-character ID of the page to delete</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Success</DataName>
+    <DataDesc>
+    <DescLine>Success status (true/false)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version for LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Notion</DataName>
+    <DataDesc>
+    <DescLine>Connect your Notion Workspace</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Page ID</DataName>
+    <DataDesc>
+    <DescLine>The ID of the page to delete</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>

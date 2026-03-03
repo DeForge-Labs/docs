@@ -1,0 +1,266 @@
+---
+title: Suno Music Gen
+description: Generate music using Suno AI. Returns a Task ID to check status later.
+tags: [suno, music, ai, audio]
+github: https://github.com/DeForge-Labs/library/blob/main/GenAI/suno_music_gen/node.js
+difficulty: medium
+credits: 65
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "Suno Music Gen",
+  category: "GenAI",
+  type: "suno_music_gen",
+  icon: {},
+  desc: "Generate music using Suno AI. Returns a Task ID to check status later.",
+  credit: 65,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Description of the song or Lyrics (depending on mode)",
+      name: "Prompt",
+      type: "Text",
+    },
+    {
+      desc: "Enable Custom Mode (Requires Style & Title)",
+      name: "Custom Mode",
+      type: "Boolean",
+    },
+    {
+      desc: "Instrumental only (No lyrics)",
+      name: "Instrumental",
+      type: "Boolean",
+    },
+    {
+      desc: "Music Style (Required for Custom Mode)",
+      name: "Style",
+      type: "Text",
+    },
+    {
+      desc: "Song Title (Required for Custom Mode)",
+      name: "Title",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The Task ID to track progress",
+      name: "Task ID",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Description or Lyrics",
+      name: "Prompt",
+      type: "TextArea",
+      value: "A relaxing lofi beat...",
+    },
+    {
+      desc: "Enable Custom Mode",
+      name: "Custom Mode",
+      type: "CheckBox",
+      value: false,
+    },
+    {
+      desc: "Instrumental",
+      name: "Instrumental",
+      type: "CheckBox",
+      value: false,
+    },
+    {
+      desc: "Music Style (Custom Mode only)",
+      name: "Style",
+      type: "TextArea",
+      value: "",
+    },
+    {
+      desc: "Song Title (Custom Mode only)",
+      name: "Title",
+      type: "TextArea",
+      value: "",
+    },
+    {
+      desc: "Model Version",
+      name: "Model",
+      type: "select",
+      value: "V4",
+      options: ["V4", "V4_5", "V4_5PLUS", "V5"],
+    },
+  ],
+  difficulty: "medium",
+  tags: ["suno", "music", "ai", "audio"],
+}} />
+
+---
+
+## Description
+The Suno Music Gen node allows you to generate music based on text prompts using Suno AI. You can specify the song description or lyrics, choose between custom mode for more control, and generate either instrumental or vocal tracks. The node returns a Task ID that you can use to check the status of the music generation process later.
+
+### Common Use Cases
+- Creating custom music for videos or podcasts
+- Generating background music for games or apps
+- Experimenting with AI-generated music compositions
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>Description of the song or Lyrics (depending on mode)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Custom Mode</DataName>
+    <DataDesc>
+    <DescLine>Enable Custom Mode (Requires Style & Title)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Instrumental</DataName>
+    <DataDesc>
+    <DescLine>Instrumental only (No lyrics)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('boolean')}>Boolean</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Style</DataName>
+    <DataDesc>
+    <DescLine>Music Style (Required for Custom Mode)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Song Title (Required for Custom Mode)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Task ID</DataName>
+    <DataDesc>
+    <DescLine>The Task ID to track progress</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Prompt</DataName>
+    <DataDesc>
+    <DescLine>Description or Lyrics</DescLine>
+    <DescLine>**Value:** `A relaxing lofi beat...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Custom Mode</DataName>
+    <DataDesc>
+    <DescLine>Enable Custom Mode</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Instrumental</DataName>
+    <DataDesc>
+    <DescLine>Instrumental</DescLine>
+    <DescLine>**Value:** `false`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('checkbox')}>CheckBox</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Style</DataName>
+    <DataDesc>
+    <DescLine>Music Style (Custom Mode only)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Song Title (Custom Mode only)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>Model Version</DescLine>
+    <DescLine>**Value:** `V4`</DescLine>
+    <DescLine>**Options:** <Badge>V4</Badge> <Badge>V4_5</Badge> <Badge>V4_5PLUS</Badge> <Badge>V5</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+</DataTable>

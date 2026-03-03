@@ -11,12 +11,37 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Chat Bot Trigger Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Chatbot Trigger",
+  category: "trigger",
+  type: "chatbot_trigger",
+  icon: {},
+  desc: "Triggers the flow when a message is recieved from the Chat Bot UI",
+  credit: 0,
+  inputs: [],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Message recieved by the bot",
+      name: "Message",
+      type: "Text",
+    },
+  ],
+  fields: [
+    {
+      desc: "Intro message shown by the bot",
+      name: "Intro",
+      type: "TextArea",
+      value: `🎉 Welcome! I'm your AI assistant. This is a demo workflow. Ask me anything!`,
+    },
+  ],
+  difficulty: "easy",
+  tags: ["trigger", "chat", "bot"],
+}} />
 
 ---
 

@@ -11,12 +11,59 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Tweet Post Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Tweet Post",
+  category: "social",
+  type: "tweet_post",
+  icon: {},
+  desc: "Post an update to your Twitter/X account",
+  credit: 10,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Text that you want to post",
+      name: "Post",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The link of the posted tweet",
+      name: "Tweet Link",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Text that you want to post",
+      name: "Post",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Connect to your Twitter account",
+      name: "Twitter",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["twitter", "tweet", "post", "social"],
+}} />
 
 ---
 

@@ -11,12 +11,83 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Get Gmail Email Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Get Gmail Email",
+  category: "social",
+  type: "gmail_get",
+  icon: {},
+  desc: "Retrieve email from your connected gmail account using a search query (requires Gmail_Read connection).",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Search query for email (same as gmail search bar, e.g., 'is:unread from:amazon')",
+      name: "Search Query",
+      type: "Text",
+    },
+    {
+      desc: "Number of email to retrieve",
+      name: "Count",
+      type: "Number",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "All email data (JSON array of {subject, body})",
+      name: "All Email",
+      type: "JSON",
+    },
+    {
+      desc: "The email subject (if only one email selected)",
+      name: "Subject",
+      type: "Text",
+    },
+    {
+      desc: "The email body (if only one email selected)",
+      name: "Body",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Search query for email (same as gmail search bar)",
+      name: "Search Query",
+      type: "Text",
+      value: "search query here ...",
+    },
+    {
+      desc: "Number of email to retrieve",
+      name: "Count",
+      type: "Slider",
+      value: 5,
+      min: 1,
+      max: 50,
+      step: 1,
+    },
+    {
+      desc: "Connect to your Gmail account",
+      name: "Gmail_Read",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["get", "gmail", "email", "inbox", "search"],
+}} />
 
 ---
 

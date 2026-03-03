@@ -11,12 +11,39 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/str_var_light.png"
   data-dark-src="https://docs-assets.deforge.io/str_var_dark.png"
   alt="Text Input Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "Text Input",
+  category: "input",
+  type: "str_var",
+  icon: {},
+  desc: "String input from users",
+  credit: 0,
+  inputs: [],
+  outputs: [
+    {
+      name: "Text",
+      type: "Text",
+      desc: "",
+    },
+  ],
+  fields: [
+    {
+      name: "Text",
+      type: "TextArea",
+      desc: "",
+      value: "Enter text here...",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["str", "text", "user", "input"],
+}} />
 
 ---
 

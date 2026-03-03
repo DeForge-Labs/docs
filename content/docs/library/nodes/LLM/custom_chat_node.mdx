@@ -11,12 +11,123 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Custom Chat Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Custom Chat",
+    category: "LLM",
+    type: "custom_chat_node",
+    icon: {},
+    desc: "Chat with custom OpenAI-compatible LLMs",
+    credit: 10,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The endpoint of the OpenAI compatible LLM API",
+            name: "Endpoint",
+            type: "Text",
+        },
+        {
+            desc: "Chat text to send",
+            name: "Query",
+            type: "Text",
+        },
+        {
+            desc: "List of tools that the LLM can use",
+            name: "Tools",
+            type: "Tool[]",
+        },
+        {
+            desc: "System prompt for the LLM",
+            name: "System Prompt",
+            type: "Text",
+        },
+        {
+            desc: "Creativity of the LLM",
+            name: "Temperature",
+            type: "Number",
+        },
+        {
+            desc: "RAG Knowledge base",
+            name: "RAG",
+            type: "Rag",
+        },
+        {
+            desc: "Save chat as context for LLM",
+            name: "Save Context",
+            type: "Boolean",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The response of the LLM",
+            name: "output",
+            type: "Text",
+        },
+    ],
+    fields: [
+        {
+            desc: "The endpoint of the OpenAI compatible LLM API",
+            name: "Endpoint",
+            type: "Text",
+            value: "https://api.openai.com/v1",
+        },
+        {
+            desc: "The LLM model",
+            name: "Model",
+            type: "Text",
+            value: "gpt-4o",
+        },
+        {
+            desc: "Chat text to send",
+            name: "Query",
+            type: "TextArea",
+            value: "Enter text here...",
+        },
+        {
+            desc: "List of tools that the LLM can use",
+            name: "Tools",
+            type: "Tool[]",
+            value: "",
+        },
+        {
+            desc: "System prompt for the LLM",
+            name: "System Prompt",
+            type: "TextArea",
+            value: "You are a helpful assistant",
+        },
+        {
+            desc: "Creativity of the LLM",
+            name: "Temperature",
+            type: "Slider",
+            value: 0.5,
+            min: 0,
+            max: 2,
+            step: 0.1,
+        },
+        {
+            desc: "Save chat as context for LLM",
+            name: "Save Context",
+            type: "CheckBox",
+            value: true,
+        },
+        {
+            desc: "Api Key for the custom LLM",
+            name: "LLM_API_KEY",
+            type: "env",
+            defaultValue: "your-api-key-here",
+        },
+    ],
+    difficulty: "hard",
+    tags: ["llm", "chatbot"],
+}} />
 
 ---
 

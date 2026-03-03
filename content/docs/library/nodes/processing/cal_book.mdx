@@ -11,12 +11,118 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Book Cal.com Meeting Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Book Cal.com Meeting",
+  category: "processing",
+  type: "cal_book",
+  icon: {},
+  desc: "Book cal.com meeting",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Name of the user",
+      name: "Name",
+      type: "Text",
+    },
+    {
+      desc: "Email of the user",
+      name: "Email",
+      type: "Text",
+    },
+    {
+      desc: "Cal.com Public Link",
+      name: "Meeting Link",
+      type: "Text",
+    },
+    {
+      desc: "Timezone of the meeting in IANA format (e.g., Europe/London)",
+      name: "timezone",
+      type: "Text",
+    },
+    {
+      desc: "Slot to book (Date object or string representation of a specific time)",
+      name: "Date",
+      type: "Date",
+    },
+    {
+      desc: "Duration of the meeting (e.g., 30mins, 45mins, 1hr)",
+      name: "Duration",
+      type: "Text", // Changed type to Text for consistency with string options
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The flow of the workflow if booking is successful",
+      name: "Success",
+      type: "Flow",
+    },
+    {
+      desc: "The flow of the workflow if error occurs",
+      name: "Error",
+      type: "Flow",
+    },
+    {
+      desc: "Error details",
+      name: "Error payload",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Name of the user",
+      name: "Name",
+      type: "Text",
+      value: "Name...",
+    },
+    {
+      desc: "Email of the user",
+      name: "Email",
+      type: "Text",
+      value: "Email...",
+    },
+    {
+      desc: "Cal.com Public Link",
+      name: "Meeting Link",
+      type: "Text",
+      value: "Meeting Link...",
+    },
+    {
+      desc: "The timezone of the meeting in IANA format",
+      name: "timezone",
+      type: "Text",
+      value: "Europe/London",
+    },
+    {
+      desc: "Slot to book",
+      name: "Date",
+      type: "Date",
+    },
+    {
+      desc: "Duration of the meeting",
+      name: "Duration",
+      type: "select",
+      value: "30mins",
+      options: ["30mins", "45mins", "1hr"],
+    },
+  ],
+  difficulty: "easy",
+  tags: ["cal.com", "book", "meeting"],
+}} />
 
 ---
 

@@ -11,12 +11,102 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="HubSpot - Search Deals Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "HubSpot - Search Deals",
+  category: "management",
+  type: "hubspot_search_deals_node",
+  icon: {},
+  desc: "Search for deals in HubSpot CRM with filters",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Query",
+      type: "Text",
+      desc: "Search query string",
+    },
+    {
+      name: "Filters",
+      type: "JSON",
+      desc: "Array of filter objects [{propertyName, operator, value}]",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      desc: "Maximum number of results (default: 10, max: 100)",
+    },
+    {
+      name: "Sorts",
+      type: "JSON",
+      desc: "Array of sort objects [{propertyName, direction}]",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the search was successful",
+    },
+    {
+      name: "deals",
+      type: "JSON",
+      desc: "Array of matching deals",
+    },
+    {
+      name: "total",
+      type: "Number",
+      desc: "Total number of matching deals",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Query",
+      type: "Text",
+      desc: "Search query string",
+      value: "",
+    },
+    {
+      name: "Filters",
+      type: "Map",
+      value: "",
+      desc: "Array of filter objects [{propertyName, operator, value}]",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      value: 10,
+      desc: "Maximum number of results (default: 10, max: 100)",
+    },
+    {
+      name: "Sorts",
+      type: "Map",
+      value: "",
+      desc: "Array of sort objects [{propertyName, direction}]",
+    },
+    {
+      desc: "Connect to your HubSpot account",
+      name: "HubSpot",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["hubspot", "crm", "deal", "search", "filter", "management"],
+}} />
 
 ---
 

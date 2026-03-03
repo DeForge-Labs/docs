@@ -11,12 +11,52 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="JSON to Text (Stringify) Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "JSON to Text (Stringify)",
+  category: "processing",
+  type: "json_to_text",
+  icon: {},
+  desc: "Converts a JSON object or array into a standard JSON string.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "JSON object or array to convert",
+      name: "JSON",
+      type: "JSON",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The text/string representation of the JSON data",
+      name: "Text",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs", // 2. Add Tool output
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "JSON object or array to convert",
+      name: "JSON",
+      type: "Map", // Field type for configuration UI
+    },
+  ],
+  difficulty: "easy",
+  tags: ["text", "json", "stringify", "converter"],
+}} />
 
 ---
 

@@ -11,12 +11,96 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Jobs Search Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Jobs Search",
+  category: "search",
+  type: "jobs_search",
+  icon: {},
+  desc: "Search for jobs with a given search term using Adzuna API",
+  credit: 10,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Terms to search",
+      name: "Terms",
+      type: "Text",
+    },
+    {
+      desc: "Minimum Salary you want",
+      name: "Min Salary",
+      type: "Number",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The list of retrieved jobs (JSON array)",
+      name: "Job List",
+      type: "JSON",
+    },
+    {
+      desc: "The list of jobs in CSV format",
+      name: "Job List CSV",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Terms to search",
+      name: "Terms",
+      type: "Text",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Minimum Salary you want",
+      name: "Min Salary",
+      type: "Number",
+      value: 0,
+    },
+    {
+      desc: "The country where you want to work",
+      name: "Country",
+      type: "select",
+      value: "United States",
+      options: [
+        "Great Britain",
+        "United States",
+        "Austria",
+        "Australia",
+        "Belgium",
+        "Brazil",
+        "Canada",
+        "Switzerland",
+        "Germany",
+        "Spain",
+        "France",
+        "India",
+        "Italy",
+        "Mexico",
+        "Netherlands",
+        "New Zealand",
+        "Poland",
+        "Singapore",
+        "South Africa",
+      ],
+    },
+  ],
+  difficulty: "easy",
+  tags: ["jobs", "adzuna", "search"],
+}} />
 
 ---
 

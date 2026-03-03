@@ -11,12 +11,108 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="HubSpot - Associate Objects Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "HubSpot - Associate Objects",
+  category: "management",
+  type: "hubspot_associate_objects_node",
+  icon: {},
+  desc: "Associate two objects in HubSpot CRM (e.g., contact to company, deal to contact)",
+  credit: 3,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "FromObjectType",
+      type: "Text",
+      desc: "Type of the first object (contact, company, deal, etc.)",
+    },
+    {
+      name: "FromObjectId",
+      type: "Text",
+      desc: "ID of the first object",
+    },
+    {
+      name: "ToObjectType",
+      type: "Text",
+      desc: "Type of the second object (contact, company, deal, etc.)",
+    },
+    {
+      name: "ToObjectId",
+      type: "Text",
+      desc: "ID of the second object",
+    },
+    {
+      name: "AssociationType",
+      type: "Text",
+      desc: "Association type ID (optional, uses default if not provided)",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the association was created successfully",
+    },
+    {
+      name: "message",
+      type: "Text",
+      desc: "Success or error message",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "FromObjectType",
+      type: "Text",
+      desc: "Type of the first object (contact, company, deal, etc.)",
+      value: "contact",
+    },
+    {
+      name: "FromObjectId",
+      type: "Text",
+      value: "",
+      desc: "ID of the first object",
+    },
+    {
+      name: "ToObjectType",
+      type: "Text",
+      desc: "Type of the second object (contact, company, deal, etc.)",
+      value: "company",
+    },
+    {
+      name: "ToObjectId",
+      type: "Text",
+      value: "",
+      desc: "ID of the second object",
+    },
+    {
+      name: "AssociationType",
+      type: "Text",
+      value: "",
+      desc: "Association type ID (optional, uses default if not provided)",
+    },
+    {
+      desc: "Connect to your HubSpot account",
+      name: "HubSpot",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["hubspot", "crm", "associate", "management"],
+}} />
 
 ---
 

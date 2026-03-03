@@ -11,12 +11,83 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="LinkedIN Post Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "LinkedIN Post",
+  category: "social",
+  type: "linkedin_post",
+  icon: {},
+  desc: "Make a post on LinkedIn with optional text, image, or video (requires LinkedIn connection).",
+  credit: 5,
+  inputs: [
+    {
+      desc: "Text content to post",
+      name: "Content",
+      type: "Text",
+    },
+    {
+      desc: "Link of the video to upload",
+      name: "Video Link",
+      type: "Text",
+    },
+    {
+      desc: "Link of the image to upload",
+      name: "Image Link",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The link of the newly created post",
+      name: "Post Link",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Text content to post",
+      name: "Content",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Link of the video to upload",
+      name: "Video Link",
+      type: "Text",
+      value: "Enter video link here...",
+    },
+    {
+      desc: "Link of the image to upload",
+      name: "Image Link",
+      type: "Text",
+      value: "Enter image link here...",
+    },
+    {
+      desc: "The visibility of the post",
+      name: "Visibility",
+      type: "select",
+      value: "PUBLIC",
+      options: ["PUBLIC", "CONNECTIONS", "LOGGED_IN"],
+    },
+    {
+      desc: "Connect to your Linked In account",
+      name: "LinkedIn",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["linkedin", "video", "image", "post", "social media"],
+}} />
 
 ---
 

@@ -11,12 +11,52 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Slack Trigger Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Slack Trigger",
+    category: "trigger",
+    type: "slack_trigger",
+    icon: {},
+    desc: "Triggers the flow when a message is recieved on the slack bot",
+    credit: 0,
+    inputs: [],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Message recieved by the bot",
+            name: "Message",
+            type: "Text",
+        },
+        {
+            desc: "Channel ID of the channel or DM",
+            name: "Channel ID",
+            type: "Text",
+        },
+        {
+            desc: "User ID of the user",
+            name: "User ID",
+            type: "Text",
+        },
+        {
+            desc: "Was the bot mentioned in the text ?",
+            name: "Is Bot Mentioned",
+            type: "Boolean"
+        }
+    ],
+    fields: [
+        {
+            desc: "Connect to your Slack account",
+            name: "Slack",
+            type: "social",
+            defaultValue: "",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["trigger", "slack", "bot"],
+}} />
 
 ---
 

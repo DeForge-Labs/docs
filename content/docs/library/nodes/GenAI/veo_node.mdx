@@ -11,12 +11,121 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/veo_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/veo_node_dark.png"
   alt="Veo AI Video Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<Callout title="Archived" type="warn">
+    This node is now archived and not available for use in Deforge
+</Callout>
+
+<NodePreview config={{
+  title: "Veo AI Video",
+  category: "GenAI",
+  type: "veo_node",
+  icon: {},
+  desc: "Generate AI videos using Google Veo ",
+  credit: 2667,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Video generation prompt",
+      name: "Prompt",
+      type: "Text",
+    },
+    {
+      desc: "Negative video generation prompt",
+      name: "Negative Prompt",
+      type: "Text",
+    },
+    {
+      desc: "Duration of the video (only applicable for Veo2)",
+      name: "Duration",
+      type: "Number",
+    },
+    {
+      desc: "Generate audio along with video (applicable only for Veo3)",
+      name: "Generate Audio",
+      type: "Boolean",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "Temporary link to the video",
+      name: "Video Link",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Video generation prompt",
+      name: "Prompt",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Negative video generation prompt",
+      name: "Negative Prompt",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Duration of the video (only applicable for Veo2)",
+      name: "Duration",
+      type: "Slider",
+      value: 6,
+      min: 5,
+      max: 8,
+      step: 1,
+    },
+    {
+      desc: "Model to be used for video generation",
+      name: "Model",
+      type: "select",
+      value: "Veo3",
+      options: ["Veo3", "Veo2"],
+    },
+    {
+      desc: "Aspect ratio of the video (applicable only for Veo2)",
+      name: "Ratio",
+      type: "select",
+      value: "16:9",
+      options: ["16:9", "9:16"],
+    },
+    {
+      desc: "Generate audio along with video (applicable only for Veo3)",
+      name: "Generate Audio",
+      type: "CheckBox",
+      value: true,
+    },
+    {
+      desc: "Should people be generated in the video",
+      name: "Person",
+      type: "select",
+      value: "Allow adults",
+      options: ["Allow adults", "Dont allow"],
+    },
+  ],
+  difficulty: "medium",
+  tags: ["veo", "google", "ai", "video"],
+}} />
 
 ---
 

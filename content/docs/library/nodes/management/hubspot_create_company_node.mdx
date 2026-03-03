@@ -11,12 +11,124 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="HubSpot - Create Company Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "HubSpot - Create Company",
+  category: "management",
+  type: "hubspot_create_company_node",
+  icon: {},
+  desc: "Create a new company in HubSpot CRM",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Name",
+      type: "Text",
+      desc: "Company name (required)",
+    },
+    {
+      name: "Domain",
+      type: "Text",
+      desc: "Company domain/website",
+    },
+    {
+      name: "Industry",
+      type: "Text",
+      desc: "Company industry",
+    },
+    {
+      name: "Phone",
+      type: "Text",
+      desc: "Company phone number",
+    },
+    {
+      name: "City",
+      type: "Text",
+      desc: "Company city",
+    },
+    {
+      name: "AdditionalProperties",
+      type: "JSON",
+      desc: "Additional company properties as key-value pairs",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the company was created successfully",
+    },
+    {
+      name: "companyId",
+      type: "Text",
+      desc: "The HubSpot company ID",
+    },
+    {
+      name: "company",
+      type: "JSON",
+      desc: "The created company object",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Name",
+      type: "Text",
+      desc: "Company name (required)",
+      value: "Acme Corporation",
+    },
+    {
+      name: "Domain",
+      type: "Text",
+      value: "acme.com",
+      desc: "Company domain/website",
+    },
+    {
+      name: "Industry",
+      type: "Text",
+      value: "",
+      desc: "Company industry",
+    },
+    {
+      name: "Phone",
+      type: "Text",
+      value: "",
+      desc: "Company phone number",
+    },
+    {
+      name: "City",
+      type: "Text",
+      value: "",
+      desc: "Company city",
+    },
+    {
+      name: "AdditionalProperties",
+      type: "Map",
+      value: "",
+      desc: "Additional company properties as key-value pairs",
+    },
+    {
+      desc: "Connect to your HubSpot account",
+      name: "HubSpot",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["hubspot", "crm", "company", "create", "management"],
+}} />
 
 ---
 

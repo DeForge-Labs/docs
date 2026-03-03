@@ -11,12 +11,53 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="API Trigger Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "API Trigger",
+  category: "trigger",
+  type: "api_trigger",
+  icon: {},
+  desc: "Triggers the flow when an HTTP request is received at a unique webhook URL.",
+  credit: 0,
+  inputs: [],
+  outputs: [
+    {
+      name: "Flow",
+      type: "Flow",
+      desc: "The Flow to trigger upon receiving a request.",
+    },
+    {
+      name: "Body",
+      type: "JSON",
+      desc: "The JSON payload sent in the request body.",
+    },
+    {
+      name: "Headers",
+      type: "JSON",
+      desc: "The HTTP headers from the incoming request.",
+    },
+    {
+      name: "Query",
+      type: "JSON",
+      desc: "The URL query parameters from the request.",
+    },
+    {
+      name: "Metadata",
+      type: "JSON",
+      desc: "Metadata about the request, like IP address and timestamp.",
+    },
+  ],
+  fields: [
+    {
+      name: "method",
+      type: "select",
+      desc: "The HTTP request method that will trigger this flow.",
+      value: "GET",
+      options: ["GET", "POST", "PUT", "DELETE"],
+    },
+  ],
+  difficulty: "easy",
+  tags: ["trigger", "api", "webhook", "http"],
+}} />
 
 ---
 

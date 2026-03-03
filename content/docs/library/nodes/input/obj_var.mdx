@@ -11,12 +11,56 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/obj_var_light.png"
   data-dark-src="https://docs-assets.deforge.io/obj_var_dark.png"
   alt="Object Input Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+  title: "Object Input",
+  category: "input",
+  type: "obj_var",
+  icon: {},
+  desc: "Object variable",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The key of the object",
+      name: "key",
+      type: "Text",
+    },
+    {
+      desc: "The value of the object",
+      name: "value",
+      type: "Any",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The object of the variable",
+      name: "Object",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "The key of the object",
+      name: "key",
+      type: "Text",
+      value: "key...",
+    },
+    {
+      desc: "The value of the object",
+      name: "value",
+      type: "Text",
+      value: "value...",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["object", "variable"],
+}} />
 
 ---
 

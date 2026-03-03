@@ -58,9 +58,9 @@ export default function DateTimePicker({
             <Button
               variant="outline"
               disabled={isDisabled}
-              className="w-full text-[10px] gap-1 font-normal justify-between h-7"
+              className="w-full text-[10px] gap-1 font-normal justify-between h-7 bg-[#f2f2f3] dark:bg-[#222225]"
             >
-              {selectedDate ? selectedDate.toLocaleDateString() : "Select date"}
+              {selectedDate ? selectedDate.toLocaleDateString() : "Select"}
               <ChevronDownIcon className="h-3 w-3" />
             </Button>
           </PopoverTrigger>
@@ -77,7 +77,7 @@ export default function DateTimePicker({
           onChange={handleTimeChange}
           disabled={isDisabled}
           style={{ fontSize: "10px", textAlign: "center" }}
-          className="h-7 rounded-lg"
+          className="h-7 rounded-lg bg-[#f2f2f3] dark:bg-[#222225]"
         />
       </div>
     </div>

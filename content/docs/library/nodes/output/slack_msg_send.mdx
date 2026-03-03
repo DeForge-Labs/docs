@@ -11,12 +11,60 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Send Slack Message Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Send Slack Message",
+    category: "output",
+    type: "slack_msg_send",
+    icon: {},
+    desc: "Send a message via your Slack bot",
+    credit: 0,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Text to send",
+            name: "Message",
+            type: "Text",
+        },
+        {
+            desc: "Channel ID to send the text to",
+            name: "ChannelID",
+            type: "Text"
+        }
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+    ],
+    fields: [
+        {
+            desc: "Text to send",
+            name: "Message",
+            type: "TextArea",
+            value: "text here ...",
+        },
+        {
+            desc: "Channel ID to send the text to",
+            name: "ChannelID",
+            type: "Text",
+            value: "123456",
+        },
+        {
+            desc: "Connect to your Slack account",
+            name: "Slack",
+            type: "social",
+            defaultValue: "",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["output", "slack", "bot"],
+}} />
 
 ---
 

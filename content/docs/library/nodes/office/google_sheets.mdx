@@ -11,12 +11,81 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Create Google Sheet Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Create Google Sheet",
+  category: "office",
+  type: "google_sheets",
+  icon: {},
+  desc: "Create a sheet in google sheets",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The title for the new spreadsheet",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "Raw CSV data as string",
+      name: "CSV Raw",
+      type: "Text",
+    },
+    {
+      desc: "Link to a CSV file",
+      name: "CSV Link",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The URL of the newly created Google Sheet",
+      name: "Sheet URL",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "The title for the new spreadsheet",
+      name: "Title",
+      type: "Text",
+      value: "New Sheet",
+    },
+    {
+      desc: "Raw CSV data as string",
+      name: "CSV Raw",
+      type: "TextArea",
+      value: "CSV here ...",
+    },
+    {
+      desc: "Link to a CSV file",
+      name: "CSV Link",
+      type: "Text",
+      value: "Link to CSV here ...",
+    },
+    {
+      desc: "Connect your google account",
+      name: "Google_Sheets",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["create", "sheets", "google", "csv"],
+}} />
 
 ---
 

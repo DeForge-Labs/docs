@@ -11,12 +11,43 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Output Text Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Output JSON",
+    category: "output",
+    type: "output_json",
+    icon: {},
+    desc: "Outputs JSON to the user",
+    credit: 0,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "JSON to output",
+            name: "JSON",
+            type: "JSON",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+    ],
+    fields: [
+        {
+            desc: "JSON to output",
+            name: "JSON",
+            type: "Map",
+            value: "",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["output", "json"],
+}} />
 
 ---
 

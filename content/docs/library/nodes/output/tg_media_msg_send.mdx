@@ -11,12 +11,93 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Send Telegram Media Message Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Send Telegram Media Message",
+  category: "output",
+  type: "tg_media_msg_send",
+  icon: {},
+  desc: "Send a media message via your telegram bot",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Direct link to the Media file you want to send",
+      name: "Media Link",
+      type: "Text",
+    },
+    {
+      desc: "Caption text to send",
+      name: "Caption",
+      type: "Text",
+    },
+    {
+      desc: "Chat ID to send the text to",
+      name: "ChatID",
+      type: "Text",
+    },
+    {
+      desc: "Reply Markup to add extra buttons to the message",
+      name: "ReplyMarkup",
+      type: "JSON",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The response from Telegram containing message_id and chat details",
+      name: "Response",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "Direct link to the Media file you want to send",
+      name: "Media Link",
+      type: "Text",
+      value: "link here ...",
+    },
+    {
+      desc: "Caption text to send",
+      name: "Caption",
+      type: "TextArea",
+      value: "text here ...",
+    },
+    {
+      desc: "Chat ID to send the text to",
+      name: "ChatID",
+      type: "Text",
+      value: "123456",
+    },
+    {
+      desc: "Media type that you want to send",
+      name: "Media Type",
+      type: "select",
+      value: "voice",
+      options: ["voice", "audio", "video", "gif", "photo", "document"],
+    },
+    {
+      desc: "Reply Markup to add extra buttons to the message",
+      name: "ReplyMarkup",
+      type: "Map",
+    },
+    {
+      desc: "Api Key of your Telegram bot",
+      name: "TG_API_KEY",
+      type: "env",
+      defaultValue: "eydnfnuani...",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["output", "media", "telegram", "bot"],
+}} />
 
 ---
 

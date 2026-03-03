@@ -11,12 +11,39 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/bool_var_light.png"
   data-dark-src="https://docs-assets.deforge.io/bool_var_dark.png"
   alt="Boolean Input Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+    title: "Boolean Input",
+    category: "input",
+    type: "bool_var",
+    icon: {},
+    desc: "Boolean variable",
+    credit: 0,
+    inputs: [],
+    outputs: [
+        {
+            name: "Boolean",
+            type: "Boolean",
+            desc: "",
+        }
+    ],
+    fields: [
+        {
+            name: "Boolean",
+            type: "CheckBox",
+            desc: "",
+            value: true,
+        },
+    ],
+    difficulty: "easy",
+    tags: ['bool', 'true', 'false'],
+}} />
 
 ---
 

@@ -11,12 +11,53 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Number to Text Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Number to Text",
+  category: "processing",
+  type: "num_to_text",
+  icon: {},
+  desc: "Converts a number (integer or float) into its string representation.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Number to convert",
+      name: "Number",
+      type: "Number",
+    },
+  ],
+  outputs: [
+    {
+      desc: "Flow output to continue the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The number in text format",
+      name: "Text",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Number to convert",
+      name: "Number",
+      type: "Number",
+      value: 0,
+    },
+  ],
+  difficulty: "easy",
+  tags: ["text", "num", "converter", "string"],
+}} />
 
 ---
 

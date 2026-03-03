@@ -11,12 +11,52 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Date to Number (Timestamp) Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Date to Number (Timestamp)",
+  category: "processing",
+  type: "date_to_number",
+  icon: {},
+  desc: "Converts a date object or string into a numeric Unix timestamp (milliseconds since epoch).",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Date to convert (e.g., Date object, ISO string)",
+      name: "Date",
+      type: "Date",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The number of milliseconds since the Unix epoch (timestamp)",
+      name: "Number",
+      type: "Number",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Date to convert",
+      name: "Date",
+      type: "Date",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["date", "number", "timestamp"],
+}} />
 
 ---
 

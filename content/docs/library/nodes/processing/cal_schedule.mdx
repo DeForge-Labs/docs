@@ -11,12 +11,74 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Get Cal.com Schedule Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Get Cal.com Schedule",
+  category: "processing",
+  type: "cal_schedule",
+  icon: {},
+  desc: "Get cal.com schedule",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Cal.com Public Link",
+      name: "Meeting Link",
+      type: "Text",
+    },
+    {
+      desc: "Timezone of the meeting in IANA format",
+      name: "timezone",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "Slots of the meeting",
+      name: "Slots",
+      type: "JSON",
+    },
+    {
+      desc: "The flow of the workflow if error occurs",
+      name: "Error",
+      type: "Flow",
+    },
+    {
+      desc: "Error details",
+      name: "Error payload",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs", // 2. Add Tool output
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Cal.com Public Link",
+      name: "Meeting Link",
+      type: "Text",
+      value: "Meeting Link...",
+    },
+    {
+      desc: "The timezone of the meeting in IANA format",
+      name: "timezone",
+      type: "Text",
+      value: "Europe/London",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["cal.com", "schedule", "meeting"],
+}} />
 
 ---
 

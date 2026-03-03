@@ -11,12 +11,37 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Knowledge Base Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Knowledge Base",
+  category: "processing",
+  type: "rag_node",
+  icon: {},
+  desc: "Load your pre-processed Knowledge Base to use it in LLMs",
+  credit: 0,
+  inputs: [],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "RAG Database",
+      name: "Rag Database",
+      type: "Rag",
+    },
+  ],
+  fields: [
+    {
+      desc: "The file to use as knowledge base",
+      name: "File",
+      type: "KnowledgeBase",
+      value: null,
+    },
+  ],
+  difficulty: "easy",
+  tags: ["api", "llm", "knowledge-base", "rag"],
+}} />
 
 ---
 

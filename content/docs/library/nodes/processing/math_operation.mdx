@@ -11,12 +11,71 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Math Operation Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Math Operation",
+  category: "processing",
+  type: "math_operation",
+  icon: {},
+  desc: "Performs a mathematical operation on two numbers: addition, subtraction, multiplication, or division.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "First number",
+      name: "Number 1",
+      type: "Number",
+    },
+    {
+      desc: "Second number",
+      name: "Number 2",
+      type: "Number",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The result of the operation",
+      name: "Result",
+      type: "Number",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "First number",
+      name: "Number 1",
+      type: "Number",
+      value: 0,
+    },
+    {
+      desc: "Operation",
+      name: "Operation",
+      type: "select",
+      value: "+",
+      options: ["+", "-", "*", "/"],
+    },
+    {
+      desc: "Second number",
+      name: "Number 2",
+      type: "Number",
+      value: 0,
+    },
+  ],
+  difficulty: "easy",
+  tags: ["math", "operation", "calculate"],
+}} />
 
 ---
 

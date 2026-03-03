@@ -11,12 +11,81 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Text Replace Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Text Replace",
+  category: "processing",
+  type: "text_replace",
+  icon: {},
+  desc: "Replaces text in a string, with an option to replace all occurrences.",
+  credit: 0,
+  inputs: [
+    {
+      name: "Flow",
+      type: "Flow",
+      desc: "The flow of the workflow",
+    },
+    {
+      name: "Text",
+      type: "Text",
+      desc: "The text on which replacement will be done.",
+    },
+    {
+      name: "Text to replace",
+      type: "Text",
+      desc: "The text/substring to search for and replace.",
+    },
+    {
+      name: "Text to replace with",
+      type: "Text",
+      desc: "The text to insert as the replacement.",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "Text",
+      type: "Text",
+      desc: "The result text after replacement.",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Text",
+      type: "Text",
+      desc: "The text on which replacement will be done.",
+      value: "Enter text here...",
+    },
+    {
+      name: "Text to replace",
+      type: "Text",
+      desc: "The text to search for.",
+      value: "Enter text here...",
+    },
+    {
+      name: "Text to replace with",
+      type: "Text",
+      desc: "The text to replace with.",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Replace all occurrences of the text",
+      name: "Replace All",
+      type: "CheckBox",
+      value: false,
+    },
+  ],
+  difficulty: "easy",
+  tags: ["text", "replace", "processing", "string"],
+}} />
 
 ---
 

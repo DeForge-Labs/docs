@@ -11,12 +11,148 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Send Email Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Send Email",
+  category: "social",
+  type: "send_email_node",
+  icon: {},
+  desc: "Send an email using SMTP",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "To",
+      type: "Text",
+      desc: "Recipient email address (comma-separated for multiple)",
+    },
+    {
+      name: "Subject",
+      type: "Text",
+      desc: "Email subject line",
+    },
+    {
+      name: "Body",
+      type: "Text",
+      desc: "Email body content",
+    },
+    {
+      name: "CC",
+      type: "Text",
+      desc: "CC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "BCC",
+      type: "Text",
+      desc: "BCC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "HTML",
+      type: "Boolean",
+      desc: "Whether the body is HTML (default: false for plain text)",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the email was sent successfully",
+    },
+    {
+      name: "messageId",
+      type: "Text",
+      desc: "The message ID from the email server",
+    },
+    {
+      name: "response",
+      type: "Text",
+      desc: "Response message from the email server",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "To",
+      type: "Text",
+      desc: "Recipient email address (comma-separated for multiple)",
+      value: "recipient@example.com",
+    },
+    {
+      name: "Subject",
+      type: "Text",
+      value: "Hello from AI Agent Builder",
+      desc: "Email subject line",
+    },
+    {
+      name: "Body",
+      type: "TextArea",
+      value: "This is a test email sent from the AI Agent Builder.",
+      desc: "Email body content",
+    },
+    {
+      name: "CC",
+      type: "Text",
+      value: "",
+      desc: "CC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "BCC",
+      type: "Text",
+      value: "",
+      desc: "BCC email addresses (comma-separated, optional)",
+    },
+    {
+      name: "HTML",
+      type: "CheckBox",
+      value: false,
+      desc: "Whether the body is HTML (default: false for plain text)",
+    },
+    {
+      desc: "SMTP host (e.g., smtp.gmail.com)",
+      name: "SMTP_HOST",
+      type: "env",
+      defaultValue: "smtp.gmail.com",
+    },
+    {
+      desc: "SMTP port (e.g., 587 for TLS, 465 for SSL)",
+      name: "SMTP_PORT",
+      type: "env",
+      defaultValue: "587",
+    },
+    {
+      desc: "SMTP username/email",
+      name: "SMTP_USER",
+      type: "env",
+      defaultValue: "your-email@gmail.com",
+    },
+    {
+      desc: "SMTP password or app password",
+      name: "SMTP_PASSWORD",
+      type: "env",
+      defaultValue: "your-app-password",
+    },
+    {
+      desc: "Use TLS (true/false)",
+      name: "SMTP_SECURE",
+      type: "env",
+      defaultValue: "false",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["email", "smtp", "communication", "send", "notification"],
+}} />
 
 ---
 

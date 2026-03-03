@@ -11,12 +11,117 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="YouTube Upload Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "YouTube Upload",
+  category: "social",
+  type: "yt_upload",
+  icon: {},
+  desc: "Upload videos to your YouTube channel",
+  credit: 0,
+  inputs: [
+    {
+      desc: "Link to the video to upload",
+      name: "Link",
+      type: "Text",
+    },
+    {
+      desc: "Title of the video to upload",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "Description of the video to upload",
+      name: "Description",
+      type: "Text",
+    },
+    {
+      desc: "Tags for the video to upload (Comma separated list of tags)",
+      name: "Tags",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The link of the uploaded video",
+      name: "Video Link",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Link to the video to upload",
+      name: "Link",
+      type: "Text",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Title of the video to upload",
+      name: "Title",
+      type: "Text",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Description of the video to upload",
+      name: "Description",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Tags for the video to upload (Comma separated list of tags)",
+      name: "Tags",
+      type: "Text",
+      value: "Enter tags here...",
+    },
+    {
+      desc: "The category of the video",
+      name: "Category",
+      type: "select",
+      value: "People & Blogs",
+      options: [
+        "Autos & Vehicles",
+        "Comedy",
+        "Education",
+        "Enterntainment",
+        "Film & Animation",
+        "Gaming",
+        "Howto & Style",
+        "Music",
+        "News & Politics",
+        "Nonprofits & Activism",
+        "People & Blogs",
+        "Pets & Animals",
+        "Science & Technology",
+        "Sports",
+        "Travel & Events",
+      ],
+    },
+    {
+      desc: "The privacy status of the video",
+      name: "Privacy",
+      type: "select",
+      value: "Public",
+      options: ["Public", "Private", "Unlisted"],
+    },
+    {
+      desc: "Connect to your YouTube account",
+      name: "YouTube",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["youtube", "video", "upload", "social"],
+}} />
 
 ---
 

@@ -11,12 +11,48 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Send Chatbot Response Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Send Chatbot Response",
+    category: "output",
+    type: "chatbot_msg_send",
+    icon: {},
+    desc: "Send a response to your chat bot chat",
+    credit: 0,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Text to send",
+            name: "Message",
+            type: "Text",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The final output object of chat bot",
+            name: "Result",
+            type: "JSON"
+        },
+    ],
+    fields: [
+        {
+            desc: "Text to send",
+            name: "Message",
+            type: "TextArea",
+            value: "text here ...",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["output", "chat", "bot"],
+}} />
 
 ---
 

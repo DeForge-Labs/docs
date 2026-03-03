@@ -11,12 +11,93 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/lyria_node_light.png"
   data-dark-src="https://docs-assets.deforge.io/lyria_node_dark.png"
   alt="Lyria AI Music Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<Callout title="Archived" type="warn">
+    This node is now archived and not available for use in Deforge
+</Callout>
+
+<NodePreview config={{
+  title: "Lyria AI Music",
+  category: "GenAI",
+  type: "lyria_node",
+  icon: {},
+  desc: "Generate AI music using Google Lyria",
+  credit: 40,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Music generation prompt",
+      name: "Prompt",
+      type: "Text",
+    },
+    {
+      desc: "Negative music generation prompt",
+      name: "Negative Prompt",
+      type: "Text",
+    },
+    {
+      desc: "Seed value for generation (optional)",
+      name: "Seed",
+      type: "Number",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "Temporary link to the audio",
+      name: "Audio Link",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Music generation prompt",
+      name: "Prompt",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Negative music generation prompt",
+      name: "Negative Prompt",
+      type: "TextArea",
+      value: "Enter text here...",
+    },
+    {
+      desc: "Seed value for generation (optional)",
+      name: "Seed",
+      type: "Number",
+      value: 0,
+    },
+    {
+      desc: "Model to be used for music generation",
+      name: "Model",
+      type: "select",
+      value: "lyria-002",
+      options: ["lyria-002"],
+    },
+  ],
+  difficulty: "easy",
+  tags: ["lyria", "google", "ai", "music"],
+}} />
 
 ---
 

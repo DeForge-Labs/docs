@@ -11,12 +11,91 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="HubSpot - Search Companies Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "HubSpot - Search Companies",
+  category: "management",
+  type: "hubspot_search_companies_node",
+  icon: {},
+  desc: "Search for companies in HubSpot CRM with filters",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Query",
+      type: "Text",
+      desc: "Search query string",
+    },
+    {
+      name: "Filters",
+      type: "JSON",
+      desc: "Array of filter objects [{propertyName, operator, value}]",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      desc: "Maximum number of results (default: 10, max: 100)",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the search was successful",
+    },
+    {
+      name: "companies",
+      type: "JSON",
+      desc: "Array of matching companies",
+    },
+    {
+      name: "total",
+      type: "Number",
+      desc: "Total number of matching companies",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Query",
+      type: "Text",
+      desc: "Search query string",
+      value: "",
+    },
+    {
+      name: "Filters",
+      type: "Map",
+      value: "",
+      desc: "Array of filter objects [{propertyName, operator, value}]",
+    },
+    {
+      name: "Limit",
+      type: "Number",
+      value: 10,
+      desc: "Maximum number of results (default: 10, max: 100)",
+    },
+    {
+      desc: "Connect to your HubSpot account",
+      name: "HubSpot",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["hubspot", "crm", "company", "search", "management"],
+}} />
 
 ---
 

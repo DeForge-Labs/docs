@@ -11,12 +11,71 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Send Slack Media Message Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Send Slack Media Message",
+    category: "output",
+    type: "slack_media_msg_send",
+    icon: {},
+    desc: "Send a media message via your slack bot",
+    credit: 0,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Direct link to the Media file you want to send",
+            name: "Media Link",
+            type: "Text",
+        },
+        {
+            desc: "Caption text to send",
+            name: "Caption",
+            type: "Text",
+        },
+        {
+            desc: "Channel ID to send the text to",
+            name: "ChannelID",
+            type: "Text"
+        }
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+    ],
+    fields: [
+        {
+            desc: "Direct link to the Media file you want to send",
+            name: "Media Link",
+            type: "Text",
+            value: "link here ...",
+        },
+        {
+            desc: "Caption text to send",
+            name: "Caption",
+            type: "TextArea",
+            value: "text here ...",
+        },
+        {
+            desc: "Channel ID to send the text to",
+            name: "ChannelID",
+            type: "Text",
+            value: "123456",
+        },
+        {
+            desc: "Connect to your Slack account",
+            name: "Slack",
+            type: "social",
+            defaultValue: "",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["output", "media", "slack", "bot"],
+}} />
 
 ---
 

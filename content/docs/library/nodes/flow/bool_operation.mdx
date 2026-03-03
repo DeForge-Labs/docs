@@ -11,12 +11,61 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/bool_operation_light.png"
   data-dark-src="https://docs-assets.deforge.io/bool_operation_dark.png"
   alt="Boolean Operation Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+    title: "Boolean Operation",
+    category: "flow",
+    type: "bool_operation",
+    icon: {},
+    desc: "Performs a logical operation based on a condition",
+    credit: 0,
+    inputs: [
+        {
+            desc: "First input",
+            name: "Input 1",
+            type: "Boolean",
+        },
+        {
+            desc: "Second input",
+            name: "Input 2",
+            type: "Boolean",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow of the Condition if true",
+            name: "True",
+            type: "Flow",
+        },
+        {
+            desc: "The Flow of the Condition if false",
+            name: "False",
+            type: "Flow",
+        },
+        {
+            desc: "Result",
+            name: "Result",
+            type: "Boolean",
+        },
+    ],
+    fields: [
+        {
+            desc: "Logic (NOT operation only works on input 1)",
+            name: "Logic",
+            type: "select",
+            value: "AND",
+            options: ["AND", "OR", "NOT"],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["logic", "and", "or", "not"],
+}} />
 
 ---
 

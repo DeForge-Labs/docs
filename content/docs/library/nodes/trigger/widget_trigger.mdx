@@ -11,12 +11,76 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Widget Trigger Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Widget Trigger",
+  category: "trigger",
+  type: "widget_trigger",
+  icon: {},
+  desc: "Triggers the flow when a message is recieved from the support bot Widget",
+  credit: 0,
+  inputs: [
+    {
+      desc: "Intro message shown by the bot",
+      name: "Intro",
+      type: "Text",
+    },
+    {
+      desc: "Company Name shown in the widget header",
+      name: "Company Name",
+      type: "Text",
+    },
+    {
+      desc: "Company or Chatbot description shown in the widget header",
+      name: "Description",
+      type: "Text",
+    },
+    {
+      desc: "Company Logo shown in the widget header (SVG)",
+      name: "Logo",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Message recieved by the bot",
+      name: "Message",
+      type: "Text",
+    },
+  ],
+  fields: [
+    {
+      desc: "Intro message shown by the bot",
+      name: "Intro",
+      type: "TextArea",
+      value: `🎉 Welcome! I'm your AI assistant. This is a demo workflow. Ask me anything!`,
+    },
+    {
+      desc: "Company Name shown in the widget header",
+      name: "Company Name",
+      type: "Text",
+      value: "Deforge Assistant",
+    },
+    {
+      desc: "Company or Chatbot description shown in the widget header",
+      name: "Description",
+      type: "Text",
+      value: "AI Agent is ready to help!",
+    },
+    {
+      desc: "Company Logo shown in the widget header (SVG)",
+      name: "Logo",
+      type: "TextArea",
+      value: '<svg width="100%"...><path d="M12..."/></svg>',
+    },
+  ],
+  difficulty: "easy",
+  tags: ["trigger", "support", "bot", "widget"],
+}} />
 
 ---
 

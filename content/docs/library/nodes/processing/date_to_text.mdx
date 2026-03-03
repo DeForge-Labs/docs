@@ -11,12 +11,63 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Date to Text (Formatted) Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Date to Text (Formatted)",
+  category: "processing",
+  type: "date_to_text",
+  icon: {},
+  desc: "Converts a date object or string into a localized text string.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Date to convert (e.g., Date object, ISO string)",
+      name: "Date",
+      type: "Date",
+    },
+    {
+      desc: "The locale for the date (like en-US, de-DE, fr-FR)",
+      name: "Locale",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The text representation of the date",
+      name: "Text",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs", // 2. Add Tool output
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Date to convert",
+      name: "Date",
+      type: "Date",
+    },
+    {
+      desc: "The locale for the date (like en-US, de-DE, fr-FR)",
+      name: "Locale",
+      type: "Text",
+      value: "en-US",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["date", "text", "format", "locale"],
+}} />
 
 ---
 

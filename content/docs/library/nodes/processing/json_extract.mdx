@@ -11,12 +11,68 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Extract JSON Value Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Extract JSON Value",
+  category: "processing",
+  type: "json_extract",
+  icon: {},
+  desc: "Gets the Value from JSON using a key (supports dot notation for nested objects).",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "JSON object to parse",
+      name: "Object",
+      type: "JSON",
+    },
+    {
+      desc: "Key path to extract (e.g., 'user.address.city' or 'id')",
+      name: "Key",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The value of the key, converted to Text (JSON strings if nested object)",
+      name: "Value",
+      type: "Text",
+    },
+    {
+      desc: "Raw value of the key (retains original type: string, number, boolean, object, array)",
+      name: "Raw Value",
+      type: "Any",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs", // 2. Add Tool output
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "JSON object to parse",
+      name: "Object",
+      type: "Map",
+    },
+    {
+      desc: "Key path to extract (supports dot notation)",
+      name: "Key",
+      type: "Text",
+      value: "key",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["json", "extract", "parser"],
+}} />
 
 ---
 

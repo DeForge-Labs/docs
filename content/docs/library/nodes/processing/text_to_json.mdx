@@ -11,12 +11,53 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Text to JSON (Parser) Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Text to JSON (Parser)",
+  category: "processing",
+  type: "text_to_json",
+  icon: {},
+  desc: "Converts a text string, including non-standard or malformed JSON, into a structured JSON object. It uses JSON repair technology.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Text to convert (e.g., malformed JSON string)",
+      name: "Text",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The parsed JSON object",
+      name: "JSON",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Text to convert",
+      name: "Text",
+      type: "Text",
+      value: "Enter text here...",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["text", "json", "parser", "repair"],
+}} />
 
 ---
 

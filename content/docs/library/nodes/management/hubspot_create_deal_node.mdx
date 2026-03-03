@@ -11,12 +11,124 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="HubSpot - Create Deal Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "HubSpot - Create Deal",
+  category: "management",
+  type: "hubspot_create_deal_node",
+  icon: {},
+  desc: "Create a new deal in HubSpot CRM",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "DealName",
+      type: "Text",
+      desc: "Deal name (required)",
+    },
+    {
+      name: "Amount",
+      type: "Number",
+      desc: "Deal amount",
+    },
+    {
+      name: "Pipeline",
+      type: "Text",
+      desc: "Pipeline ID",
+    },
+    {
+      name: "Stage",
+      type: "Text",
+      desc: "Deal stage ID",
+    },
+    {
+      name: "CloseDate",
+      type: "Text",
+      desc: "Expected close date (YYYY-MM-DD)",
+    },
+    {
+      name: "AdditionalProperties",
+      type: "JSON",
+      desc: "Additional deal properties as key-value pairs",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the deal was created successfully",
+    },
+    {
+      name: "dealId",
+      type: "Text",
+      desc: "The HubSpot deal ID",
+    },
+    {
+      name: "deal",
+      type: "JSON",
+      desc: "The created deal object",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "DealName",
+      type: "Text",
+      desc: "Deal name (required)",
+      value: "New Deal",
+    },
+    {
+      name: "Amount",
+      type: "Number",
+      value: 10000,
+      desc: "Deal amount",
+    },
+    {
+      name: "Pipeline",
+      type: "Text",
+      value: "",
+      desc: "Pipeline ID",
+    },
+    {
+      name: "Stage",
+      type: "Text",
+      value: "",
+      desc: "Deal stage ID",
+    },
+    {
+      name: "CloseDate",
+      type: "Text",
+      value: "",
+      desc: "Expected close date (YYYY-MM-DD)",
+    },
+    {
+      name: "AdditionalProperties",
+      type: "Map",
+      value: "",
+      desc: "Additional deal properties as key-value pairs",
+    },
+    {
+      desc: "Connect to your HubSpot account",
+      name: "HubSpot",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["hubspot", "crm", "deal", "create", "management"],
+}} />
 
 ---
 

@@ -11,12 +11,75 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="HubSpot - Get Contact Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "HubSpot - Get Contact",
+  category: "management",
+  type: "hubspot_get_contact_node",
+  icon: {},
+  desc: "Retrieve a contact from HubSpot CRM by email or ID",
+  credit: 3,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      name: "Email",
+      type: "Text",
+      desc: "Contact email address",
+    },
+    {
+      name: "ContactId",
+      type: "Text",
+      desc: "HubSpot contact ID (alternative to email)",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      name: "success",
+      type: "Boolean",
+      desc: "Whether the contact was found",
+    },
+    {
+      name: "contact",
+      type: "JSON",
+      desc: "The contact object with all properties",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      name: "Email",
+      type: "Text",
+      desc: "Contact email address",
+      value: "contact@example.com",
+    },
+    {
+      name: "ContactId",
+      type: "Text",
+      value: "",
+      desc: "HubSpot contact ID (alternative to email)",
+    },
+    {
+      desc: "Connect to your HubSpot account",
+      name: "HubSpot",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["hubspot", "crm", "contact", "get", "management"],
+}} />
 
 ---
 

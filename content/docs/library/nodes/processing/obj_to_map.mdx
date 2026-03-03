@@ -11,12 +11,48 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Objects To Map Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Objects To JSON",
+  category: "processing",
+  type: "obj_to_map",
+  icon: {},
+  desc: "Convert object to JSON",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Objects to convert",
+      name: "objects",
+      type: "JSON[]",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The map of the objects",
+      name: "map",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "Objects to convert",
+      name: "objects",
+      type: "JSON[]",
+      value: "[]",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["object", "map"],
+}} />
 
 ---
 

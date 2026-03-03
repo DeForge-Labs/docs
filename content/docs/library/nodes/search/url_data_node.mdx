@@ -11,12 +11,53 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Get URL Data Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Get URL Data",
+    category: "search",
+    type: "url_data_node",
+    icon: {},
+    desc: "Scrape data from a given URL",
+    credit: 10,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "URL to get data from",
+            name: "URL",
+            type: "Text",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The scraped content in markdown",
+            name: "output",
+            type: "Text",
+        },
+        {
+            desc: "The tool version of this node, to be used by LLMs",
+            name: "Tool",
+            type: "Tool",
+        }
+    ],
+    fields: [
+        {
+            desc: "URL to scrape",
+            name: "URL",
+            type: "Text",
+            value: "Enter text here...",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["link", "search", "web", "scrape"],
+}} />
 
 ---
 

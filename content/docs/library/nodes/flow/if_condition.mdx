@@ -11,13 +11,62 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
+{/* <ImageZoom
   src="https://docs-assets.deforge.io/if_condition_light.png"
   data-dark-src="https://docs-assets.deforge.io/if_condition_dark.png"
   alt="If Condition
  Node Screenshot"
   className="mx-auto"
-/>
+/> */}
+
+<NodePreview config={{
+    title: "If Condition",
+    category: "flow",
+    type: "if_condition",
+    icon: {},
+    desc: "Performs a conditional operation based on a condition",
+    credit: 0,
+    inputs: [
+        {
+            desc: "First input",
+            name: "Input 1",
+            type: "Any",
+        },
+        {
+            desc: "Second input",
+            name: "Input 2",
+            type: "Any",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow of the Condition if true",
+            name: "True",
+            type: "Flow",
+        },
+        {
+            desc: "The Flow of the Condition if false",
+            name: "False",
+            type: "Flow",
+        },
+        {
+            desc: "Result",
+            name: "Result",
+            type: "Boolean",
+        },
+    ],
+    fields: [
+        {
+            desc: "Condition",
+            name: "Condition",
+            type: "select",
+            value: "==",
+            options: ["==", "!=", ">", "<", ">=", "<="],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["condition", "if"],
+}} />
 
 ---
 

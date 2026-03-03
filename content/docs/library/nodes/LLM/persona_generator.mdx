@@ -11,12 +11,52 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="AI Persona Creator Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "AI Persona Creator",
+    category: "LLM",
+    type: "persona_generator",
+    icon: {},
+    desc: "Generate a persona of any user from any social media and add to a LLM",
+    credit: 200,
+    inputs: [
+        {
+            desc: "Username or Link to the user",
+            name: "Username",
+            type: "Text",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The persona details of the user",
+            name: "Persona",
+            type: "Text",
+        },
+    ],
+    fields: [
+        {
+            desc: "Username or Link to the user",
+            name: "Username",
+            type: "Text",
+            value: "Enter username or link here...",
+        },
+        {
+            desc: "The social media to search for",
+            name: "Social",
+            type: "select",
+            value: "Twitter",
+            options: [
+            "Twitter",        
+            ],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["ai", "search", "social"],
+}} />
 
 ---
 

@@ -11,12 +11,53 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Text to Date Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Text to Date",
+  category: "processing",
+  type: "text_to_date",
+  icon: {},
+  desc: "Converts a text string (preferably ISO Date String) to a structured Date object.",
+  credit: 0,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Text to convert (e.g., ISO 8601 string)",
+      name: "Text",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+        desc: "The Flow to trigger",
+        name: "Flow",
+        type: "Flow",
+    },
+    {
+      desc: "The structured date object of the text",
+      name: "Date",
+      type: "Date",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs", // 2. Add Tool output
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Text to convert",
+      name: "Text",
+      type: "Text",
+      value: "Enter ISO Date String here...",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["text", "date", "converter", "parser"],
+}} />
 
 ---
 

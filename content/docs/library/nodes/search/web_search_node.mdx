@@ -11,12 +11,77 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="AI Web Search Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "AI Web Search",
+    category: "search",
+    type: "web_search_node",
+    icon: {},
+    desc: "Search the web and get summarised information",
+    credit: 10,
+    inputs: [
+        {
+            desc: "The flow of the workflow",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "Query to search",
+            name: "Query",
+            type: "Text",
+        },
+    ],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "The content of all the search results in markdown",
+            name: "output",
+            type: "Text",
+        },
+        {
+            desc: "The tool version of this node, to be used by LLMs",
+            name: "Tool",
+            type: "Tool",
+        },
+    ],
+    fields: [
+        {
+            desc: "Query to search",
+            name: "Query",
+            type: "TextArea",
+            value: "Enter text here...",
+        },
+        {
+            desc: "The preferred search language",
+            name: "Language",
+            type: "select",
+            value: "English",
+            options: [
+            "English",
+            "Spanish",
+            "French",
+            "German",
+            "Japanese",
+            "Chinese",
+            "Hindi",
+            "Portugese",
+            "Italian",
+            "Korean",
+            "Dutch",
+            "Arabic",
+            "Sweedish",
+            "Hebrew",
+            "Afrikaans",
+            "Russian",         
+            ],
+        },
+    ],
+    difficulty: "easy",
+    tags: ["llm", "search", "web"],
+}} />
 
 ---
 

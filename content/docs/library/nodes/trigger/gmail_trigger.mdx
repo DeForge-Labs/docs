@@ -11,12 +11,47 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Gmail Trigger Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+    title: "Gmail Trigger",
+    category: "trigger",
+    type: "gmail_trigger",
+    icon: {},
+    desc: "Triggers the flow when a mail is recieved on Gmail",
+    credit: 0,
+    inputs: [],
+    outputs: [
+        {
+            desc: "The Flow to trigger",
+            name: "Flow",
+            type: "Flow",
+        },
+        {
+            desc: "All email data (if multiple)",
+            name: "All Email",
+            type: "JSON"
+        },
+        {
+            desc: "The email subject (if only one email found)",
+            name: "Subject",
+            type: "Text"
+        },
+        {
+            desc: "The email body (if only one email found)",
+            name: "Body",
+            type: "Text"
+        },
+    ],
+    fields: [
+        {
+            desc: "Connect to your Gmail account",
+            name: "Gmail_Trigger",
+            type: "social",
+            defaultValue: "",
+        },
+    ],
+    difficulty: "easy",
+    tags: ["trigger", "gmail", "email"],
+}} />
 
 ---
 

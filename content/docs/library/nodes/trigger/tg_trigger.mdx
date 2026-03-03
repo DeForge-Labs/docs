@@ -11,12 +11,74 @@ import { Badge } from '@/components/ui/badge';
 import { ImageZoom } from '@/components/image-zoom';
 import { getColorByType } from '@/lib/color-profile';
 
-<ImageZoom
-  src="https://docs-assets.deforge.io/TTS_Light.png"
-  data-dark-src="https://docs-assets.deforge.io/TTS_Dark.png"
-  alt="Telegram Trigger Node Screenshot"
-  className="mx-auto"
-/>
+<NodePreview config={{
+  title: "Telegram Trigger",
+  category: "trigger",
+  type: "tg_trigger",
+  icon: {},
+  desc: "Triggers the flow when a message is recieved on the telegram bot",
+  credit: 0,
+  inputs: [
+    {
+      desc: "Text to send when recieving the /start command",
+      name: "On Start",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Message recieved by the bot",
+      name: "Message",
+      type: "Text",
+    },
+    {
+      desc: "Link to the voice message recieved by the bot",
+      name: "Voice",
+      type: "Text",
+    },
+    {
+      desc: "Chat ID of the user",
+      name: "Chat ID",
+      type: "Text",
+    },
+    {
+      desc: "Username of the user",
+      name: "Username",
+      type: "Text",
+    },
+    {
+      desc: "Is the message a bot command ?",
+      name: "Is Command",
+      type: "Boolean",
+    },
+    {
+      desc: "The full payload of the message",
+      name: "Payload",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "Text to send when recieving the /start command",
+      name: "On Start",
+      type: "TextArea",
+      value: "text here ...",
+    },
+    {
+      desc: "Api Key of your Telegram bot",
+      name: "TG_API_KEY",
+      type: "env",
+      defaultValue: "eydnfnuani...",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["trigger", "telegram", "bot"],
+}} />
 
 ---
 

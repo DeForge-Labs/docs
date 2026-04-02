@@ -1,0 +1,195 @@
+---
+title: GitHub Trigger
+description: Triggers the flow when a specified GitHub event occurs in a repository
+tags: [trigger, github, webhook, repo]
+github: https://github.com/DeForge-Labs/library/blob/main/trigger/github_trigger/node.js
+difficulty: easy
+credits: 0
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub Trigger",
+  category: "trigger",
+  type: "github_trigger",
+  icon: {},
+  desc: "Triggers the flow when a specified GitHub event occurs in a repository",
+  credit: 0,
+  inputs: [],
+  outputs: [
+    {
+      desc: "The Flow to trigger",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The type of GitHub event (e.g., issues, pull_request, push)",
+      name: "Event Type",
+      type: "Text",
+    },
+    {
+      desc: "The specific action (e.g., opened, closed, created) if applicable",
+      name: "Action",
+      type: "Text",
+    },
+    {
+      desc: "The repository name (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "The username of the person who triggered the event",
+      name: "Sender",
+      type: "Text",
+    },
+    {
+      desc: "The full JSON payload from GitHub",
+      name: "Payload",
+      type: "JSON",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository to listen to (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      name: "Event Type",
+      type: "select",
+      desc: "The GitHub event that will trigger this flow",
+      value: "push",
+      options: [
+        "*",
+        "push",
+        "pull_request",
+        "issues",
+        "issue_comment",
+        "star",
+        "fork",
+        "release",
+      ],
+    },
+    {
+      desc: "Connect to your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["trigger", "github", "webhook", "repo"],
+}} />
+
+---
+
+## Description
+The GitHub Trigger node allows you to automatically start a workflow in Deforge whenever a specific event occurs in a connected GitHub repository. By automatically configuring webhooks behind the scenes, this node listens for repository activity and wakes up your AI agents or automations in real-time. You can configure this node to listen to a specific event, such as:
+1. **Pull Requests**: Trigger a flow when a PR is opened, closed, edited, or merged.
+2. **Issues & Comments**: Start automations when a user opens a new bug report, or when someone leaves a comment on an existing issue.
+3. **Code Pushes**: Run a workflow every time new commits are pushed to the repository. 
+4. **Repository Engagement**: Trigger flows when a new release is published, or when another user stars or forks your repository.
+
+### Common Use Cases
+- Building an autonomous AI code reviewer that gets triggered on new Pull Requests, reads the diffs, and automatically posts review comments.
+- Creating an AI triage agent that reads newly opened issues, categorizes them, and alerts your development team in Slack or Discord.
+- Triggering automated documentation generation or deployment pipelines whenever code is pushed to the `main` branch.
+- Sending a welcome message or automated response via the **GitHub: Add Comment** node whenever a user opens their first issue.
+
+## Inputs
+The input connections this node accepts:
+
+_This node does not have any input ports._
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to trigger</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Event Type</DataName>
+    <DataDesc>
+    <DescLine>The type of GitHub event (e.g., issues, pull_request, push)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Action</DataName>
+    <DataDesc>
+    <DescLine>The specific action (e.g., opened, closed, created) if applicable</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>The repository name (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Sender</DataName>
+    <DataDesc>
+    <DescLine>The username of the person who triggered the event</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Payload</DataName>
+    <DataDesc>
+    <DescLine>The full JSON payload from GitHub</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository to listen to (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Event Type</DataName>
+    <DataDesc>
+    <DescLine>The GitHub event that will trigger this flow</DescLine>
+    <DescLine>**Value:** `push`</DescLine>
+    <DescLine>**Options:** <Badge>*</Badge> <Badge>push</Badge> <Badge>pull_request</Badge> <Badge>issues</Badge> <Badge>issue_comment</Badge> <Badge>star</Badge> <Badge>fork</Badge> <Badge>release</Badge></DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('select')}>select</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect to your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

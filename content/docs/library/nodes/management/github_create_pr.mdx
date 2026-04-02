@@ -1,0 +1,278 @@
+---
+title: GitHub - Create PR
+description: Create a new Pull Request in a repository
+tags: [output, github, pr, pull request, merge, tool]
+github: https://github.com/DeForge-Labs/library/blob/main/management/github_create_pr/node.js
+difficulty: medium
+credits: 1
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub: Create PR",
+  category: "management",
+  type: "github_create_pr",
+  icon: {},
+  desc: "Create a new Pull Request in a repository",
+  credit: 1,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Repository (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "Title of the Pull Request",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "Description/Body of the PR (Markdown supported)",
+      name: "Body",
+      type: "Text",
+    },
+    {
+      desc: "The name of the branch where your changes are (e.g., 'feature-fix')",
+      name: "Head Branch",
+      type: "Text",
+    },
+    {
+      desc: "The name of the branch you want to merge into (e.g., 'main')",
+      name: "Base Branch",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to continue",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The URL of the created Pull Request",
+      name: "PR URL",
+      type: "Text",
+    },
+    {
+      desc: "The Number of the created Pull Request",
+      name: "PR Number",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "PR Title",
+      name: "Title",
+      type: "Text",
+      value: "Automated PR from Deforge Agent",
+    },
+    {
+      desc: "Description/Body of the PR (Markdown supported)",
+      name: "Body",
+      type: "TextArea",
+      value: "",
+    },
+    {
+      desc: "Source branch with changes",
+      name: "Head Branch",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Target branch to merge into",
+      name: "Base Branch",
+      type: "Text",
+      value: "main",
+    },
+    {
+      desc: "Connect your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "medium",
+  tags: ["output", "github", "pr", "pull request", "merge", "tool"],
+}} />
+
+---
+
+## Description
+The GitHub: Create PR node allows your Deforge workflows to automatically open a Pull Request, proposing to merge changes from one branch (the head) into another (the base). It authenticates via your connected GitHub account, ensuring the PR is created seamlessly without manual intervention.
+
+This node is a cornerstone for autonomous developer workflows. When passed as a **Tool** to an LLM node, your AI agents can independently finalize their work by opening a fully formatted Pull Request—complete with an intelligent title and Markdown description detailing the changes they made—ready for human review.
+
+### Common Use Cases
+- **Autonomous Feature Development:** Chaining the **GitHub: Update File** node to commit code changes to a new branch, and then using this node to automatically open a Pull Request back to `main`.
+- **Automated Dependency Updates:** Triggering a workflow on a cron schedule to check for outdated libraries, creating a branch with the updated `package.json`, and using this node to submit the update as a PR.
+- **Content & Documentation Workflows:** Allowing non-technical team members to submit content updates via a Slack or Discord trigger, which an agent then translates into a markdown file commit and a subsequent Pull Request for the engineering team to approve.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Title of the Pull Request</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Description/Body of the PR (Markdown supported)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Head Branch</DataName>
+    <DataDesc>
+    <DescLine>The name of the branch where your changes are (e.g., 'feature-fix')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base Branch</DataName>
+    <DataDesc>
+    <DescLine>The name of the branch you want to merge into (e.g., 'main')</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to continue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>PR URL</DataName>
+    <DataDesc>
+    <DescLine>The URL of the created Pull Request</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>PR Number</DataName>
+    <DataDesc>
+    <DescLine>The Number of the created Pull Request</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>PR Title</DescLine>
+    <DescLine>**Value:** `Automated PR from Deforge Agent`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Description/Body of the PR (Markdown supported)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Head Branch</DataName>
+    <DataDesc>
+    <DescLine>Source branch with changes</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Base Branch</DataName>
+    <DataDesc>
+    <DescLine>Target branch to merge into</DescLine>
+    <DescLine>**Value:** `main`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

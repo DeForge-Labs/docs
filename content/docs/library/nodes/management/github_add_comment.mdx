@@ -1,0 +1,214 @@
+---
+title: GitHub - Add Comment
+description: Add a comment to an existing Issue or Pull Request
+tags: [output, github, comment, pr, tool]
+github: https://github.com/DeForge-Labs/library/blob/main/management/github_add_comment/node.js
+difficulty: easy
+credits: 1
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub: Add Comment",
+  category: "management",
+  type: "github_add_comment",
+  icon: {},
+  desc: "Add a comment to an existing Issue or Pull Request",
+  credit: 1,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Repository (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "The Issue or Pull Request Number",
+      name: "Issue Number",
+      type: "Text",
+    },
+    {
+      desc: "The comment text (Markdown supported)",
+      name: "Comment",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to continue",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The URL of the posted comment",
+      name: "Comment URL",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Issue or PR Number",
+      name: "Issue Number",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Comment Text",
+      name: "Comment",
+      type: "TextArea",
+      value: "Leaving a comment...",
+    },
+    {
+      desc: "Connect your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["output", "github", "comment", "pr", "tool"],
+}} />
+
+---
+
+## Description
+The GitHub: Add Comment node allows your workflows to interact directly with developers and users on GitHub by posting messages to specific Issues or Pull Requests. It authenticates using your connected GitHub account so that comments appear to come directly from you or your bot. 
+
+Crucially, this node serves a dual purpose: it can be executed as a direct step in a linear workflow, or it can be passed as a **Tool** into an LLM node. When provided as a tool, your AI agents can autonomously decide when to leave a comment and dynamically generate the response based on the conversation context.
+
+### Common Use Cases
+- **Autonomous Code Reviewers:** Passing this node as a tool to an LLM so it can read a Pull Request and automatically post constructive feedback or approve the changes.
+- **Automated Triage & Support:** Having an AI agent review newly opened bug reports and use this node to automatically ask the user for missing information (e.g., "Could you please provide the error logs?").
+- **Welcome Messages:** Triggering a workflow when a new contributor opens their first PR, and using this node to instantly post a standardized welcome message and a link to your contribution guidelines.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Issue Number</DataName>
+    <DataDesc>
+    <DescLine>The Issue or Pull Request Number</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Comment</DataName>
+    <DataDesc>
+    <DescLine>The comment text (Markdown supported)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to continue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Comment URL</DataName>
+    <DataDesc>
+    <DescLine>The URL of the posted comment</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Issue Number</DataName>
+    <DataDesc>
+    <DescLine>Issue or PR Number</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Comment</DataName>
+    <DataDesc>
+    <DescLine>Comment Text</DescLine>
+    <DescLine>**Value:** `Leaving a comment...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

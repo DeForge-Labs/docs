@@ -1,0 +1,236 @@
+---
+title: GitHub - Get Issue
+description: Get the full details of a GitHub Issue or Pull Request
+tags: [action, github, issue, pr, read, tool]
+github: https://github.com/DeForge-Labs/library/blob/main/management/github_get_issue/node.js
+difficulty: easy
+credits: 1
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub: Get Issue",
+  category: "management",
+  type: "github_get_issue",
+  icon: {},
+  desc: "Get the full details of a GitHub Issue or Pull Request",
+  credit: 1,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Repository (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "The Issue or Pull Request Number",
+      name: "Issue Number",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to continue",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Title of the issue",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "Full markdown body of the issue",
+      name: "Body",
+      type: "Text",
+    },
+    {
+      desc: "State (open/closed)",
+      name: "State",
+      type: "Text",
+    },
+    {
+      desc: "Creator's username",
+      name: "Author",
+      type: "Text",
+    },
+    {
+      desc: "Array of applied labels",
+      name: "Labels",
+      type: "JSON",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Issue or PR Number",
+      name: "Issue Number",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Connect your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "github", "issue", "pr", "read", "tool"],
+}} />
+
+---
+
+## Description
+The GitHub: Get Issue node retrieves the complete context of any specific GitHub Issue or Pull Request. By passing in a repository and an issue number, this node fetches the title, the full Markdown description body, the current state (open or closed), the author's username, and any labels currently applied to the issue.
+
+This node is absolutely essential for Retrieval-Augmented Generation (RAG) and autonomous AI agent workflows. While webhook triggers provide initial alerts, this node ensures your agent can query GitHub to get the deep, granular details of a task before it decides how to respond or what code to write.
+
+### Common Use Cases
+- **Context Gathering for AI:** Triggering an agent when a new comment is posted on an issue, and using this node to fetch the *original* issue body so the LLM understands the full context of the conversation.
+- **Automated Triage Routing:** Fetching the "Labels" of an issue to determine if it is a `bug` or an `enhancement`, and using an IF/ELSE flow to route the notification to the correct Slack or Discord channel.
+- **Agent Task Execution:** Passing this node as a **Tool** to an LLM, allowing the agent to "read" an issue ticket to understand the requirements before it uses the **GitHub: Update File** node to attempt a fix.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Issue Number</DataName>
+    <DataDesc>
+    <DescLine>The Issue or Pull Request Number</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to continue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Title of the issue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Full markdown body of the issue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>State</DataName>
+    <DataDesc>
+    <DescLine>State (open/closed)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Author</DataName>
+    <DataDesc>
+    <DescLine>Creator's username</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Labels</DataName>
+    <DataDesc>
+    <DescLine>Array of applied labels</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('json')}>JSON</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Issue Number</DataName>
+    <DataDesc>
+    <DescLine>Issue or PR Number</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

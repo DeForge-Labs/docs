@@ -1,0 +1,226 @@
+---
+title: GitHub - Create Issue
+description: Create a new issue in a GitHub repository
+tags: [output, github, issue, create, tool]
+github: https://github.com/DeForge-Labs/library/blob/main/management/github_create_issue/node.js
+difficulty: easy
+credits: 1
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub: Create Issue",
+  category: "management",
+  type: "github_create_issue",
+  icon: {},
+  desc: "Create a new issue in a GitHub repository",
+  credit: 1,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Repository (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "Title of the issue",
+      name: "Title",
+      type: "Text",
+    },
+    {
+      desc: "Body/Description of the issue (Markdown supported)",
+      name: "Body",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to continue",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The URL of the created issue",
+      name: "Issue URL",
+      type: "Text",
+    },
+    {
+      desc: "The Number of the created issue",
+      name: "Issue Number",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Issue Title",
+      name: "Title",
+      type: "Text",
+      value: "Automated Bug Report",
+    },
+    {
+      desc: "Issue Body",
+      name: "Body",
+      type: "TextArea",
+      value: "Describe the issue here...",
+    },
+    {
+      desc: "Connect your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["output", "github", "issue", "create", "tool"],
+}} />
+
+---
+
+## Description
+The GitHub: Create Issue node enables your Deforge workflows to automatically open new bug reports, feature requests, or tracking tasks directly in a specified GitHub repository. It authenticates through your connected GitHub account, ensuring the issues are created with proper authorization and attribution.
+
+This node is highly versatile because it can operate in two ways: as a fixed step in a linear automation, or as a dynamic **Tool** passed to an LLM node. When provided to an AI agent as a tool, the LLM can autonomously decide when to open an issue, intelligently summarize the context into a Markdown-formatted body, and write a concise title without human intervention.
+
+### Common Use Cases
+- **Automated Bug Triage:** Connect a Discord or Slack trigger to this node so that when a user reports a bug in a support channel, an AI agent parses the error and automatically opens a neatly formatted GitHub issue for the dev team.
+- **AI Project Management:** Feed a large feature request to an LLM and provide it with this tool, allowing the agent to break the feature down into smaller, actionable tasks and open individual tracking issues for each one.
+- **Monitoring & Alerts:** Trigger a workflow when a website monitor or automated test suite fails, using this node to instantly create a high-priority issue containing the error logs.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Title of the issue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Body/Description of the issue (Markdown supported)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to continue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Issue URL</DataName>
+    <DataDesc>
+    <DescLine>The URL of the created issue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Issue Number</DataName>
+    <DataDesc>
+    <DescLine>The Number of the created issue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Title</DataName>
+    <DataDesc>
+    <DescLine>Issue Title</DescLine>
+    <DescLine>**Value:** `Automated Bug Report`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Body</DataName>
+    <DataDesc>
+    <DescLine>Issue Body</DescLine>
+    <DescLine>**Value:** `Describe the issue here...`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

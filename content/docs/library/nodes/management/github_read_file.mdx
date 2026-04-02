@@ -1,0 +1,212 @@
+---
+title: GitHub - Read File
+description: Read the contents of a file from a GitHub repository
+tags: [action, github, file, read, code, tool]
+github: https://github.com/DeForge-Labs/library/blob/main/management/github_read_file/node.js
+difficulty: easy
+credits: 1
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub: Read File",
+  category: "management",
+  type: "github_read_file",
+  icon: {},
+  desc: "Read the contents of a file from a GitHub repository",
+  credit: 1,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Repository (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "File Path (e.g., src/index.js)",
+      name: "File Path",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to continue",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The plain text content of the file",
+      name: "File Content",
+      type: "Text",
+    },
+    {
+      desc: "The name of the file",
+      name: "File Name",
+      type: "Text",
+    },
+    {
+      desc: "The download URL of the file",
+      name: "Download URL",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Path to the file",
+      name: "File Path",
+      type: "Text",
+      value: "README.md",
+    },
+    {
+      desc: "Connect your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "easy",
+  tags: ["action", "github", "file", "read", "code", "tool"],
+}} />
+
+---
+
+## Description
+The GitHub: Read File node allows your Deforge workflows to securely fetch and read the exact contents of any file within a GitHub repository. Because GitHub's API natively returns file data in Base64 encoding, this node automatically decodes the content into plain text so it can be immediately processed by downstream nodes or AI models.
+
+When provided as a **Tool** to an LLM node, this becomes a critical component for Retrieval-Augmented Generation (RAG) and autonomous coding. It acts as the "eyes" of your AI agent, allowing it to autonomously navigate a codebase, inspect configuration files, or read through documentation to find the exact context it needs before making a decision or writing a fix.
+
+### Common Use Cases
+- **Autonomous Code Debugging:** An agent reads a bug report, then uses this node to read the specific `src/index.js` file mentioned in the ticket to locate the bug.
+- **Dependency Checking:** Setting up a scheduled workflow that reads the `package.json` of a repository, passes the plain text to an LLM to check for deprecated packages, and alerts your team if an update is needed.
+- **Dynamic Documentation Generation:** Fetching an existing `README.md` file, passing it to an LLM alongside new feature notes, and generating updated documentation to be pushed back via the **GitHub: Create/Update File** node.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>File Path</DataName>
+    <DataDesc>
+    <DescLine>File Path (e.g., src/index.js)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to continue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>File Content</DataName>
+    <DataDesc>
+    <DescLine>The plain text content of the file</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>File Name</DataName>
+    <DataDesc>
+    <DescLine>The name of the file</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Download URL</DataName>
+    <DataDesc>
+    <DescLine>The download URL of the file</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>File Path</DataName>
+    <DataDesc>
+    <DescLine>Path to the file</DescLine>
+    <DescLine>**Value:** `README.md`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

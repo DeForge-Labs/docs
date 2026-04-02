@@ -1,0 +1,278 @@
+---
+title: GitHub - Create/Update File
+description: Update an existing file or create a new one via a direct commit
+tags: [action, github, file, write, commit, code, tool]
+github: https://github.com/DeForge-Labs/library/blob/main/management/github_update_file/node.js
+difficulty: hard
+credits: 5
+---
+
+import { Badge } from '@/components/ui/badge';
+import { ImageZoom } from '@/components/image-zoom';
+import { getColorByType } from '@/lib/color-profile';
+
+<NodePreview config={{
+  title: "GitHub: Create/Update File",
+  category: "management",
+  type: "github_update_file",
+  icon: {},
+  desc: "Update an existing file or create a new one via a direct commit",
+  credit: 5,
+  inputs: [
+    {
+      desc: "The flow of the workflow",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "Repository (e.g., octocat/Hello-World)",
+      name: "Repository",
+      type: "Text",
+    },
+    {
+      desc: "File Path (e.g., src/index.js)",
+      name: "File Path",
+      type: "Text",
+    },
+    {
+      desc: "The new text/code content of the file",
+      name: "New Content",
+      type: "Text",
+    },
+    {
+      desc: "Commit message",
+      name: "Commit Message",
+      type: "Text",
+    },
+    {
+      desc: "Branch to commit to (defaults to main/master if empty)",
+      name: "Branch",
+      type: "Text",
+    },
+  ],
+  outputs: [
+    {
+      desc: "The Flow to continue",
+      name: "Flow",
+      type: "Flow",
+    },
+    {
+      desc: "The URL of the created commit",
+      name: "Commit URL",
+      type: "Text",
+    },
+    {
+      desc: "The SHA hash of the commit",
+      name: "Commit SHA",
+      type: "Text",
+    },
+    {
+      desc: "The tool version of this node, to be used by LLMs",
+      name: "Tool",
+      type: "Tool",
+    },
+  ],
+  fields: [
+    {
+      desc: "Repository (e.g., owner/repo)",
+      name: "Repository",
+      type: "Text",
+      value: "",
+    },
+    {
+      desc: "Path to the file",
+      name: "File Path",
+      type: "Text",
+      value: "README.md",
+    },
+    {
+      desc: "The new text/code content of the file",
+      name: "New Content",
+      type: "TextArea",
+      value: "",
+    },
+    {
+      desc: "Commit Message",
+      name: "Commit Message",
+      type: "Text",
+      value: "Update file via Deforge Agent",
+    },
+    {
+      desc: "Target Branch",
+      name: "Branch",
+      type: "Text",
+      value: "main",
+    },
+    {
+      desc: "Connect your GitHub account",
+      name: "GitHub",
+      type: "social",
+      defaultValue: "",
+    },
+  ],
+  difficulty: "hard",
+  tags: ["action", "github", "file", "write", "commit", "code", "tool"],
+}} />
+
+---
+
+## Description
+The GitHub: Create/Update File node is the ultimate action for autonomous AI workflows. It allows your Deforge agents to actively write code, modify configuration files, or generate documentation directly into a GitHub repository. Behind the scenes, this node automatically checks if a file exists, handles the SHA hashing required by GitHub's API, encodes your new text into Base64, and pushes a clean commit to the branch of your choice.
+
+This node unlocks true "AI Developer" capabilities. When passed as a **Tool** to an LLM node, your agent gains the ability to execute code changes autonomously. Whether it's fixing a typo, updating a dependency, or writing a brand new script, this node acts as the agent's hands.
+
+### Common Use Cases
+- **Autonomous Bug Fixing:** Combine this node with the **GitHub: Read File** tool, allowing an LLM to read a broken file, generate the corrected code, and immediately commit the fix to a new branch.
+- **Automated Documentation:** Trigger a workflow whenever new code is merged, passing the changes to an LLM to generate an updated `README.md` or `CHANGELOG.md`, and pushing the update directly to the repository.
+- **Dynamic Configuration Management:** Build workflows that automatically update JSON or YAML configuration files (like pricing tiers, feature flags, or environment variables) based on external triggers like a Stripe payment or a Slack command.
+
+## Inputs
+The input connections this node accepts:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The flow of the workflow</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., octocat/Hello-World)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>File Path</DataName>
+    <DataDesc>
+    <DescLine>File Path (e.g., src/index.js)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>New Content</DataName>
+    <DataDesc>
+    <DescLine>The new text/code content of the file</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Commit Message</DataName>
+    <DataDesc>
+    <DescLine>Commit message</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Branch</DataName>
+    <DataDesc>
+    <DescLine>Branch to commit to (defaults to main/master if empty)</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Outputs
+The output connections this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Flow</DataName>
+    <DataDesc>
+    <DescLine>The Flow to continue</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('flow')}>Flow</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Commit URL</DataName>
+    <DataDesc>
+    <DescLine>The URL of the created commit</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Commit SHA</DataName>
+    <DataDesc>
+    <DescLine>The SHA hash of the commit</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Tool</DataName>
+    <DataDesc>
+    <DescLine>The tool version of this node, to be used by LLMs</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('tool')}>Tool</Badge></DataType>
+  </DataRow>
+</DataTable>
+
+## Fields
+The configurable fields this node provides:
+
+<DataTable>
+  <DataHeader>
+    <DataName>Name</DataName>
+    <DataDesc>Description</DataDesc>
+    <DataType>Type</DataType>
+  </DataHeader>
+  <DataRow>
+    <DataName>Repository</DataName>
+    <DataDesc>
+    <DescLine>Repository (e.g., owner/repo)</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>File Path</DataName>
+    <DataDesc>
+    <DescLine>Path to the file</DescLine>
+    <DescLine>**Value:** `README.md`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>New Content</DataName>
+    <DataDesc>
+    <DescLine>The new text/code content of the file</DescLine>
+    <DescLine>**Value:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('textarea')}>TextArea</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Commit Message</DataName>
+    <DataDesc>
+    <DescLine>Commit Message</DescLine>
+    <DescLine>**Value:** `Update file via Deforge Agent`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Branch</DataName>
+    <DataDesc>
+    <DescLine>Target Branch</DescLine>
+    <DescLine>**Value:** `main`</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>GitHub</DataName>
+    <DataDesc>
+    <DescLine>Connect your GitHub account</DescLine>
+    <DescLine>**DefaultValue:** ``</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('social')}>social</Badge></DataType>
+  </DataRow>
+</DataTable>

@@ -30,6 +30,11 @@ import { getColorByType } from '@/lib/color-profile';
             type: "Text",
         },
         {
+            desc: "The LLM model",
+            name: "Model",
+            type: "Text",
+        },
+        {
             desc: "Chat text to send",
             name: "Query",
             type: "Text",
@@ -160,6 +165,13 @@ The input connections this node accepts:
     <DataName>Endpoint</DataName>
     <DataDesc>
     <DescLine>The endpoint of the OpenAI compatible LLM API</DescLine>
+    </DataDesc>
+    <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
+  </DataRow>
+  <DataRow>
+    <DataName>Model</DataName>
+    <DataDesc>
+    <DescLine>The LLM model</DescLine>
     </DataDesc>
     <DataType><Badge dotColor={getColorByType('text')}>Text</Badge></DataType>
   </DataRow>
